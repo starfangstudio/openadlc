@@ -1,0 +1,103 @@
+{
+  "name": "openadlc",
+  "owner": {
+    "name": "StarFang",
+    "url": "https://openadlc.com"
+  },
+  "metadata": {
+    "description": "OpenADLC, the human-in-the-loop development lifecycle for AI coding agents: an open standard with a source-available reference implementation (free for individuals; organizations need a commercial seat). The always-on adlc-core spine (the four /agentic-* commands + the lifecycle checkpoints) plus domain packs.",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "adlc-ai",
+      "source": "./plugins/adlc-ai",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "AI/LLM engineering domain: integrate LLMs into apps and services (Anthropic SDK-first), prompt engineering, evals, RAG, agent architecture, safety/guardrails, on-device AI; ai-architect + ai-reviewer agents. Serves product AI features and AI tooling."
+    },
+    {
+      "name": "adlc-android",
+      "source": "./plugins/adlc-android",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Android domain: action skills, WebView engineering, 10 on-demand convention rules; android-reviewer + android-architect agents."
+    },
+    {
+      "name": "adlc-backend",
+      "source": "./plugins/adlc-backend",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Thin backend domain for solo-scale products: modular-monolith architecture, API design, auth/identity, background jobs, and the game-server bits (leaderboards, authoritative sim re-validation, IAP server notifications). Managed services, no microservices/K8s. Routes deploy/observability to adlc-ops, security hardening to adlc-security, and the data layer (schema, migrations, queries, access) to adlc-database; keeps its own opinionated Postgres/Flyway stack."
+    },
+    {
+      "name": "adlc-core",
+      "source": "./plugins/adlc-core",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "ALWAYS-ON spine (deploy globally): the ADLC lifecycle (create-plan, implement-change, review-change) plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes; memory lives in ~/.claude."
+    },
+    {
+      "name": "adlc-design",
+      "source": "./plugins/adlc-design",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Cross-cutting design domain, loaded only when the work touches Figma or a design surface (Figma is the only supported design tool for now): on-demand Figma skills (design-context extraction, design-token mapping + precise Code Connect mappings to the design system, DS/style/font reuse, live-design drift detection, pixel-fidelity verification), the design-token pipeline (DTCG -> Style Dictionary -> web/iOS/Android), UI craft + anti-generic doctrine, UX flows + usability heuristics, accessibility, and the design-critic agent. Cite from any UI domain pack."
+    },
+    {
+      "name": "adlc-ios",
+      "source": "./plugins/adlc-ios",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "iOS domain: SwiftUI-first action skills, SPM interface/impl modules, KMP interop, App Store compliance, on-demand convention references; ios-architect + ios-reviewer agents."
+    },
+    {
+      "name": "adlc-monetization",
+      "source": "./plugins/adlc-monetization",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Monetization & live-ops domain: native IAP (StoreKit/Play Billing) with server receipt validation, F2P economy design, live-ops (battle pass/events/remote config), ads mediation, A/B experimentation, install attribution. Engine-agnostic design; Unity SDK wiring lives in adlc-unity. Routes policy to the compliance packs."
+    },
+    {
+      "name": "adlc-ops",
+      "source": "./plugins/adlc-ops",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Operations domain for launched products: crash/error monitoring (Sentry/Crashlytics), product analytics design, observability (uptime/health/SLO), CI/CD pipeline authoring, managed-cloud deploy. Solo-scale (managed services, no K8s). Routes test strategy to adlc-testing, the deploy gate to adlc-quality-gates."
+    },
+    {
+      "name": "adlc-planning",
+      "source": "./plugins/adlc-planning",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Deeper planning: revise/resume a plan, define API/module contracts, analyze a ticket's impact; architect + skill-author agents."
+    },
+    {
+      "name": "adlc-privacy",
+      "source": "./plugins/adlc-privacy",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Privacy & data-protection domain: GDPR/CCPA engineering (consent, DSAR, erasure, retention, ROPA), consent management (ATT/UMP), F2P games compliance (gacha odds disclosure, loot-box law, COPPA/kids, ads-to-minors), data-flow audit, OSS license scanning; privacy-reviewer agent."
+    },
+    {
+      "name": "adlc-quality-gates",
+      "source": "./plugins/adlc-quality-gates",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Readiness gates (deployment, plan, traceability) + skill structure/efficacy checks."
+    },
+    {
+      "name": "adlc-security",
+      "source": "./plugins/adlc-security",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Security: OWASP MASVS/MASTG + API Top 10, domain-adaptive SAST + secret scanning, negative testing, pentest mindset, threat taxonomy; security-reviewer; /adlc-security-review."
+    },
+    {
+      "name": "adlc-testing",
+      "source": "./plugins/adlc-testing",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Test strategy, scenario expansion, architecture conformance, validation contracts; test-critic agent; /validate-scenario."
+    },
+    {
+      "name": "adlc-unity",
+      "source": "./plugins/adlc-unity",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Unity game domain (C#): build/test via the Unity MCP, assembly architecture, deterministic simulation for real-time PvP, mobile performance, UI Toolkit + design tokens, monetization SDK wiring, store builds; unity-architect + unity-reviewer agents. For the F2P mobile games."
+    },
+    {
+      "name": "adlc-web",
+      "source": "./plugins/adlc-web",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Web frontend domain: framework-agnostic typed components (detect-first across React/Vue/Svelte/Angular), state management, forms + validation, the SSR/edge boundary, web performance + bundling, and web testing; web-architect + web-reviewer agents. Pairs with adlc-design (tokens, a11y, Figma)."
+    },
+    {
+      "name": "adlc-database",
+      "source": "./plugins/adlc-database",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Data domain: schema design (SQL + NoSQL, detect-first), safe zero-downtime migrations, query + index optimization, and the data-access layer (ORM / query builder / raw, transactions, parameterized queries); database-architect + database-reviewer agents. adlc-backend routes data-layer depth here."
+    },
+    {
+      "name": "adlc-desktop",
+      "source": "./plugins/adlc-desktop",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Desktop app domain (build Electron / Tauri / native apps, detect-first): the process + IPC model and its security, native OS integration (menus, tray, notifications, file system, auto-update, deep links), and packaging / signing / notarization / distribution; desktop-architect + desktop-reviewer agents. Distinct from the OpenADLC desktop product."
+    },
+    {
+      "name": "adlc-backend-cloud",
+      "source": "./plugins/adlc-backend-cloud",
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Enterprise / team-scale backend tier (the opt-in scale-up from adlc-backend's solo-scale monolith): containers, Kubernetes orchestration, infrastructure-as-code, async messaging + streaming, distributed data at scale, and progressive delivery; backend-cloud-architect + backend-cloud-reviewer agents. Routes observability to adlc-ops, security to adlc-security, data modeling to adlc-database."
+    }
+  ]
+}
