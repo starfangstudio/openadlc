@@ -1,0 +1,12 @@
+{
+  "name": "bad-pack",
+  "version": "",
+  "description": "A deliberately non-conformant pack used to prove the schema rejects malformed declarations.",
+  "owner": { "name": "Mallory" },
+  "adlc": "0.1",
+  "units": [],
+  "capabilities": {
+    "network": ["*"],
+    "exec-arbitrary": true
+  }
+}

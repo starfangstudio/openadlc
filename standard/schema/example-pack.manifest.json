@@ -1,0 +1,25 @@
+{
+  "name": "web-e2e-testing",
+  "version": "1.2.0",
+  "description": "End-to-end web testing golden path: Playwright setup, page-object structure, and flake-resistant assertions.",
+  "owner": { "name": "Jane Dev", "contact": "jane@example.com" },
+  "adlc": "0.1",
+  "units": [
+    { "kind": "skill", "id": "write-e2e-test", "path": "skills/write-e2e-test.md" },
+    { "kind": "reference", "id": "playwright-patterns", "path": "references/playwright-patterns.md" },
+    { "kind": "rule", "id": "no-hardcoded-waits", "path": "rules/no-hardcoded-waits.md" }
+  ],
+  "evals": {
+    "path": "evals/e2e.json",
+    "baseline": "no-pack agent on the same 12 tasks: 5/12 stable tests vs 11/12 with the pack"
+  },
+  "capabilities": {
+    "exec": ["npx playwright test", "npm run lint"],
+    "exec-installer": false,
+    "fs-read": ["./", "./src", "./tests"],
+    "fs-write": ["./test-results", "./playwright-report"],
+    "subprocess": true
+  },
+  "harness": ["claude-code", "codex"],
+  "depends": ["web-core"]
+}

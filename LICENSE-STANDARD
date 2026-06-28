@@ -1,0 +1,48 @@
+ADLC Standard License
+
+Copyright (c) 2026 StarFang
+
+The ADLC standard, that is, the contents of the standard/ directory of this
+repository (the specification, principles, manifesto, conformance criteria,
+adoption guide, and pack-format definition), is licensed under the Creative
+Commons Attribution 4.0 International License (CC-BY-4.0).
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided you give appropriate credit to OpenADLC / StarFang,
+link to the license, and indicate if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary: https://creativecommons.org/licenses/by/4.0/
+
+WHAT IS AND IS NOT COVERED
+
+This open license applies ONLY to the standard/ directory. The OpenADLC
+implementation (everything outside standard/) is source-available under a
+separate license (see LICENSE) and is NOT under CC-BY-4.0.
+
+The two trees are marked at the file level. Each file in standard/ carries the
+header "SPDX-License-Identifier: CC-BY-4.0". Each implementation file carries
+the header "SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0",
+the stable identifier for the OpenADLC Source-Available License 1.0 in LICENSE.
+Which license governs a file is determined by that file's header. If a file's
+header ever conflicts with its directory location, the header controls. A file
+moved between the trees keeps the license stated in its header until the header
+is changed.
+
+DATABASE RIGHTS
+
+This CC-BY-4.0 grant, including its license of any sui generis database rights
+under CC-BY-4.0 Section 2(b)(1), applies ONLY to the contents of the standard/
+directory. It does NOT extend to the pack catalog
+(.claude-plugin/marketplace.json), the curated or certified pack library, the
+certification records, or any compiled collection, in which StarFang reserves
+all rights, including the sui generis database right (Directive 96/9/EC).
+
+THE STANDARD IS A COMMONS
+
+The standard/ directory is a genuine open commons. Third-party contributions to
+standard/ are licensed to the public under CC-BY-4.0 only; StarFang takes no
+additional or special rights in them and will not move community-contributed
+standard/ content into the source-available implementation. Content StarFang
+itself authors may appear in either tree under the license stated in its file
+header.

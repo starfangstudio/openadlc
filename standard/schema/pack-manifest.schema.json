@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openadlc.com/schema/pack-manifest/0.1",
+  "title": "ADLC Pack Manifest",
+  "description": "The vendor-neutral format contract for an ADLC pack manifest, version 0.1. Validates a CONFORMANT pack (spec.md section 5). An experimental pack MAY omit 'evals' but is then not conformant. Certification programs extend this with their own fields; this schema is the base they extend.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "version", "description", "owner", "adlc", "units", "evals", "capabilities"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Kebab-case pack name (1-64 chars, lowercase, digits, hyphens; no leading/trailing hyphen).",
+      "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+      "maxLength": 64
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A version string. SHOULD follow Semantic Versioning 2.0.0 (spec 5.1). SemVer is checked advisorily by conformance check P6, not hard-enforced here, so the SHOULD stays overridable with a stated reason. The official SemVer spec and regex are at https://semver.org."
+    },
+    "description": {
+      "type": "string",
+      "description": "One line. What the pack does and when it applies.",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "owner": {
+      "type": "object",
+      "description": "Who maintains the pack and how to reach them (Law L3, currency needs an owner).",
+      "additionalProperties": false,
+      "required": ["name", "contact"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "contact": { "type": "string", "minLength": 1, "description": "Email, URL, or handle." }
+      }
+    },
+    "adlc": {
+      "type": "string",
+      "description": "The ADLC spec version this pack targets.",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "units": {
+      "type": "array",
+      "description": "The guidance units (spec.md section 5.2). At least one.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "id"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["skill", "agent", "rule", "reference"] },
+          "id": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "description": "Optional path within the pack." }
+        }
+      }
+    },
+    "evals": {
+      "type": "object",
+      "description": "Evidence the pack beats a no-pack baseline (spec.md section 5.3, Law L5). Required for a conformant pack.",
+      "additionalProperties": false,
+      "required": ["path", "baseline"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1, "description": "Where the eval set lives." },
+        "baseline": { "type": "string", "minLength": 1, "description": "The no-pack baseline the evals are measured against." }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "Default-deny capability declaration (spec.md section 5.4). Omitted keys mean the pack does not take that capability. Declared capabilities MUST match actual behavior.",
+      "additionalProperties": false,
+      "properties": {
+        "exec": {
+          "type": "array",
+          "description": "Scoped commands the pack runs (e.g. 'npm run lint', 'npx playwright test'). Breadth (a general shell, an eval flag) is declared via 'exec-broad', not hidden in this scoped list.",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+( [A-Za-z0-9_.:=/-]+)*$"
+          }
+        },
+        "exec-broad": {
+          "type": "boolean",
+          "description": "True if the pack runs a general shell or arbitrary commands (bash, sh, eval, 'python -c', 'node -e', etc.). Expressible but high-risk: tier policy gates it (banned in open tiers, review-with-justification in certified). A pack that can run anything MUST set this true; it MUST NOT be hidden as a scoped 'exec' entry."
+        },
+        "exec-installer": {
+          "type": "boolean",
+          "description": "True if the pack runs dependency installers that execute arbitrary upstream code (npm install, pip install). The dangerous half of exec; declared separately so reviewers can route it."
+        },
+        "network": {
+          "type": "array",
+          "description": "Scoped allowlist of named hosts (optionally :port). Wildcard or broad access is declared via 'network-broad', not here. Port-range (0-65535) is not validated at the format layer.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+(:[0-9]{1,5})?$"
+          }
+        },
+        "network-broad": {
+          "type": "boolean",
+          "description": "True if the pack reaches arbitrary or wildcard hosts. Expressible but high-risk: tier policy gates it (banned in open tiers, review-with-justification in certified)."
+        },
+        "fs-read": {
+          "type": "array",
+          "description": "Path scopes the pack reads. Default is the workspace.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "fs-write": {
+          "type": "array",
+          "description": "Path scopes the pack writes. Default is none.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "env": {
+          "type": "array",
+          "description": "Environment variables or secret names the pack reads. Default is none.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "subprocess": {
+          "type": "boolean",
+          "description": "True if the pack spawns long-running processes or daemons."
+        }
+      }
+    },
+    "harness": {
+      "type": "array",
+      "description": "Optional and informational. Target harness(es) this pack is tuned for. A pure-content pack targets all and omits this. The standard never requires a specific harness (Law L7).",
+      "items": { "type": "string" }
+    },
+    "depends": {
+      "type": "array",
+      "description": "Optional. Other packs this one builds on, by name.",
+      "items": { "type": "string" }
+    }
+  }
+}
