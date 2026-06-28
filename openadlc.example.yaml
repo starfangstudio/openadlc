@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0
+# OpenADLC configuration. Copy to openadlc.yaml in your project root.
+# Resolution order: managed (org) > project > user (~/.openadlc/config.yaml).
+# Org policy can only tighten; a project cannot loosen a managed setting.
+
+version: 1
+
+# Workspace declaration. Declares a poly-repo PRODUCT (several repos that form one
+# product) so a run can SPAN the member repos it touches; omit for a single repo or a
+# monorepo. Without this block, a parent dir of repos is treated as unrelated repos, not
+# a product (the repo-anchor step asks which repo, or offers to declare). See the four
+# workspace shapes + the tracker/PR hierarchy in the run-isolation reference in adlc-core.
+workspace:
+  repos: [shared-components, web-app, backend]   # member repo paths under this root
+  primary: web-app                               # where the PARENT story posts; the default tracker
+
+# --- Roadmap below: declared but not yet enforced in v0.0.1. ---
+
+# Lifecycle checkpoints: a human owns the release decision. At each checkpoint the agent
+# presents what it has and waits for the operator's explicit yes before proceeding; the
+# release checkpoint is where it shows exactly what would leave the machine. Reading and
+# local work are never stopped. These checkpoints are intrinsic to the lifecycle.
+checkpoints:
+  plan: true             # operator approves the plan before implementation
+  review: true           # operator approves the reviewed change before release
+
+review:
+  strictness: standard     # lenient | standard | strict
+
+style:
+  verbosity: normal        # terse | normal | verbose
+
+# Token compression (technique from Caveman, MIT, reimplemented natively in adlc-core).
+# Cuts AI-internal and inter-agent output tokens; never compresses what the operator reads.
+compression:
+  enabled: true            # on by default
+  level: lite              # lite (readable) | full | ultra
+  provider: native         # native (our zero-install baseline) | caveman (full upstream, if installed). See THIRD-PARTY.md
+  protect_human_facing: true   # never compress the story / plan / review / consent the human reads
+
+# Extra packs to load, and core pieces to disable by name.
+packs:
+  enabled: []
+  disabled: []

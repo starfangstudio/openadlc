@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="OpenADLC">
+  <title>OpenADLC</title>
+  <rect width="256" height="256" rx="48" fill="#000000"/>
+  <g transform="translate(46.75,65.5) scale(1.25)">
+    <path fill="#EBA836" d="M0 100 L22 100 L46 0 L24 0 Z"/>
+    <rect x="65" y="9" width="56" height="82" rx="16" fill="none" stroke="#EBA836" stroke-width="18"/>
+  </g>
+</svg>
