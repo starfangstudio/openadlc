@@ -23,4 +23,4 @@ Under the GDPR and Romanian data-protection law you may request access to, recti
 We will update this notice as the project and the entity evolve, and we will date each change. Material changes will be noted in the changelog.
 
 ## Contact
-Questions or requests: contact@openadlc.com.
+Questions or requests: contact@starfang.ai.

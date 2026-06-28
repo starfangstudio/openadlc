@@ -8,7 +8,7 @@ OpenADLC is a security-adjacent tool: it governs what leaves your machine throug
 Do not open a public issue for a security problem. Instead:
 
 - Use GitHub's private vulnerability reporting (the Security tab, "Report a vulnerability"), or
-- Email security@openadlc.com.
+- Email contact@starfang.ai.
 
 Include what you found, how to reproduce it, and the impact. We will acknowledge, investigate, and coordinate a fix and disclosure with you.
 

@@ -11,7 +11,7 @@
   },
   "adlc": "0.1",
   "units": {
-    "skills": 16,
+    "skills": 20,
     "agents": 2,
     "commands": 4,
     "references": 6

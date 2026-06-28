@@ -19,7 +19,7 @@ The rules we hold OpenADLC to. A change that breaks one needs a very good reason
 
 8. **Honest engineering.** No AI-generated timelines, effort, or cost estimates. No claimed track record. Published facts with a source, or nothing.
 
-9. **Docs ship with the code.** A change to a command, skill, hook, or config updates its docs in the same change. Stale docs are a bug.
+9. **Docs ship with the code.** A change to a command, skill, or config updates its docs in the same change. Stale docs are a bug.
 
 10. **Small and legible.** Every artifact is simple to read at a glance. Prefer deleting lines over adding them. If a human cannot get it quickly, simplify until they can.
 

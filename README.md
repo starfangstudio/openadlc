@@ -130,7 +130,7 @@ Early development. The lifecycle runs across APM-supported harnesses through the
 OpenADLC is dual-licensed. "Open" here means an open standard, publicly viewable source, and free for individuals. It is **not** OSI open source, and we do not claim it is.
 
 - **The ADLC standard** (the `standard/` tree): [CC-BY-4.0](LICENSE-STANDARD). A genuine open standard, free for anyone to read, implement, and build on.
-- **The implementation** (`plugins/`, hooks, adapters, the harness, the four `/agentic-*` commands): the [OpenADLC Source-Available License](LICENSE). Publicly viewable and free for individuals and the public to read, use, and modify. Use by a team or organization requires a commercial seat license; a solo individual, including a freelancer on client work, stays free.
+- **The implementation** (`plugins/`, adapters, the harness, the four `/agentic-*` commands): the [OpenADLC Source-Available License](LICENSE). Publicly viewable and free for individuals and the public to read, use, and modify. Use by a team or organization requires a commercial seat license; a solo individual, including a freelancer on client work, stays free.
 
 Contributions are covered by a [CLA](CLA.md), checked on every pull request. "OpenADLC" and "OpenADLC Verified" are trademarks of StarFang; see [BRAND.md](BRAND.md).
 

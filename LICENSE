@@ -14,7 +14,7 @@ This is a source-available license. It is NOT an OSI open-source license.
 
 1. DEFINITIONS
    "Software" means the implementation in this repository: the packs (plugins/),
-   hooks, adapters, the harness, the /agentic-* commands, and supporting code and
+   adapters, the harness, the /agentic-* commands, and supporting code and
    documentation, EXCLUDING the standard/ directory. Where a file carries a license
    header (for example an SPDX identifier), that header controls over directory
    location if the two ever conflict.
@@ -133,4 +133,4 @@ This is a source-available license. It is NOT an OSI open-source license.
    or defend proceedings in the courts of your domicile as provided by EU law. The
    exclusive-jurisdiction clause above does not apply to you.
 
-For commercial seats, contact StarFang at contact@openadlc.com.
+For commercial seats, contact StarFang at contact@starfang.ai.

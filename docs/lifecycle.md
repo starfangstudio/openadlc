@@ -44,7 +44,7 @@ The universal front door, for any role: dev, manager, tech owner, product owner,
 5. **Always define acceptance criteria**, for any item type:
    - **Story / feature:** the observable behavior that must be true when done.
    - **Bug:** the bug no longer reproduces, the correct behavior, a regression guard.
-   - **Epic:** the outcome that holds when its child stories are all done. Intake splits the epic into those **linked child stories** (each a story with its own AC); `/plan` works the stories, not the epic.
+   - **Epic:** the outcome that holds when its child stories are all done. Intake splits the epic into those **linked child stories** (each a story with its own AC); `/agentic-plan` works the stories, not the epic.
    - **Tech debt:** the target state and the measurable improvement, nothing else regressing.
    - **Intent:** the goal and the constraints it must respect, before it is sliced into work.
 6. **Consent checkpoint: post or refine.** Post the fuel to the tracker as a new issue (outbound, needs a yes), or refine it with another discovery pass.

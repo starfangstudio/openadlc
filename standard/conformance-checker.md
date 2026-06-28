@@ -46,7 +46,7 @@ There is no `attest-only` status; "attested" is the provenance flag on a `pass`.
 
 ## Pack mode: the per-check algorithm
 
-P1 enforces the manifest required fields: **name, version, description, owner, the targeted spec version (`adlc`), units, evals, capabilities** (spec 5.1-5.4).
+P1 enforces the manifest required fields: **name, version, description, license, owner, the targeted spec version (`adlc`), units, evals, capabilities** (spec 5.1-5.4).
 
 A per-pack `license` field is required so each pack declares its own terms (see [pack-format.md](pack-format.md): the ADLC standard stays CC-BY-4.0, the OpenADLC packs are source-available + commercial under the OpenADLC source-available license, see the `LICENSE` file). P1 requires `license` and validates it: the value must be present, and the checker warns on a value outside the known vocabulary (`LicenseRef-OpenADLC-Source-Available-1.0`, `CC-BY-4.0`).
 
@@ -56,7 +56,7 @@ A per-pack `license` field is required so each pack declares its own terms (see 
 | **P2** | `units` present, length >= 1 (covered by schema). | pass / fail |
 | **P3a** | `evals.path` resolves on disk. | pass / fail |
 | **P3b** | If `evals` declares a runner, invoke it and read the delta vs `evals.baseline`; pass iff delta > 0. No runner -> `not-run` (does not gate). | pass / fail / not-run |
-| **P4** | `capabilities` is schema-valid with no banned declaration (auto). The declared-vs-actual behavior match is **not decided here**; emit a pointer to the the certification program's enforcement spec scan. | pass / fail |
+| **P4** | `capabilities` is schema-valid with no banned declaration (auto). The declared-vs-actual behavior match is **not decided here**; emit a pointer to the certification program's enforcement spec scan. | pass / fail |
 | **P5** | Manifest-decidable half (auto): no checkpoint-subverting capability key (e.g. touching a human-in-the-loop checkpoint's config; none exists in the vocabulary, so structurally absent). The opaque-binary half is **not decided here** unless the pack directory was given and a content scan is wired; otherwise emit a pointer to 16's scan, like P4. | pass / fail |
 | **P6** | `version` matches the SemVer pattern (advisory). A miss is `warn`, never `fail`. | pass / warn |
 
@@ -130,6 +130,6 @@ The checker is the gate, the way CommonMark's runner and the JSON Schema suite g
 ## Honest limits
 
 - **It runs the auto checks; it records the rest.** Audit and attest checks are surfaced with their evidence pointers and provenance, not decided. A `pass` that is attest/audit carries the `attested` flag.
-- **It checks declarations, not behavior.** P4's behavior-match and P5's opaque-binary half need the the certification program's enforcement spec scan; the checker emits a pointer unless a content scan is wired in.
+- **It checks declarations, not behavior.** P4's behavior-match and P5's opaque-binary half need the certification program's enforcement spec scan; the checker emits a pointer unless a content scan is wired in.
 - **It is versioned with the spec.** Checker 0.1 checks against spec 0.1; the bundled tables and schema move together, so a stale checker cannot silently pass a newer pack.
 - **This is the contract, not yet the code.** A reference implementation is the build that follows this spec; keeping it owned and current is the commitment that keeps "conformant" meaningful.

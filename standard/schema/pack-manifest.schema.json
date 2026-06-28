@@ -5,7 +5,7 @@
   "description": "The vendor-neutral format contract for an ADLC pack manifest, version 0.1. Validates a CONFORMANT pack (spec.md section 5). An experimental pack MAY omit 'evals' but is then not conformant. Certification programs extend this with their own fields; this schema is the base they extend.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name", "version", "description", "owner", "adlc", "units", "evals", "capabilities"],
+  "required": ["name", "version", "description", "license", "owner", "adlc", "units", "evals", "capabilities"],
   "properties": {
     "name": {
       "type": "string",
@@ -17,6 +17,11 @@
       "type": "string",
       "minLength": 1,
       "description": "A version string. SHOULD follow Semantic Versioning 2.0.0 (spec 5.1). SemVer is checked advisorily by conformance check P6, not hard-enforced here, so the SHOULD stays overridable with a stated reason. The official SemVer spec and regex are at https://semver.org."
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SPDX license identifier or SPDX LicenseRef. OpenADLC packs use LicenseRef-OpenADLC-Source-Available-1.0; standard content uses CC-BY-4.0."
     },
     "description": {
       "type": "string",

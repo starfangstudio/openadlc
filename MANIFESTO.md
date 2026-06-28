@@ -13,7 +13,7 @@ We believe:
 
 **Nothing leaves the machine without a yes.** Outbound is a decision, never a default. The lifecycle stops at each outbound boundary and asks for that yes, and it keeps a record of what you approved.
 
-**Mechanism over prose.** If something must happen every time, wire it to a hook, not a paragraph. Suggestions decay. Mechanisms hold.
+**Mechanism over prose.** If something must happen every time, wire it to a command step, a check, or a test, not a paragraph. Suggestions decay. Mechanisms hold.
 
 **Open where it counts.** An open standard with a source-available reference implementation, built on open standards, so your discipline travels with the agent you already use, not the one we sell. The standard is free for anyone; the source is publicly viewable and free for individuals; organizations need a commercial seat.
 

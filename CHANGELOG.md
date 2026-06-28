@@ -5,15 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version
 
 ## [Unreleased]
 
-### Added
-- Lifecycle checkpoints: the harness stops and asks the operator for an explicit yes before anything leaves the machine (push, PR, post). Outbound is a human decision, not a default; reading and local work are never stopped.
-- The four-command harness: `/agentic-intake`, `/agentic-plan`, `/agentic-implement`, `/agentic-review`.
-- Claude Code plugin manifest and hook wiring.
-- The `/O` brand mark assets.
-- Community docs: contributing, security, code of conduct, support.
+Initial public release. Pre-release: nothing is stable yet, expect breaking changes.
 
-### Changed
-- Licensing reframed to a dual model: the ADLC standard (the `standard/` tree) stays CC-BY-4.0 as a genuine open standard; the implementation (`plugins/`, hooks, adapters, the harness, the four `/agentic-*` commands) moves to the OpenADLC source-available license (see the `LICENSE` file), publicly viewable and free for individuals and the public, with a commercial seat license required for use by or on behalf of an organization. "Open" now means open standard plus publicly viewable source plus free for individuals, not OSI open source. Framing: open standard, commercial reference implementation.
-- Contributions now use a Contributor License Agreement (CLA, checked on every pull request) instead of the Developer Certificate of Origin (DCO).
+### The lifecycle
+- Four commands, one per human decision point: `/agentic-intake`, `/agentic-plan`, `/agentic-implement`, `/agentic-review`.
+- A human checkpoint at every outbound boundary: the agent presents what would leave the machine (post, push, publish) and waits for an explicit yes. Reading and local work are never stopped.
 
-Pre-release. Nothing here is stable yet; expect breaking changes.
+### Packs
+- The always-on `adlc-core` spine plus domain packs: web, iOS, Android, backend, backend-cloud, database, AI, design, security, testing, ops, privacy, monetization, desktop, Unity, planning, and quality-gates.
+- Packs ship as Agent Skills that install and run as plain files, with or without a package manager.
+
+### The standard
+- The ADLC standard (the `standard/` tree): the spec, principles, manifesto, conformance criteria, and pack format, under CC-BY-4.0.
+
+### Install
+- Runs across APM-supported harnesses: `apm install starfangstudio/openadlc`.
+
+### Licensing and governance
+- Dual license: the standard under CC-BY-4.0; the implementation under the OpenADLC Source-Available License (free for individuals, a commercial seat for organizations).
+- Contributions are covered by a Contributor License Agreement, checked on every pull request.
+- Conformance tooling and CI; community docs (contributing, security, code of conduct, support); brand and trademark policy; privacy notice; the brand mark.

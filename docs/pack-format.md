@@ -24,7 +24,7 @@ A pack is a directory under `plugins/` with a manifest and units (skills, agents
 - **owner `{name, contact}`:** required (G2). The contact is what keeps a pack current; a certified pack needs a reachable one.
 - **adlc:** the ADLC standard version the pack targets.
 - **units:** generated from the folder tree (counts of skills/agents/commands/references). Run `tools/migrate-manifests.py` to refresh.
-- **evals:** the eval bar the pack clears. `conformance` (the structural eval) for guidance packs; `conformance+gate` where a behavioral eval also ships (adlc-core).
+- **evals:** the eval bar the pack clears. `conformance` (the structural eval) for guidance packs; `conformance+gate` is reserved for a pack that also ships a behavioral eval; none do yet.
 - **capabilities:** default-deny (G4). `{}` for guidance / markdown packs. Declare anything a unit needs beyond reading and emitting guidance.
 - **license** *(live, required)*: a per-pack license identifier so each pack states its own terms, required and validated by `tools/check-packs.py` (it warns on a value outside the known vocabulary). The OpenADLC packs here use `LicenseRef-OpenADLC-Source-Available-1.0` (source-available + commercial: publicly viewable, free for individuals and the public, a commercial seat for use by a team or organization; see the `LICENSE` file). The ADLC standard in `standard/` is `CC-BY-4.0`. See the root [README](../README.md).
 

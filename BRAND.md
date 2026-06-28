@@ -33,4 +33,4 @@ packs and implementations StarFang has verified, under the program's published
 terms. It is an ordinary trademark, not a third-party certification mark.
 
 ## Questions
-Brand or trademark questions, and permission requests: contact@openadlc.com.
+Brand or trademark questions, and permission requests: contact@starfang.ai.

@@ -5,7 +5,7 @@ This directory is the single source of truth for documentation, consumed by both
 
 ## The rule: docs ship with the code
 
-Docs are written and updated as the work happens, never after. A change to a command, skill, hook, or config updates its doc in the same change. This is enforced (see [CONTRIBUTING.md](../CONTRIBUTING.md), the `docs-current` check), because stale docs are worse than no docs.
+Docs are written and updated as the work happens, never after. A change to a command, skill, or config updates its doc in the same change. This is enforced (see [CONTRIBUTING.md](../CONTRIBUTING.md), the `docs-current` check), because stale docs are worse than no docs.
 
 ## Start here
 
@@ -15,7 +15,7 @@ Docs are written and updated as the work happens, never after. A change to a com
 
 - `getting-started/` : install, first run, the checkpoints in five minutes.
 - `commands/` : the four-command harness, one page each.
-- `config/` : the `openadlc.yaml` reference.
+- `config/` : the `openadlc.example.yaml` reference.
 - `customize/` : bring-your-own packs, overrides, preferences.
 - `concepts/` : the lifecycle, and the open standards we build on (Agent Skills, MCP, AGENTS.md).
 

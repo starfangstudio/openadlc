@@ -56,7 +56,7 @@ A subject reaches a **level** when every check at that level and every level bel
 
 These split by what is mechanically decidable. The schema ([pack-format.md](pack-format.md)) covers the **auto** ones; the rest need running code or judgement.
 
-- **P1** - Has a manifest with name, version, description, owner, targeted spec version, and a capability declaration. _(Spec 5.1.)_ **auto** (validate against the schema).
+- **P1** - Has a manifest with name, version, description, license, owner, targeted spec version, and a capability declaration. _(Spec 5.1.)_ **auto** (validate against the schema).
 - **P2** - Has at least one guidance unit (skill, agent, rule, or reference). _(Spec 5.2.)_ **auto**
 - **P3a** - An eval set is present. _(Spec 5.3.)_ **auto**
 - **P3b** - The eval set runs and its result beats the declared no-pack baseline (delta greater than zero). _(Spec 5.3 / Law L5.)_ **auto** (run the evals). If the pack declares no runner, P3b is `not-run` and does not gate (P3a presence is still required). Eval *quality* (is the baseline honest, are the tasks representative) is a separate **audit**.
@@ -119,4 +119,4 @@ Rules for the manifest:
 - **Honoring is not provable; enforcing is.** Core asks the checkpoints to be *honored* (T-C1, **attest**). Governed makes the chosen checkpoints *enforced* centrally (T-G1, **auto**), which is where conformance becomes a hard, mechanically-checkable control across a fleet. This is why an organization moves past Core: only enforced checkpoints are mechanically trustworthy at scale.
 - **Eval efficacy and capability-match need running code.** P3b runs the evals; P4's behavior-match needs the scan in the certification program's enforcement spec. This file records those results; it does not re-specify the scanner.
 - **Certified is defined, not operational.** T-X1 and the Certified level are written so the ladder is complete; the program that issues the mark does not exist yet.
-- **The owned checker is the next build.** A reference checker that reads `.adlc/conformance.yaml` and runs the **auto** checks is in scope for the standard *project*, not the standard *text*. The precedent (S8, S10, S11) is clear that a standard which does not ship its own checker loses control of what "conformant" means.
+- **The owned checker is the next build.** A reference checker that reads `.adlc/conformance.yaml` and runs the **auto** checks is in scope for the standard *project*, not the standard *text*. The precedent (OpenAPI, SemVer, Conventional Commits) is clear that a standard which does not ship its own checker loses control of what "conformant" means.

@@ -7,4 +7,4 @@ In short: be respectful, assume good faith, no harassment. We want a community t
 
 ## Enforcement
 
-Report unacceptable behavior to conduct@openadlc.com. Reports are handled confidentially. Maintainers who do not uphold the code in good faith may face consequences determined by the project leads.
+Report unacceptable behavior to contact@starfang.ai. Reports are handled confidentially. Maintainers who do not uphold the code in good faith may face consequences determined by the project leads.

@@ -2,6 +2,7 @@
   "name": "web-e2e-testing",
   "version": "1.2.0",
   "description": "End-to-end web testing golden path: Playwright setup, page-object structure, and flake-resistant assertions.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
   "owner": { "name": "Jane Dev", "contact": "jane@example.com" },
   "adlc": "0.1",
   "units": [

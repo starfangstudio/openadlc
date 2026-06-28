@@ -52,7 +52,7 @@
     {
       "name": "adlc-planning",
       "source": "./plugins/adlc-planning",
-      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Deeper planning: revise/resume a plan, define API/module contracts, analyze a ticket's impact; architect + skill-author agents."
+      "license": "LicenseRef-OpenADLC-Source-Available-1.0",      "description": "Deeper planning: revise/resume a plan, define API/module contracts, analyze a ticket's impact; architect, adlc-author, implementation-lead, and story-implementer agents."
     },
     {
       "name": "adlc-privacy",
