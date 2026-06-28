@@ -1,0 +1,21 @@
+{
+  "name": "adlc-security",
+  "version": "0.4.2",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Security: OWASP MASVS/MASTG + API Top 10, domain-adaptive SAST + secret scanning, negative testing, pentest mindset, threat taxonomy; security-reviewer; /adlc-security-review.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 6,
+    "agents": 1,
+    "commands": 1,
+    "references": 1
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

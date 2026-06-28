@@ -1,0 +1,21 @@
+{
+  "name": "adlc-ai",
+  "version": "0.4.3",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "AI/LLM engineering domain: integrate LLMs into apps and services (Anthropic SDK-first), prompt engineering, evals, RAG, agent architecture, safety/guardrails, on-device AI; ai-architect + ai-reviewer agents. Serves product AI features and AI tooling.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 7,
+    "agents": 2,
+    "commands": 0,
+    "references": 9
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

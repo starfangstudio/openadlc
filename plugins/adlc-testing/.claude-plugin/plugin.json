@@ -1,0 +1,21 @@
+{
+  "name": "adlc-testing",
+  "version": "0.4.3",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Test strategy, scenario expansion, architecture conformance, validation contracts; test-critic agent; /validate-scenario.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 4,
+    "agents": 1,
+    "commands": 1,
+    "references": 0
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

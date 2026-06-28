@@ -1,0 +1,21 @@
+{
+  "name": "adlc-design",
+  "version": "0.4.5",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Cross-cutting design domain, loaded only when the work touches Figma or a design surface (Figma is the only supported design tool for now): on-demand Figma skills (design-context extraction, design-token mapping + precise Code Connect mappings to the design system, DS/style/font reuse, live-design drift detection, pixel-fidelity verification), the design-token pipeline (DTCG -> Style Dictionary -> web/iOS/Android), UI craft + anti-generic doctrine, UX flows + usability heuristics, accessibility, and the design-critic agent. Cite from any UI domain pack.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 10,
+    "agents": 1,
+    "commands": 0,
+    "references": 12
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

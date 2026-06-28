@@ -1,0 +1,30 @@
+{
+  "//": "Template: copy into an Android project's .claude/settings.json. The verification-loop automation the ADLC plan calls for. SAFE: the allowlist contains only local/read-only commands (no outbound; outbound actions still require the operator's explicit yes first).",
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew :*:testDebugUnitTest*)",
+      "Bash(./gradlew spotlessApply)",
+      "Bash(./gradlew spotlessCheck)",
+      "Bash(./gradlew lint*)",
+      "Bash(./gradlew assemble*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git add*)",
+      "Bash(git log*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr checkout*)"
+    ]
+  },
+  "//hooks": "Auto-format Kotlin after an edit. Claude Code passes hook data as JSON on stdin (the tool_input.file_path field), NOT via a $CLAUDE_TOOL_INPUT env var (which does not exist). The hook below reads stdin and runs spotless only when a .kt file was edited.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "f=$(python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"tool_input\",{}).get(\"file_path\",\"\"))' 2>/dev/null); case \"$f\" in *.kt) ./gradlew spotlessApply -q >/dev/null 2>&1 ;; esac; exit 0" }
+        ]
+      }
+    ]
+  }
+}

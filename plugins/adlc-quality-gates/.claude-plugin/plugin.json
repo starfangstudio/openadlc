@@ -1,0 +1,21 @@
+{
+  "name": "adlc-quality-gates",
+  "version": "0.4.2",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Readiness gates (deployment, plan, traceability) + skill structure/efficacy checks.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 5,
+    "agents": 0,
+    "commands": 0,
+    "references": 2
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

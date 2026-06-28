@@ -1,0 +1,21 @@
+{
+  "name": "adlc-web",
+  "version": "0.1.0",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Web frontend domain: framework-agnostic typed components (detect-first across React/Vue/Svelte/Angular), state management, forms + validation, the SSR/edge boundary, web performance + bundling, and web testing; web-architect + web-reviewer agents. Pairs with adlc-design (tokens, a11y, Figma).",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 6,
+    "agents": 2,
+    "commands": 0,
+    "references": 0
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}

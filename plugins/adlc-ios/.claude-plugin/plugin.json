@@ -1,0 +1,21 @@
+{
+  "name": "adlc-ios",
+  "version": "0.4.4",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "iOS domain: SwiftUI-first action skills, SPM interface/impl modules, KMP interop, App Store compliance, on-demand convention references; ios-architect + ios-reviewer agents.",
+  "author": {
+    "name": "OpenADLC"
+  },
+  "owner": {
+    "name": "OpenADLC",
+    "contact": "https://openadlc.com"
+  },
+  "adlc": "0.1",
+  "units": {
+    "skills": 11,
+    "agents": 2,
+    "commands": 0,
+    "references": 16
+  },
+  "evals": "conformance",
+  "capabilities": {}
+}
