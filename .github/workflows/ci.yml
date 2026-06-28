@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  conformance:
+    name: Pack conformance (structural cert bar)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 tools/check-packs.py all
+
+  em-dash-guard:
+    name: No em-dashes (hard rule)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for em-dashes (literal and JSON-escaped)
+        run: |
+          python3 - <<'PY'
+          import glob, sys
+          bad = []
+          pats = ["**/*.md", "**/*.json", "**/*.yaml", "**/*.yml"]
+          for pat in pats:
+              for f in glob.glob(pat, recursive=True):
+                  if "/.git/" in f:
+                      continue
+                  t = open(f, encoding="utf-8", errors="ignore").read()
+                  if ("\u2014" in t) or ("\\u2014" in t):
+                      bad.append(f)
+          if bad:
+              print("Em-dashes found (use commas, colons, or parentheses):")
+              for f in sorted(set(bad)):
+                  print("  " + f)
+              sys.exit(1)
+          print("No em-dashes.")
+          PY
+
+  docs-current:
+    name: Docs ship with the code
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: bash tools/docs-current.sh "${{ github.event.pull_request.base.sha }}"

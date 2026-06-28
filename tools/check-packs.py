@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0
+"""OpenADLC pack conformance check (FAIL-CLOSED).
+
+The per-pack structural eval: a pack must pass this to be certifiable (G3).
+Guidance skills are not behaviorally fixture-testable, so the bar is structure
++ the house conventions, checked mechanically.
+
+Hard fails (exit 1): em-dash (literal or \\u2014), a harness-specific path
+variable (${CLAUDE_PLUGIN_ROOT}) in any prose unit (commands/skills/agents/
+references; it resolves on only one deploy target, so references are cited by
+name), missing/invalid frontmatter, skill name != its directory, missing
+name/description, invalid manifest JSON or a manifest missing
+name/version/description/license.
+Soft warnings (exit 0): no version, no References section, no failable check
+mentioned, over-length skill.
+Fail-closed (exit 2): zero files checked.
+
+Usage: python3 tools/check-packs.py [pack-name | all]
+"""
+import sys, os, json, re, glob
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PLUGINS = os.path.join(ROOT, "plugins")
+
+def has_emdash(t):
+    return ("\u2014" in t) or ("\\u2014" in t)
+
+PLUGIN_VAR = re.compile(r"\$\{?CLAUDE_PLUGIN_ROOT\b")
+def plugin_var_fail(t, r):
+    # ${CLAUDE_PLUGIN_ROOT} resolves only on a native Claude plugin install; banned
+    # in prose units so references stay portable across deploy targets. (hooks.json,
+    # the native-plugin manifest the loader/compiler consumes, is not scanned here.)
+    return [f"{r}: harness-specific path variable (CLAUDE_PLUGIN_ROOT); cite references by name"] if PLUGIN_VAR.search(t) else []
+
+def split_frontmatter(text):
+    if not text.startswith("---"):
+        return None, ""
+    end = text.find("\n---", 3)
+    if end == -1:
+        return None, ""
+    fm = text[4:end]
+    inline = {}
+    for line in fm.splitlines():
+        m = re.match(r"^([A-Za-z0-9_-]+):\s*(\S.*)$", line)
+        if m:
+            inline[m.group(1)] = m.group(2).strip()
+    return inline, fm
+
+hard, soft = [], []
+checked = 0
+
+def rel(p):
+    return os.path.relpath(p, ROOT)
+
+def check_skill(path):
+    global checked
+    checked += 1
+    t = open(path, encoding="utf-8").read()
+    r = rel(path)
+    if has_emdash(t): hard.append(f"{r}: em-dash")
+    hard.extend(plugin_var_fail(t, r))
+    inline, fm = split_frontmatter(t)
+    if inline is None:
+        hard.append(f"{r}: missing/invalid frontmatter"); return
+    name = inline.get("name")
+    d = os.path.basename(os.path.dirname(path))
+    if not name: hard.append(f"{r}: no name in frontmatter")
+    elif name != d: hard.append(f"{r}: name '{name}' != dir '{d}'")
+    if not re.search(r"^\s*description:", fm, re.M): hard.append(f"{r}: no description")
+    if not re.search(r"^\s*version:", fm, re.M): soft.append(f"{r}: no version")
+    if "References" not in t: soft.append(f"{r}: no References section")
+    if not re.search(r"failable|check that can fail|## verify|\bverify\b", t, re.I):
+        soft.append(f"{r}: no failable check mentioned")
+    n = t.count("\n")
+    if n > 260: soft.append(f"{r}: long ({n} lines)")
+
+def check_agent(path):
+    global checked
+    checked += 1
+    t = open(path, encoding="utf-8").read()
+    r = rel(path)
+    if has_emdash(t): hard.append(f"{r}: em-dash")
+    hard.extend(plugin_var_fail(t, r))
+    inline, fm = split_frontmatter(t)
+    if inline is None:
+        hard.append(f"{r}: missing/invalid frontmatter"); return
+    if not inline.get("name"): hard.append(f"{r}: no name")
+    if not re.search(r"^\s*description:", fm, re.M): hard.append(f"{r}: no description")
+
+def check_doc(path):
+    t = open(path, encoding="utf-8").read()
+    r = rel(path)
+    if has_emdash(t): hard.append(f"{r}: em-dash")
+    hard.extend(plugin_var_fail(t, r))
+
+def check_command(path):
+    global checked
+    checked += 1
+    t = open(path, encoding="utf-8").read()
+    r = rel(path)
+    if has_emdash(t): hard.append(f"{r}: em-dash")
+    hard.extend(plugin_var_fail(t, r))
+
+def check_manifest(path):
+    r = rel(path)
+    t = open(path, encoding="utf-8").read()
+    if has_emdash(t): hard.append(f"{r}: em-dash")
+    try:
+        d = json.loads(t)
+    except Exception:
+        hard.append(f"{r}: invalid JSON"); return
+    for k in ("name", "version", "description", "license"):
+        if k not in d: hard.append(f"{r}: manifest missing '{k}'")
+    lic = d.get("license")
+    if lic and lic not in ("LicenseRef-OpenADLC-Source-Available-1.0", "CC-BY-4.0"):
+        soft.append(f"{r}: license '{lic}' not in the known vocabulary (LicenseRef-OpenADLC-Source-Available-1.0, CC-BY-4.0)")
+    o = d.get("owner")
+    if not (isinstance(o, dict) and o.get("name") and o.get("contact")):
+        hard.append(f"{r}: owner must have name + contact (G2)")
+    if "capabilities" not in d:
+        soft.append(f"{r}: no capabilities declared (G4)")
+
+target = sys.argv[1] if len(sys.argv) > 1 else "all"
+if target == "all":
+    packs = sorted(os.path.basename(p) for p in glob.glob(os.path.join(PLUGINS, "*")) if os.path.isdir(p))
+else:
+    packs = [target]
+
+for pack in packs:
+    pdir = os.path.join(PLUGINS, pack)
+    if not os.path.isdir(pdir):
+        hard.append(f"pack '{pack}' not found"); continue
+    for f in glob.glob(os.path.join(pdir, "skills", "*", "SKILL.md")): check_skill(f)
+    for f in glob.glob(os.path.join(pdir, "agents", "*.md")): check_agent(f)
+    for f in glob.glob(os.path.join(pdir, "references", "*.md")): check_doc(f)
+    for f in glob.glob(os.path.join(pdir, "commands", "*.md")): check_command(f)
+    mf = os.path.join(pdir, ".claude-plugin", "plugin.json")
+    if os.path.isfile(mf): check_manifest(mf)
+
+print(f"packs checked: {len(packs)} | files: {checked}")
+if soft:
+    print(f"\nWARN ({len(soft)}):")
+    for s in soft[:50]: print(f"  - {s}")
+    if len(soft) > 50: print(f"  ... +{len(soft) - 50} more")
+if hard:
+    print(f"\nFAIL ({len(hard)}):")
+    for h in hard: print(f"  - {h}")
+if checked == 0:
+    print("\nFAIL-CLOSED: zero files checked"); sys.exit(2)
+if hard:
+    print(f"\nRESULT: FAIL ({len(hard)} hard)"); sys.exit(1)
+print(f"\nRESULT: PASS (hard checks clean, {len(soft)} warnings)")
