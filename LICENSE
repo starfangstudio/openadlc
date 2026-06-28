@@ -1,0 +1,136 @@
+OpenADLC Source-Available License 1.0
+
+Copyright (c) 2026 StarFang
+
+This license governs the OpenADLC IMPLEMENTATION only. The ADLC standard in the
+standard/ directory is licensed separately under CC-BY-4.0 (see LICENSE-STANDARD).
+This is a source-available license. It is NOT an OSI open-source license.
+
+0. ACCEPTANCE
+   By installing, copying, running, modifying, accessing, or otherwise using the
+   Software, you accept this license and agree to be bound by it. If you do not
+   accept it, do not use the Software. If you are accepting on behalf of an
+   Organization, you represent that you are authorized to bind that Organization.
+
+1. DEFINITIONS
+   "Software" means the implementation in this repository: the packs (plugins/),
+   hooks, adapters, the harness, the /agentic-* commands, and supporting code and
+   documentation, EXCLUDING the standard/ directory. Where a file carries a license
+   header (for example an SPDX identifier), that header controls over directory
+   location if the two ever conflict.
+   "Licensor" means StarFang.
+   "Individual" means a single natural person who uses the Software alone, doing
+   the hands-on work themselves and not sharing use of the Software with any other
+   person. A single natural person is an Individual even when the work is paid and
+   even when the output is delivered to or used by an Organization client, and even
+   when that person operates through their own one-person legal vehicle. The
+   deliverables an Individual produces with the Software are not themselves the
+   Software; a client who only receives those deliverables is not, for that reason,
+   an Organization user. This Individual definition prevails over the general
+   "by, or for an Organization" language wherever they would otherwise conflict.
+   "Organization" means any entity that is not a single natural person, including
+   any company, partnership, non-profit, educational institution, government body,
+   or association, and any group of two or more people working together. Use of the
+   Software is Organization use when two or more natural persons use, run, or
+   operate the Software, or when an Organization runs the Software itself.
+   "Developer" means each natural person who uses, runs, or operates the Software in
+   or for an Organization, whether or not that person writes code. A Commercial Seat
+   License is required for each Developer.
+   "Commercial Seat License" means a separate paid license from the Licensor, one
+   seat per Developer, set out in a signed commercial agreement.
+
+2. GRANT TO INDIVIDUALS (FREE)
+   The Licensor grants each Individual a worldwide, royalty-free, non-exclusive,
+   perpetual (subject to Section 6) license to use, run, modify, and read the
+   source of the Software for that Individual's own work. This grant includes the
+   right to make one copy of the Software, by download or clone, for that
+   Individual's own permitted use. This grant is free of charge, and applies
+   whether or not the Individual's work is paid.
+
+3. ORGANIZATIONS REQUIRE A COMMERCIAL SEAT LICENSE
+   No license is granted under Section 2 for Organization use. Any Organization use,
+   including internal use, requires a Commercial Seat License, one seat per
+   Developer, under a signed commercial agreement with the Licensor. Contact the
+   Licensor (Section 9) to obtain seats.
+
+4. CONDITIONS AND RESTRICTIONS
+   a. No redistribution. You may not distribute the Software or modified versions
+      to third parties. (The standard/ directory may be shared under CC-BY-4.0.)
+      Keeping your own modifications for your own use is permitted; publishing or
+      providing them to others, or to an Organization, is not.
+   b. Hosting and access. The Licensor, and any hosting, mirror, or package-registry
+      provider acting for the Licensor, may reproduce and publicly display the
+      Software so that it is viewable and obtainable. A copy created by viewing,
+      downloading, or cloning the Software for your own permitted use, and any
+      incidental copy created by a host's normal operation (including a fork made
+      through a code host's standard affordance), is not "distribution" prohibited
+      by 4(a). Re-distributing the Software to other people remains barred, and a
+      fork or copy you obtain stays subject to this license.
+   c. No sublicensing or resale of the Software.
+   d. Keep this license file, the copyright notice in this license, and the NOTICE
+      file intact in every copy of the Software.
+   e. No use as a free conduit. You may not use your Individual grant to install,
+      host, operate, or make the Software available for use by an Organization or by
+      any other person, or to enable an Organization or a team to run the Software
+      without their own Commercial Seat Licenses. Using the Software yourself to
+      produce deliverables for a client is permitted.
+
+5. TRADEMARKS
+   This license grants no right to use the names, logos, or marks of the Licensor,
+   including "OpenADLC" and "OpenADLC Verified", except for
+   reasonable use to describe the origin of the Software. All such rights are
+   reserved by the Licensor.
+
+6. PATENTS
+   The Licensor grants each licensee a license to the Licensor's patent claims
+   necessarily infringed by using the Software as permitted here. If you initiate
+   patent litigation against anyone alleging that the Software infringes a patent,
+   the patent license granted to you in this Section terminates as of the date you
+   file.
+
+7. RESERVED RIGHTS IN THE CATALOG AND DATABASE
+   The OpenADLC pack catalog, the curated and certified pack library, and the
+   certification and conformance records are a database in which the Licensor
+   reserves all rights, including the sui generis database right (Directive 96/9/EC;
+   Romanian Law 8/1996). Extraction or re-utilisation of a substantial part of that
+   database, and repeated extraction or re-utilisation of insubstantial parts, are
+   prohibited without a license from the Licensor. These reserved rights are not
+   licensed under this Section 2 grant and are not under CC-BY-4.0.
+
+8. TERM AND TERMINATION
+   This license applies for as long as you comply with it, and your rights
+   terminate automatically on any breach. Your rights are automatically reinstated
+   if you cure the breach within 30 days of becoming aware of it, provided this is
+   your first such breach or the Licensor has not previously notified you of it. In
+   other cases the Licensor may reinstate at its discretion. For unlicensed
+   Organization use, the Licensor will, where practicable, give notice and an
+   opportunity to obtain seats before treating the license as ended. Organizations
+   under a Commercial Seat License are governed by that agreement.
+
+9. NO WARRANTY; LIMITATION OF LIABILITY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, TO THE MAXIMUM
+   EXTENT PERMITTED BY LAW. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR IS
+   NOT LIABLE FOR ANY DAMAGES ARISING FROM THE SOFTWARE OR ITS USE.
+   Nothing in this license excludes or limits liability that cannot be excluded or
+   limited under applicable law, including liability for intentional misconduct or
+   gross negligence, liability for harm to life, health, or physical integrity, and
+   the mandatory consumer-protection and product-liability rules of a user's place
+   of residence. If you are a consumer, your statutory conformity and other
+   mandatory rights are not affected by this Section.
+
+10. EXPORT AND SANCTIONS
+   You represent that you are not on any applicable EU, US, UN, or other competent
+   restricted-party or sanctions list, that you are not located in an embargoed
+   jurisdiction, and that you will not use or re-export the Software in violation of
+   applicable export-control or sanctions law.
+
+11. GOVERNING LAW AND JURISDICTION
+   This license is governed by the laws of Romania.
+   For an Organization or any business user, the competent courts of Bucharest,
+   Romania have exclusive jurisdiction over any dispute.
+   If you are a consumer, this choice of law does not deprive you of the mandatory
+   protections of the law of your country of habitual residence, and you may bring
+   or defend proceedings in the courts of your domicile as provided by EU law. The
+   exclusive-jurisdiction clause above does not apply to you.
+
+For commercial seats, contact StarFang at contact@openadlc.com.

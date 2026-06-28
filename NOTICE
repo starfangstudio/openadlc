@@ -1,0 +1,12 @@
+OpenADLC
+Copyright 2026 StarFang
+
+This product includes software developed by StarFang and the OpenADLC contributors.
+
+OpenADLC is dual-licensed:
+- The ADLC standard (the standard/ tree) is licensed under CC-BY-4.0 (see LICENSE-STANDARD), a genuine open standard. This CC-BY-4.0 grant, including its license of any sui generis database rights under CC-BY-4.0 Section 2(b)(1), applies ONLY to the contents of the standard/ directory. It does NOT extend to the pack catalog (.claude-plugin/marketplace.json), the curated or certified pack library, certification records, or any compiled collection, in which StarFang reserves all rights, including the sui generis database right.
+- The implementation (plugins/, hooks, adapters, the harness, the four /agentic-* commands) is under the OpenADLC source-available license (see LICENSE). The source is publicly viewable and free for individuals and the public; use by a team or organization requires a commercial seat license (solo individuals, including freelancers on client work, stay free).
+
+"OpenADLC" and "OpenADLC Verified" are trademarks of StarFang. The licenses grant no trademark rights.
+
+Third-party attributions: see THIRD-PARTY.md.
