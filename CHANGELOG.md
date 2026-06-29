@@ -10,6 +10,7 @@ Initial public release. Pre-release: nothing is stable yet, expect breaking chan
 ### The lifecycle
 - Four commands, one per human decision point: `/agentic-intake`, `/agentic-plan`, `/agentic-implement`, `/agentic-review`.
 - A human checkpoint at every outbound boundary: the agent presents what would leave the machine (post, push, publish) and waits for an explicit yes. Reading and local work are never stopped.
+- Every intake and plan artifact is an [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) bundle: a human briefing plus the full AI context as typed markdown, carried between stages and trackers (inline on GitHub, attached elsewhere).
 
 ### Packs
 - The always-on `adlc-core` spine plus domain packs: web, iOS, Android, backend, backend-cloud, database, AI, design, security, testing, ops, privacy, monetization, desktop, Unity, planning, and quality-gates.

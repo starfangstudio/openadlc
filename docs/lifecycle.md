@@ -16,7 +16,7 @@ idea ──/agentic-intake──▶ intake fuel ──/agentic-plan──▶ sub
 
 | Command | Takes | Produces | Checkpoint |
 |---|---|---|---|
-| `/agentic-intake` | an idea + docs / screenshots / links / Figma, from any role | **intake fuel** (story / bug / epic / tech-debt / intent) in two faces, with acceptance criteria and surfaced dev dependencies | post the fuel, or refine |
+| `/agentic-intake` | an idea + docs / screenshots / links / Figma, from any role | **intake fuel** (story / bug / epic / tech-debt / intent) as an OKF bundle (a human briefing + the full AI context as typed concepts), with acceptance criteria and surfaced dev dependencies | post the fuel, or refine |
 | `/agentic-plan` | intake fuel / issue | a **dev plan** (one or more) + a remote sub-issue | approve / edit / refine, then post |
 | `/agentic-implement` | an approved sub-issue | the change, **built, reviewed, pushed** | the push |
 | `/agentic-review` | a diff / branch / PR / any code | a **BLOCK / APPROVE** verdict | post the verdict (only if you ask) |
@@ -40,7 +40,7 @@ The universal front door, for any role: dev, manager, tech owner, product owner,
 1. **Gather** everything. If the idea is too thin, ask 2-3 sharp questions first. If a Figma or design surface is in play, note it so the plan loads `adlc-design` on-demand.
 2. **Deep discovery** (one pass, or a bounded loop): what exists, what it touches, the constraints, the risks, and the **development dependencies** (what must land first, what this blocks, the systems it couples to). Read-only; cite what you find.
 3. **Classify the fuel** as one of: story / bug / epic / tech-debt / intent. Never just "a story".
-4. **Write the fuel in two faces:** a human summary (`intake.md`) and the full AI context (`intake.context.md`).
+4. **Write the fuel as an OKF bundle:** a human briefing (`briefing.md`) plus the full AI context as typed concepts (`story.md`, `discovery.md`, `dependencies.md`), per [the OKF reference](../plugins/adlc-core/references/okf.md).
 5. **Always define acceptance criteria**, for any item type:
    - **Story / feature:** the observable behavior that must be true when done.
    - **Bug:** the bug no longer reproduces, the correct behavior, a regression guard.
@@ -49,7 +49,7 @@ The universal front door, for any role: dev, manager, tech owner, product owner,
    - **Intent:** the goal and the constraints it must respect, before it is sliced into work.
 6. **Consent checkpoint: post or refine.** Post the fuel to the tracker as a new issue (outbound, needs a yes), or refine it with another discovery pass.
 
-**Output:** intake fuel (classified, two faces, acceptance criteria, surfaced dev dependencies), posted, feeding `/agentic-plan`.
+**Output:** intake fuel (classified, an OKF bundle, acceptance criteria, surfaced dev dependencies), posted, feeding `/agentic-plan`.
 
 ---
 
@@ -151,7 +151,7 @@ The push is the obvious checkpoint, but it is not the only one. Posting intake f
 
 ## Worked example: a new Android setting, designed in Figma
 
-1. `/agentic-intake` with the Figma link and a sentence. Deep discovery against the app, dev dependencies surfaced. Out: intake fuel classified as a story, in two faces, with acceptance criteria, the Figma noted. **Consent checkpoint: you post it to GitHub as a new issue.**
+1. `/agentic-intake` with the Figma link and a sentence. Deep discovery against the app, dev dependencies surfaced. Out: intake fuel classified as a story, as an OKF bundle, with acceptance criteria, the Figma noted. **Consent checkpoint: you post it to GitHub as a new issue.**
 2. `/agentic-plan` on the issue. Detects Android (it would ask if the surface were ambiguous or spanned platforms), loads `adlc-android`; sees Figma, loads `adlc-design`. `create-plan` restates the criteria, writes the slices, carries the dev dependencies and layout intent, and maps each slice to a criterion. **Plan-approval checkpoint: you approve.** It posts a sub-issue with the plan attached.
 3. `/agentic-implement` against the sub-issue. Builds the slices with your chosen method, SDD or TDD (UI slices checked for token / component / pixel fidelity against the Figma baseline), verifies each, then the **AC check** confirms every criterion is met. **Review checkpoint:** you pick code + design-UI. You take the final look. **Release checkpoint: you approve the push.** Pipeline ends.
 

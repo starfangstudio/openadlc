@@ -11,7 +11,7 @@ Build an approved plan end to end: slices, verification, an acceptance-criteria 
 
 ## Steps
 
-1. Read the plan sub-issue and honor the development dependencies it carries. Ask the user to pick SDD or TDD at the start.
+1. Read the plan sub-issue, reassembling its OKF bundle first (on GitHub parse the markers across the body and comments; on Jira/ADO download and untar `<slug>.okf.tgz`), and honor the development dependencies it carries. Ask the user to pick SDD or TDD at the start.
 2. Build in slices, each ending in a check that passes or fails. Verify each slice. Local edits, commits, and builds run freely and never stop the user.
 3. Run an automatic acceptance-criteria check (your own "is the job done?" against the plan) before any review.
 4. Run the review embedded (never skipped): invoke the agentic-review skill, stopping first to ask which reviews to run (code, security, compliance, adversarial lenses, or none for tiny work) with a recommendation, then run the ones picked. The user takes a final look.

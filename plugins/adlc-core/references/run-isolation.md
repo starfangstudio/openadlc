@@ -14,7 +14,7 @@ The timestamp guarantees two same-slug runs never collide. Carry it forward (int
 
 ## Run workspace (OUT of the repo): `~/.openadlc/runs/<workspace>/<run-id>/`
 ALL artifacts a run writes live here, keyed by repo name + run-id, never inside the repo and never under `.claude/` of the repo:
-- `intake.md` / `intake.html` (living doc), `story.md`, `story.context.md` / `.json`
+- `index.md` + `briefing.md` (living doc + human face) + `story.md` + AI-context concepts (`discovery.md`, `dependencies.md`) , the run workspace IS the OKF bundle (see [okf.md](okf.md))
 - `context.md` (load-context brief)
 - `plan/spec.md`, `plan/Plans.md`, `plan/*.json` (contracts)
 - `design-baseline/<node>.png`, `verify/` (rendered screens, fidelity diffs)

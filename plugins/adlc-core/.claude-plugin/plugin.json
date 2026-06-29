@@ -1,6 +1,6 @@
 {
   "name": "adlc-core",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "ALWAYS-ON spine (deploy globally): the ADLC lifecycle (create-plan, implement-change, review-change) plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes; memory lives in ~/.claude.",
   "author": {
     "name": "OpenADLC"
@@ -14,7 +14,7 @@
     "skills": 20,
     "agents": 2,
     "commands": 4,
-    "references": 6
+    "references": 7
   },
   "evals": "conformance",
   "capabilities": {}

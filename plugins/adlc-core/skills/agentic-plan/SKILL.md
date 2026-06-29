@@ -11,10 +11,10 @@ Turn one buildable unit of intake fuel (a story, a bug, or tech-debt, never an e
 
 ## Steps
 
-1. Read the intake fuel (the issue). Detect the domain from the repo, and ASK when it is ambiguous, empty, or the item spans platforms or layers (frontend plus backend, iOS plus Android, and so on). One item can fan out into several plans.
+1. Read the intake fuel: when it is a tracker issue, reassemble its OKF bundle first (on GitHub parse the markers across the body and comments; on Jira/ADO download and untar `<slug>.okf.tgz`). Detect the domain from the repo, and ASK when it is ambiguous, empty, or the item spans platforms or layers (frontend plus backend, iOS plus Android, and so on). One item can fan out into several plans.
 2. Restate the acceptance criteria, then build a thorough plan that is a complete contract: each acceptance criterion mapped to a slice, the approach, happy and error flows, contracts, tests, design references (Figma baseline), the development dependencies and any layout intent carried from intake, and every cross-cutting angle that applies (security, accessibility, performance, privacy).
-3. Keep the plan in two faces: a human-readable summary and the full build context. Save the plan files locally.
-4. CHECKPOINT, consent: present the plan and STOP. The user approves or edits it. Only on an explicit yes, post a remote sub-issue, with the human-readable plan as the body and the plan files attached if the tracker supports it. Nothing is posted without that yes.
+3. Keep the plan as an OKF bundle: a `briefing.md` human-readable summary plus the full build context as typed concepts (`spec.md`, `Plans.md`, contracts). Save the bundle locally in the run workspace.
+4. CHECKPOINT, consent: present the plan and STOP. The user approves or edits it. Only on an explicit yes, post a remote sub-issue: on GitHub the plan `briefing.md` is the body with the plan concepts unwrapped into a collapsible `<details>` (overflow to sequential comments past ~60KB); on Jira/ADO the body is the `briefing.md` and the bundle is attached as `<slug>.okf.tgz`. On GitHub, create the sub-issue, assign yourself, link it as a NATIVE sub-issue of the parent, then VERIFY the parent link landed (an unlinked sub-issue is an incomplete post). Nothing is posted without that yes.
 
 Next: `/agentic-implement` against the posted sub-issue.
 

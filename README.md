@@ -11,7 +11,7 @@
   Runs in the harness you already use: <b>Claude Code</b>, <b>Cursor</b>, <b>Copilot</b>, <b>Codex</b>, <b>Gemini</b>, <b>Windsurf</b>, <b>Antigravity</b>, and other APM targets.
 </p>
 <p align="center">
-  Built on open standards: <a href="https://agents.md">AGENTS.md</a> · <a href="https://agentskills.io">Agent Skills</a> · <a href="https://modelcontextprotocol.io">MCP</a>.
+  Built on open standards: <a href="https://agents.md">AGENTS.md</a> · <a href="https://agentskills.io">Agent Skills</a> · <a href="https://modelcontextprotocol.io">MCP</a> · <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf">OKF</a>.
 </p>
 
 ---
@@ -55,7 +55,7 @@ Reading, local edits, local commits, and local builds never stop you. Anything o
 The four commands are one machine, not four tools. A few things hold across every stage:
 
 - **The checkpoint is everywhere.** Every outbound boundary gets a human yes: posting an issue, posting a sub-issue, pushing. Not one gate at the end, a discipline that holds across the whole pipeline.
-- **An artifact at every stage.** Each stage produces something the next stage can trust: a classified story, a slice-mapped plan, a verified deliverable, a verdict with evidence.
+- **An OKF artifact at every stage.** Each stage produces an [Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) bundle the next stage can trust: a classified story, a slice-mapped plan, a verified deliverable, a verdict with evidence. Plain typed markdown, a human briefing plus the full AI context, readable by a person and an agent alike, so the work travels between stages and trackers with no lock-in.
 - **Acceptance criteria, end to end.** Intake defines them, the plan restates them and maps each slice to them, and implement checks the build against them before a human is asked to review.
 - **It runs lean.** Discovery, slices, and review lenses fan out in parallel, so wall-clock time is the slowest path, not the sum.
 - **Loops and agent flows, bounded.** Stages orchestrate nested sub-agents and optional loops (iterate to refine, or fan out and judge, with adversarial passes baked in). Every loop is cost-capped with declared exit criteria, so running an agent past one task is continuity, not a token bonfire.
@@ -78,7 +78,7 @@ Describe what you want to build. OpenADLC turns it into a well-formed story and 
 
 ## The four commands
 
-- **`/agentic-intake`** is the universal front door, for any role, not a PM-only surface. Feed it documents, screenshots, links, or Figma; it runs deep discovery, surfaces development dependencies, and produces a typed, classified story (a story, bug, epic, tech-debt, or intent; an epic splits into linked child stories), always with clear acceptance criteria, in two faces (a human summary plus the full context). Checkpoint: post a new tracker issue, or refine further.
+- **`/agentic-intake`** is the universal front door, for any role, not a PM-only surface. Feed it documents, screenshots, links, or Figma; it runs deep discovery, surfaces development dependencies, and produces a typed, classified story (a story, bug, epic, tech-debt, or intent; an epic splits into linked child stories), always with clear acceptance criteria, packaged as an OKF bundle (a human briefing plus the full AI context as typed concepts). Checkpoint: post a new tracker issue, or refine further.
 - **`/agentic-plan`** turns a buildable unit (a story, bug, or tech-debt, never an epic) into a full plan. It detects the domain from the repo, or asks when the work is ambiguous or spans platforms, restates the acceptance criteria, and maps each one to a slice, with the approach, flows, contracts, tests, design references, dependencies, and the cross-cutting angles that apply. One item can fan out into several plans. Checkpoint: approve or edit, then it posts a remote sub-issue.
 - **`/agentic-implement`** builds the plan in slices, your choice of SDD or TDD, each slice ending in a check that passes or fails. It verifies each slice, runs its own acceptance-criteria check, then stops to ask which reviews to run before you take a final look. Checkpoint: approve the push, then the pipeline ends.
 - **`/agentic-review`** is an independent, fresh-eyes review of correctness, safety, whether the tests actually assert anything, UI fidelity, and fit. Lenses run concurrently and it returns BLOCK or APPROVE with file-and-line evidence. It runs embedded inside every implement, and also stands alone on any diff, branch, PR, or code you did not write.
@@ -106,6 +106,7 @@ OpenADLC does not reinvent the substrate. It composes the open building blocks t
 - **[AGENTS.md](https://agents.md)**: the cross-agent instructions format.
 - **[Agent Skills](https://agentskills.io)**: the portable skill format the packs are authored in.
 - **[MCP](https://modelcontextprotocol.io)**: the Model Context Protocol, for tools and context.
+- **[OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)**: the Open Knowledge Format. Every intake and plan artifact is an OKF bundle, plain typed markdown that a human and an agent both read, so the story and the plan move between stages and trackers without a proprietary format in the middle.
 
 The ADLC standard itself (the `standard/` tree) is open under CC-BY-4.0, so anyone can implement it and build conformant tools. ADLC is the vendor-neutral "what"; OpenADLC is one reference "how".
 
