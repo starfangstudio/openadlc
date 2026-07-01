@@ -7,7 +7,7 @@ OpenADLC is four commands and a law. The commands carry a task from a fuzzy idea
 idea ──/agentic-intake──▶ intake fuel ──/agentic-plan──▶ sub-issue ──/agentic-implement──▶ pushed
             (◆ post)        (story / bug / epic        (◆ post)                  (◆ push)
                              / tech-debt / intent)
-                                                              └ /agentic-review (embedded, never skipped)
+                                                              └ /agentic-review (embedded, checkpoint never skips)
 ```
 
 `◆` = a consent checkpoint. Intake fuel is classified (story / bug / epic / tech-debt / intent), never just "a story". An **epic is split at intake into linked child stories**; `/agentic-plan` works those stories, never the epic (too high-level to hold the specs). One piece of fuel can fan out into several plans. `/agentic-review` also runs standalone, on any code.
@@ -24,7 +24,7 @@ idea ──/agentic-intake──▶ intake fuel ──/agentic-plan──▶ sub
 ## Four things run through all of it
 
 1. **The consent checkpoint is everywhere.** Every outbound boundary (posting intake fuel, posting a sub-issue, pushing, posting a review) needs an explicit human yes. It is a law, not a single station: at each boundary the agent stops, presents exactly what would leave your machine, and waits for your yes.
-2. **Two faces per artifact, two jobs.** Every piece of intake fuel and every plan ships as a human summary built for **comprehension** (a cold reader gets it at a glance, so the operator stays in the loop) *and* the full AI context built for **completeness** (every detail, so the build does not deviate). Too thin, the agent guesses and drifts; too AI-first, the human is locked out and the loop becomes theater.
+2. **One bundle, two jobs.** Every piece of intake fuel and every plan ships as one OKF bundle: `briefing.md` built for **comprehension** (a cold reader gets it at a glance, so the operator stays in the loop) plus the typed AI concepts built for **completeness** (every detail, so the build does not deviate). Too thin, the agent guesses and drifts; too AI-first, the human is locked out and the loop becomes theater.
 3. **Two dials per checkpoint.** Consent (approve / edit / reject) and rigor (one pass, or a bounded operator-set loop). Default one pass; depth is opt-in and always capped. This is how adversarial loops are baked into the lifecycle.
 4. **Acceptance criteria, end to end.** Intake defines them, the plan restates them and maps each slice to them, implement checks the build against them before any review.
 
@@ -65,7 +65,7 @@ Turns intake fuel into a buildable plan, the complete contract for the build. Au
 3. **Explore** read-only (`codebase-researcher`).
 4. **Plan** (`create-plan`): **restate the acceptance criteria**, then slices with each criterion mapped to a slice, flows (happy + error), contracts, design refs, tests, the **carried dev dependencies** (and any layout intent from intake), and the **cross-cutting concerns that apply** (security, accessibility, automation / CI, performance, privacy, i18n, observability), each routed to its pack, plus the .md / .json artifacts the implementer consumes. The plan is a complete contract and **maps each slice to the criteria it satisfies**.
 5. **Plan-approval checkpoint: approve / edit / refine.** Approve as written, edit scope / approach / rollback, or refine with a bounded loop (iterate, or fan out a few approaches and judge).
-6. **Post the sub-issue** (on yes, outbound): the human-readable plan as the body; the plan files stay in the out-of-repo run workspace (`~/.openadlc/runs/<workspace>/<run-id>/plan/`, never committed), attached only if the tracker supports it.
+6. **Post the sub-issue** (on yes, outbound): the briefing is the visible body. On GitHub the AI concepts ride inline in a collapsible block (overflow into comments); on Jira / ADO the bundle is attached as a tarball. The source bundle stays in the out-of-repo run workspace (`~/.openadlc/runs/<workspace>/<run-id>/plan/`, never committed); see [the OKF reference](../plugins/adlc-core/references/okf.md).
 
 **Output:** an approved plan (or several), each a complete contract carrying the dev dependencies, plus a remote sub-issue, feeding `/agentic-implement`.
 
@@ -92,7 +92,7 @@ Builds an approved plan end to end and ends at the release checkpoint (the push)
 
 ## /agentic-review: change to verdict
 
-Independent, fresh-eyes review. Runs **embedded** inside implement (never skipped, at least a brief code review) and **standalone** on any code.
+Independent, fresh-eyes review. Runs **embedded** inside implement (the review checkpoint never skips; you are always asked which reviews to run) and **standalone** on any code.
 
 **Review types (pick one or more):** code (default), security, compliance, adversarial lenses, design / UI fidelity, none (trivial only). For UI, design fidelity is itself a compliance question (did the build match the approved design?), checked by comparing rendered screenshots against the Figma baseline.
 

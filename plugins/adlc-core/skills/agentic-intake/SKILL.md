@@ -9,6 +9,8 @@ version: 0.1.0
 
 The universal front door to the OpenADLC lifecycle. Turn any idea, bug, or epic into well-formed, classified intake fuel with clear acceptance criteria. Write no code and no plan; produce what `/agentic-plan` turns into a plan. Nothing is posted to a tracker without the user's explicit yes.
 
+When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
+
 ## Steps
 
 1. Greet the user and ask for the task: a feature, a bug, an epic, tech-debt, or a rough direction. Accept pasted documents, screenshots, links, and Figma URLs.

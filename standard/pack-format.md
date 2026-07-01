@@ -17,15 +17,14 @@ A pack carries one manifest. It MAY be written as JSON or YAML (they map one-to-
 | Field | Type | Required | Meaning |
 |---|---|---|---|
 | `name` | string, kebab-case, 1-64 chars | yes | The pack's name. |
-| `version` | string, SemVer 2.0.0 | yes | The version. Pattern is the official SemVer regex. |
-| `description` | string, 1-200 chars (one line) | yes | What it does and when it applies. |
-| `owner` | object {name, contact} | yes | Who maintains it and how to reach them. Currency (Law L3) needs an owner. |
+| `version` | string, SemVer 2.0.0 | yes | The version. SemVer is checked advisorily (conformance check P6), not hard-enforced by the schema. |
+| `description` | string, 1-600 chars (one line) | yes | What it does and when it applies. |
+| `author` | object {name} | no | The pack's author. Kept for harness compatibility (a Claude Code plugin manifest carries it). |
+| `owner` | object {name, contact} | no | Who maintains it and how to reach them. Currency (Law L3) needs an owner. |
 | `adlc` | string (e.g. "0.1") | yes | The spec version the pack targets (spec 5.1). |
-| `units` | array, >= 1 | yes | The guidance units: each `{kind, id, path?}`, kind in skill / agent / rule / reference. |
-| `evals` | object {path, baseline} | yes (for conformant) | Where the evals live and the no-pack baseline they beat (Law L5). |
+| `units` | object of integer counts | yes | How many units the pack ships per kind: optional keys `skills`, `agents`, `commands`, `references`, each >= 0. A rule is carried under `references`. |
+| `evals` | string enum | yes (for conformant) | The eval bar the pack clears: `conformance` (the structural eval) or `conformance+gate` (also ships a behavioral eval) (Law L5). |
 | `capabilities` | object | yes | The default-deny capability declaration (below). |
-| `harness` | array | no | Informational target harness(es). Omit for a pure-content pack. The standard never requires one (Law L7). |
-| `depends` | array | no | Other packs this builds on. |
 | `license` | string | yes | A per-pack license identifier (an SPDX id or an SPDX `LicenseRef-`), so each pack states its own terms (a CC-BY pack and a source-available commercial pack travel side by side). Required and validated by the checker. The official OpenADLC packs use `LicenseRef-OpenADLC-Source-Available-1.0` (source-available + commercial, see the `LICENSE` file); standard content uses `CC-BY-4.0`. See the [license notice](README.md#license). |
 
 ## The capability vocabulary
@@ -65,23 +64,18 @@ version: 1.2.0
 description: >-
   End-to-end web testing golden path: Playwright setup, page-object
   structure, and flake-resistant assertions.
+license: LicenseRef-OpenADLC-Source-Available-1.0
+author: { name: Jane Dev }
 owner: { name: Jane Dev, contact: jane@example.com }
 adlc: "0.1"
-units:
-  - { kind: skill, id: write-e2e-test, path: skills/write-e2e-test.md }
-  - { kind: reference, id: playwright-patterns, path: references/playwright-patterns.md }
-  - { kind: rule, id: no-hardcoded-waits, path: rules/no-hardcoded-waits.md }
-evals:
-  path: evals/e2e.json
-  baseline: "no-pack agent on the same 12 tasks: 5/12 stable vs 11/12 with the pack"
+units: { skills: 1, agents: 0, commands: 0, references: 2 }   # the no-hardcoded-waits rule counts under references
+evals: conformance
 capabilities:
   exec: [npx playwright test, npm run lint]   # e.g.; any ecosystem: ./gradlew test, cargo build, go test
   exec-installer: false
   fs-read: [./, ./src, ./tests]
   fs-write: [./test-results, ./playwright-report]
   subprocess: true
-harness: [claude-code, codex]   # any harness id; examples only, not a closed set
-depends: [web-core]
 ```
 
 ## Reconciliation with the certification program
@@ -91,29 +85,29 @@ There is a clean split, and stating it keeps the two from contradicting:
 - **The standard owns the format contract.** This file and the schema define what a pack manifest *is*: the fields, the capability vocabulary, the two integrity bans. Every ADLC pack uses it.
 - **The certification program owns the operations.** the certification program's capability model decides, per capability, what is allowed automatically, what escalates to human review, and what is banned for a given trust tier, plus the scan that checks declaration-against-behavior (the certification program's enforcement spec). That is policy and process, not format.
 
-A certification submission is **this manifest plus the program's extra fields** (`tier-requested`, `domain`, `fills-gap`). The standard defines the base; the program extends it. The full crosswalk against 16's capability classes:
+A certification submission is **this manifest plus the program's extra fields** (`tier-requested`, `domain`, `fills-gap`). The standard defines the base; the program extends it. The full crosswalk against the certification program's capability classes:
 
-| 16 capability class | This format | Owner / agreement |
+| Program capability class | This format | Owner / agreement |
 |---|---|---|
 | `markdown-only` | all `capabilities` empty (the default) | standard (shape) |
-| `fs-read` / `fs-write` | `fs-read` / `fs-write` | standard defines; 16 gates the scope |
-| `exec-task-runner` | `exec` (named commands) | standard defines; 16 gates |
-| `exec-installer` | `exec-installer: true` | standard defines; 16 gates |
-| `network` (allowlist) | `network` (scoped hosts) | standard defines; 16 gates |
-| `subprocess` | `subprocess: true` | standard defines; 16 gates |
-| `env`/secrets | `env` | standard defines the key; **16 bans it at Community, REVIEW at Certified** |
-| broad `exec` | `exec-broad: true` | **expressible in format; tier-gated by 16** (banned open, review+justification certified) |
-| wildcard `network` | `network-broad: true` | **expressible in format; tier-gated by 16** (banned open, review+justification certified) |
+| `fs-read` / `fs-write` | `fs-read` / `fs-write` | standard defines; the program gates the scope |
+| `exec-task-runner` | `exec` (named commands) | standard defines; the program gates |
+| `exec-installer` | `exec-installer: true` | standard defines; the program gates |
+| `network` (allowlist) | `network` (scoped hosts) | standard defines; the program gates |
+| `subprocess` | `subprocess: true` | standard defines; the program gates |
+| `env`/secrets | `env` | standard defines the key; **the program bans it at Community, REVIEW at Certified** |
+| broad `exec` | `exec-broad: true` | **expressible in format; tier-gated by the certification program** (banned open, review+justification certified) |
+| wildcard `network` | `network-broad: true` | **expressible in format; tier-gated by the certification program** (banned open, review+justification certified) |
 | checkpoint config touch | no key; integrity ban | **banned by format AND program; the two MUST agree (banned in all tiers)** |
 | opaque binary | no key; integrity ban | **banned by format AND program; the two MUST agree (banned in all tiers)** |
-| network exfil-shaped (POST to unknown host) | not declarable; caught by behavior scan | program (scan); banned in all tiers by 16 |
+| network exfil-shaped (POST to unknown host) | not declarable; caught by behavior scan | program (scan); banned in all tiers by the program |
 | tier gating (auto / review / ban per class) | n/a | program (operations) |
 | declaration-vs-behavior scan | n/a | program (operations) |
 
-Authority rule: if the format and 16 disagree on the *vocabulary*, this file wins (it is the standard). If they disagree on *what a tier admits*, 16 wins (it is the program). The two integrity bans are the one place both must say the same thing: banned everywhere.
+Authority rule: if the format and the certification program disagree on the *vocabulary*, this file wins (it is the standard). If they disagree on *what a tier admits*, the program wins. The two integrity bans are the one place both must say the same thing: banned everywhere.
 
 ## How it is validated, and the honest limit
 
-The manifest is machine-checkable: any JSON Schema validator runs the schema against a manifest and returns pass/fail. The repo ships a local check that validates both examples (the valid one passes; the invalid one fails on every seeded violation: empty `version`, missing `owner.contact`, empty `units`, missing `evals`, an unknown capability key, and a wildcard in the scoped `network` list). The same check runs in [CI](../.github/workflows/ci.yml).
+The manifest is machine-checkable: any JSON Schema validator runs the schema against a manifest and returns pass/fail. The repo ships that check in [tools/check-packs.py](../tools/check-packs.py), which validates both examples (the valid one passes; the invalid one fails on every seeded violation: a missing `license`, a `description` over the 600-char cap, `units` as an array instead of per-kind counts, and `evals` as an object instead of the bar string). The same check runs in [CI](../.github/workflows/ci.yml) via the pack-conformance job.
 
 The honest limit is the same one every capability system has: **the schema checks the declaration, not the behavior.** It proves a manifest is well-formed and free of banned declarations. It cannot prove the pack only does what it declared. Closing that gap (scan the code, compare to the declaration, enforce at runtime) is the certification program's job, specified in the certification program's enforcement spec. The format makes the honest declaration possible and checkable; it does not make it true.

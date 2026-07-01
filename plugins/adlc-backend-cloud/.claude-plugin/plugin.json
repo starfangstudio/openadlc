@@ -1,7 +1,8 @@
 {
   "name": "adlc-backend-cloud",
   "version": "0.1.0",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Enterprise / team-scale backend tier (the opt-in scale-up from adlc-backend's solo-scale monolith): containers, Kubernetes orchestration, infrastructure-as-code, async messaging + streaming, distributed data at scale, and progressive delivery; backend-cloud-architect + backend-cloud-reviewer agents. Routes observability to adlc-ops, security to adlc-security, data modeling to adlc-database.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Enterprise / team-scale backend tier (the opt-in scale-up from adlc-backend's solo-scale monolith): containers, Kubernetes orchestration, infrastructure-as-code, async messaging + streaming, distributed data at scale, and progressive delivery; backend-cloud-architect + backend-cloud-reviewer agents. Routes observability to adlc-ops, security to adlc-security, data modeling to adlc-database.",
   "author": {
     "name": "OpenADLC"
   },

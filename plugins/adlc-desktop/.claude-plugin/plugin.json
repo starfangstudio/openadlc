@@ -1,7 +1,8 @@
 {
   "name": "adlc-desktop",
   "version": "0.1.0",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Desktop app domain (build Electron / Tauri / native apps, detect-first): the process + IPC model and its security, native OS integration (menus, tray, notifications, file system, auto-update, deep links), and packaging / signing / notarization / distribution; desktop-architect + desktop-reviewer agents. Distinct from the OpenADLC desktop product.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Desktop app domain (build Electron / Tauri / native apps, detect-first): the process + IPC model and its security, native OS integration (menus, tray, notifications, file system, auto-update, deep links), and packaging / signing / notarization / distribution; desktop-architect + desktop-reviewer agents. Distinct from the OpenADLC desktop product.",
   "author": {
     "name": "OpenADLC"
   },

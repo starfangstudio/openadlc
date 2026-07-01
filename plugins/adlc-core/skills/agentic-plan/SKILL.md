@@ -9,6 +9,8 @@ version: 0.1.0
 
 Turn one buildable unit of intake fuel (a story, a bug, or tech-debt, never an epic) into a complete, buildable plan. Nothing is posted without the user's explicit yes.
 
+When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
+
 ## Steps
 
 1. Read the intake fuel: when it is a tracker issue, reassemble its OKF bundle first (on GitHub parse the markers across the body and comments; on Jira/ADO download and untar `<slug>.okf.tgz`). Detect the domain from the repo, and ASK when it is ambiguous, empty, or the item spans platforms or layers (frontend plus backend, iOS plus Android, and so on). One item can fan out into several plans.

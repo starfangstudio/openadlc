@@ -18,7 +18,7 @@ ALL artifacts a run writes live here, keyed by repo name + run-id, never inside 
 - `context.md` (load-context brief)
 - `plan/spec.md`, `plan/Plans.md`, `plan/*.json` (contracts)
 - `design-baseline/<node>.png`, `verify/` (rendered screens, fidelity diffs)
-- `review-<UTC-timestamp>.md`, `review-payload.json`
+- `review-<lens>-<UTC-timestamp>.md` (one file per review lens) and `review-payload.json`
 - `decision/` (ADR staging until merged into the repo on the run branch)
 
 `<workspace>` = the product name for a poly-repo workspace, else the single repo's name (`basename` of `git rev-parse --show-toplevel`). The run-id is WORKSPACE-level: one id for a change that may span several repos. The implementer (in any worktree) reads the plan from this stable absolute path; it does not need to be committed to "travel." NEVER write run artifacts to `.claude/sessions/`, `.claude/plans/<feature>/`, `.claude/runs/`, or bare `context.md` / `review.json` / `design-baseline/` inside the repo. Those are the collision (and git-pollution) sources.
@@ -71,9 +71,9 @@ Parent story            -> primary tracker (the `primary` repo, or the single re
 
 ### Tracker actions go through the adapter (never hardcode one tracker)
 Every tracker write routes through the four-verb adapter in [references/tracker-adapters.md](references/tracker-adapters.md) (`create_issue`, `link_child`, `set_status`, `assign`); the adapter holds the per-tracker mapping (GitHub, Jira, ADO) so the lifecycle prose stays tracker-neutral. Three rules are mandatory on every run:
-- **Native sub-issue, not a text mention (F7):** after `create_issue` makes a child plan issue, `link_child` MUST attach it as a real, native child of the parent so the tracker shows the hierarchy (GitHub sub-issue, Jira sub-task, ADO parent/child link). A "child of #N" line in the body is not a sub-issue and does not count.
-- **Auto-assign on create (F6):** `create_issue` assigns the operator at creation so the work has an owner from the start (GitHub `--assignee @me`, Jira `assignee`, ADO `Assigned To`). If the operator's account does not resolve, ask once who to assign and reuse the answer for the run.
-- **In-progress at implement start (F8):** at the start of /agentic-implement, after the sub-issue is resolved, `set_status` moves the item to in-progress so the board reflects active work (GitHub "status: in progress" label or the Project status field, Jira status transition, ADO state). Statuses are declared by the adapter, never invented inline.
+- **Native sub-issue, not a text mention:** after `create_issue` makes a child plan issue, `link_child` MUST attach it as a real, native child of the parent so the tracker shows the hierarchy (GitHub sub-issue, Jira sub-task, ADO parent/child link). A "child of #N" line in the body is not a sub-issue and does not count.
+- **Auto-assign on create:** `create_issue` assigns the operator at creation so the work has an owner from the start (GitHub `--assignee @me`, Jira `assignee`, ADO `Assigned To`). If the operator's account does not resolve, ask once who to assign and reuse the answer for the run.
+- **In-progress at implement start:** at the start of /agentic-implement, after the sub-issue is resolved, `set_status` moves the item to in-progress so the board reflects active work (GitHub "status: in progress" label or the Project status field, Jira status transition, ADO state). Statuses are declared by the adapter, never invented inline.
 
 These are tracker writes, so they are outbound: each stops at the consent checkpoint for an explicit yes before it fires, per [references/loop-control.md](references/loop-control.md).
 

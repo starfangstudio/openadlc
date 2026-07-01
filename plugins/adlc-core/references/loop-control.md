@@ -39,7 +39,7 @@ A loop costs tokens and time; a runaway loop can light a bonfire with the operat
 
 A checkpoint loop is never unbounded, never automatic, and never hides its cost. Default is one pass; depth is a deliberate, visible trade. An unbounded or cost-blind loop is the bonfire this design exists to prevent.
 
-## Show the four declarations when you offer the loop (F10)
+## Show the four declarations when you offer the loop
 
 The four declarations are not a precondition the loop checks after the operator opts in; they are the OFFER. The instant a command surfaces a refine/loop option at a checkpoint (intake refine, the plan gate, the implement review-depth ask), the same message that offers the loop MUST state, in plain sight, before the operator can say yes:
 

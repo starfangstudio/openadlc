@@ -56,7 +56,7 @@ A tiny per-run total is cheap to recompute on read (sum `usd` over all lines), s
 
 ## How loop-control reads it (the cost view)
 
-[references/loop-control.md](references/loop-control.md) requires a real per-round cost number when it OFFERS a loop (F10). It gets that number here:
+[references/loop-control.md](references/loop-control.md) requires a real per-round cost number when it OFFERS a loop (the loop-control declarations). It gets that number here:
 
 - **Per-round estimate** = the most recent ledger line(s) for the phase this checkpoint loops over (`intake` for an intake refine, `plan` for the plan gate, `review` for an implement review-depth loop). One iterate round costs about one prior round; one fan-out of N costs about N arms.
 - **Projected total** = per-round times the default cap (times the arm count for a fan-out).

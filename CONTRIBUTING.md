@@ -22,7 +22,7 @@ The full CLA text is in `CLA.md`.
 
 ## Docs are not optional
 
-Documentation lives in `docs/` and is the single source for both this repo and the website. **A change to a command, skill, or config updates its docs in the same PR.** CI enforces it: a PR that touches `commands/` or `openadlc.example.yaml` without touching `docs/` fails the `docs-current` check. Keep them in lockstep. Stale docs are a bug.
+Documentation lives in `docs/` and is the single source for both this repo and the website. **A change to a command, skill, or config updates its docs in the same PR.** CI enforces it: a PR that touches `commands/`, `skills/`, or `openadlc.example.yaml` without touching `docs/` fails the `docs-current` check. Keep them in lockstep. Stale docs are a bug.
 
 ## Contributing a pack
 
@@ -33,9 +33,9 @@ OpenADLC is a marketplace. New domains and stacks come from the community; we cu
 - **Certified pack:** a golden-path domain we stand behind and keep current. Full conformance plus a maintainer review. Reserved for the domains OpenADLC commits to.
 
 **The machine floor (CI must be green, see `.github/workflows/ci.yml`):**
-1. **Conformance:** `python3 tools/check-packs.py <your-pack>` passes (valid frontmatter, a skill name matching its directory, a manifest with name/version/description).
+1. **Conformance:** `python3 tools/check-packs.py <your-pack>` passes (valid frontmatter, a skill name matching its directory, a manifest matching the pack schema: name, version, description, license, adlc, units, evals, capabilities; `owner {name, contact}` is shape-checked when present, and a certified pack must declare a reachable one).
 2. **No em-dashes** anywhere (commas, colons, parentheses instead).
-3. **Docs ship with the code:** a change to a command or config updates `docs/` in the same PR.
+3. **Docs ship with the code:** a change to a command, skill, or config updates `docs/` in the same PR.
 
 **To add a pack:**
 1. Open an issue describing the domain and why it is not covered (intake before code; the lifecycle applies to us too).

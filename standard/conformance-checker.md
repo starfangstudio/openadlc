@@ -46,18 +46,18 @@ There is no `attest-only` status; "attested" is the provenance flag on a `pass`.
 
 ## Pack mode: the per-check algorithm
 
-P1 enforces the manifest required fields: **name, version, description, license, owner, the targeted spec version (`adlc`), units, evals, capabilities** (spec 5.1-5.4).
+P1 enforces the manifest required fields: **name, version, description, license, the targeted spec version (`adlc`), units, evals, capabilities** (spec 5.1-5.4). `author` {name} and `owner` {name, contact} are optional and shape-checked when present.
 
 A per-pack `license` field is required so each pack declares its own terms (see [pack-format.md](pack-format.md): the ADLC standard stays CC-BY-4.0, the OpenADLC packs are source-available + commercial under the OpenADLC source-available license, see the `LICENSE` file). P1 requires `license` and validates it: the value must be present, and the checker warns on a value outside the known vocabulary (`LicenseRef-OpenADLC-Source-Available-1.0`, `CC-BY-4.0`).
 
 | Check | Decision procedure | status |
 |---|---|---|
 | **P1** | Validate the manifest against `pack-manifest.schema.json` (covers the required fields above and the capability vocabulary). | pass / fail |
-| **P2** | `units` present, length >= 1 (covered by schema). | pass / fail |
-| **P3a** | `evals.path` resolves on disk. | pass / fail |
-| **P3b** | If `evals` declares a runner, invoke it and read the delta vs `evals.baseline`; pass iff delta > 0. No runner -> `not-run` (does not gate). | pass / fail / not-run |
+| **P2** | `units` present with at least one per-kind count >= 1 (the schema covers the shape; the nonzero check is this one's). | pass / fail |
+| **P3a** | `evals` declares the bar: `conformance` or `conformance+gate` (covered by schema). | pass / fail |
+| **P3b** | If an eval runner exists for the pack, invoke it and read the delta vs the no-pack baseline; pass iff delta > 0. No runner -> `not-run` (does not gate). | pass / fail / not-run |
 | **P4** | `capabilities` is schema-valid with no banned declaration (auto). The declared-vs-actual behavior match is **not decided here**; emit a pointer to the certification program's enforcement spec scan. | pass / fail |
-| **P5** | Manifest-decidable half (auto): no checkpoint-subverting capability key (e.g. touching a human-in-the-loop checkpoint's config; none exists in the vocabulary, so structurally absent). The opaque-binary half is **not decided here** unless the pack directory was given and a content scan is wired; otherwise emit a pointer to 16's scan, like P4. | pass / fail |
+| **P5** | Manifest-decidable half (auto): no checkpoint-subverting capability key (e.g. touching a human-in-the-loop checkpoint's config; none exists in the vocabulary, so structurally absent). The opaque-binary half is **not decided here** unless the pack directory was given and a content scan is wired; otherwise emit a pointer to the certification program's scan, like P4. | pass / fail |
 | **P6** | `version` matches the SemVer pattern (advisory). A miss is `warn`, never `fail`. | pass / warn |
 
 **Pack verdict:** conformant iff P1, P2, P3a, P4, P5 are `pass`, and P3b is `pass` or `not-run`. P6 is advisory and never gates.

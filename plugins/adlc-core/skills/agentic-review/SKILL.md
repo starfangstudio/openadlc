@@ -9,6 +9,8 @@ version: 0.1.0
 
 An independent, fresh-eyes review of a change. Runs embedded inside agentic-implement and also stands alone on any diff, branch, PR, or code the user did not write. Posting a review is gated on the user's yes.
 
+When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
+
 ## Steps
 
 1. Resolve the target: the current change, a branch, a PR, or pasted code.

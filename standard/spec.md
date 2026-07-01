@@ -148,7 +148,9 @@ A conformant pack MUST contain:
    - **Agent** - a scoped role with a defined job and its own tool access.
    - **Rule** - a constraint, always-on or loaded on demand.
    - **Reference** - the deep detail a skill points to, kept out of the skill body (progressive disclosure: the common case runs from the skill; the detail is one hop away). **Citation form:** name a reference by its pack-relative `references/<file>.md` (same-pack as the markdown link `[references/<file>.md](references/<file>.md)`; a reference owned by another pack named in prose, e.g. the `references/<file>.md` reference in the **adlc-core** pack). A reference MUST NOT be cited with a harness-specific path variable such as `${CLAUDE_PLUGIN_ROOT}`: that resolves on only one of the deploy targets, so the agent names the file and locates it at runtime.
-3. **(5.3) Evals.** Evidence the pack measurably beats a no-pack baseline (Law L5 applied to the pack itself). A pack with no evals MAY be shared as experimental but MUST NOT be called conformant.
+
+   In the manifest, units travel as per-kind integer counts (`skills`, `agents`, `commands`, `references`; see [pack-format.md](pack-format.md)): a command is a harness-invocable entry point into the lifecycle, and a rule is carried under `references`.
+3. **(5.3) Evals.** Evidence the pack measurably beats a no-pack baseline (Law L5 applied to the pack itself). In the manifest, `evals` declares the bar the pack clears: `conformance` (the structural eval) or `conformance+gate` (also ships a behavioral eval). A pack with no evals MAY be shared as experimental but MUST NOT be called conformant.
 4. **(5.4) A capability declaration.** What the pack can touch: shell execution, network, file writes outside the workspace. This declares the pack's blast radius so the checkpoints and reviewers know what it can do. Declared capabilities MUST match actual behavior. The concrete vocabulary is in [pack-format.md](pack-format.md).
 
 A conformant pack MUST NOT weaken or bypass the human-in-the-loop checkpoints (including the consent checkpoint), and MUST NOT take undeclared capabilities.
@@ -163,7 +165,7 @@ ADLC names the written outputs of the lifecycle so that work is traceable and re
 
 | Artifact | From phase | What it is |
 |---|---|---|
-| **Intake fuel** | Explore | What the agent learned, typed as a story, bug, epic, tech-debt, or intent: the relevant code, contracts, constraints, and surfaced development dependencies, plus a verify command. |
+| **Intake fuel** | Explore | What the agent learned, typed as a story, bug, epic, tech-debt, or intent: a human-readable briefing plus classified-unit, discovery, and dependencies concepts, with acceptance criteria. |
 | **Plan** | Plan | The approved approach: scope, steps, and what "done" means. |
 | **Verification evidence** | Verify | The failable check and its passing result. |
 | **Review report** | Review | An independent verdict: what is wrong, what is missing, what is safe. |
@@ -175,6 +177,7 @@ Rules:
 - An ADLC team MUST keep an audit trail: a record of each human decision at a checkpoint (plan approval, code review, consent). This is what makes human-in-the-loop provable to a third party; the consent record is the consent checkpoint's entry in it.
 - A significant or hard-to-reverse decision SHOULD be captured in a Decision record.
 - Other artifacts SHOULD be written for any non-trivial change so the work can be reviewed and resumed cold.
+- Artifacts SHOULD be written as [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) bundles: typed-markdown directories carrying a human-readable briefing plus typed machine-context concepts. OKF is itself an open format, so the SHOULD keeps Law L7 intact.
 
 ---
 

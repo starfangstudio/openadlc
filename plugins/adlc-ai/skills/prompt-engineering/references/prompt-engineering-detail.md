@@ -39,6 +39,26 @@ Long-tail content for `../SKILL.md`. Read this only when the main skill points y
 
 ---
 
+## Tool definition example
+
+Be prescriptive about WHEN to use each tool. Vague descriptions cause under- and over-triggering:
+
+```python
+tools = [{
+    "name": "search_kb",
+    "description": (
+        "Search the knowledge base. Use this tool ONLY when the user's question "
+        "requires factual lookup. Do NOT use it for greetings, clarifications, or "
+        "tasks the system prompt answers directly."
+    ),
+    "input_schema": { ... }
+}]
+```
+
+Add `strict: True` on tool definitions where schema violations would break downstream code. This enables grammar-constrained sampling and guarantees parameter shape.
+
+---
+
 ## Structured output: full situation-to-approach table
 
 | Situation | Approach | SDK helper |
@@ -48,6 +68,7 @@ Long-tail content for `../SKILL.md`. Read this only when the main skill points y
 | Classification (closed set) | `enum` field on tool param | `{"type": "string", "enum": ["A", "B", "C"]}` |
 | Typed extraction | Pydantic model as schema | `model.schema()` piped to `input_schema` |
 | Streaming + structured | Stream with tool use; buffer until `tool_result` | Anthropic streaming docs |
+| Mixed (response + tool calls) | Combine `output_config` and `strict` tools | Anthropic structured-outputs docs |
 
 Never hand-write a raw JSON schema when an SDK helper (Pydantic / Zod) can generate it.
 Validate every model output against the schema before passing downstream.
@@ -76,6 +97,7 @@ Rules:
 - Each step is a separate API call with its own system prompt and output schema.
 - Pass `step_N_output` as a structured JSON block into `step_N+1`'s user message.
 - Never rely on the model retaining prior-step context across calls.
+- Log intermediate outputs so failures are diagnosable.
 - Each step has its own eval case in the golden set.
 
 ---
@@ -113,6 +135,10 @@ def validate_action(model_output: dict) -> bool:
     return True
 ```
 
+**Scoped permissions.** Grant the model only the tools it needs for this prompt. A tool the model cannot call cannot be hijacked.
+
+**Output validation.** For high-stakes actions (writes, sends, payments), validate the model's tool call parameters against an allow-list (as above) before executing. Do not trust the model's tool-call content as safe by default.
+
 ---
 
 ## Versioned prompt directory layout
@@ -128,6 +154,8 @@ evals/
     golden.jsonl             # one case per line: {input, expected, tags[]}
     promptfooconfig.yaml
 ```
+
+Point production at the current version via a symlink or config key (e.g. `current -> search-v1.1.0.prompt`), never a hardcoded filename.
 
 `CHANGELOG.md` entry format:
 

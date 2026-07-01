@@ -1,7 +1,8 @@
 {
   "name": "adlc-ops",
   "version": "0.4.2",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Operations domain for launched products: crash/error monitoring (Sentry/Crashlytics), product analytics design, observability (uptime/health/SLO), CI/CD pipeline authoring, managed-cloud deploy. Solo-scale (managed services, no K8s). Routes test strategy to adlc-testing, the deploy gate to adlc-quality-gates.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Operations domain for launched products: crash/error monitoring (Sentry/Crashlytics), product analytics design, observability (uptime/health/SLO), CI/CD pipeline authoring, managed-cloud deploy. Solo-scale (managed services, no K8s). Routes test strategy to adlc-testing, the deploy gate to adlc-quality-gates.",
   "author": {
     "name": "OpenADLC"
   },

@@ -1,7 +1,8 @@
 {
   "name": "adlc-monetization",
   "version": "0.4.2",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Monetization & live-ops domain: native IAP (StoreKit/Play Billing) with server receipt validation, F2P economy design, live-ops (battle pass/events/remote config), ads mediation, A/B experimentation, install attribution. Engine-agnostic design; Unity SDK wiring lives in adlc-unity. Routes policy to the compliance packs.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Monetization & live-ops domain: native IAP (StoreKit/Play Billing) with server receipt validation, F2P economy design, live-ops (battle pass/events/remote config), ads mediation, A/B experimentation, install attribution. Engine-agnostic design; Unity SDK wiring lives in adlc-unity. Routes policy to the compliance packs.",
   "author": {
     "name": "OpenADLC"
   },

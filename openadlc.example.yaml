@@ -14,7 +14,7 @@ workspace:
   repos: [shared-components, web-app, backend]   # member repo paths under this root
   primary: web-app                               # where the PARENT story posts; the default tracker
 
-# --- Roadmap below: declared but not yet enforced in v0.0.1. ---
+# --- Roadmap below: declared but not yet enforced in v0.1. ---
 
 # Lifecycle checkpoints: a human owns the release decision. At each checkpoint the agent
 # presents what it has and waits for the operator's explicit yes before proceeding; the

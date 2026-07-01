@@ -5,7 +5,7 @@
   "description": "The vendor-neutral format contract for an ADLC pack manifest, version 0.1. Validates a CONFORMANT pack (spec.md section 5). An experimental pack MAY omit 'evals' but is then not conformant. Certification programs extend this with their own fields; this schema is the base they extend.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name", "version", "description", "license", "owner", "adlc", "units", "evals", "capabilities"],
+  "required": ["name", "version", "description", "license", "adlc", "units", "evals", "capabilities"],
   "properties": {
     "name": {
       "type": "string",
@@ -18,20 +18,29 @@
       "minLength": 1,
       "description": "A version string. SHOULD follow Semantic Versioning 2.0.0 (spec 5.1). SemVer is checked advisorily by conformance check P6, not hard-enforced here, so the SHOULD stays overridable with a stated reason. The official SemVer spec and regex are at https://semver.org."
     },
+    "description": {
+      "type": "string",
+      "description": "One line. What the pack does and when it applies.",
+      "minLength": 1,
+      "maxLength": 600
+    },
     "license": {
       "type": "string",
       "minLength": 1,
       "description": "SPDX license identifier or SPDX LicenseRef. OpenADLC packs use LicenseRef-OpenADLC-Source-Available-1.0; standard content uses CC-BY-4.0."
     },
-    "description": {
-      "type": "string",
-      "description": "One line. What the pack does and when it applies.",
-      "minLength": 1,
-      "maxLength": 200
+    "author": {
+      "type": "object",
+      "description": "Optional. The pack's author. Kept for harness compatibility (a Claude Code plugin manifest carries it).",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 }
+      }
     },
     "owner": {
       "type": "object",
-      "description": "Who maintains the pack and how to reach them (Law L3, currency needs an owner).",
+      "description": "Optional in the schema; a conformant pack declares one (Law L3, currency needs an owner). Who maintains the pack and how to reach them.",
       "additionalProperties": false,
       "required": ["name", "contact"],
       "properties": {
@@ -45,29 +54,20 @@
       "pattern": "^[0-9]+\\.[0-9]+$"
     },
     "units": {
-      "type": "array",
-      "description": "The guidance units (spec.md section 5.2). At least one.",
-      "minItems": 1,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["kind", "id"],
-        "properties": {
-          "kind": { "type": "string", "enum": ["skill", "agent", "rule", "reference"] },
-          "id": { "type": "string", "minLength": 1 },
-          "path": { "type": "string", "description": "Optional path within the pack." }
-        }
+      "type": "object",
+      "description": "Per-kind unit counts (spec.md section 5.2): how many units the pack ships of each kind. A rule is carried under 'references'. Conformance check P2 requires at least one nonzero count.",
+      "additionalProperties": false,
+      "properties": {
+        "skills": { "type": "integer", "minimum": 0 },
+        "agents": { "type": "integer", "minimum": 0 },
+        "commands": { "type": "integer", "minimum": 0 },
+        "references": { "type": "integer", "minimum": 0 }
       }
     },
     "evals": {
-      "type": "object",
-      "description": "Evidence the pack beats a no-pack baseline (spec.md section 5.3, Law L5). Required for a conformant pack.",
-      "additionalProperties": false,
-      "required": ["path", "baseline"],
-      "properties": {
-        "path": { "type": "string", "minLength": 1, "description": "Where the eval set lives." },
-        "baseline": { "type": "string", "minLength": 1, "description": "The no-pack baseline the evals are measured against." }
-      }
+      "type": "string",
+      "description": "The eval bar the pack clears (spec.md section 5.3, Law L5): 'conformance' is the structural eval; 'conformance+gate' also ships a behavioral eval. Required for a conformant pack.",
+      "enum": ["conformance", "conformance+gate"]
     },
     "capabilities": {
       "type": "object",
@@ -122,16 +122,6 @@
           "description": "True if the pack spawns long-running processes or daemons."
         }
       }
-    },
-    "harness": {
-      "type": "array",
-      "description": "Optional and informational. Target harness(es) this pack is tuned for. A pure-content pack targets all and omits this. The standard never requires a specific harness (Law L7).",
-      "items": { "type": "string" }
-    },
-    "depends": {
-      "type": "array",
-      "description": "Optional. Other packs this one builds on, by name.",
-      "items": { "type": "string" }
     }
   }
 }

@@ -1,7 +1,8 @@
 {
   "name": "adlc-core",
-  "version": "0.5.0",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "ALWAYS-ON spine (deploy globally): the ADLC lifecycle (create-plan, implement-change, review-change) plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes; memory lives in ~/.claude.",
+  "version": "0.5.1",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "ALWAYS-ON spine (deploy globally): the four /agentic-* commands (intake, plan, implement, review) and the lifecycle checkpoints, plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes.",
   "author": {
     "name": "OpenADLC"
   },

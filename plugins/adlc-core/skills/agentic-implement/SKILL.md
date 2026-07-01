@@ -9,6 +9,8 @@ version: 0.1.0
 
 Build an approved plan end to end: slices, verification, an acceptance-criteria check, an embedded review, and a final push gate. Nothing reaches a remote without the user's explicit yes.
 
+When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
+
 ## Steps
 
 1. Read the plan sub-issue, reassembling its OKF bundle first (on GitHub parse the markers across the body and comments; on Jira/ADO download and untar `<slug>.okf.tgz`), and honor the development dependencies it carries. Ask the user to pick SDD or TDD at the start.

@@ -1,7 +1,8 @@
 {
   "name": "adlc-planning",
   "version": "0.4.3",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Deeper planning: revise/resume a plan, define API/module contracts, analyze a ticket's impact; architect, adlc-author, implementation-lead, and story-implementer agents.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Deeper planning: revise/resume a plan, define API/module contracts, analyze a ticket's impact; architect, adlc-author, implementation-lead, and story-implementer agents.",
   "author": {
     "name": "OpenADLC"
   },

@@ -1,7 +1,8 @@
 {
   "name": "adlc-backend",
   "version": "0.4.4",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Thin backend domain for solo-scale products: modular-monolith architecture, API design, auth/identity, background jobs, and the game-server bits (leaderboards, authoritative sim re-validation, IAP server notifications). Managed services, no microservices/K8s. Routes deploy/observability to adlc-ops, security hardening to adlc-security, and the data layer (schema, migrations, queries, access) to adlc-database; keeps its own opinionated Postgres/Flyway stack.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Thin backend domain for solo-scale products: modular-monolith architecture, API design, auth/identity, background jobs, and the game-server bits (leaderboards, authoritative sim re-validation, IAP server notifications). Managed services, no microservices/K8s. Routes deploy/observability to adlc-ops, security hardening to adlc-security, and the data layer (schema, migrations, queries, access) to adlc-database; keeps its own opinionated Postgres/Flyway stack.",
   "author": {
     "name": "OpenADLC"
   },

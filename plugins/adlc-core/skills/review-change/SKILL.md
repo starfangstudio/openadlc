@@ -33,7 +33,7 @@ Use this skill for "review my change"; reach for the others only when the user n
    - **Blocking**: breaks correctness or a stated requirement. Must be fixed before the outbound consent checkpoint.
    - **Suggestions**: real improvements, not dealbreakers.
    - **Positive**: what's genuinely right (specific, not generic praise).
-6. **Write the report to disk.** Save the gap report to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<UTC-timestamp>.md` (the out-of-repo workspace per run-isolation; never committed, never a bare `review.json` / `review-<date>.md`), with `path:line` references and a one-line verdict (ready / needs work), so the pre-outbound consent report can cite it and a later session can audit what was reviewed. Also return it in-conversation.
+6. **Write the report to disk.** Save the gap report to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<lens>-<UTC-timestamp>.md` (the out-of-repo workspace per run-isolation; never committed, never a bare `review.json` / `review-<date>.md`), with `path:line` references and a one-line verdict (ready / needs work), so the pre-outbound consent report can cite it and a later session can audit what was reviewed. Also return it in-conversation.
 
 ## Discipline
 - A reviewer asked to find gaps will always find some. **Flag only gaps that affect correctness or the stated requirements**: do not chase style or invent defensive code/tests for impossible cases. Over-engineering is a failure mode.

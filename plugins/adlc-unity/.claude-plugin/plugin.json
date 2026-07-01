@@ -1,7 +1,8 @@
 {
   "name": "adlc-unity",
   "version": "0.4.4",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "Unity game domain (C#): build/test via the Unity MCP, assembly architecture, deterministic simulation for real-time PvP, mobile performance, UI Toolkit + design tokens, monetization SDK wiring, store builds; unity-architect + unity-reviewer agents. For the F2P mobile games.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "Unity game domain (C#): build/test via the Unity MCP, assembly architecture, deterministic simulation for real-time PvP, mobile performance, UI Toolkit + design tokens, monetization SDK wiring, store builds; unity-architect + unity-reviewer agents. For the F2P mobile games.",
   "author": {
     "name": "OpenADLC"
   },

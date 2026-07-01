@@ -23,7 +23,7 @@ Controlled by `compression` in `openadlc.yaml` (on by default):
 This is where the savings live (Caveman benchmarks ~65% average). Use the configured level here.
 
 ## Never compress this (the human reads and approves it)
-The human-facing artifacts stay full and clear (the KISS law + the two-faces law):
+The human-facing artifacts stay full and clear (the KISS law, plus the OKF rule: compress AI-internal output, never the human-facing briefing or checkpoint prompts):
 - the story's human summary
 - the development plan summary
 - the review verdict and report

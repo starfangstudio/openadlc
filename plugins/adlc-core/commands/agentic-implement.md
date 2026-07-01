@@ -9,6 +9,8 @@ argument-hint: "[the dev-plan sub-issue (URL/#number) or a slice to start with]"
 
 Builds an approved plan end to end and ends at the push checkpoint. The procedure lives in the **`implement-change`** skill; this command runs the pipeline.
 
+When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
+
 Input: $ARGUMENTS (the dev-plan sub-issue, or a slice)
 
 ## Pipeline
@@ -21,7 +23,7 @@ Resolve the sub-issue (read-only) and **select the run by run-id, NOT by globbin
 
 **Concurrency check (per run-isolation):** detect an in-progress run (`git worktree list`, another live `adlc/*` branch, or an active `~/.openadlc/runs/<workspace>/*` with no terminal state). If a different run is active in this checkout, do NOT share it: auto-create an isolated worktree for this run and have the operator reopen there. A single run with no collision works on `adlc/<run-id>` in place.
 
-**Set the sub-issue in-progress (F8, via the adapter).** Once the sub-issue is resolved, move it to in-progress through the tracker adapter's `set_status` action ([references/tracker-adapters.md](references/tracker-adapters.md)): GitHub maps this to a `status: in progress` label or the Project status field; Jira transitions the sub-task, ADO sets the work-item state. This is a local-only tracker write (no PR, no push), done before the build starts so the work is visibly claimed. Do not hardcode GitHub-only semantics here; route through the adapter so the same step works on Jira and ADO.
+**Set the sub-issue in-progress at implement start (via the adapter).** Once the sub-issue is resolved, move it to in-progress through the tracker adapter's `set_status` action ([references/tracker-adapters.md](references/tracker-adapters.md)): GitHub maps this to a `status: in progress` label or the Project status field; Jira transitions the sub-task, ADO sets the work-item state. This is a local-only tracker write (no PR, no push), done before the build starts so the work is visibly claimed. Do not hardcode GitHub-only semantics here; route through the adapter so the same step works on Jira and ADO.
 
 ## 2-3. Choose the method, build, and verify
 **First, ask the operator which method to use, SDD or TDD** (spec-driven: build to the spec and acceptance criteria, tests pin the behavior; or test-driven: the failable check first, build to green, refactor). Leave the choice to them; it is a mandatory step, not a default.
@@ -53,7 +55,7 @@ This step always runs; the ask is not skippable, though the answers may be "none
 - **Design / UI fidelity** (recommended when the change builds UI from a design; via the `adlc-design` pack, on-demand).
 - **None** (not recommended; only for genuinely tiny or trivial changes).
 
-**(b) Depth: one pass, or a loop.** Run the picked reviews once, or as a bounded loop (review, fix, re-review until clean, or N passes). Default: one pass. **Before the operator says yes to a loop, state the four loop-control declarations up front (F10)** so they know how many iterations and the spend before they commit, per [references/loop-control.md](references/loop-control.md):
+**(b) Depth: one pass, or a loop.** Run the picked reviews once, or as a bounded loop (review, fix, re-review until clean, or N passes). Default: one pass. **Before the operator says yes to a loop, state the four loop-control declarations up front** so they know how many iterations and the spend before they commit, per [references/loop-control.md](references/loop-control.md):
 - **Default cap** (the exit criterion's N, e.g. one pass).
 - **Hard ceiling** (the loop cannot exceed it even if not converged; from managed config, a project may lower it, never raise it).
 - **Exit criterion** (concrete: a fixed cap, or "until converged" with a hard definition, two consecutive rounds add nothing new).
@@ -66,7 +68,7 @@ Run exactly what the operator picked, at the chosen depth, via `/agentic-review`
 ## 6-7. Run reviews, final look
 Run the picked reviews **in parallel** (each a fresh, independent pass). Present the verdicts. The operator takes a **final look** at what was built.
 
-**Persist the review verdicts (every run).** Write each review's verdict to `review-*.md` in the run workspace (`~/.openadlc/runs/<workspace>/<run-id>/`, one file per review pass, e.g. `review-code-1.md`, `review-security-1.md`). This happens every run, BLOCK or APPROVE; posting back to the tracker stays gated, but the persisted verdict is not optional. Never leave the review as only a commit message, a teammate, CI, or a fresh agent must be able to read the full verdict from the run workspace.
+**Persist the review verdicts (every run).** Write each review's verdict to `review-<lens>-<UTC-timestamp>.md` (one file per review lens) and the payload to `review-payload.json` in the run workspace (`~/.openadlc/runs/<workspace>/<run-id>/`), e.g. `review-code-20260628T141233Z.md`, per [references/run-isolation.md](references/run-isolation.md). This happens every run, BLOCK or APPROVE; posting back to the tracker stays gated, but the persisted verdict is not optional. Never leave the review as only a commit message, a teammate, CI, or a fresh agent must be able to read the full verdict from the run workspace.
 
 ## 8. Push checkpoint: the push
 The push to remote is outbound. **STOP and ask the operator for an explicit yes:** present exactly what would go out (every repo, branch, and PR) and ask for an explicit yes. No standing approval. On yes, for EACH touched repo push its `adlc/<run-id>` branch and open **one PR per repo**, each linked to this domain's sub-issue (per [references/run-isolation.md](references/run-isolation.md)). On a poly-repo product, `implementation-lead` **sequences the multi-PR merge in cross-repo dependency order**: base/shared repos merge before their consumers (e.g. shared-components before web-app). **Dedup first:** for each repo check for an existing open PR for this run and offer update-vs-new; tag each PR with the run-id. Never push or merge the out-of-repo run workspace. Record the decision. The pipeline ends here. There is no separate ship command.

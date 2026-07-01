@@ -1,7 +1,8 @@
 {
   "name": "adlc-ios",
   "version": "0.4.4",
-  "license": "LicenseRef-OpenADLC-Source-Available-1.0",  "description": "iOS domain: SwiftUI-first action skills, SPM interface/impl modules, KMP interop, App Store compliance, on-demand convention references; ios-architect + ios-reviewer agents.",
+  "license": "LicenseRef-OpenADLC-Source-Available-1.0",
+  "description": "iOS domain: SwiftUI-first action skills, SPM interface/impl modules, KMP interop, App Store compliance, on-demand convention references; ios-architect + ios-reviewer agents.",
   "author": {
     "name": "OpenADLC"
   },

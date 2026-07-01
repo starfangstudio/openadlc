@@ -56,12 +56,12 @@ A subject reaches a **level** when every check at that level and every level bel
 
 These split by what is mechanically decidable. The schema ([pack-format.md](pack-format.md)) covers the **auto** ones; the rest need running code or judgement.
 
-- **P1** - Has a manifest with name, version, description, license, owner, targeted spec version, and a capability declaration. _(Spec 5.1.)_ **auto** (validate against the schema).
+- **P1** - Has a manifest with name, version, description, license, targeted spec version, units, an eval declaration, and a capability declaration. _(Spec 5.1.)_ **auto** (validate against the schema).
 - **P2** - Has at least one guidance unit (skill, agent, rule, or reference). _(Spec 5.2.)_ **auto**
-- **P3a** - An eval set is present. _(Spec 5.3.)_ **auto**
-- **P3b** - The eval set runs and its result beats the declared no-pack baseline (delta greater than zero). _(Spec 5.3 / Law L5.)_ **auto** (run the evals). If the pack declares no runner, P3b is `not-run` and does not gate (P3a presence is still required). Eval *quality* (is the baseline honest, are the tasks representative) is a separate **audit**.
+- **P3a** - The eval bar is declared (`conformance` or `conformance+gate`). _(Spec 5.3.)_ **auto**
+- **P3b** - The eval set runs and its result beats its no-pack baseline (delta greater than zero). _(Spec 5.3 / Law L5.)_ **auto** (run the evals). If the pack has no runner, P3b is `not-run` and does not gate (P3a presence is still required). Eval *quality* (is the baseline honest, are the tasks representative) is a separate **audit**.
 - **P4** - The capability declaration is well-formed and contains no banned declaration. _(Spec 5.4.)_ **auto**. The harder MUST, that the declaration matches actual behavior, is NOT decidable at this layer; it needs the declaration-vs-behavior scan specified in the certification program's enforcement spec. This document records that scan's result; it does not re-specify it.
-- **P5** - The manifest declares no checkpoint-subverting capability (e.g. touching any human-in-the-loop checkpoint's config) and ships no opaque binary. _(Spec section 5, universal bans in [pack-format.md](pack-format.md).)_ **auto** (these are structural). Detecting *prose* that coaxes a human or agent into bypassing a checkpoint is not reliably decidable and is handled as a risk signal by 16's scan, not as a pass/fail here.
+- **P5** - The manifest declares no checkpoint-subverting capability (e.g. touching any human-in-the-loop checkpoint's config) and ships no opaque binary. _(Spec section 5, universal bans in [pack-format.md](pack-format.md).)_ **auto** (these are structural). Detecting *prose* that coaxes a human or agent into bypassing a checkpoint is not reliably decidable and is handled as a risk signal by the certification program's scan, not as a pass/fail here.
 - **P6** - Version follows Semantic Versioning. _(Spec 5.1, SHOULD.)_ **auto**, but advisory: a SHOULD may be overridden with a stated reason, so a SemVer-violating pack with a reason is still conformant. P6 reports `warn`, it does not cap the level.
 
 ---

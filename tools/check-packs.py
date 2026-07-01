@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0
 """OpenADLC pack conformance check (FAIL-CLOSED).
 
-The per-pack structural eval: a pack must pass this to be certifiable (G3).
+The per-pack structural eval: a pack must pass this to be certifiable.
 Guidance skills are not behaviorally fixture-testable, so the bar is structure
 + the house conventions, checked mechanically.
 
@@ -10,13 +10,15 @@ Hard fails (exit 1): em-dash (literal or \\u2014), a harness-specific path
 variable (${CLAUDE_PLUGIN_ROOT}) in any prose unit (commands/skills/agents/
 references; it resolves on only one deploy target, so references are cited by
 name), missing/invalid frontmatter, skill name != its directory, missing
-name/description, invalid manifest JSON or a manifest missing
-name/version/description/license.
+name/description, invalid manifest JSON or a manifest violating the normative
+shape (standard/schema/pack-manifest.schema.json), implemented here stdlib-only.
 Soft warnings (exit 0): no version, no References section, no failable check
 mentioned, over-length skill.
 Fail-closed (exit 2): zero files checked.
 
 Usage: python3 tools/check-packs.py [pack-name | all]
+'all' also self-tests the manifest validator against the two example
+manifests in standard/schema/ (valid must pass, invalid must fail).
 """
 import sys, os, json, re, glob
 
@@ -29,8 +31,7 @@ def has_emdash(t):
 PLUGIN_VAR = re.compile(r"\$\{?CLAUDE_PLUGIN_ROOT\b")
 def plugin_var_fail(t, r):
     # ${CLAUDE_PLUGIN_ROOT} resolves only on a native Claude plugin install; banned
-    # in prose units so references stay portable across deploy targets. (hooks.json,
-    # the native-plugin manifest the loader/compiler consumes, is not scanned here.)
+    # in prose units so references stay portable across deploy targets.
     return [f"{r}: harness-specific path variable (CLAUDE_PLUGIN_ROOT); cite references by name"] if PLUGIN_VAR.search(t) else []
 
 def split_frontmatter(text):
@@ -102,6 +103,54 @@ def check_command(path):
     if has_emdash(t): hard.append(f"{r}: em-dash")
     hard.extend(plugin_var_fail(t, r))
 
+# Normative manifest shape (mirrors standard/schema/pack-manifest.schema.json).
+SEMVER = re.compile(r"^\d+\.\d+(\.\d+)?(-[0-9A-Za-z.\-]+)?(\+[0-9A-Za-z.\-]+)?$")
+UNIT_KEYS = ("skills", "agents", "commands", "references")
+EVAL_LEVELS = ("conformance", "conformance+gate")
+MANIFEST_KEYS = ("name", "version", "description", "license", "author", "owner",
+                 "adlc", "units", "evals", "capabilities")
+
+def manifest_violations(d):
+    """Validate a parsed manifest against the normative shape; return hard-fail strings."""
+    v = []
+    for k in ("name", "version", "description", "license"):
+        if k not in d: v.append(f"missing '{k}'")
+        elif not (isinstance(d[k], str) and d[k]): v.append(f"'{k}' must be a non-empty string")
+    for k in ("adlc", "units", "evals", "capabilities"):
+        if k not in d: v.append(f"missing '{k}'")
+    ver = d.get("version")
+    if isinstance(ver, str) and not SEMVER.match(ver):
+        v.append(f"version '{ver}' is not semver")
+    desc = d.get("description")
+    if isinstance(desc, str) and len(desc) > 600:
+        v.append(f"description over 600 chars ({len(desc)})")
+    a = d.get("author")
+    if a is not None and not (isinstance(a, dict) and a.get("name")):
+        v.append("author must be an object with a name")
+    o = d.get("owner")
+    if o is not None and not (isinstance(o, dict) and o.get("name") and o.get("contact")):
+        v.append("owner must have name + contact")
+    if "adlc" in d and not isinstance(d["adlc"], str):
+        v.append("adlc must be a string")
+    u = d.get("units")
+    if u is not None:
+        if not isinstance(u, dict):
+            v.append("units must be an object of counts")
+        else:
+            for k, n in u.items():
+                if k not in UNIT_KEYS:
+                    v.append(f"units key '{k}' not one of {'/'.join(UNIT_KEYS)}")
+                elif isinstance(n, bool) or not isinstance(n, int) or n < 0:
+                    v.append(f"units.{k} must be a non-negative int")
+    if "evals" in d and d["evals"] not in EVAL_LEVELS:
+        v.append(f"evals must be one of {EVAL_LEVELS}")
+    if "capabilities" in d and not isinstance(d["capabilities"], dict):
+        v.append("capabilities must be an object")
+    for k in d:
+        if k not in MANIFEST_KEYS:
+            v.append(f"unknown top-level key '{k}'")
+    return v
+
 def check_manifest(path):
     r = rel(path)
     t = open(path, encoding="utf-8").read()
@@ -110,20 +159,40 @@ def check_manifest(path):
         d = json.loads(t)
     except Exception:
         hard.append(f"{r}: invalid JSON"); return
-    for k in ("name", "version", "description", "license"):
-        if k not in d: hard.append(f"{r}: manifest missing '{k}'")
+    hard.extend(f"{r}: manifest {m}" for m in manifest_violations(d))
     lic = d.get("license")
     if lic and lic not in ("LicenseRef-OpenADLC-Source-Available-1.0", "CC-BY-4.0"):
         soft.append(f"{r}: license '{lic}' not in the known vocabulary (LicenseRef-OpenADLC-Source-Available-1.0, CC-BY-4.0)")
-    o = d.get("owner")
-    if not (isinstance(o, dict) and o.get("name") and o.get("contact")):
-        hard.append(f"{r}: owner must have name + contact (G2)")
     if "capabilities" not in d:
-        soft.append(f"{r}: no capabilities declared (G4)")
+        soft.append(f"{r}: no capabilities declared")
+
+def selftest_examples():
+    """The schema's own fixtures: the valid example must pass, the invalid must fail."""
+    schema_dir = os.path.join(ROOT, "standard", "schema")
+    valid = os.path.join(schema_dir, "example-pack.manifest.json")
+    invalid = os.path.join(schema_dir, "example-pack-invalid.manifest.json")
+    for p in (valid, invalid):
+        if not os.path.isfile(p):
+            hard.append(f"{rel(p)}: example manifest missing (validator self-test)")
+    if not all(os.path.isfile(p) for p in (valid, invalid)):
+        return
+    try:
+        v = manifest_violations(json.load(open(valid, encoding="utf-8")))
+    except Exception:
+        v = ["invalid JSON"]
+    if v:
+        hard.extend(f"{rel(valid)}: valid example must pass, got: {m}" for m in v)
+    try:
+        iv = manifest_violations(json.load(open(invalid, encoding="utf-8")))
+    except Exception:
+        iv = ["invalid JSON"]
+    if not iv:
+        hard.append(f"{rel(invalid)}: invalid example passed; the validator caught nothing")
 
 target = sys.argv[1] if len(sys.argv) > 1 else "all"
 if target == "all":
     packs = sorted(os.path.basename(p) for p in glob.glob(os.path.join(PLUGINS, "*")) if os.path.isdir(p))
+    selftest_examples()
 else:
     packs = [target]
 

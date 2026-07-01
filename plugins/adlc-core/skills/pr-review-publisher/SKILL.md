@@ -45,7 +45,7 @@ Map the review outcome to exactly one event:
 `body` is REQUIRED for `REQUEST_CHANGES` and `COMMENT`. Default to `COMMENT` unless the operator stated the intent.
 
 ### 3. Persist the verdict locally (always), then assemble the payload
-**PERSIST first, on every run, gated or not.** Write the human-readable verdict to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<UTC-timestamp>.md` (the out-of-repo workspace per [references/run-isolation.md](references/run-isolation.md); never committed, never a bare `review.json`/`review-<date>.md`, never inside the repo). This happens BLOCK or APPROVE, before the consent prompt, whether or not the operator ever says yes; **never leave the review as only a commit message**. Posting is gated; persisting is not.
+**PERSIST first, on every run, gated or not.** Write the human-readable verdict to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<lens>-<UTC-timestamp>.md` (the out-of-repo workspace per [references/run-isolation.md](references/run-isolation.md); never committed, never a bare `review.json`/`review-<date>.md`, never inside the repo). This happens BLOCK or APPROVE, before the consent prompt, whether or not the operator ever says yes; **never leave the review as only a commit message**. Posting is gated; persisting is not.
 
 Then write the payload to `~/.openadlc/runs/<workspace>/<run-id>/review-payload.json`; do NOT post it. When the run spans several repos, qualify both filenames per repo (`review-<repo>-<UTC-timestamp>.md`, `review-payload-<repo>.json`) so the per-repo reviews do not overwrite each other. Each inline comment needs `path`, `body`, and `line` (the line number in the file's new version; use `side: "LEFT"` for deleted lines, `RIGHT` is default). For multi-line comments add `start_line` + `start_side`. Embed the run-id marker `<!-- adlc-run: <run-id> -->` in the `body` so the review is tagged and dedup can find it.
 
@@ -107,7 +107,7 @@ For a summary-only review with no inline comments, the high-level command is sim
 gh pr review <pr> --comment --body-file summary.md   # or --request-changes / --approve
 ```
 
-**Route the verdict through the tracker adapter (F9).** The PR-review post is one part of the verdict's outbound. When the verdict ALSO creates or updates a tracker item (a review-gate item, a re-opened finding, or a status change on the change's tracker item), do NOT hardcode GitHub-only calls in prose: route those writes through the tracker-adapter actions `create_issue` / `link_child` / `set_status` / `assign`, with per-tracker mappings (GitHub issues, Jira issues+sub-tasks, ADO work-items+parent/child), per [references/tracker-adapters.md](references/tracker-adapters.md). **Assign the operator on create (F6)**: GitHub adds `--assignee @me` to `gh issue create` (ask whom once if `@me` does not resolve); Jira/ADO map to their assignee field via the adapter. Each adapter write is outbound and stays behind the same explicit "yes" as the PR-review post.
+**Route the verdict through the tracker adapter.** The PR-review post is one part of the verdict's outbound. When the verdict ALSO creates or updates a tracker item (a review-gate item, a re-opened finding, or a status change on the change's tracker item), do NOT hardcode GitHub-only calls in prose: route those writes through the tracker-adapter actions `create_issue` / `link_child` / `set_status` / `assign`, with per-tracker mappings (GitHub issues, Jira issues+sub-tasks, ADO work-items+parent/child), per [references/tracker-adapters.md](references/tracker-adapters.md). **Assign the operator on create**: GitHub adds `--assignee @me` to `gh issue create` (ask whom once if `@me` does not resolve); Jira/ADO map to their assignee field via the adapter. Each adapter write is outbound and stays behind the same explicit "yes" as the PR-review post.
 
 ### 6. Verify
 Confirm it landed and report the URL:
@@ -118,7 +118,7 @@ If publish returned `422 Unprocessable Entity`, the usual cause is a comment anc
 
 ## Validator → fix loop
 Before rendering the report, sanity-check the artifacts locally:
-- The persisted `~/.openadlc/runs/<workspace>/<run-id>/review-<UTC-timestamp>.md` exists (the verdict was written, not left as a commit message).
+- The persisted `~/.openadlc/runs/<workspace>/<run-id>/review-<lens>-<UTC-timestamp>.md` exists (the verdict was written, not left as a commit message).
 - `jq empty ~/.openadlc/runs/<workspace>/<run-id>/review-payload.json`: valid JSON.
 - Every comment has `path` + `body` + (`line` or `position`).
 - `event` is one of `APPROVE` / `REQUEST_CHANGES` / `COMMENT`, and `body` is non-empty for the latter two.
