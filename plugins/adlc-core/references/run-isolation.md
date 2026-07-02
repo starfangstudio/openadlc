@@ -14,11 +14,12 @@ The timestamp guarantees two same-slug runs never collide. Carry it forward (int
 
 ## Run workspace (OUT of the repo): `~/.openadlc/runs/<workspace>/<run-id>/`
 ALL artifacts a run writes live here, keyed by repo name + run-id, never inside the repo and never under `.claude/` of the repo:
-- `index.md` + `briefing.md` (living doc + human face) + `story.md` + AI-context concepts (`discovery.md`, `dependencies.md`) , the run workspace IS the OKF bundle (see [okf.md](okf.md))
+- `index.md` + `briefing.md` (living doc + human face) + `story.md` + AI-context concepts (`discovery.md`, `dependencies.md`) , the run workspace IS the OKF bundle (see [okf.md](okf.md)); `index.md` frontmatter carries `status: active|done|abandoned`, the run's terminal-state marker (see [checkpoints.md](checkpoints.md))
 - `context.md` (load-context brief)
 - `plan/spec.md`, `plan/Plans.md`, `plan/*.json` (contracts)
 - `design-baseline/<node>.png`, `verify/` (rendered screens, fidelity diffs)
 - `review-<lens>-<UTC-timestamp>.md` (one file per review lens) and `review-payload.json`
+- `checkpoints/<seq>-<type>.md` + `<seq>-<type>.heartbeat` (every consent checkpoint's record, see [checkpoints.md](checkpoints.md))
 - `decision/` (ADR staging until merged into the repo on the run branch)
 
 `<workspace>` = the product name for a poly-repo workspace, else the single repo's name (`basename` of `git rev-parse --show-toplevel`). The run-id is WORKSPACE-level: one id for a change that may span several repos. The implementer (in any worktree) reads the plan from this stable absolute path; it does not need to be committed to "travel." NEVER write run artifacts to `.claude/sessions/`, `.claude/plans/<feature>/`, `.claude/runs/`, or bare `context.md` / `review.json` / `design-baseline/` inside the repo. Those are the collision (and git-pollution) sources.

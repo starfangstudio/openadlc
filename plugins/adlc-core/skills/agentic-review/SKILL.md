@@ -16,7 +16,7 @@ When a `references/<name>.md` link does not resolve relative to this file, locat
 1. Resolve the target: the current change, a branch, a PR, or pasted code.
 2. Review across concurrent lenses: correctness, safety, whether the tests actually assert anything, UI fidelity as a compliance concern (does the build match the design), and fit. Run the lenses in parallel.
 3. Return a single BLOCK or APPROVE verdict with file-and-line evidence. Persist the verdict locally.
-4. CHECKPOINT, consent: if the verdict is to be posted to a PR or tracker, present it and STOP for an explicit yes before posting. Persisting locally is free; posting is gated.
+4. CHECKPOINT, consent: if the verdict is to be posted to a PR or tracker, before asking, write the checkpoint file (`type: post-review`, `checkpoints.md`); the user may also resolve it from the cockpit while you wait. Present it and STOP for an explicit yes before posting. Persisting locally is free; posting is gated.
 
 ## Verify
 Returns a BLOCK or APPROVE verdict with file-and-line evidence; posting stops for an explicit yes.
