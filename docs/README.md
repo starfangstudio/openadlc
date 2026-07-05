@@ -11,12 +11,14 @@ Docs are written and updated as the work happens, never after. A change to a com
 
 [**The ADLC lifecycle**](lifecycle.md): the four commands, the checkpoints, the loops, and the acceptance-criteria thread, end to end. The single map of how OpenADLC works.
 
-## Structure (as it grows)
+## Structure
 
-- `getting-started/` : install, first run, the checkpoints in five minutes.
-- `commands/` : the four-command harness, one page each.
-- `config/` : the `openadlc.example.yaml` reference.
-- `customize/` : bring-your-own packs, overrides, preferences.
-- `concepts/` : the lifecycle, and the open standards we build on (Agent Skills, MCP, AGENTS.md).
+- [`getting-started/`](getting-started/) : install, first run, the checkpoints in five minutes, one page per harness.
+- [`commands/`](commands/) : the four-command harness, one page each.
+- [`config/`](config/) : the `openadlc.yaml` reference.
+- [`customize/`](customize/) : bring your own skill or pack, and edit a checkpoint.
+- [`concepts/`](concepts/) : OKF bundles, run isolation, checkpoints, and packs.
+
+Deeper reference: [`pack-format.md`](pack-format.md), the pack wire format that [`customize/`](customize/) builds on, and [`eval-format.md`](eval-format.md), the behavioral-eval format the pack eval suites follow.
 
 Pages are plain Markdown so the site and the repo render the same source.
