@@ -3,8 +3,8 @@
 
 ADLC commands talk to a tracker through ONE small abstraction, not GitHub-specific commands sprinkled through the prose. The lifecycle says "create the issue, link it under the parent, set it in-progress, assign the operator"; the adapter turns each of those into the right call for whatever tracker the workspace uses. Swap the tracker, keep the lifecycle. Loaded by intake, plan, and implement, and cited from [references/run-isolation.md](references/run-isolation.md) wherever a tracker write happens.
 
-## The four verbs (the whole interface)
-Every tracker action in ADLC is one of these four. Commands call the verb; they never name a tracker.
+## The four verbs
+Every tracker action the commands drive is one of these four. Commands call the verb; they never name a tracker.
 
 | Verb | What it does | Inputs |
 |---|---|---|
@@ -14,7 +14,7 @@ Every tracker action in ADLC is one of these four. Commands call the verb; they 
 | `assign` | Set or change the assignee of an existing item | item id, assignee |
 
 Three rules hold for all four:
-- **The body carries the serialized OKF bundle, per [okf.md](okf.md).** `create_issue` serializes the run's OKF bundle into the issue: on GitHub the `briefing.md` is the body and the AI concepts unwrap into a collapsible `<details>` as path-marked blocks (overflow to sequential comments past ~60KB); on Jira/ADO the `briefing.md` is the body (converted to ADF/HTML) and the bundle is attached as `<slug>.okf.tgz`. The content travels with the issue; never post only a `~/.openadlc/...` path (a teammate, CI, or fresh agent cannot read a path on someone else's disk).
+- **The body carries the serialized OKF bundle, per [okf.md](okf.md).** `create_issue` serializes the run's OKF bundle into the issue: on GitHub the `briefing.md` is the body and the AI concepts unwrap into a collapsible `<details>` as path-marked blocks (overflow to sequential comments past ~60KB); on Jira the `briefing.md` is the body (converted to ADF) and the bundle is attached as `<slug>.okf.tgz`. The content travels with the issue; never post only a `~/.openadlc/...` path (a teammate, CI, or fresh agent cannot read a path on someone else's disk).
 - **Every verb is outbound, so every verb stops at the consent checkpoint.** The agent assembles the call locally, shows the operator exactly what would go out, and waits for an explicit yes before it fires. There is no standing approval. This is a stop-and-ask the agent performs, not a hook.
 - **Verify the write landed, never assume.** After a `create_issue` with a parent or an `assign`, confirm it: the child MUST report its parent (an unlinked "sub-issue" is an incomplete post), and the assignee MUST be set. The lifecycle has truncated this multi-step sequence before (created the issue, skipped the link and the assign), so the verify is mandatory, not optional. Re-check with `gh api` and redo the missing call until the child reports its parent and the assignee is set.
 
@@ -45,16 +45,12 @@ If a tracker lacks a status, the adapter maps to the nearest real one or no-ops 
 - **assign:** set the `assignee` field (accountId) on the issue.
 - **Attachments:** Jira accepts attachments, so the OKF bundle is attached as `<slug>.okf.tgz` alongside the briefing body; the run workspace stays the source of truth.
 
-### Azure DevOps (work items + parent/child links + state + assigned-to)
-- **create_issue:** create the work item of the right type (User Story, Bug, Task), set `System.AssignedTo` to the operator on create. The description holds the `briefing.md` converted to HTML, and the bundle is attached as `<slug>.okf.tgz` (per [okf.md](okf.md)).
-- **link_child (parent/child link):** add a `System.LinkTypes.Hierarchy-Forward` link from the parent work item to the child (or `Hierarchy-Reverse` from child to parent). This is ADO's native parent/child tree.
-- **set_status:** set `System.State` to the value mapped from the canonical status (e.g. `in-progress` -> "Active" or "Doing", depending on the process template). The adapter maps per template; it never writes a raw state name the board does not have.
-- **assign:** set `System.AssignedTo` on the work item.
-- **Attachments:** ADO accepts attachments, so the OKF bundle is attached as `<slug>.okf.tgz` alongside the briefing body; the run workspace stays canonical.
+## Host-native issues fallback
+**The code host and the tracker are independent org choices, never bundled.** A workspace picks a code host (for pull requests) and, separately, a tracker (for issues). When a workspace has NO separate tracker configured, the adapter falls back to the code host's native issues: on a GitHub-hosted workspace with no external tracker, all four verbs operate on GitHub Issues (the GitHub mapping above). Choosing a code host does not choose a tracker, and choosing Jira does not change the code host. The fallback is the same four verbs against the host's native issues, so no command changes.
 
 ## Adding a tracker
-A new tracker is a new column in the tables above: define how it maps `create_issue` (with assign-on-create + the serialized OKF bundle), `link_child` (its native child relation), `set_status` (its real status/state values), and `assign`. Commands change nothing. If a verb has no native equivalent, map to the nearest real behavior or no-op with a visible note; never silently drop a write and never fake hierarchy with text.
+A new tracker is a new column in the tables above: define how it maps `create_issue` (with assign-on-create + the serialized OKF bundle), `link_child` (its native child relation), `set_status` (its real status/state values), and `assign`. Commands change nothing. If a verb has no native equivalent, map to the nearest real behavior or no-op with a visible note; never silently drop a write and never fake hierarchy with text. GitHub and Jira are the committed trackers; a demand-driven one (for example Azure DevOps work items, added only when a design partner needs it) would map the same four verbs to its own primitives: a parent/child work-item link for `link_child`, the process template's states for `set_status`, an attached tarball for the bundle.
 
 ---
 
-Author: OpenADLC core. Freshness: written for the v0.1 four-verb adapter (GitHub, Jira, ADO). The GitHub sub-issues API and the per-tracker status/state names drift, re-verify the `gh api` sub-issues route, the Jira transition names, and the ADO state values against the live tracker before relying on them.
+Author: OpenADLC core. Freshness: written for the v0.1 four-verb adapter (committed trackers GitHub and Jira; other trackers such as Azure DevOps are demand-driven, added on partner demand). The GitHub sub-issues API and the per-tracker status names drift, re-verify the `gh api` sub-issues route and the Jira transition names against the live tracker before relying on them.
