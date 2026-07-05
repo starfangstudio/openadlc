@@ -1,6 +1,6 @@
 ---
 name: ui-fidelity
-description: "This skill should be used to verify a built UI matches its design, \"check the UI against Figma\", \"is this pixel-perfect\", \"run the fidelity check\", \"compare the screen to the design\", or as the failable check for a UI slice in /agentic-implement and the design-fidelity lens in /agentic-review. Fully automated on both ends: it gets the Figma values and image, renders the running app on the operator's machine, and asserts measured numbers and token references against the design (screenshot second). This is UI's test."
+description: "This skill should be used to verify a built UI matches its design, \"check the UI against Figma\", \"is this pixel-perfect\", \"run the fidelity check\", \"compare the screen to the design\", or as the failable check for a UI slice in /ai-implement and the design-fidelity lens in /ai-review. Fully automated on both ends: it gets the Figma values and image, renders the running app on the operator's machine, and asserts measured numbers and token references against the design (screenshot second). This is UI's test."
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->

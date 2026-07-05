@@ -1,6 +1,6 @@
 ---
 name: figma-implement
-description: "This skill should be used when building UI from a Figma design, \"implement this screen\", \"build the component from Figma\", \"turn the design into code\", or when /agentic-implement runs a UI slice with adlc-design loaded. Turns an extracted Figma design into production UI that reuses the design system (tokens, components, styles, fonts), covers the states and responsiveness, and reaches the target screen cheaply via mocks and a fast route so the build never flails. Pairs with figma-extract (input) and ui-fidelity (the check)."
+description: "This skill should be used when building UI from a Figma design, \"implement this screen\", \"build the component from Figma\", \"turn the design into code\", or when /ai-implement runs a UI slice with adlc-design loaded. Turns an extracted Figma design into production UI that reuses the design system (tokens, components, styles, fonts), covers the states and responsiveness, and reaches the target screen cheaply via mocks and a fast route so the build never flails. Pairs with figma-extract (input) and ui-fidelity (the check)."
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->

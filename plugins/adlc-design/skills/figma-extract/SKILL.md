@@ -1,6 +1,6 @@
 ---
 name: figma-extract
-description: "This skill should be used when the user or a plan / sub-issue references a Figma file, frame, or component and the work needs the design pulled into the build, \"get the design from Figma\", \"extract this screen/component\", \"what does the Figma say\", \"download the design baseline\", \"check the design for drift\", or when /agentic-plan or /agentic-implement loads adlc-design for a UI task. Pulls the design context and a dated image baseline for a Figma node via the Figma REST API (the Dev Mode MCP is an optional fallback), records what is reusable, and flags drift from a prior baseline. Figma is the only supported design tool."
+description: "This skill should be used when the user or a plan / sub-issue references a Figma file, frame, or component and the work needs the design pulled into the build, \"get the design from Figma\", \"extract this screen/component\", \"what does the Figma say\", \"download the design baseline\", \"check the design for drift\", or when /ai-plan or /ai-implement loads adlc-design for a UI task. Pulls the design context and a dated image baseline for a Figma node via the Figma REST API (the Dev Mode MCP is an optional fallback), records what is reusable, and flags drift from a prior baseline. Figma is the only supported design tool."
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
