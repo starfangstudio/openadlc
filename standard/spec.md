@@ -222,11 +222,12 @@ Conformance is a floor, not a grade. [adoption.md](adoption.md) defines the leve
 
 ## Companion specifications
 
-This is version 0.1. The rules above are the core and stand on their own. Three companion specs make them buildable without changing a single rule here:
+This is version 0.1. The rules above are the core and stand on their own. A set of companion specs makes them buildable without changing a single rule here:
 
 - **[conformance.md](conformance.md)** turns section 8 into a machine-checkable test (per-subject, per-level checks) plus a `.adlc/conformance.yaml` manifest a project drops in to declare and prove its level.
 - **[pack-format.md](pack-format.md)** fixes the pack wire format (section 5) and the capability vocabulary, backed by a real JSON Schema in [schema/](schema/pack-manifest.schema.json) with passing and failing examples.
-- **The reference conformance checker** (a script that runs the automatic checks and reports a verdict) is the committed next build, not yet shipped.
+- **[provenance.md](provenance.md)** defines the git-trailer provenance format and the view-time verifier: which lifecycle phases ran, on what, in what order, hash-linked and checkable with no server and no gate.
+- **The reference conformance checker** ([tools/adlc-check.py](../tools/adlc-check.py)) runs the automatic checks and reports a verdict; it ships in the repo.
 
 Read the companions when you implement or certify; read the rules above to understand the standard.
 
