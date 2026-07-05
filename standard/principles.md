@@ -24,7 +24,7 @@ The release checkpoint is the **consent checkpoint**: no outward or irreversible
 
 **Every artifact must be understandable by a human at a glance.**
 
-Why: agents generate volume cheaply. Volume nobody can read is a liability, not an asset. The harder the topic, the more the artifact has to do the work of making it clear.
+Why: agents generate volume easily. Volume nobody can read is a liability, not an asset. The harder the topic, the more the artifact has to do the work of making it clear.
 
 Requires: lead with the summary, use plain names, keep files short, cut what does not earn its place. If a person cannot look at it and get it, simplify until they can. "It is technically correct" is not the bar; "a human gets it" is.
 
