@@ -2,7 +2,6 @@
 name: backend-cloud-reviewer
 description: "Reviews backend-cloud scale changes for container/image hygiene, Kubernetes orchestration correctness (probes, resource limits, PDB), IaC safety (state, secrets, idempotent plan), async messaging correctness (idempotency, DLQ, ordering), and rollout safety (health gates, rollback). Use after implementing a scale-up change, before any outbound step, or when the user asks to review a Dockerfile, Kubernetes manifest, Helm chart, Terraform/Pulumi change, queue/Kafka wiring, or a canary/blue-green rollout."
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

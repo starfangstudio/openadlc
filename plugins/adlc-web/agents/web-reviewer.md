@@ -2,7 +2,6 @@
 name: web-reviewer
 description: "Reviews web frontend changes for correctness, accessibility, performance, framework idioms, the component contract, and token usage. Use after implementing a web change, before any outbound step, or when the user asks to review web code or a diff."
 tools: Read, WebSearch, Write
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

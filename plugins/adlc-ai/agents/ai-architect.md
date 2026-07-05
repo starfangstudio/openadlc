@@ -12,7 +12,6 @@ description: >-
   is already there. Read-only: produces a design report and ordered build plan,
   does not edit source.
 tools: Read, Grep, Glob, Bash, WebFetch
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0
 name: openadlc
 version: 0.1.0
-description: "OpenADLC, the open standard and source-available reference implementation for the Agentic Development Lifecycle: four commands (/agentic-intake, /agentic-plan, /agentic-implement, /agentic-review) with a human checkpoint at each decision that matters. Installing this deploys the always-on adlc-core spine; add domain packs from the openadlc marketplace as needed."
+description: "OpenADLC, the open standard and source-available reference implementation for the Agentic Development Lifecycle: four commands (/ai-discovery, /ai-plan, /ai-implement, /ai-review) with a human checkpoint at each decision that matters. Installing this deploys the always-on adlc-core spine; add domain packs from the openadlc marketplace as needed."
 author: StarFang
 license: LicenseRef-OpenADLC-Source-Available-1.0
 

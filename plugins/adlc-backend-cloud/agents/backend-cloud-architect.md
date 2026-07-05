@@ -12,7 +12,6 @@ description: >-
   source. Flags when adlc-backend (solo-scale modular monolith) is the better,
   cheaper fit.
 tools: Read, WebSearch
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

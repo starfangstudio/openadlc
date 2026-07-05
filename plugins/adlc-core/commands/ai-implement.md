@@ -1,11 +1,11 @@
 ---
-description: "This command should be used when the user types \"/agentic-implement\", or asks to \"implement the plan\", \"build the sub-issue\", \"code this up\". Runs against an approved dev-plan sub-issue, builds in slices, verifies each, checks the build against the acceptance criteria, then stops to ask which reviews to run, then stops and asks the operator for an explicit yes before the push to remote. The procedure lives in the implement-change skill."
+description: "This command should be used when the user types \"/ai-implement\", or asks to \"implement the plan\", \"build the sub-issue\", \"code this up\". Runs against an approved dev-plan sub-issue, builds in slices, verifies each, checks the build against the acceptance criteria, then stops to ask which reviews to run, then stops and asks the operator for an explicit yes before the push to remote. The procedure lives in the implement-change skill."
 argument-hint: "[the dev-plan sub-issue (URL/#number) or a slice to start with]"
 
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 
-# /agentic-implement
+# /ai-implement
 
 Builds an approved plan end to end and ends at the push checkpoint. The procedure lives in the **`implement-change`** skill; this command runs the pipeline.
 
@@ -19,7 +19,7 @@ Input: $ARGUMENTS (the dev-plan sub-issue, or a slice)
 - **Outbound:** none until the push checkpoint.
 
 ## 1. Load the plan
-Resolve the sub-issue (read-only) and **select the run by run-id, NOT by globbing `.claude/plans/*` or matching the feature name** (per [references/run-isolation.md](references/run-isolation.md)): read the `run_id` from the sub-issue (or the spec.md frontmatter), **reassemble the plan OKF bundle from the sub-issue** (per [references/okf.md](references/okf.md): on GitHub parse the markers across the body + comments; on Jira/ADO download and untar `<slug>.okf.tgz`), and load the domain plan from the out-of-repo `~/.openadlc/runs/<workspace>/<run-id>/plan/` at its stable absolute path. The plan names the repos this domain touches and their cross-repo dependency order. A plan must exist and be approved; if none, stop and tell the operator to run `/agentic-plan` first. Never improvise a plan here.
+Resolve the sub-issue (read-only) and **select the run by run-id, NOT by globbing `.claude/plans/*` or matching the feature name** (per [references/run-isolation.md](references/run-isolation.md)): read the `run_id` from the sub-issue (or the spec.md frontmatter), **reassemble the plan OKF bundle from the sub-issue** (per [references/okf.md](references/okf.md): on GitHub parse the markers across the body + comments; on Jira/ADO download and untar `<slug>.okf.tgz`), and load the domain plan from the out-of-repo `~/.openadlc/runs/<workspace>/<run-id>/plan/` at its stable absolute path. The plan names the repos this domain touches and their cross-repo dependency order. A plan must exist and be approved; if none, stop and tell the operator to run `/ai-plan` first. Never improvise a plan here.
 
 **Concurrency check (per run-isolation):** detect an in-progress run (`git worktree list`, another live `adlc/*` branch, or an active `~/.openadlc/runs/<workspace>/*` with no terminal state). If a different run is active in this checkout, do NOT share it: auto-create an isolated worktree for this run and have the operator reopen there. A single run with no collision works on `adlc/<run-id>` in place.
 
@@ -63,7 +63,7 @@ This step always runs; the ask is not skippable, though the answers may be "none
 
 Each round still ends in a one-screen summary with its actual cost and the running total, so the operator can stop early.
 
-Run exactly what the operator picked, at the chosen depth, via `/agentic-review`.
+Run exactly what the operator picked, at the chosen depth, via `/ai-review`.
 
 ## 6-7. Run reviews, final look
 Run the picked reviews **in parallel** (each a fresh, independent pass). Present the verdicts. The operator takes a **final look** at what was built.

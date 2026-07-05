@@ -11,7 +11,6 @@ description: >-
   inference, eval scripts, or cost/latency plumbing. Read-only: inspects the
   diff and repo, produces a structured review report, does not edit source.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

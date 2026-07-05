@@ -2,7 +2,6 @@
 name: codebase-researcher
 description: "Investigates how something works across many files and returns a concise summary with file:line references. Use for broad \"how does X work / where is Y / what calls Z\" questions so heavy reading stays out of the main conversation."
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

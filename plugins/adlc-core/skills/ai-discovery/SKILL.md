@@ -1,13 +1,13 @@
 ---
-name: agentic-intake
-description: "Use when the user types /agentic-intake, or asks to start a story, file a bug, scope an epic, do discovery, or turn an idea, Figma, screenshots, or a ticket into something buildable. The universal front door to the lifecycle: it opens a deep-planning conversation, keeps a living doc, classifies the work into intake fuel with acceptance criteria, and only on the user's explicit yes posts it as a tracker issue."
+name: ai-discovery
+description: "Use when the user types /ai-discovery, or asks to start a story, file a bug, scope an epic, do discovery, or turn an idea, Figma, screenshots, or a ticket into something buildable. The universal front door to the lifecycle: it opens a deep-planning conversation, keeps a living doc, classifies the work into intake fuel with acceptance criteria, and only on the user's explicit yes posts it as a tracker issue."
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 
-# Agentic Intake
+# AI Discovery
 
-The universal front door to the OpenADLC lifecycle. Turn any idea, bug, or epic into well-formed, classified intake fuel with clear acceptance criteria. Write no code and no plan; produce what `/agentic-plan` turns into a plan. Nothing is posted to a tracker without the user's explicit yes.
+The universal front door to the OpenADLC lifecycle. Turn any idea, bug, or epic into well-formed, classified intake fuel with clear acceptance criteria. Write no code and no plan; produce what `/ai-plan` turns into a plan. Nothing is posted to a tracker without the user's explicit yes.
 
 When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
 
@@ -20,7 +20,7 @@ When a `references/<name>.md` link does not resolve relative to this file, locat
 5. Write the result as one OKF bundle: `briefing.md` (the prettified human face, built for comprehension) plus typed AI-context concepts (`story.md`, `discovery.md`, `dependencies.md`, built for completeness), with `okf_version: "0.1"` in `index.md`. Do not choose the domain here; that is the plan step.
 6. CHECKPOINT, consent: before asking, write the checkpoint file (`type: post-issue`, `checkpoints.md`); the user may also resolve it from the cockpit while you wait. When the user says "done", "create it", or "post it", present exactly what would be posted and STOP for an explicit yes. On GitHub the issue shows `briefing.md` as the body with the AI concepts unwrapped into a collapsible `<details>` (overflow to sequential comments past ~60KB); on Jira/ADO the body is `briefing.md` and the bundle is attached as `<slug>.okf.tgz`. Assign yourself on create and verify the assignee stuck. Nothing is posted without that yes. After posting, record the issue URL back in the bundle, and set `index.md`'s `status: done` if the run ends here (`checkpoints.md`).
 
-Next: `/agentic-plan` against the posted issue.
+Next: `/ai-plan` against the posted issue.
 
 ## Verify
 The intake stops for an explicit yes before any tracker post; the output is one OKF bundle (briefing + classified unit + AI concepts) with acceptance criteria.

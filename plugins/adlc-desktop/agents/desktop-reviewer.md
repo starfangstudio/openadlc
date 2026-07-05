@@ -2,7 +2,6 @@
 name: desktop-reviewer
 description: "Reviews desktop app changes (Electron / Tauri v2 / native) for IPC security, the process model, packaging and signing correctness, and native integration. Use after implementing a desktop change, before the operator gives the explicit yes to go outbound, or when the user asks to review a desktop diff. Read-only: produces a tiered BLOCK / APPROVE report, never edits source."
 tools: Read, Grep, Glob, Bash, WebFetch
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

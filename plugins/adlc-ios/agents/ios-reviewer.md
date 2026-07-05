@@ -9,7 +9,6 @@ description: >-
   boundaries", or "is this ready to ship". Read-only: inspects the diff and
   repo, reports findings, does not edit source.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

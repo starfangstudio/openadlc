@@ -66,7 +66,7 @@ Parent story            -> primary tracker (the `primary` repo, or the single re
   \- sub-issue: domain B (e.g. backend)
        \- PR: backend          on adlc/<run-id>   linked to the backend sub-issue
 ```
-- **One sub-issue per DOMAIN** (web, backend, android, ...), the same "one story fans out per domain" rule: /agentic-plan produces one plan + one sub-issue per domain.
+- **One sub-issue per DOMAIN** (web, backend, android, ...), the same "one story fans out per domain" rule: /ai-plan produces one plan + one sub-issue per domain.
 - **One PR per touched repo**, linked to the **domain sub-issue of the same domain** (the repos a domain touches share that domain, so their PRs hang off that one sub-issue). A domain may span several repos.
 - **Cross-repo merge order (full orchestration):** PRs merge in dependency order , base/shared repos before their consumers (`shared-components` PR merges before the `web-app` PR that uses it). The lifecycle sequences this now; the fuel-machine coordinator drives it at scale.
 
@@ -74,7 +74,7 @@ Parent story            -> primary tracker (the `primary` repo, or the single re
 Every tracker write routes through the four-verb adapter in [references/tracker-adapters.md](references/tracker-adapters.md) (`create_issue`, `link_child`, `set_status`, `assign`); the adapter holds the per-tracker mapping (GitHub, Jira, ADO) so the lifecycle prose stays tracker-neutral. Three rules are mandatory on every run:
 - **Native sub-issue, not a text mention:** after `create_issue` makes a child plan issue, `link_child` MUST attach it as a real, native child of the parent so the tracker shows the hierarchy (GitHub sub-issue, Jira sub-task, ADO parent/child link). A "child of #N" line in the body is not a sub-issue and does not count.
 - **Auto-assign on create:** `create_issue` assigns the operator at creation so the work has an owner from the start (GitHub `--assignee @me`, Jira `assignee`, ADO `Assigned To`). If the operator's account does not resolve, ask once who to assign and reuse the answer for the run.
-- **In-progress at implement start:** at the start of /agentic-implement, after the sub-issue is resolved, `set_status` moves the item to in-progress so the board reflects active work (GitHub "status: in progress" label or the Project status field, Jira status transition, ADO state). Statuses are declared by the adapter, never invented inline.
+- **In-progress at implement start:** at the start of /ai-implement, after the sub-issue is resolved, `set_status` moves the item to in-progress so the board reflects active work (GitHub "status: in progress" label or the Project status field, Jira status transition, ADO state). Statuses are declared by the adapter, never invented inline.
 
 These are tracker writes, so they are outbound: each stops at the consent checkpoint for an explicit yes before it fires, per [references/loop-control.md](references/loop-control.md).
 

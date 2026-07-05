@@ -8,7 +8,6 @@ description: >-
   single step", "take slice S-2 to green", "implement this acceptance criterion
   and run the tests". One slice per invocation, never a batch.
 tools: Read, Grep, Glob, Edit, Write, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

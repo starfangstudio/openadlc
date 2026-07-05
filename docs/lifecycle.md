@@ -4,22 +4,22 @@
 OpenADLC is four commands and a law. The commands carry a task from a fuzzy idea to pushed code; the law (a human owns the release decision) makes sure nothing leaves your machine without you saying yes.
 
 ```
-idea ──/agentic-intake──▶ intake fuel ──/agentic-plan──▶ sub-issue ──/agentic-implement──▶ pushed
+idea ──/ai-discovery──▶ intake fuel ──/ai-plan──▶ sub-issue ──/ai-implement──▶ pushed
             (◆ post)        (story / bug / epic        (◆ post)                  (◆ push)
                              / tech-debt / intent)
-                                                              └ /agentic-review (embedded, checkpoint never skips)
+                                                              └ /ai-review (embedded, checkpoint never skips)
 ```
 
-`◆` = a consent checkpoint. Intake fuel is classified (story / bug / epic / tech-debt / intent), never just "a story". An **epic is split at intake into linked child stories**; `/agentic-plan` works those stories, never the epic (too high-level to hold the specs). One piece of fuel can fan out into several plans. `/agentic-review` also runs standalone, on any code.
+`◆` = a consent checkpoint. Intake fuel is classified (story / bug / epic / tech-debt / intent), never just "a story". An **epic is split at intake into linked child stories**; `/ai-plan` works those stories, never the epic (too high-level to hold the specs). One piece of fuel can fan out into several plans. `/ai-review` also runs standalone, on any code.
 
 ## The four commands
 
 | Command | Takes | Produces | Checkpoint |
 |---|---|---|---|
-| `/agentic-intake` | an idea + docs / screenshots / links / Figma, from any role | **intake fuel** (story / bug / epic / tech-debt / intent) as an OKF bundle (a human briefing + the full AI context as typed concepts), with acceptance criteria and surfaced dev dependencies | post the fuel, or refine |
-| `/agentic-plan` | intake fuel / issue | a **dev plan** (one or more) + a remote sub-issue | approve / edit / refine, then post |
-| `/agentic-implement` | an approved sub-issue | the change, **built, reviewed, pushed** | the push |
-| `/agentic-review` | a diff / branch / PR / any code | a **BLOCK / APPROVE** verdict | post the verdict (only if you ask) |
+| `/ai-discovery` | an idea + docs / screenshots / links / Figma, from any role | **intake fuel** (story / bug / epic / tech-debt / intent) as an OKF bundle (a human briefing + the full AI context as typed concepts), with acceptance criteria and surfaced dev dependencies | post the fuel, or refine |
+| `/ai-plan` | intake fuel / issue | a **dev plan** (one or more) + a remote sub-issue | approve / edit / refine, then post |
+| `/ai-implement` | an approved sub-issue | the change, **built, reviewed, pushed** | the push |
+| `/ai-review` | a diff / branch / PR / any code | a **BLOCK / APPROVE** verdict | post the verdict (only if you ask) |
 
 ## Four things run through all of it
 
@@ -30,7 +30,7 @@ idea ──/agentic-intake──▶ intake fuel ──/agentic-plan──▶ sub
 
 ---
 
-## /agentic-intake: idea to intake fuel
+## /ai-discovery: idea to intake fuel
 
 The universal front door, for any role: dev, manager, tech owner, product owner, QA. Turns a fuzzy idea, with whatever evidence you have, into clean, postable, classified intake fuel. It runs as a deep-planning conversation (no arguments needed), keeps a living reference doc as you plan, and produces the fuel only when you say you are done. It anchors on the target repo + tracker first (asking which if the working dir is not a single git repo). Writes no code and no plan, and does not choose the domain.
 
@@ -44,16 +44,16 @@ The universal front door, for any role: dev, manager, tech owner, product owner,
 5. **Always define acceptance criteria**, for any item type:
    - **Story / feature:** the observable behavior that must be true when done.
    - **Bug:** the bug no longer reproduces, the correct behavior, a regression guard.
-   - **Epic:** the outcome that holds when its child stories are all done. Intake splits the epic into those **linked child stories** (each a story with its own AC); `/agentic-plan` works the stories, not the epic.
+   - **Epic:** the outcome that holds when its child stories are all done. Intake splits the epic into those **linked child stories** (each a story with its own AC); `/ai-plan` works the stories, not the epic.
    - **Tech debt:** the target state and the measurable improvement, nothing else regressing.
    - **Intent:** the goal and the constraints it must respect, before it is sliced into work.
 6. **Consent checkpoint: post or refine.** Post the fuel to the tracker as a new issue (outbound, needs a yes), or refine it with another discovery pass.
 
-**Output:** intake fuel (classified, an OKF bundle, acceptance criteria, surfaced dev dependencies), posted, feeding `/agentic-plan`.
+**Output:** intake fuel (classified, an OKF bundle, acceptance criteria, surfaced dev dependencies), posted, feeding `/ai-plan`.
 
 ---
 
-## /agentic-plan: intake fuel to plan
+## /ai-plan: intake fuel to plan
 
 Turns intake fuel into a buildable plan, the complete contract for the build. Authors nothing itself; the plan is written by the `create-plan` skill. One piece of fuel can fan out into several plans.
 
@@ -67,11 +67,11 @@ Turns intake fuel into a buildable plan, the complete contract for the build. Au
 5. **Plan-approval checkpoint: approve / edit / refine.** Approve as written, edit scope / approach / rollback, or refine with a bounded loop (iterate, or fan out a few approaches and judge).
 6. **Post the sub-issue** (on yes, outbound): the briefing is the visible body. On GitHub the AI concepts ride inline in a collapsible block (overflow into comments); on Jira / ADO the bundle is attached as a tarball. The source bundle stays in the out-of-repo run workspace (`~/.openadlc/runs/<workspace>/<run-id>/plan/`, never committed); see [the OKF reference](../plugins/adlc-core/references/okf.md).
 
-**Output:** an approved plan (or several), each a complete contract carrying the dev dependencies, plus a remote sub-issue, feeding `/agentic-implement`.
+**Output:** an approved plan (or several), each a complete contract carrying the dev dependencies, plus a remote sub-issue, feeding `/ai-implement`.
 
 ---
 
-## /agentic-implement: plan to pushed
+## /ai-implement: plan to pushed
 
 Builds an approved plan end to end and ends at the release checkpoint (the push). The procedure lives in `implement-change`.
 
@@ -90,7 +90,7 @@ Builds an approved plan end to end and ends at the release checkpoint (the push)
 
 ---
 
-## /agentic-review: change to verdict
+## /ai-review: change to verdict
 
 Independent, fresh-eyes review. Runs **embedded** inside implement (the review checkpoint never skips; you are always asked which reviews to run) and **standalone** on any code.
 
@@ -129,7 +129,7 @@ See [orchestration patterns](../plugins/adlc-core/references/orchestration.md).
 
 ## Implementation method: SDD or TDD, your choice
 
-At the start of `/agentic-implement` you pick the method for this build; it is the operator's call, not a default:
+At the start of `/ai-implement` you pick the method for this build; it is the operator's call, not a default:
 
 - **TDD (test-driven):** per slice, the failable check first, build to green, refactor.
 - **SDD (spec-driven):** per slice, build to the spec and acceptance criteria, then write the tests that pin the behavior.
@@ -151,9 +151,9 @@ The push is the obvious checkpoint, but it is not the only one. Posting intake f
 
 ## Worked example: a new Android setting, designed in Figma
 
-1. `/agentic-intake` with the Figma link and a sentence. Deep discovery against the app, dev dependencies surfaced. Out: intake fuel classified as a story, as an OKF bundle, with acceptance criteria, the Figma noted. **Consent checkpoint: you post it to GitHub as a new issue.**
-2. `/agentic-plan` on the issue. Detects Android (it would ask if the surface were ambiguous or spanned platforms), loads `adlc-android`; sees Figma, loads `adlc-design`. `create-plan` restates the criteria, writes the slices, carries the dev dependencies and layout intent, and maps each slice to a criterion. **Plan-approval checkpoint: you approve.** It posts a sub-issue with the plan attached.
-3. `/agentic-implement` against the sub-issue. Builds the slices with your chosen method, SDD or TDD (UI slices checked for token / component / pixel fidelity against the Figma baseline), verifies each, then the **AC check** confirms every criterion is met. **Review checkpoint:** you pick code + design-UI. You take the final look. **Release checkpoint: you approve the push.** Pipeline ends.
+1. `/ai-discovery` with the Figma link and a sentence. Deep discovery against the app, dev dependencies surfaced. Out: intake fuel classified as a story, as an OKF bundle, with acceptance criteria, the Figma noted. **Consent checkpoint: you post it to GitHub as a new issue.**
+2. `/ai-plan` on the issue. Detects Android (it would ask if the surface were ambiguous or spanned platforms), loads `adlc-android`; sees Figma, loads `adlc-design`. `create-plan` restates the criteria, writes the slices, carries the dev dependencies and layout intent, and maps each slice to a criterion. **Plan-approval checkpoint: you approve.** It posts a sub-issue with the plan attached.
+3. `/ai-implement` against the sub-issue. Builds the slices with your chosen method, SDD or TDD (UI slices checked for token / component / pixel fidelity against the Figma baseline), verifies each, then the **AC check** confirms every criterion is met. **Review checkpoint:** you pick code + design-UI. You take the final look. **Release checkpoint: you approve the push.** Pipeline ends.
 
 ---
 

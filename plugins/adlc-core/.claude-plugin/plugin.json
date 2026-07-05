@@ -2,7 +2,7 @@
   "name": "adlc-core",
   "version": "0.6.0",
   "license": "LicenseRef-OpenADLC-Source-Available-1.0",
-  "description": "ALWAYS-ON spine (deploy globally): the four /agentic-* commands (intake, plan, implement, review) and the lifecycle checkpoints, plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes.",
+  "description": "ALWAYS-ON spine (deploy globally): the four /ai-* commands (discovery, plan, implement, review) and the lifecycle checkpoints, plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes.",
   "author": {
     "name": "OpenADLC"
   },

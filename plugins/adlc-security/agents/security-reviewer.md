@@ -10,7 +10,6 @@ description: >-
   verdict with `path:line` evidence. It never pushes, posts a PR/issue comment,
   approves on the platform, or discloses a finding off-machine, reporting only.
 tools: Read, Grep, Glob, Bash, Skill
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

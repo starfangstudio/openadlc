@@ -66,7 +66,7 @@ Set to `active` when the run starts, and to `done` or `abandoned` when the run e
 No hooks exist in ADLC and none are designed. An overlay pack that wants to observe or extend the lifecycle hooks these four points by reading the same files this contract already writes, never by injecting code:
 - **discovery-start**: the moment a run workspace is created (intake's first write). An overlay reads the new `index.md` to notice a run began.
 - **pre-checkpoint**: the moment a checkpoint file is written, before the agent asks the operator. An overlay reads `checkpoints/<seq>-<type>.md` at `status: pending` to surface the ask elsewhere.
-- **review lens menu**: the moment `/agentic-implement` or `/agentic-review` offers the review-type menu. An overlay observes the persisted `review-<lens>-*.md` files (per [run-isolation.md](run-isolation.md)) once written.
+- **review lens menu**: the moment `/ai-implement` or `/ai-review` offers the review-type menu. An overlay observes the persisted `review-<lens>-*.md` files (per [run-isolation.md](run-isolation.md)) once written.
 - **pre-push + post-run**: the `push` checkpoint file (pre-push) and the `index.md` status transition to `done`/`abandoned` (post-run). An overlay reads both to know a run shipped or ended.
 
 These are stable read points, not an API: every seam is a file this contract writes anyway. An overlay pack never adds a hook, never blocks a write, and never changes checkpoint semantics; it only reads.

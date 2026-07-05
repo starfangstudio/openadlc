@@ -7,8 +7,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version
 
 Initial public release. Pre-release: nothing is stable yet, expect breaking changes.
 
+### Renamed
+- Commands renamed: `agentic-intake` -> `ai-discovery`, `agentic-plan` -> `ai-plan`, `agentic-implement` -> `ai-implement`, `agentic-review` -> `ai-review`.
+
 ### The lifecycle
-- Four commands, one per human decision point: `/agentic-intake`, `/agentic-plan`, `/agentic-implement`, `/agentic-review`.
+- Four commands, one per human decision point: `/ai-discovery`, `/ai-plan`, `/ai-implement`, `/ai-review`.
 - A human checkpoint at every outbound boundary: the agent presents what would leave the machine (post, push, publish) and waits for an explicit yes. Reading and local work are never stopped.
 - Every intake and plan artifact is an [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) bundle: a human briefing plus the full AI context as typed markdown, carried between stages and trackers (inline on GitHub, attached elsewhere).
 

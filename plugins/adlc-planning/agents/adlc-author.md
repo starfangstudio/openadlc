@@ -2,7 +2,6 @@
 name: adlc-author
 description: "This agent should be used when the user asks to \"write a new skill\", \"author a skill/agent/command/rule\", \"scaffold an ADLC artifact\", \"add a skill to the pack\", \"create a subagent for X\", or \"make a rule for X\". It authors one new ADLC artifact (skill, subagent, command, or rule) to the Anthropic skill-authoring bar, correct frontmatter, third-person trigger-rich description, imperative body, progressive disclosure, then runs a self-check and reports the path. It writes the artifact only; it does not push, publish, or open anything outbound."
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
-model: sonnet
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

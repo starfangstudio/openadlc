@@ -15,7 +15,6 @@ description: >-
   ads-to-minors). Returns a three-tier Blocking/Suggestions/Positive report with
   path:line evidence and a one-line verdict. Read-only, never edits, never pushes.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

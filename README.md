@@ -27,19 +27,19 @@ Use your existing coding harness, repo, tools, and standards. OpenADLC adds the 
 Four commands, one per human decision point. This is the lifecycle, top to bottom.
 
 ```
-  /agentic-intake  ->  /agentic-plan  ->  /agentic-implement  ->  /agentic-review
+  /ai-discovery  ->  /ai-plan  ->  /ai-implement  ->  /ai-review
    idea to story       story to plan      plan to deliverable     deliverable to verdict
    post / refine       post sub-issue     push to remote          BLOCK / APPROVE
 ```
 
-Each `post`, `push`, and outbound action is a **consent checkpoint**: a stop wherever something leaves your machine (posting an issue, posting a sub-issue, pushing a change). It holds anywhere work crosses the line, not at one fixed station. There is no `ship` command on purpose: the push checkpoint lives inside `implement`, so nothing reaches a remote without your yes. `/agentic-review` is embedded in `/agentic-implement` at a checkpoint that never skips: you are always asked which reviews to run before you sign off. It also works standalone on any code.
+Each `post`, `push`, and outbound action is a **consent checkpoint**: a stop wherever something leaves your machine (posting an issue, posting a sub-issue, pushing a change). It holds anywhere work crosses the line, not at one fixed station. There is no `ship` command on purpose: the push checkpoint lives inside `implement`, so nothing reaches a remote without your yes. `/ai-review` is embedded in `/ai-implement` at a checkpoint that never skips: you are always asked which reviews to run before you sign off. It also works standalone on any code.
 
 | Command | You go from | to | You decide |
 |---|---|---|---|
-| `/agentic-intake` | an idea, bug, or epic | a well-formed, classified story with acceptance criteria | approve the work before it is filed |
-| `/agentic-plan` | a story | a buildable plan, mapped slice by slice to the acceptance criteria | approve the plan before it is built |
-| `/agentic-implement` | a plan | a deliverable: code, each slice ending in a check that passes or fails | approve the push before code leaves your machine |
-| `/agentic-review` | a deliverable | an independent BLOCK or APPROVE verdict across concurrent review lenses | approve the verdict before it is posted |
+| `/ai-discovery` | an idea, bug, or epic | a well-formed, classified story with acceptance criteria | approve the work before it is filed |
+| `/ai-plan` | a story | a buildable plan, mapped slice by slice to the acceptance criteria | approve the plan before it is built |
+| `/ai-implement` | a plan | a deliverable: code, each slice ending in a check that passes or fails | approve the push before code leaves your machine |
+| `/ai-review` | a deliverable | an independent BLOCK or APPROVE verdict across concurrent review lenses | approve the verdict before it is posted |
 
 Reading, local edits, local commits, and local builds never stop you. Anything outbound (a push, a deploy, a publish, an API write) waits for an explicit yes, at the checkpoint where it happens.
 
@@ -72,16 +72,16 @@ Update later with `apm update`.
 
 Then, in your harness from a project root, run your first command:
 ```text
-/agentic-intake
+/ai-discovery
 ```
-Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. Then `/agentic-plan`, `/agentic-implement`, and `/agentic-review` carry it to a reviewed deliverable, stopping at each checkpoint.
+Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. Then `/ai-plan`, `/ai-implement`, and `/ai-review` carry it to a reviewed deliverable, stopping at each checkpoint.
 
 ## The four commands
 
-- **`/agentic-intake`** is the universal front door, for any role, not a PM-only surface. Feed it documents, screenshots, links, or Figma; it runs deep discovery, surfaces development dependencies, and produces a typed, classified story (a story, bug, epic, tech-debt, or intent; an epic splits into linked child stories), always with clear acceptance criteria, packaged as an OKF bundle (a human briefing plus the full AI context as typed concepts). Checkpoint: post a new tracker issue, or refine further.
-- **`/agentic-plan`** turns a buildable unit (a story, bug, or tech-debt, never an epic) into a full plan. It detects the domain from the repo, or asks when the work is ambiguous or spans platforms, restates the acceptance criteria, and maps each one to a slice, with the approach, flows, contracts, tests, design references, dependencies, and the cross-cutting angles that apply. One item can fan out into several plans. Checkpoint: approve or edit, then it posts a remote sub-issue.
-- **`/agentic-implement`** builds the plan in slices, your choice of SDD or TDD, each slice ending in a check that passes or fails. It verifies each slice, runs its own acceptance-criteria check, then stops to ask which reviews to run before you take a final look. Checkpoint: approve the push, then the pipeline ends.
-- **`/agentic-review`** is an independent, fresh-eyes review of correctness, safety, whether the tests actually assert anything, UI fidelity, and fit. Lenses run concurrently and it returns BLOCK or APPROVE with file-and-line evidence. Every implement stops at its review checkpoint to ask which reviews to run, and the command also stands alone on any diff, branch, PR, or code you did not write.
+- **`/ai-discovery`** is the universal front door, for any role, not a PM-only surface. Feed it documents, screenshots, links, or Figma; it runs deep discovery, surfaces development dependencies, and produces a typed, classified story (a story, bug, epic, tech-debt, or intent; an epic splits into linked child stories), always with clear acceptance criteria, packaged as an OKF bundle (a human briefing plus the full AI context as typed concepts). Checkpoint: post a new tracker issue, or refine further.
+- **`/ai-plan`** turns a buildable unit (a story, bug, or tech-debt, never an epic) into a full plan. It detects the domain from the repo, or asks when the work is ambiguous or spans platforms, restates the acceptance criteria, and maps each one to a slice, with the approach, flows, contracts, tests, design references, dependencies, and the cross-cutting angles that apply. One item can fan out into several plans. Checkpoint: approve or edit, then it posts a remote sub-issue.
+- **`/ai-implement`** builds the plan in slices, your choice of SDD or TDD, each slice ending in a check that passes or fails. It verifies each slice, runs its own acceptance-criteria check, then stops to ask which reviews to run before you take a final look. Checkpoint: approve the push, then the pipeline ends.
+- **`/ai-review`** is an independent, fresh-eyes review of correctness, safety, whether the tests actually assert anything, UI fidelity, and fit. Lenses run concurrently and it returns BLOCK or APPROVE with file-and-line evidence. Every implement stops at its review checkpoint to ask which reviews to run, and the command also stands alone on any diff, branch, PR, or code you did not write.
 
 ## One lifecycle, any domain
 
@@ -97,7 +97,7 @@ OpenADLC is opinionated where it matters (the lifecycle discipline) and open eve
 
 - **Add your own skill.** Drop a `SKILL.md` at `plugins/<pack>/skills/<name>/SKILL.md` with a name, a trigger-rich description, and the steps. It loads when its description matches the work. See [docs/pack-format.md](docs/pack-format.md).
 - **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to every harness, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Edit a checkpoint.** Each stage's steps live in its command and skill files (for example `plugins/adlc-core/commands/agentic-implement.md` and the matching `skills/agentic-implement/SKILL.md`). Edit the steps to change what a stage does, or where it stops, including the push gate.
+- **Edit a checkpoint.** Each stage's steps live in its command and skill files (for example `plugins/adlc-core/commands/ai-implement.md` and the matching `skills/ai-implement/SKILL.md`). Edit the steps to change what a stage does, or where it stops, including the push gate.
 - **Pick your models** and effort in your harness, per stage, with no config to maintain.
 
 ## Built on open standards
@@ -131,7 +131,7 @@ Early development. The lifecycle runs across APM-supported harnesses through the
 OpenADLC is dual-licensed. "Open" here means an open standard, publicly viewable source, and free for individuals. It is **not** OSI open source, and we do not claim it is.
 
 - **The ADLC standard** (the `standard/` tree): [CC-BY-4.0](LICENSE-STANDARD). A genuine open standard, free for anyone to read, implement, and build on.
-- **The implementation** (`plugins/`, adapters, the harness, the four `/agentic-*` commands): the [OpenADLC Source-Available License](LICENSE). Publicly viewable and free for individuals and the public to read, use, and modify. Use by a team or organization requires a commercial seat license; a solo individual, including a freelancer on client work, stays free.
+- **The implementation** (`plugins/`, adapters, the harness, the four `/ai-*` commands): the [OpenADLC Source-Available License](LICENSE). Publicly viewable and free for individuals and the public to read, use, and modify. Use by a team or organization requires a commercial seat license; a solo individual, including a freelancer on client work, stays free.
 
 Contributions are covered by a [CLA](CLA.md), checked on every pull request. "OpenADLC" and "OpenADLC Verified" are trademarks of StarFang; see [BRAND.md](BRAND.md).
 

@@ -10,7 +10,6 @@ description: >-
   APPROVE-WITH-NITS / APPROVE verdict with evidence. It never pushes, posts a
   PR comment, approves on the platform, or merges, reporting only.
 tools: Read, Grep, Glob, Bash, Skill
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

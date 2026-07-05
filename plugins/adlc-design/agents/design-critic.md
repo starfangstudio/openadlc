@@ -7,7 +7,6 @@ description: >-
   one-line verdict. Use when asked to "critique the UI", "review the design",
   "does this look good", "check accessibility", or "is this on-brand".
 tools: Read, Grep, Glob, Bash, WebFetch, mcp__Claude_Preview__preview_screenshot
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

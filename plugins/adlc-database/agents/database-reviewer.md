@@ -2,7 +2,6 @@
 name: database-reviewer
 description: "Reviews database changes (schema, migrations, queries, access) for schema soundness, migration safety, query performance, and injection before the operator's outbound yes. Use after implementing a DB change, before that approval, or when the user asks to review a schema, a migration, or a diff that touches the data layer."
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

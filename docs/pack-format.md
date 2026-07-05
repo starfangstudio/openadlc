@@ -34,7 +34,7 @@ A pack is a directory under `plugins/` with a manifest and units (skills, agents
 - **skill** (`skills/<name>/SKILL.md`): the portable, primary unit. A trigger-rich third-person description, numbered steps, a References section, and a failable check. The name must match its directory.
 - **agent** (`agents/<name>.md`): a read-only subagent (architect or reviewer).
 - **reference** (`references/<name>.md`): on-demand detail a skill cites. Cite it by pack-relative name, never with a harness-specific variable: same-pack as `[references/<name>.md](references/<name>.md)`, another pack's named in prose (the `references/<name>.md` reference in the **<owner>** pack). `${CLAUDE_PLUGIN_ROOT}` resolves on only one of the deploy targets, so `check-packs.py` rejects it in any prose unit; the agent locates the named file at runtime.
-- **command** (`commands/<name>.md`): harness-native (the `/agentic-*` entry points); adapter-mapped per harness, not a portable unit.
+- **command** (`commands/<name>.md`): harness-native (the `/ai-*` entry points); adapter-mapped per harness, not a portable unit.
 - **rule:** future work. Conventions ship as references today; no pack carries a `rules/` directory yet.
 
 ## Tiers

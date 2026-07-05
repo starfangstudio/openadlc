@@ -2,7 +2,6 @@
 name: android-reviewer
 description: "Reviews Android/Kotlin changes for architecture, DI, Compose/MVI, coroutine, and correctness issues. Use after implementing an Android change, before asking the operator for an explicit yes on any outbound step, or when the user asks to review Android code or a diff."
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

@@ -1,13 +1,13 @@
 ---
-name: agentic-review
-description: "Use when the user types /agentic-review, or asks to review a change, do a code review, review a PR or branch, or get an adversarial pass on a diff. Runs an independent, fresh-eyes review across concurrent lenses and returns a BLOCK or APPROVE verdict; posting the verdict is gated on the user's yes."
+name: ai-review
+description: "Use when the user types /ai-review, or asks to review a change, do a code review, review a PR or branch, or get an adversarial pass on a diff. Runs an independent, fresh-eyes review across concurrent lenses and returns a BLOCK or APPROVE verdict; posting the verdict is gated on the user's yes."
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 
-# Agentic Review
+# AI Review
 
-An independent, fresh-eyes review of a change. Runs embedded inside agentic-implement and also stands alone on any diff, branch, PR, or code the user did not write. Posting a review is gated on the user's yes.
+An independent, fresh-eyes review of a change. Runs embedded inside ai-implement and also stands alone on any diff, branch, PR, or code the user did not write. Posting a review is gated on the user's yes.
 
 When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
 

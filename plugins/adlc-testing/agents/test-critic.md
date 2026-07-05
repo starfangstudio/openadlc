@@ -9,7 +9,6 @@ description: >-
   in a separate context and returns a ranked list of weak tests with fixes, it
   does NOT write or run tests.
 tools: Read, Grep, Glob, Bash
-model: opus
 version: 0.1.0
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->

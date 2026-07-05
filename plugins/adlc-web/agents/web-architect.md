@@ -11,7 +11,6 @@ description: >-
   before code is written. Read-only: produces a design and an ordered build
   plan, does not edit source.
 tools: Read, WebSearch, Write
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

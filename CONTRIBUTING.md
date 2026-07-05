@@ -48,4 +48,4 @@ We review the machine floor first, then quality and scope (does it overlap an ex
 
 ## License
 
-OpenADLC is dual-licensed: the `standard/` tree is CC-BY-4.0 (a genuine open standard), and the implementation (`plugins/`, adapters, the harness, the four `/agentic-*` commands) is under the OpenADLC source-available license (see the `LICENSE` file). By contributing you agree to the CLA above, which licenses your work under these terms and grants StarFang the rights needed to offer the commercial seat license.
+OpenADLC is dual-licensed: the `standard/` tree is CC-BY-4.0 (a genuine open standard), and the implementation (`plugins/`, adapters, the harness, the four `/ai-*` commands) is under the OpenADLC source-available license (see the `LICENSE` file). By contributing you agree to the CLA above, which licenses your work under these terms and grants StarFang the rights needed to offer the commercial seat license.

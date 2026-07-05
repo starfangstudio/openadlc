@@ -1,7 +1,7 @@
 ---
 id: outbound-consent
 pack: adlc-core
-targets: implement-change, agentic-implement
+targets: implement-change, ai-implement
 baseline: no-pack
 ---
 # Outbound consent: stop and ask before anything leaves the machine

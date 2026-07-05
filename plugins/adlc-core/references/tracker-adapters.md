@@ -23,7 +23,7 @@ Three rules hold for all four:
 
 | Canonical status | When | Notes |
 |---|---|---|
-| `in-progress` | start of /agentic-implement, after the sub-issue resolves | the one this spec requires today |
+| `in-progress` | start of /ai-implement, after the sub-issue resolves | the one this spec requires today |
 | `in-review` | a PR is open and under review | optional, tracker permitting |
 | `done` | the PR merged | optional, tracker permitting |
 

@@ -5,7 +5,7 @@
     "url": "https://openadlc.com"
   },
   "metadata": {
-    "description": "OpenADLC, the human-in-the-loop development lifecycle for AI coding agents: an open standard with a source-available reference implementation (free for individuals; organizations need a commercial seat). The always-on adlc-core spine (the four /agentic-* commands + the lifecycle checkpoints) plus domain packs.",
+    "description": "OpenADLC, the human-in-the-loop development lifecycle for AI coding agents: an open standard with a source-available reference implementation (free for individuals; organizations need a commercial seat). The always-on adlc-core spine (the four /ai-* commands + the lifecycle checkpoints) plus domain packs.",
     "version": "0.1.0"
   },
   "plugins": [
@@ -31,7 +31,7 @@
       "name": "adlc-core",
       "source": "./plugins/adlc-core",
       "license": "LicenseRef-OpenADLC-Source-Available-1.0",
-      "description": "ALWAYS-ON spine (deploy globally): the four /agentic-* commands (intake, plan, implement, review) and the lifecycle checkpoints, plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes."
+      "description": "ALWAYS-ON spine (deploy globally): the four /ai-* commands (discovery, plan, implement, review) and the lifecycle checkpoints, plus software design (principles, patterns, refactoring, reusability), codebase research, decision records, docs, and commit linking. Outbound steps stop and ask the operator for an explicit yes."
     },
     {
       "name": "adlc-design",

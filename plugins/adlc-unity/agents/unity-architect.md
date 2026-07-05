@@ -16,7 +16,6 @@ description: >-
   imposes DOTS. Read-only: produces a design and a build plan, does not edit
   source.
 tools: Read, Grep, Glob, Bash, WebFetch
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

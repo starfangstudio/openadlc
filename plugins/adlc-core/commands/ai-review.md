@@ -1,5 +1,5 @@
 ---
-description: "This command should be used when the user types \"/agentic-review\", or asks to \"review this\", \"review PR <n>\", \"code review this diff/branch\", \"security review this\", or runs the review step inside /agentic-implement. Reviews a diff, branch, PR, or any code with fresh, independent eyes; offers a menu of review types (code, security, compliance, adversarial lenses); prints a BLOCK or APPROVE verdict; posts back only on explicit consent."
+description: "This command should be used when the user types \"/ai-review\", or asks to \"review this\", \"review PR <n>\", \"code review this diff/branch\", \"security review this\", or runs the review step inside /ai-implement. Reviews a diff, branch, PR, or any code with fresh, independent eyes; offers a menu of review types (code, security, compliance, adversarial lenses); prints a BLOCK or APPROVE verdict; posts back only on explicit consent."
 argument-hint: "[a diff, branch, PR (URL/#number), or path to review]"
 allowed-tools:
   - Bash(gh pr view:*)
@@ -10,16 +10,16 @@ allowed-tools:
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 
-# /agentic-review
+# /ai-review
 
 Independent review. Fetching, reading, and analyzing are local and need no approval. **Posting anything back (PR comments, a verdict) is outbound: STOP and ask the operator for an explicit yes first.**
 
 When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
 
-Target: $ARGUMENTS (a diff, branch, PR, or code). Empty inside `/agentic-implement` means: the change just built.
+Target: $ARGUMENTS (a diff, branch, PR, or code). Empty inside `/ai-implement` means: the change just built.
 
 ## Two ways it runs
-- **Embedded** in `/agentic-implement`: the implement pipeline stops and asks which review types to run; this command runs the picked ones.
+- **Embedded** in `/ai-implement`: the implement pipeline stops and asks which review types to run; this command runs the picked ones.
 - **Standalone**: review a teammate's PR, a fresh pass on a risky change, or any code outside a pipeline.
 
 ## The review types (pick one or more)

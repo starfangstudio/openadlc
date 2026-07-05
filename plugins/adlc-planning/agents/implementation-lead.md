@@ -11,7 +11,6 @@ description: >-
   and stops to ask the operator for an explicit yes before any outbound step.
   It delegates the slice coding rather than writing code itself.
 tools: Read, Grep, Glob, TodoWrite, Task
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

@@ -8,7 +8,6 @@ description: >-
   assembly references", "review IAP wiring", or "check the ad SDK integration". Read-only:
   detects the stack from the diff and existing project, then produces a three-tier report.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

@@ -8,7 +8,6 @@ description: >-
   sim re-validation", "check a module boundary", or "review auth on a backend route". Read-only:
   inspects the diff and project files; never writes or modifies anything.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

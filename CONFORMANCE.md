@@ -11,7 +11,7 @@ OpenADLC is both a tool and a small open specification: the lifecycle, the comma
 
 The baseline. A conformant Core implementation:
 
-- exposes the four commands: `/agentic-intake`, `/agentic-plan`, `/agentic-implement`, `/agentic-review`;
+- exposes the four commands: `/ai-discovery`, `/ai-plan`, `/ai-implement`, `/ai-review`;
 - stops at the lifecycle checkpoints before anything leaves the machine: the commands present what would go out and require an explicit human yes at each outbound boundary, with no separate ship step (outbound is a human decision, per Principle #2);
 - never stops reading or local work: only the outbound boundary asks for approval, and the approval is recorded so the consent decision is auditable;
 - ships packs as Agent Skills (`SKILL.md`) that install and function as plain files, with or without a package manager.

@@ -9,7 +9,6 @@ description: >-
   doc with trade-offs and consequences, it does not write production code or
   push anything.
 tools: Read, Grep, Glob, Bash, Skill, WebSearch, WebFetch
-model: opus
 ---
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 

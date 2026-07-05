@@ -1,7 +1,7 @@
 ---
 id: plan-before-code
 pack: adlc-core
-targets: create-plan, agentic-plan, implement-change
+targets: create-plan, ai-plan, implement-change
 baseline: no-pack
 ---
 # Plan before code: an approved plan precedes implementation
