@@ -55,7 +55,7 @@ UITest target name, minimum deployment version. Mark anything not found
 ## Step 2: Apply VoiceOver modifiers
 
 Cover these four cases on every screen. For code samples, see
-[references/ios-accessibility-detail.md](references/ios-accessibility-detail.md).
+[references/ios-accessibility-detail.md](../../references/ios-accessibility-detail.md).
 
 - **Interactive elements:** `.accessibilityLabel` + `.accessibilityHint` on every icon-only button.
 - **Decorative content:** `.accessibilityHidden(true)` to hide from VoiceOver.
@@ -70,7 +70,7 @@ candidate. Apply to icon frames, hit areas, and fixed spacing constants. Never
 hardcode `.font(.system(size:))`; use semantic styles (`.font(.body)`, etc.).
 Test at xSmall and xxxLarge in Simulator or via Accessibility Inspector font slider.
 
-For code samples, see [references/ios-accessibility-detail.md](references/ios-accessibility-detail.md).
+For code samples, see [references/ios-accessibility-detail.md](../../references/ios-accessibility-detail.md).
 
 ## Step 4: Audit (Accessibility Inspector + CI)
 
@@ -83,7 +83,7 @@ clear every issue before calling the feature done.
 `xcodebuild test -only-testing:<UITestTarget>/AccessibilityAuditTests`. Target
 zero new audit issues per PR. For the full snippet including scope flags and
 false-positive suppression, see
-[references/ios-accessibility-detail.md](references/ios-accessibility-detail.md).
+[references/ios-accessibility-detail.md](../../references/ios-accessibility-detail.md).
 
 ## Step 5: Verify loop (pass/fail, not "looks right")
 
@@ -107,9 +107,9 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-accessibility-detail.md](references/ios-accessibility-detail.md) -- VoiceOver modifier
+- [references/ios-accessibility-detail.md](../../references/ios-accessibility-detail.md) -- VoiceOver modifier
   code samples, `@ScaledMetric` examples, `performAccessibilityAudit` snippet and CI command.
-- [references/ios-accessibility.md](references/ios-accessibility.md) -- VoiceOver modifier
+- [references/ios-accessibility.md](../../references/ios-accessibility.md) -- VoiceOver modifier
   table, Liquid Glass a11y notes.
 - `adlc-design` `design-a11y` skill -- WCAG 2.2 AA doctrine, contrast ratios,
   target size minimums, design-time checklist (cite up for compliance bar).

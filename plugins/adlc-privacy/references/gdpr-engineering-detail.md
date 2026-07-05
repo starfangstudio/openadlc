@@ -83,6 +83,6 @@ blocks all ad-attribution SDK initialisation before consent is confirmed.
 
 ## References
 
-See also [references/gdpr-engineering.md](references/gdpr-engineering.md) for the full rights-as-code
+See also [references/gdpr-engineering.md](gdpr-engineering.md) for the full rights-as-code
 checklists (DSAR pipeline, erasure pipeline), retention table, ROPA template, DPA checklist,
 and additional CCPA/CPRA detail.

@@ -77,7 +77,7 @@ llama.cpp for widest hardware coverage; ONNX Runtime Mobile when you need CoreML
 NNAPI EP acceleration with a portable model format.
 
 For API signatures, code samples, and `coremltools` conversion commands,
-see [references/on-device-ai-detail.md](references/on-device-ai-detail.md).
+see [references/on-device-ai-detail.md](../../references/on-device-ai-detail.md).
 
 ## Step 4: Quantization
 
@@ -87,7 +87,7 @@ quality-critical. Never ship a quant without a pass/fail check against the unqua
 baseline.
 
 For the full precision-vs-size table,
-see [references/on-device-ai-detail.md](references/on-device-ai-detail.md).
+see [references/on-device-ai-detail.md](../../references/on-device-ai-detail.md).
 
 ## Step 5: Verify (pass/fail benchmark)
 
@@ -96,7 +96,7 @@ least 8 tok/s, peak memory within budget, task accuracy within 5 pp of unquantiz
 baseline. Do not claim done without logged numbers.
 
 For the adb/Instruments benchmark commands and full acceptance criteria,
-see [references/on-device-ai-detail.md](references/on-device-ai-detail.md).
+see [references/on-device-ai-detail.md](../../references/on-device-ai-detail.md).
 
 ## Step 6: Hybrid pattern (on-device first, cloud fallback)
 
@@ -140,4 +140,4 @@ CLAUDE.md. Do not wire a cloud fallback silently.
 - LiteRT (formerly TensorFlow Lite): https://developers.googleblog.com/litert-the-universal-framework-for-on-device-ai/
 - MLC LLM cross-platform setup: https://localaimaster.com/blog/mlc-llm-setup-guide
 - On-device LLM framework comparison 2026: https://cactuscompute.com/compare/best-on-device-llm-framework
-- Implementation detail (code samples, quantization table, benchmark recipe): [references/on-device-ai-detail.md](references/on-device-ai-detail.md)
+- Implementation detail (code samples, quantization table, benchmark recipe): [references/on-device-ai-detail.md](../../references/on-device-ai-detail.md)

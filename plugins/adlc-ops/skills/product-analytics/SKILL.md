@@ -56,7 +56,7 @@ events you track but never query add schema debt and leak surface area.
 ## Event taxonomy and schema
 
 Follow the naming convention and schema template in
-[references/event-taxonomy.md](references/event-taxonomy.md).
+[references/event-taxonomy.md](../../references/event-taxonomy.md).
 
 Core rules (non-negotiable):
 
@@ -75,7 +75,7 @@ Core rules (non-negotiable):
 ## Core metrics to instrument (by product type)
 
 For full detail and 2025 game benchmarks, see
-[references/event-taxonomy.md](references/event-taxonomy.md).
+[references/event-taxonomy.md](../../references/event-taxonomy.md).
 
 **Universal (apps + games):**
 
@@ -131,7 +131,7 @@ Local work needs no approval. Outbound here (enabling a new collection endpoint,
 
 ## References
 
-- [references/event-taxonomy.md](references/event-taxonomy.md) -- naming convention,
+- [references/event-taxonomy.md](../../references/event-taxonomy.md) -- naming convention,
   typed schema template, core game/app metric definitions, 2025 benchmarks.
 - Amplitude, "Event taxonomy": https://amplitude.com/explore/data/event-taxonomy
 - Amplitude, "Measurement vs. Metrics": https://amplitude.com/blog/measurement-metrics

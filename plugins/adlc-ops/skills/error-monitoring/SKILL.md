@@ -74,7 +74,7 @@ Keep the DSN in a CI secret, not hardcoded in source.
 (Android). Crash capture is automatic after SDK init; no extra code needed.
 
 For full platform-specific init snippets (Android, Unity), see
-[references/error-monitoring-detail.md](references/error-monitoring-detail.md).
+[references/error-monitoring-detail.md](../../references/error-monitoring-detail.md).
 
 ## Symbolication
 
@@ -86,7 +86,7 @@ scope and must reach the build step that produces the release artifact (local or
 
 For exact upload commands (iOS dSYM, Android ProGuard/R8, Unity IL2CPP) for both
 Sentry and Crashlytics, see
-[references/error-monitoring-symbolication.md](references/error-monitoring-symbolication.md).
+[references/error-monitoring-symbolication.md](../../references/error-monitoring-symbolication.md).
 
 ## Release health
 
@@ -147,9 +147,9 @@ Local work needs no approval. Outbound here (sending the first crash event to Se
 
 ## References
 
-- [references/error-monitoring-detail.md](references/error-monitoring-detail.md) (additional init
+- [references/error-monitoring-detail.md](../../references/error-monitoring-detail.md) (additional init
   snippets, Unity wizard detail)
-- [references/error-monitoring-symbolication.md](references/error-monitoring-symbolication.md) (iOS dSYM,
+- [references/error-monitoring-symbolication.md](../../references/error-monitoring-symbolication.md) (iOS dSYM,
   Android ProGuard/R8, Unity IL2CPP symbol upload commands for Sentry + Crashlytics)
 - Sentry iOS SDK: https://docs.sentry.io/platforms/apple/guides/ios/
 - Sentry Android SDK: https://docs.sentry.io/platforms/android/

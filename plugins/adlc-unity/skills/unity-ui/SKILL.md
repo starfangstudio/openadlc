@@ -60,7 +60,7 @@ and has no performance problem, do not migrate -- note the choice and continue.
 One `.uxml` file per screen or reusable component. Name: `ScreenName.uxml` / `ComponentName.uxml`.
 
 For the default folder layout, the root element pattern, and touch-target rules,
-see [references/unity-ui-detail.md](references/unity-ui-detail.md).
+see [references/unity-ui-detail.md](../../references/unity-ui-detail.md).
 
 ## Step 4: USS variables and the adlc-design token bridge
 
@@ -68,7 +68,7 @@ Design tokens live in the adlc-design pack. This skill consumes them -- it does 
 Cross-reference: `adlc-design / design-tokens` for the full token schema and export pipeline.
 
 For the token USS file structure, per-game theme USS, TSS wiring, and example component styles,
-see [references/unity-ui-detail.md](references/unity-ui-detail.md).
+see [references/unity-ui-detail.md](../../references/unity-ui-detail.md).
 
 Rule: never hardcode color hex or pixel sizes in USS that should be tokens. If a token is missing,
 add it to adlc-design and regenerate -- do not inline the value as a workaround.
@@ -82,13 +82,13 @@ Thumb-reach rule: primary actions (attack, shop buy, continue) sit in the bottom
 the screen. Navigation / close in top corners is acceptable only if also reachable bottom-right.
 
 For the `SafeAreaAdapter` implementation and aspect-ratio USS media queries,
-see [references/unity-ui-detail.md](references/unity-ui-detail.md).
+see [references/unity-ui-detail.md](../../references/unity-ui-detail.md).
 
 ## Step 6: Panel Settings
 
 One Panel Settings asset per game (or per distinct render layer if you layer UI).
 For Sort Order values, Scale Mode, and reference resolution settings,
-see [references/unity-ui-detail.md](references/unity-ui-detail.md).
+see [references/unity-ui-detail.md](../../references/unity-ui-detail.md).
 
 ## Step 7: Verify
 
@@ -116,4 +116,4 @@ Local work needs no approval. Outbound here (submitting a build to TestFlight, G
 - Unity Screen.safeArea scripting API: https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Screen-safeArea.html
 - Unity comparison of UI systems: https://docs.unity3d.com/Manual/UI-system-compare.html
 - Cross-reference: `adlc-design / design-tokens` for the token schema and export pipeline.
-- Detail reference: [references/unity-ui-detail.md](references/unity-ui-detail.md)
+- Detail reference: [references/unity-ui-detail.md](../../references/unity-ui-detail.md)

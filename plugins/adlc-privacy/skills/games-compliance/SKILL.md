@@ -75,7 +75,7 @@ For each randomized-purchase mechanic (gacha, card pack, spin, prize chest):
 5. Watch the EU Digital Fairness Act (proposal expected Q3-Q4 2026); it may restrict paid
    loot boxes for minors EU-wide. Monitor and confirm with counsel before EU launch.
 
-See [references/games-compliance.md](references/games-compliance.md) table 1 for full jurisdiction list.
+See [references/games-compliance.md](../../references/games-compliance.md) table 1 for full jurisdiction list.
 
 ## Step 3: Odds disclosure
 
@@ -88,7 +88,7 @@ Both Apple (Guideline 3.1.1) and Google Play require disclosure **before payment
 - China: in-game Simplified Chinese disclosure + monthly spend caps.
 - South Korea: legally mandated in-game disclosure before purchase (from March 2024).
 
-See [references/games-compliance.md](references/games-compliance.md) section 2 for the format.
+See [references/games-compliance.md](../../references/games-compliance.md) section 2 for the format.
 
 ## Step 4: COPPA 2025 (compliance deadline April 22, 2026)
 
@@ -128,7 +128,7 @@ Confirm the rating before launch; an incorrect IARC answer can result in rating 
 - For under-16 EU users: no behavioral profiling under GDPR; consent from the holder of
   parental responsibility required (age varies: 13-16 by member state).
 
-See [references/games-compliance.md](references/games-compliance.md) section 5.
+See [references/games-compliance.md](../../references/games-compliance.md) section 5.
 
 ## Geo-soften knob
 
@@ -145,9 +145,9 @@ Local work is fine to do without asking. Outbound here (submitting a game to any
 
 ## References
 
-- [references/games-compliance.md](references/games-compliance.md) -- jurisdiction table, odds-disclosure
+- [references/games-compliance.md](../../references/games-compliance.md) -- jurisdiction table, odds-disclosure
   format, PEGI 2026 categories, COPPA 2025 checklist, ads-to-minors limits.
-- [references/games-compliance-detail.md](references/games-compliance-detail.md) -- COPPA 2025 full checklist,
+- [references/games-compliance-detail.md](../../references/games-compliance-detail.md) -- COPPA 2025 full checklist,
   geo-soften implementation pattern.
 - Apple App Store Review Guidelines 3.1.1 (loot boxes):
   https://developer.apple.com/app-store/review/guidelines/#in-app-purchase

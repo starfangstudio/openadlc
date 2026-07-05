@@ -135,7 +135,7 @@ Local work is free. Outbound here (enabling a live MMP SDK key that sends instal
 
 ## References
 
-- [references/attribution-ua.md](references/attribution-ua.md) -- iOS/Android signal matrices,
+- [references/attribution-ua.md](../../references/attribution-ua.md) -- iOS/Android signal matrices,
   SKAN CV schema, MMP notes, full verified-install checklist, official doc URLs.
 - SKAdNetwork: https://developer.apple.com/documentation/storekit/skadnetwork
 - AdAttributionKit (WWDC 2025): https://www.singular.net/blog/wwdc-2025-aak/

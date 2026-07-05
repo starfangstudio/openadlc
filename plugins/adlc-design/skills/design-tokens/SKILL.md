@@ -53,14 +53,14 @@ to Step 3.
 **Priority 2 -- DTCG 2025.10 JSON (portable, no external dependency)**
 Create or accept a handwritten DTCG file. Minimum token categories for a brand theme:
 `color`, `dimension` (spacing/radius), `fontFamily`, `fontWeight`, `duration`,
-`cubicBezier`. See [references/design-tokens-dtcg.md](references/design-tokens-dtcg.md) for the
+`cubicBezier`. See [references/design-tokens-dtcg.md](../../references/design-tokens-dtcg.md) for the
 exact field shapes and a minimal example.
 
 **Priority 3 -- Figma REST API (Enterprise only)**
 Pull variables via the Figma REST API and map to DTCG groups/tokens with a thin
 normalization script; do NOT call the Dev Mode MCP. If access is unavailable, fall back
 to Priority 2. For the exact endpoints and mapping notes, see
-[references/design-tokens-detail.md](references/design-tokens-detail.md).
+[references/design-tokens-detail.md](../../references/design-tokens-detail.md).
 
 After fetching from any source, normalize to DTCG before touching Style Dictionary.
 
@@ -70,7 +70,7 @@ Organize token files with globals aliasing into brand-specific values. Never put
 grid, or z-index into brand files -- those are structural and shared.
 
 For the canonical directory layout, see
-[references/design-tokens-detail.md](references/design-tokens-detail.md).
+[references/design-tokens-detail.md](../../references/design-tokens-detail.md).
 
 ## Step 4: Wire Style Dictionary v5
 
@@ -79,7 +79,7 @@ Install: `npm install style-dictionary@^5` (or `bun add style-dictionary@^5`).
 Create `style-dictionary.config.mjs` iterating over your brand list, with `usesDtcg: true`
 and platform entries for `web` (css), `ios` (ios-swift), `android` (xml resources), and
 `android-compose` (Kotlin object). For the full annotated config and optional Tailwind
-integration, see [references/design-tokens-detail.md](references/design-tokens-detail.md).
+integration, see [references/design-tokens-detail.md](../../references/design-tokens-detail.md).
 
 If the project already has an SD config, extend it rather than replacing it. Merge
 `usesDtcg: true` and add missing brand entries; preserve existing transforms.
@@ -89,7 +89,7 @@ If the project already has an SD config, extend it rather than replacing it. Mer
 Run `node style-dictionary.config.mjs`, confirm output files exist for every brand x
 platform, and grep for hardcoded hex/color values in source (zero matches required).
 
-For the full verify script, see [references/design-tokens-detail.md](references/design-tokens-detail.md).
+For the full verify script, see [references/design-tokens-detail.md](../../references/design-tokens-detail.md).
 
 Do not claim done without a passing build and an empty hardcoded-value grep.
 
@@ -99,10 +99,10 @@ Local work needs no approval. Outbound here (pushing generated files to a remote
 
 ## References
 
-- [references/design-tokens-detail.md](references/design-tokens-detail.md) -- token directory layout,
+- [references/design-tokens-detail.md](../../references/design-tokens-detail.md) -- token directory layout,
   full SD v5 multi-brand config, Tailwind integration, verify script, and Figma REST API
   variable endpoints.
-- [references/design-tokens-dtcg.md](references/design-tokens-dtcg.md) -- DTCG 2025.10 format
+- [references/design-tokens-dtcg.md](../../references/design-tokens-dtcg.md) -- DTCG 2025.10 format
   spec, the full multi-brand SD v5 build script, platform transform table, and Figma
   REST API variable endpoints.
 - DTCG 2025.10 stable specification: https://www.designtokens.org/tr/2025.10/

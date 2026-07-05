@@ -49,7 +49,7 @@ Never introduce a new dependency without checking it is not already present.
 ## Step 2: Unit-test @Observable stores with Swift Testing
 
 Default to Swift Testing for all new unit tests (Xcode 16+, iOS 16+ minimum). See
-[references/ios-testing.md](references/ios-testing.md) for full syntax, @MainActor patterns,
+[references/ios-testing.md](../../references/ios-testing.md) for full syntax, @MainActor patterns,
 fake-construction, and serialized suites.
 
 Quick shape:
@@ -81,7 +81,7 @@ as structs. Use `#require` to stop on nil before asserting further.
 Use ViewInspector (nalexn/ViewInspector) to assert structural correctness of SwiftUI views
 without a simulator: which views render, what text appears, button existence. Add to the
 test target: `.package(url: "https://github.com/nalexn/ViewInspector", from: "0.10.0")`.
-See [references/ios-testing.md](references/ios-testing.md) for patterns and known limits
+See [references/ios-testing.md](../../references/ios-testing.md) for patterns and known limits
 (no Liquid Glass materials, no Metal-backed views, no system sheets).
 
 ## Step 4: Visual regression with swift-snapshot-testing
@@ -90,7 +90,7 @@ Use pointfreeco/swift-snapshot-testing for per-UI-state image snapshots. Keep sn
 tests in a separate `<Feature>SnapshotTests` target and scheme so they do not slow the
 unit-test loop. Commit `__Snapshots__`; review diffs as visual evidence in PR. Add:
 `.package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0")`.
-See [references/ios-testing.md](references/ios-testing.md) for device config and record mode.
+See [references/ios-testing.md](../../references/ios-testing.md) for device config and record mode.
 
 ## Step 5: Sparse XCUITest for E2E paths
 
@@ -138,7 +138,7 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-testing.md](references/ios-testing.md) -- Swift Testing syntax, @Observable
+- [references/ios-testing.md](../../references/ios-testing.md) -- Swift Testing syntax, @Observable
   store pattern, ViewInspector patterns, snapshot-testing patterns, test target layout
   (created alongside this skill).
 - Apple, Swift Testing documentation: https://developer.apple.com/xcode/swift-testing/

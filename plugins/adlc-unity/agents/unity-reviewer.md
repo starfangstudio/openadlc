@@ -119,8 +119,8 @@ Only flag gaps that affect correctness or the stated requirements. Do not invent
 
 ## References
 
-- [references/deterministic-sim.md](references/deterministic-sim.md) -- float/fixed-point rules, seeded RNG, lockstep vs rollback, golden-replay test pattern, nondeterminism source table.
-- [references/unity-performance.md](references/unity-performance.md) -- pooling patterns, GC/allocation avoidance table, batching decision tree, Profiler workflow.
+- [references/deterministic-sim.md](../references/deterministic-sim.md) -- float/fixed-point rules, seeded RNG, lockstep vs rollback, golden-replay test pattern, nondeterminism source table.
+- [references/unity-performance.md](../references/unity-performance.md) -- pooling patterns, GC/allocation avoidance table, batching decision tree, Profiler workflow.
 - Unity Manual: Assembly Definition Files -- https://docs.unity3d.com/6000.2/Documentation/Manual/cus-asmdef.html
 - Unity IAP receipt validation -- https://docs.unity.com/en-us/iap/receipt-validation
 - LevelPlay rewarded ads integration -- https://developers.is.com/ironsource-mobile/unity/rewarded-video-integration-unity/

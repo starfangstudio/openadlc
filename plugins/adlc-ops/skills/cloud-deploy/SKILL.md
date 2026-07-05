@@ -38,7 +38,7 @@ Record: existing platform (if any), deploy unit (Dockerfile / buildpack / server
 
 ## Pick a platform
 
-See [references/managed-paas-options.md](references/managed-paas-options.md) for the full fit matrix, cost table, and the explicit list of what to reject at solo scale. Short version:
+See [references/managed-paas-options.md](../../references/managed-paas-options.md) for the full fit matrix, cost table, and the explicit list of what to reject at solo scale. Short version:
 
 - **Railway**: default for most backends. Usage-based, best DX, managed Postgres in the same project.
 - **Render**: managed Postgres with PITR + automated backups matters; slightly more config.
@@ -130,7 +130,7 @@ Local work needs no approval. Outbound here (provisioning a paid cloud resource,
 
 ## References
 
-- [references/managed-paas-options.md](references/managed-paas-options.md): full platform fit matrix, cost table, what to reject at solo scale
+- [references/managed-paas-options.md](../../references/managed-paas-options.md): full platform fit matrix, cost table, what to reject at solo scale
 - Railway docs: https://docs.railway.com
 - Render docs: https://render.com/docs
 - Fly.io docs: https://fly.io/docs

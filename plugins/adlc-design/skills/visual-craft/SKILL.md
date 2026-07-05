@@ -26,7 +26,7 @@ project's own tokens and aesthetic, then verifying against a concrete checklist.
 
 Never assume the project's stack or existing style direction. Read before critiquing.
 
-Run the detection commands from [references/visual-craft-detail.md](references/visual-craft-detail.md)
+Run the detection commands from [references/visual-craft-detail.md](../../references/visual-craft-detail.md)
 (token JSON files, Tailwind/CSS config, Compose/SwiftUI theme grep, font-family grep).
 
 Record: active font families, primary hue (H in OKLCH), spacing unit (4px or 8px base),
@@ -53,7 +53,7 @@ Apply these rules against the detected or generated type setup:
   distinctive alternative; do not swap without operator approval.
 
 For the fluid scale CSS snippet and the distinctive font shortlist, see
-[references/visual-craft-detail.md](references/visual-craft-detail.md).
+[references/visual-craft-detail.md](../../references/visual-craft-detail.md).
 
 ## Step 2: Color -- OKLCH palettes
 
@@ -66,7 +66,7 @@ Flag immediately if the primary palette is purple/indigo with no brand rationale
 (H roughly 270-310). Propose an alternative hue; do not change without operator approval.
 
 For OKLCH anatomy, full palette-building steps, and the hue range table, see
-[references/visual-craft-detail.md](references/visual-craft-detail.md).
+[references/visual-craft-detail.md](../../references/visual-craft-detail.md).
 
 ## Step 3: Spacing and elevation
 
@@ -77,7 +77,7 @@ For OKLCH anatomy, full palette-building steps, and the hue range table, see
 - Flag uniform `0.1`-opacity shadows on every element: that is the generic tell.
 
 For token name conventions, a shadow color example, and the three-tier reference, see
-[references/visual-craft-detail.md](references/visual-craft-detail.md).
+[references/visual-craft-detail.md](../../references/visual-craft-detail.md).
 
 ## Step 4: Motion
 
@@ -89,11 +89,11 @@ For token name conventions, a shadow color example, and the three-tier reference
 - Flag elastic/bounce easing applied broadly.
 
 For the duration table, M3 spring tokens, and the `prefers-reduced-motion` CSS block, see
-[references/visual-craft-detail.md](references/visual-craft-detail.md).
+[references/visual-craft-detail.md](../../references/visual-craft-detail.md).
 
 ## Step 5: Anti-generic layer
 
-Run the full tell list from [references/anti-generic-checklist.md](references/anti-generic-checklist.md).
+Run the full tell list from [references/anti-generic-checklist.md](../../references/anti-generic-checklist.md).
 
 Minimum four-point check:
 
@@ -133,10 +133,10 @@ Local work needs no approval. Outbound here (pushing to a branch, opening a PR, 
 
 ## References
 
-- [references/visual-craft-detail.md](references/visual-craft-detail.md) -- fluid scale snippet, font shortlist,
+- [references/visual-craft-detail.md](../../references/visual-craft-detail.md) -- fluid scale snippet, font shortlist,
   OKLCH anatomy and palette steps, elevation token conventions, motion duration table,
   M3 spring tokens, prefers-reduced-motion CSS block.
-- [references/anti-generic-checklist.md](references/anti-generic-checklist.md) -- full tells + countermeasures.
+- [references/anti-generic-checklist.md](../../references/anti-generic-checklist.md) -- full tells + countermeasures.
 - [OKLCH CSS function - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
 - [OKLCH in CSS: consistent, accessible color palettes - LogRocket](https://blog.logrocket.com/oklch-css-consistent-accessible-color-palettes)
 - [Fluid Type Scale Calculator](https://www.fluid-type-scale.com/)

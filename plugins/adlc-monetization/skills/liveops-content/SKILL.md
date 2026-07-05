@@ -133,7 +133,7 @@ Local work is free. Outbound here (publishing remote-config values to the live d
 
 ## References
 
-- [references/liveops-calendar.md](references/liveops-calendar.md): cadence tables, event type
+- [references/liveops-calendar.md](../../references/liveops-calendar.md): cadence tables, event type
   breakdown, daily login chain anatomy, remote-config key taxonomy, and the full
   verify checklist.
 - Gamemakers, "Understanding Battle Pass Game Design":

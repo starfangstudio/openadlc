@@ -34,4 +34,4 @@ Register a Cloud Pub/Sub push subscription pointing to your HTTPS endpoint.
    alone. Update the user's entitlement table. Route to adlc-monetization for receipt logic.
 
 Full message structure and notification type tables: see
-[references/background-jobs.md](references/background-jobs.md) (Google RTDN section).
+[references/background-jobs.md](background-jobs.md) (Google RTDN section).

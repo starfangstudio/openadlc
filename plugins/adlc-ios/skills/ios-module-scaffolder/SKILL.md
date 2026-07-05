@@ -65,7 +65,7 @@ concrete types, no SwiftUI views, no UI framework imports beyond what models nee
 
 For the source file templates (`<Feature>Service.swift`, `<Feature>Route.swift`,
 `<Feature>EnvironmentKey.swift`), see
-[references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) (Interface target section).
+[references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) (Interface target section).
 
 ## Step 3: Generate the Impl target (concrete types + views)
 
@@ -74,12 +74,12 @@ cross a target boundary inside this package; do NOT promote them to `public`.
 
 For the source file templates (`Real<Feature>Service.swift`, `<Feature>View.swift`,
 `<Feature>ViewModel.swift`), see
-[references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) (Impl target section).
+[references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) (Impl target section).
 
 ## Step 4: Write Package.swift
 
 For the full manifest template (targets, products, dependency stubs), see
-[references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) (Package.swift section).
+[references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) (Package.swift section).
 
 Key invariants:
 - Interface is a public `.library` product; Impl is NOT exported as a product.
@@ -89,7 +89,7 @@ Key invariants:
 ## Step 5: Wire into the app target and DI graph
 
 For the full wiring snippets (root Package.swift entry, `.navigationDestination`, `@main` App injection), see
-[references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) (Wiring section).
+[references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) (Wiring section).
 
 Key rule: the app target is the only target that imports `<Feature>Impl`. Feature targets
 that navigate to `<Feature>` import `<Feature>Interface` only, push a `<Feature>Route`
@@ -98,7 +98,7 @@ value, and let the app's `.navigationDestination` resolve it.
 ## Step 6: Verify (pass/fail, not "looks right")
 
 For the exact `swift build` and `xcodebuild` commands, see
-[references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) (Verify commands section).
+[references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) (Verify commands section).
 
 A clean build proves the targets compile, `package` access level is respected (no
 "cannot access" errors across targets), and the DI wiring resolves. Fix any missing
@@ -123,9 +123,9 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-module-scaffolder-detail.md](references/ios-module-scaffolder-detail.md) -- full source
+- [references/ios-module-scaffolder-detail.md](../../references/ios-module-scaffolder-detail.md) -- full source
   file templates, Package.swift manifest, wiring snippets, and verify commands.
-- [references/ios-architecture.md](references/ios-architecture.md) -- SPM interface/impl split,
+- [references/ios-architecture.md](../../references/ios-architecture.md) -- SPM interface/impl split,
   `package` access level, @Observable, Environment DI, NavigationStack, Swift 6
   concurrency isolation (created alongside this skill).
 - Swift Evolution SE-0386, "Package Access Modifier" (Swift 5.9):

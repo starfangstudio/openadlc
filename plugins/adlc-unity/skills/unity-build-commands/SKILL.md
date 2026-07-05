@@ -103,7 +103,7 @@ Use the Unity MCP when the Editor is already running and you need to inspect or 
 on live state: scenes, GameObjects, console logs, profiler data, or visual output.
 
 **Prerequisite**: follow the one-time setup in
-[references/unity-mcp.md](references/unity-mcp.md) before using any tool below.
+[references/unity-mcp.md](../../references/unity-mcp.md) before using any tool below.
 
 Common iteration loop (ordered):
 
@@ -152,9 +152,9 @@ Local work needs no approval. Outbound here (uploading a player build to the Goo
 
 ## References
 
-- [references/unity-build-commands-detail.md](references/unity-build-commands-detail.md) -- full command
+- [references/unity-build-commands-detail.md](../../references/unity-build-commands-detail.md) -- full command
   samples, flag reference, and MCP tool lists for all operations in this skill.
-- [references/unity-mcp.md](references/unity-mcp.md) -- Unity MCP setup, all 51 built-in
+- [references/unity-mcp.md](../../references/unity-mcp.md) -- Unity MCP setup, all 51 built-in
   tools, what the MCP can vs. cannot do, and the agent loop pattern.
 - Unity Test Framework CLI reference:
   https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/reference-command-line.html

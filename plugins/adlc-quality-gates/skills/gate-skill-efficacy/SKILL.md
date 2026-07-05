@@ -128,4 +128,4 @@ Local work needs no approval. Anything outbound (publish, push, post) is a lifec
   reliability) and bias mitigation for LLM judges:
   https://agentskills.so/skills/wshobson-agents-llm-evaluation
 - Detail reference (full grading schema, bias rules, calibration guidance, interpretation rules):
-  [references/gate-skill-efficacy-detail.md](references/gate-skill-efficacy-detail.md)
+  [references/gate-skill-efficacy-detail.md](../../references/gate-skill-efficacy-detail.md)

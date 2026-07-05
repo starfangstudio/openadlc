@@ -54,12 +54,12 @@ optional analytics and ad targeting; legitimate interest (Art. 6(1)(f)) for secu
 logging with a Legitimate Interest Assessment; legal obligation (Art. 6(1)(c)) for tax
 records, confirmed per jurisdiction. Never use "legitimate interest" as a catch-all; a
 mismatch between stated basis and actual processing is a DPA inspection red flag. Full
-basis table in [references/gdpr-engineering-detail.md](references/gdpr-engineering-detail.md) §B.
+basis table in [references/gdpr-engineering-detail.md](../../references/gdpr-engineering-detail.md) §B.
 
 ## Step 2: Data subject rights as code
 
 Implement each right as a tested, audited endpoint. Full checklists and pipeline
-patterns are in [references/gdpr-engineering.md](references/gdpr-engineering.md) §1.
+patterns are in [references/gdpr-engineering.md](../../references/gdpr-engineering.md) §1.
 
 **DSAR export (Art. 15 / CCPA §1798.110)**
 - `POST /api/privacy/export` re-authenticates the requester, then queries every data
@@ -86,7 +86,7 @@ user record; all analytics and marketing consumers must check it before processi
 
 Collect less. Delete on schedule. Retain only what a documented purpose requires.
 
-Retention patterns (see full table in [references/gdpr-engineering.md](references/gdpr-engineering.md) §2):
+Retention patterns (see full table in [references/gdpr-engineering.md](../../references/gdpr-engineering.md) §2):
 - Account PII: delete immediately on account deletion.
 - Server logs with IP: 90 days, then delete/pseudonymise.
 - Purchase records: 7 years (tax law; confirm jurisdiction with counsel).
@@ -101,7 +101,7 @@ The ROPA (Art. 30) is the first document a DPA requests on inspection. Build it 
 the actual data map produced in Detect first, not from assumptions.
 
 One row per processing purpose. Required fields per row (full template in
-[references/gdpr-engineering.md](references/gdpr-engineering.md) §3):
+[references/gdpr-engineering.md](../../references/gdpr-engineering.md) §3):
 purpose / lawful basis / data categories / data subjects / recipients / third-country
 transfer mechanism / retention / security measures / DPA reference.
 
@@ -112,7 +112,7 @@ Update the ROPA every time a new SDK is added or a data flow changes. Version-co
 A Data Processing Agreement is required for every processor that receives personal
 data (Art. 28): Firebase, Amplitude, Adjust, Stripe, cloud provider, support SaaS.
 
-For each processor (full checklist in [references/gdpr-engineering.md](references/gdpr-engineering.md) §4):
+For each processor (full checklist in [references/gdpr-engineering.md](../../references/gdpr-engineering.md) §4):
 - DPA signed and on file; covers sub-processors and change notification.
 - Transfer mechanism for non-EU processors (SCCs / adequacy decision / BCRs).
 - Processor contractually obligated to delete/export data on your request; test this.
@@ -132,7 +132,7 @@ For each processor (full checklist in [references/gdpr-engineering.md](reference
 
 Applies if the business meets any California threshold (confirm with counsel). For the
 full threshold criteria, engineering requirements table, and GPC implementation detail,
-see [references/gdpr-engineering-detail.md](references/gdpr-engineering-detail.md) §D.
+see [references/gdpr-engineering-detail.md](../../references/gdpr-engineering-detail.md) §D.
 
 Key controls to implement: honor the GPC signal automatically; block ad-attribution SDK
 initialisation until Do-Not-Sell/Share signal is resolved; add a "Do Not Sell or Share"
@@ -143,7 +143,7 @@ sale/sharing within 15 business days of any valid opt-out request.
 ## Stop-and-verify checklist
 
 Before calling a data flow GDPR/CCPA-ready, run the full checklist in
-[references/gdpr-engineering-detail.md](references/gdpr-engineering-detail.md) §C. Every item must be
+[references/gdpr-engineering-detail.md](../../references/gdpr-engineering-detail.md) §C. Every item must be
 PASS; no FAIL or UNKNOWN may remain unresolved. Escalate to counsel before shipping.
 
 ## Outbound: get the operator's yes first
@@ -152,7 +152,7 @@ Local work is fine to do without asking. Outbound here (submitting a DSAR respon
 
 ## References
 
-- [references/gdpr-engineering-detail.md](references/gdpr-engineering-detail.md) -- grep patterns (§A),
+- [references/gdpr-engineering-detail.md](../../references/gdpr-engineering-detail.md) -- grep patterns (§A),
   lawful basis table (§B), stop-and-verify checklist (§C), CCPA/CPRA thresholds and
   requirements table (§D).
-- [references/gdpr-engineering.md](references/gdpr-engineering.md) -- rights-as-code checklists, retention table, ROPA template, DPA checklist, CCPA/CPRA deltas; external regulatory links collected there.
+- [references/gdpr-engineering.md](../../references/gdpr-engineering.md) -- rights-as-code checklists, retention table, ROPA template, DPA checklist, CCPA/CPRA deltas; external regulatory links collected there.

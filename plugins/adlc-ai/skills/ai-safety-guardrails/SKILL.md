@@ -28,7 +28,7 @@ produces, privacy constraints bound what data reaches any model at all.
 
 Never assume. Inspect the feature before adding anything.
 
-For detection commands, see [references/ai-safety-guardrails-detail.md](references/ai-safety-guardrails-detail.md).
+For detection commands, see [references/ai-safety-guardrails-detail.md](../../references/ai-safety-guardrails-detail.md).
 
 Record: model provider, call sites, existing sanitization, data fields sent to
 the model. Mark anything you cannot determine `unknown`, ask rather than guess.
@@ -67,7 +67,7 @@ attacks.
 
 **I-4 Quarantine external/retrieved content** -- wrap any RAG chunks, fetched URLs,
 or tool results in structural delimiters before injecting them into the prompt.
-For the delimiter format, see [references/ai-safety-guardrails-detail.md](references/ai-safety-guardrails-detail.md).
+For the delimiter format, see [references/ai-safety-guardrails-detail.md](../../references/ai-safety-guardrails-detail.md).
 
 **I-5 Multimodal content scan** -- pass images, audio, or documents through a
 moderation API before feeding them to a multimodal model. Adversarial instructions
@@ -98,7 +98,7 @@ content. Log the block reason; do NOT expose the reason code to the user.
 
 **O-6 Refusal / uncertainty handling** -- when the model signals low confidence
 or your classifier marks the output as risky, return a structured refusal.
-For the response format, see [references/ai-safety-guardrails-detail.md](references/ai-safety-guardrails-detail.md).
+For the response format, see [references/ai-safety-guardrails-detail.md](../../references/ai-safety-guardrails-detail.md).
 
 **O-7 Agentic tool-call validation** -- if the model can invoke tools, validate
 every tool name and argument against an allowlist before executing. Treat
@@ -115,7 +115,7 @@ model-generated tool calls as untrusted input.
 ## Step 6: Verify -- red-team eval set
 
 Run before shipping. A pass on every row is required to call the feature done.
-For the full eval table and domain-specific case guidance, see [references/ai-safety-guardrails-detail.md](references/ai-safety-guardrails-detail.md).
+For the full eval table and domain-specific case guidance, see [references/ai-safety-guardrails-detail.md](../../references/ai-safety-guardrails-detail.md).
 
 ## Outbound checkpoint
 
@@ -123,9 +123,9 @@ Local work needs no approval. Outbound here (enabling a cloud model API that rec
 
 ## References
 
-- [references/ai-safety-guardrails-detail.md](references/ai-safety-guardrails-detail.md) -- detection
+- [references/ai-safety-guardrails-detail.md](../../references/ai-safety-guardrails-detail.md) -- detection
   commands, I-4 delimiter format, O-6 refusal format, and the full red-team eval table.
-- [references/ai-safety.md](references/ai-safety.md) -- injection/jailbreak taxonomy,
+- [references/ai-safety.md](../../references/ai-safety.md) -- injection/jailbreak taxonomy,
   the full input/output guardrail checklist, privacy decision tree, and the
   complete red-team eval set with adversarial examples.
 - OWASP LLM Top 10 2025 (LLM01 Prompt Injection, LLM02 Sensitive Information

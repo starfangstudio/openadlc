@@ -51,7 +51,7 @@ If a queue system is already present, extend it; do not introduce a second one.
 
 **If nothing exists**, add a DB-backed queue (Postgres `background_jobs` table with
 `FOR UPDATE SKIP LOCKED`). Schema, claim query, and managed alternatives are in
-[references/background-jobs.md](references/background-jobs.md) (DB-backed queue schema section).
+[references/background-jobs.md](../../references/background-jobs.md) (DB-backed queue schema section).
 
 Decision shortcuts:
 - Ktor + Postgres: use the DB-backed queue from the reference.
@@ -72,7 +72,7 @@ Patterns (pick the right one per job type):
 
 Retry on any unhandled error: exponential backoff, `max_attempts = 5` (default). When
 attempts are exhausted, set `status = 'dead'` (dead-letter). See
-[references/background-jobs.md](references/background-jobs.md) (backoff schedule + key conventions).
+[references/background-jobs.md](../../references/background-jobs.md) (backoff schedule + key conventions).
 
 Surface failures explicitly. A silent `catch` that swallows the error is Blocking.
 Long-running DB work inside a job must NOT hold a transaction open across network I/O.
@@ -85,7 +85,7 @@ Register an HTTPS endpoint in App Store Connect. Verify first, enqueue after, al
 respond HTTP 200 (even on failure to suppress Apple's retry storm).
 
 For the full verification steps and retry schedule, see
-[references/background-jobs-detail.md](references/background-jobs-detail.md) (Apple ASSN V2 section).
+[references/background-jobs-detail.md](../../references/background-jobs-detail.md) (Apple ASSN V2 section).
 
 ### Google Play Real-time Developer Notifications (RTDN)
 
@@ -94,7 +94,7 @@ Bearer JWT, decode `message.data`, respond HTTP 200 within 10 seconds, then enqu
 Do not trust the RTDN payload alone; confirm state via the Google Play Developer API.
 
 For the full verification steps and message structure, see
-[references/background-jobs-detail.md](references/background-jobs-detail.md) (Google RTDN section).
+[references/background-jobs-detail.md](../../references/background-jobs-detail.md) (Google RTDN section).
 
 ## Step 5: Scheduled / cron work
 
@@ -126,10 +126,10 @@ Local work needs no approval. Outbound here (registering a webhook URL in App St
 
 ## References
 
-- [references/background-jobs.md](references/background-jobs.md) -- DB queue schema, claim query,
+- [references/background-jobs.md](../../references/background-jobs.md) -- DB queue schema, claim query,
   backoff schedule, idempotency key conventions, Apple ASSN V2 verification steps, Google
   RTDN message structure, managed-alternative comparison, cron conventions.
-- [references/background-jobs-detail.md](references/background-jobs-detail.md) -- full Apple ASSN V2
+- [references/background-jobs-detail.md](../../references/background-jobs-detail.md) -- full Apple ASSN V2
   verification steps and Google RTDN delivery/verification steps (moved from skill body).
 - Apple: Receiving App Store Server Notifications --
   https://developer.apple.com/documentation/appstoreservernotifications/receiving-app-store-server-notifications

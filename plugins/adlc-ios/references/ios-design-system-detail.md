@@ -18,7 +18,7 @@ Add an Asset Catalog entry for each semantic color (New Color Set, Appearances "
 The catalog handles dark mode and high-contrast automatically; never branch on `colorScheme`
 for semantic colors.
 
-Full color/type/spacing scaffolds and Asset Catalog step-by-step: [references/ios-design-system-templates.md](references/ios-design-system-templates.md).
+Full color/type/spacing scaffolds and Asset Catalog step-by-step: [references/ios-design-system-templates.md](ios-design-system-templates.md).
 
 ## @ScaledMetric spacing extension (Step 4)
 
@@ -40,7 +40,7 @@ Text(label)
 ```
 
 Full component templates (`DSPrimaryButton`, `GlassCard`, etc.):
-[references/ios-design-system-templates.md](references/ios-design-system-templates.md).
+[references/ios-design-system-templates.md](ios-design-system-templates.md).
 
 ## Liquid Glass modifier implementation (Step 6)
 
@@ -67,4 +67,4 @@ struct DSGlassModifier: ViewModifier {
 
 `GlassEffectContainer` is only needed when sibling glass elements must morph together.
 Full API surface, `.glassEffectID`, and fallback matrix:
-[references/ios-liquid-glass.md](references/ios-liquid-glass.md).
+[references/ios-liquid-glass.md](ios-liquid-glass.md).

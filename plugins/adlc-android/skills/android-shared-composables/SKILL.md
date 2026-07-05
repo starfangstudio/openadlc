@@ -61,6 +61,6 @@ fun ListItemRow(
 In a design-system-driven codebase, prefer the project's design-system components (e.g. `ButtonPrimary`, `TextInput`) over raw Material/platform widgets, many such projects lint-fail on raw widgets. Pick by intent (primary/secondary/destructive), not by style flag.
 
 ## References
-- See [references/android-design-system.md](references/android-design-system.md) (loaded on demand) for the full design-system conventions: pick-by-intent components, tokens over literals, and the promote-on-second-use rule.
+- See [references/android-design-system.md](../../references/android-design-system.md) (loaded on demand) for the full design-system conventions: pick-by-intent components, tokens over literals, and the promote-on-second-use rule.
 - Android Developers: Style guidelines for Jetpack Compose APIs: https://developer.android.com/develop/ui/compose/api-guidelines
 - androidx, Component API guidelines (slots, modifier, naming): https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-component-api-guidelines.md

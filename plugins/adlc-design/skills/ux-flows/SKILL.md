@@ -141,7 +141,7 @@ Inventory, Component Inventory, Open questions), or write it to
 screens, components, or code at this stage.
 
 For the full output template and exhaustive examples, see
-[references/ux-flows-detail.md](references/ux-flows-detail.md).
+[references/ux-flows-detail.md](../../references/ux-flows-detail.md).
 
 ## Outbound checkpoint
 
@@ -159,4 +159,4 @@ Local work needs no approval. Outbound here (posting the spec to Figma, a Conflu
 - Nielsen Norman Group, Information Architecture topic index:
   https://www.nngroup.com/topic/information-architecture/
 - ux-flows examples, templates, and screen/component inventory formats:
-  [references/ux-flows-detail.md](references/ux-flows-detail.md)
+  [references/ux-flows-detail.md](../../references/ux-flows-detail.md)

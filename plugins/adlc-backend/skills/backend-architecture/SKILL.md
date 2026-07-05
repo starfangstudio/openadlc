@@ -47,7 +47,7 @@ Mark anything unclear `unknown`. Ask before restructuring.
 
 State this explicitly if the operator hasn't: the default is ONE deployable. Do NOT propose
 microservices, K8s, or an event bus unless the operator has a concrete, measured reason
-listed in [references/modular-monolith.md](references/modular-monolith.md) (when-to-split checklist).
+listed in [references/modular-monolith.md](../../references/modular-monolith.md) (when-to-split checklist).
 
 Anti-over-engineering gates (stop and ask before crossing):
 - Proposing more than one deployable (service mesh, sidecar, separate services)
@@ -58,12 +58,12 @@ Anti-over-engineering gates (stop and ask before crossing):
 ## Step 3: Lay out the domain modules
 
 For the standard module list (accounts, catalog, leaderboards, payments, liveops, simulation),
-see [references/backend-architecture-detail.md](references/backend-architecture-detail.md) (Standard domain modules).
+see [references/backend-architecture-detail.md](../../references/backend-architecture-detail.md) (Standard domain modules).
 
 Add only the modules the product actually needs. Start with `accounts`; add others on demand.
 
 Each module follows a three-layer layout. Full schema and visibility rules are in
-[references/modular-monolith.md](references/modular-monolith.md) (Module seams section).
+[references/modular-monolith.md](../../references/modular-monolith.md) (Module seams section).
 
 Key constraints:
 - Only each module's `api` sub-package may be imported by other modules.
@@ -74,7 +74,7 @@ Key constraints:
 
 Enforce four layers: transport -> service -> data -> infra. Dependencies flow strictly
 downward; transport never calls data directly.
-For the full ASCII diagram, see [references/backend-architecture-detail.md](references/backend-architecture-detail.md)
+For the full ASCII diagram, see [references/backend-architecture-detail.md](../../references/backend-architecture-detail.md)
 (Layering contract).
 
 For cross-module side effects that must survive a crash, use an outbox table (write to outbox
@@ -84,13 +84,13 @@ you have a real consistency requirement -- not by default.
 ## Step 5: Choose the stack (if greenfield)
 
 Detect first (Step 1). If nothing exists, use the stack selection guide (decision tree
-plus Ktor module structure) in [references/modular-monolith.md](references/modular-monolith.md).
+plus Ktor module structure) in [references/modular-monolith.md](../../references/modular-monolith.md).
 Do not mix stacks in the same monolith without an explicit operator decision.
 
 ## Step 6: Cross-cutting deferrals
 
 Do not handle these inside this skill. For the full deferral table (ops, security, privacy,
-monetization, sim), see [references/backend-architecture-detail.md](references/backend-architecture-detail.md)
+monetization, sim), see [references/backend-architecture-detail.md](../../references/backend-architecture-detail.md)
 (Cross-cutting deferrals).
 
 ## Step 7: Verify (pass/fail)
@@ -117,9 +117,9 @@ Local work needs no approval. Anything outbound (publish, push, post) needs the 
 
 ## References
 
-- [references/backend-architecture-detail.md](references/backend-architecture-detail.md) -- module list, layering
+- [references/backend-architecture-detail.md](../../references/backend-architecture-detail.md) -- module list, layering
   diagram, cross-cutting deferrals (load on demand).
-- [references/modular-monolith.md](references/modular-monolith.md) -- module seams, visibility rules,
+- [references/modular-monolith.md](../../references/modular-monolith.md) -- module seams, visibility rules,
   when-to-split checklist, outbox pattern, stack decision tree.
 - Milan Jovanovic, "Modular Monolith Architecture" --
   https://www.milanjovanovic.tech/blog/modular-monolith-architecture-dotnet

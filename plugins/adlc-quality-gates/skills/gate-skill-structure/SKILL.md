@@ -60,6 +60,10 @@ Run each check against the resolved file. Each emits PASS or FAIL with the offen
 - WARN on second-person instruction voice (`you should`, `you can`), prefer imperative.
 - WARN on time-sensitive phrasing (`before <month> <year>`, `after <date>`) outside an "Old patterns" / `<details>` block.
 
+### 9. Reference citations resolve at the link target
+- A reference citation shows its pack-relative name as DISPLAY text (`[references/<file>.md](target)`), but the LINK TARGET inside `(...)` is what must resolve. Resolve each target against the `SKILL.md` directory and FAIL if it does not point at an existing file.
+- Judge the target, never the display text: a shared pack-level reference is cited `[references/<file>.md](../../references/<file>.md)` from a skill (`../references/` from a command or agent); a bare `references/<file>.md` target only resolves for a skill's OWN co-located `references/` subdir. `[references/foo.md](references/foo.md)` FAILs when `foo.md` lives at the pack root, because the target resolves to the skill's absent `references/foo.md`.
+
 ## Commands
 
 Use scripted greps for determinism. Substitute the resolved path for `$F`.
@@ -98,7 +102,7 @@ PASS
 
 Rules for the report:
 - `RESULT: FAIL` if ANY check fails; otherwise `PASS` (warnings do not fail the gate).
-- Every check (1–8) appears under exactly one of FAIL / WARN / PASS.
+- Every check (1–9) appears under exactly one of FAIL / WARN / PASS.
 - Each FAIL/WARN line names the check number, the problem, a one-line fix, and a line number where applicable.
 
 ## After the report

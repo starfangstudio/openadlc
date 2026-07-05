@@ -52,7 +52,7 @@ you cannot determine `unknown`; do not invent product IDs or app keys.
 All UGS services share one init call; add it once, not per-service. On iOS, gate
 analytics and ads data collection on the ATT prompt result.
 
-For the bootstrap code sample, see [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md).
+For the bootstrap code sample, see [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md).
 
 ## Step 3: Wire Unity IAP
 
@@ -64,7 +64,7 @@ server confirms. Never embed store credentials (service account key, Apple priva
 in the Unity build.
 
 For catalog setup code, receipt relay patterns (Google Play + Apple StoreKit 2), and
-sandbox testing steps, see [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md).
+sandbox testing steps, see [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md).
 
 ## Step 4: Wire LevelPlay ad mediation
 
@@ -78,7 +78,7 @@ Key rules:
   in the `onAdRewarded` callback, never on ad-close.
 - Interstitial: enforce frequency caps on the dashboard, not in client code.
 
-For init, rewarded, and interstitial code samples, see [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md).
+For init, rewarded, and interstitial code samples, see [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md).
 
 ## Step 5: Wire Remote Config
 
@@ -86,7 +86,7 @@ Remote Config is the live-ops knob for economy values (prices, reward multiplier
 event schedules). Do not hardcode these in C#. Fetch on session start; use the cached
 result. Never block gameplay on a fetch; the local default is the offline fallback.
 
-For the fetch/read code sample and dashboard key setup, see [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md).
+For the fetch/read code sample and dashboard key setup, see [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md).
 
 ## Step 6: Wire Analytics events
 
@@ -95,7 +95,7 @@ consistent with the UGS Dashboard schema defined there first. Do not call `Flush
 hot paths. On iOS, gate on ATT result; on Android Play Families (under-13), disable
 behavioral targeting per android-compliance.
 
-For event instrumentation code samples, see [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md).
+For event instrumentation code samples, see [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md).
 
 ## Step 7: Verify (sandbox, pass/fail)
 
@@ -124,4 +124,4 @@ Local work needs no approval. Outbound here (pushing IAP product configuration t
 - Unity Remote Config get started: https://docs.unity.com/en-us/remote-config/get-started
 - Unity Analytics events: https://docs.unity.com/ugs/manual/analytics/manual/events
 - Unity Analytics custom event (SDK 5.1+): https://docs.unity.com/en-us/analytics/events/custom-event
-- Full SDK code samples and receipt validation detail: [references/unity-monetization-sdks-detail.md](references/unity-monetization-sdks-detail.md)
+- Full SDK code samples and receipt validation detail: [references/unity-monetization-sdks-detail.md](../../references/unity-monetization-sdks-detail.md)

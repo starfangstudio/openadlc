@@ -47,7 +47,7 @@ grep -rn "requestTrackingAuthorization\|advertisingIdentifier\|ATTrackingManager
 grep -n "ITSAppUsesNonExemptEncryption" */Info.plist */*.plist 2>/dev/null
 ```
 
-SDK manifest detection and tracking-domain grep: [references/ios-store-compliance-detail.md](references/ios-store-compliance-detail.md).
+SDK manifest detection and tracking-domain grep: [references/ios-store-compliance-detail.md](../../references/ios-store-compliance-detail.md).
 
 ## Gate 1: Privacy Manifest (PrivacyInfo.xcprivacy)
 
@@ -75,7 +75,7 @@ API. Use only Apple's approved code strings; custom strings cause ITMS-91055 on 
 </dict>
 ```
 
-Other categories (FileTimestamp, SystemBootTime, DiskSpace, ActiveKeyboards) and the full reason-code table: [references/ios-store-compliance-detail.md](references/ios-store-compliance-detail.md).
+Other categories (FileTimestamp, SystemBootTime, DiskSpace, ActiveKeyboards) and the full reason-code table: [references/ios-store-compliance-detail.md](../../references/ios-store-compliance-detail.md).
 
 **Step 1.3 -- Audit SDK manifests.** Any SDK listed in Privacy Report without a manifest
 must be updated or replaced. Do not write SDK reasons into the app manifest; they must
@@ -89,7 +89,7 @@ all manifests, trace every off-device network call, answer three dimensions per 
 (Used to track you / Linked to you / Not linked to you), and set a privacy policy URL
 (required to submit). When a field is genuinely `unknown`, mark it and ask first -- a
 false "no collection" answer is a Guideline 5.1.1 violation. Full data-type table:
-[references/ios-store-compliance-detail.md](references/ios-store-compliance-detail.md).
+[references/ios-store-compliance-detail.md](../../references/ios-store-compliance-detail.md).
 
 ## Gate 3: App Tracking Transparency (ATT)
 
@@ -109,7 +109,7 @@ No IDFA or cross-app tracking: set `NSPrivacyTracking = false`, omit
 is enabled in the App ID on developer.apple.com and that the app actually uses it.
 Remove unused entitlements. Apple rejects capabilities not exercised in the build
 (HealthKit, NetworkExtension, UIBackgroundModes in particular). Full high-scrutiny list:
-[references/ios-store-compliance-detail.md](references/ios-store-compliance-detail.md).
+[references/ios-store-compliance-detail.md](../../references/ios-store-compliance-detail.md).
 
 **Encryption / export compliance.** Add this key to `Info.plist` to avoid the per-build
 manual answer in App Store Connect and unblock TestFlight immediately:
@@ -152,7 +152,7 @@ Local work needs no approval. Outbound here (uploading to App Store Connect or T
 
 ## References
 
-- [references/ios-store-compliance-detail.md](references/ios-store-compliance-detail.md) -- remaining XML
+- [references/ios-store-compliance-detail.md](../../references/ios-store-compliance-detail.md) -- remaining XML
   samples, full reason-code table, nutrition-label categories, high-scrutiny entitlements,
   review guideline hot spots, SDK tracking-domain grep.
 - Apple, Privacy manifest files: https://developer.apple.com/documentation/bundleresources/privacy_manifest_files

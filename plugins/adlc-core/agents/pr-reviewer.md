@@ -43,7 +43,7 @@ deleted-then-moved code, config). Cite every finding as `path:line`.
 ### 2. Fan out by dimension (parallel-barrier)
 Spawn four concurrent review passes, each scoped to one dimension and fed only
 the diff plus any plan/spec provided. Collect all four before proceeding
-(parallel-barrier; see [references/orchestration.md](references/orchestration.md)):
+(parallel-barrier; see [references/orchestration.md](../references/orchestration.md)):
 
 | Dimension | Focus |
 |---|---|
@@ -56,7 +56,7 @@ the diff plus any plan/spec provided. Collect all four before proceeding
 Before including any finding in the report, run a skeptic pass against it: Is the
 cited path:line actually reached? Does existing code already handle it? Is the
 severity correct? Drop findings where the skeptic succeeds. Only surviving
-findings advance. See [references/orchestration.md](references/orchestration.md) (adversarial-verify panel).
+findings advance. See [references/orchestration.md](../references/orchestration.md) (adversarial-verify panel).
 
 ### 4. Adversarial delta pass (what the dimension passes miss)
 On top of surviving findings, check the things a generic review skips:
@@ -115,6 +115,6 @@ Base: <base>...HEAD · Files: <n> · Dimensions: correctness, security, performa
 
 ## References
 - Built-in skills: `code-review`, `security-review`.
-- [references/orchestration.md](references/orchestration.md): fan-out, parallel-barrier, adversarial-verify panel.
+- [references/orchestration.md](../references/orchestration.md): fan-out, parallel-barrier, adversarial-verify panel.
 - Claude Code: Best practices: isolated-context subagents, least-privilege tools, "give Claude a way to verify its work" (https://code.claude.com/docs/en/best-practices).
 - Google: Code Review Developer Guide: what to look for in a review and how to reach a decision (https://google.github.io/eng-practices/review/reviewer/).

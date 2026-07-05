@@ -52,14 +52,14 @@ coverage from direct deps alone.
 
 Run the scanner appropriate to each detected ecosystem. For exact commands
 (Gradle, npm/UPM, SPM via ORT, LicenseFinder multi-ecosystem), see
-[references/oss-license-scan-detail.md](references/oss-license-scan-detail.md) (Step 1 section).
+[references/oss-license-scan-detail.md](../../references/oss-license-scan-detail.md) (Step 1 section).
 The scanner quick-reference table is in
-[references/oss-license-scan.md](references/oss-license-scan.md).
+[references/oss-license-scan.md](../../references/oss-license-scan.md).
 
 ## Step 2: triage by category
 
 Classify each detected license using the category table in
-[references/oss-license-scan.md](references/oss-license-scan.md). Flag:
+[references/oss-license-scan.md](../../references/oss-license-scan.md). Flag:
 
 - **BLOCK -- strong copyleft in a closed app:** any `GPL-*` or `AGPL-*` dep
   linked into a proprietary binary. Stop; do not ship without legal sign-off
@@ -90,9 +90,9 @@ notice-generation modes.
 
 Produce an SBOM in SPDX JSON (preferred for EU CRA readiness) or CycloneDX.
 For exact ORT and LicenseFinder commands, see
-[references/oss-license-scan-detail.md](references/oss-license-scan-detail.md) (Step 4 section)
+[references/oss-license-scan-detail.md](../../references/oss-license-scan-detail.md) (Step 4 section)
 and the SBOM formats section in
-[references/oss-license-scan.md](references/oss-license-scan.md).
+[references/oss-license-scan.md](../../references/oss-license-scan.md).
 Store the SBOM under version control alongside the release artifact.
 
 ## Verify: pass/fail checklist
@@ -121,9 +121,9 @@ Local work is fine to do without asking. Outbound here (submitting an app binary
 
 ## References
 
-- [references/oss-license-scan.md](references/oss-license-scan.md) -- license category
+- [references/oss-license-scan.md](../../references/oss-license-scan.md) -- license category
   table, LGPL linking rules, scanner quick-reference, SBOM formats.
-- [references/oss-license-scan-detail.md](references/oss-license-scan-detail.md) -- scanner
+- [references/oss-license-scan-detail.md](../../references/oss-license-scan-detail.md) -- scanner
   commands (Step 1) and SBOM generation commands (Step 4).
 - SPDX License List (v3.28, Feb 2026): https://spdx.org/licenses/
 - OSS Review Toolkit (ORT): https://oss-review-toolkit.github.io/ort/

@@ -61,7 +61,7 @@ you cannot determine `unknown`; ask before inventing.
 ## Step 2: Chunking strategy
 
 Choose a strategy matched to document type. Apply detected project conventions if any.
-For the full strategy table and overlap/metadata guidance, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+For the full strategy table and overlap/metadata guidance, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 Heuristic: target 256--512 tokens per chunk, ~10% overlap. Tune against recall@5 eval.
 Store `doc_id`, `chunk_index`, `source_url`, `created_at` on every chunk.
@@ -71,26 +71,26 @@ Store `doc_id`, `chunk_index`, `source_url`, `created_at` on every chunk.
 Use the built-in `claude-api` skill for current model IDs and pricing. Prefer a
 well-benchmarked open model; match embedding dimension to the store's index and hold it.
 For on-device / mobile RAG, use quantized local models to keep user data on-device.
-For model options and dimension guidance, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+For model options and dimension guidance, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 ## Step 4: Vector store selection
 
 Pick the cheapest option your scale and ops posture can support. Key signal: already on
 Postgres -> `pgvector`; local-first -> `sqlite-vec`; >1M vectors or no infra -> managed.
-For the full decision table, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+For the full decision table, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 ## Step 5: Retrieval -- hybrid BM25 + vector + reranking
 
 Plain vector search misses exact keywords; plain BM25 misses semantic equivalents. Use
 both, fused with Reciprocal Rank Fusion, then re-score with a cross-encoder reranker.
 Typical starting values: K1=20, K2=20, reranker top-N=5. Skip the reranker only when
-recall@5 > 0.90. For the pipeline diagram and reranker options, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+recall@5 > 0.90. For the pipeline diagram and reranker options, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 ## Step 6: Citation and grounding
 
 Every chunk passed to the LLM must carry its `source_url` (or `doc_id` + `chunk_index`).
 Instruct the model to cite inline and refuse to answer from parametric memory; a claim
-with no `[source_N]` is a grounding failure. For the exact system prompt, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+with no `[source_N]` is a grounding failure. For the exact system prompt, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 ## Step 7: Evaluation -- retrieval recall + answer faithfulness
 
@@ -103,7 +103,7 @@ Do not ship a RAG pipeline without a repeatable eval. Minimum two metrics:
 
 Build a labeled golden set of at least 50 (query, expected_doc_ids, expected_answer)
 tuples. Re-run on every chunking or retrieval parameter change; log metric values.
-Do not claim done without a passing eval run. For the RAGAS install and eval script, see [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md).
+Do not claim done without a passing eval run. For the RAGAS install and eval script, see [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md).
 
 ## Guardrails
 
@@ -137,4 +137,4 @@ Local work needs no approval. Outbound here (sending document chunks to an exter
   https://dev.to/young_gao/rag-is-not-dead-advanced-retrieval-patterns-that-actually-work-in-2026-2gbo
 - Full implementation detail (chunking table, embedding options, store selection table,
   retrieval diagram, citation prompt, RAGAS script):
-  [references/rag-pipeline-detail.md](references/rag-pipeline-detail.md)
+  [references/rag-pipeline-detail.md](../../references/rag-pipeline-detail.md)

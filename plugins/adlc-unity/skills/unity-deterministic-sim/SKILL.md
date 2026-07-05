@@ -58,7 +58,7 @@ the sim path. Enforce with an `AssemblyDefinition` that does NOT reference
 
 For the directory layout and the full list of hard boundary rules (no floats, no
 `Dictionary` iteration, no async), see
-[references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md).
+[references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md).
 
 ## Step 4: Fixed-point math
 
@@ -67,7 +67,7 @@ thin `FP` struct; the rest of the sim imports only `FP`, never the underlying ty
 Never use `System.Math` or `Mathf` inside the sim boundary for transcendental functions.
 
 For the library comparison table and the transcendental-function requirement, see
-[references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md).
+[references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md).
 
 ## Step 5: Deterministic seeded RNG
 
@@ -77,7 +77,7 @@ use `System.Random`, `UnityEngine.Random`, or `Unity.Mathematics.Random` inside 
 sim boundary.
 
 For the `SimRng` struct shape, see
-[references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md).
+[references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md).
 
 ## Step 6: Sim API contract
 
@@ -87,7 +87,7 @@ serialization (no `GetHashCode()`). A per-tick hash log lets you pinpoint the fi
 divergence tick when clients report different final states.
 
 For the full struct and class signatures, see
-[references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md).
+[references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md).
 
 ## Step 7: Lockstep driver shape
 
@@ -121,7 +121,7 @@ identical hashes, and one that locks the hash against a committed golden file. E
 CI to run on an ARM device or Android emulator.
 
 For the full test code and the post-change validator loop, see
-[references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md).
+[references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md).
 
 ## What this skill does NOT cover
 
@@ -137,8 +137,8 @@ Local work needs no approval. Outbound here (pushing to remote, opening a PR, po
 
 ## References
 
-- [references/unity-deterministic-sim-detail.md](references/unity-deterministic-sim-detail.md) -- layout, boundary rules, FP library table, SimRng shape, API contract, test code, validator loop, lockstep vs rollback.
-- [references/deterministic-sim.md](references/deterministic-sim.md) -- cross-platform caveats table.
+- [references/unity-deterministic-sim-detail.md](../../references/unity-deterministic-sim-detail.md) -- layout, boundary rules, FP library table, SimRng shape, API contract, test code, validator loop, lockstep vs rollback.
+- [references/deterministic-sim.md](../../references/deterministic-sim.md) -- cross-platform caveats table.
 - Zack Sinisi, "Deterministic Lockstep Networking Demystified": https://zacksinisi.com/deterministic-lockstep-networking-demystified/
 - Unity Discussions, "State of Determinism in Unity": https://discussions.unity.com/t/state-of-determinism-in-unity/867770
 - FixedMath.Net: https://github.com/asik/FixedMath.Net

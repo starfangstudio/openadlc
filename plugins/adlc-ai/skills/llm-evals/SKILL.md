@@ -47,7 +47,7 @@ assertion style. Mark anything you cannot determine `unknown` and ask; never inv
 prompt. Real cases outperform synthetic ones; mine production logs or design sessions.
 
 For the golden-set file shape and coverage targets (tags, min case counts, growth
-guidance), see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+guidance), see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Step 3: Pick assertion types (pyramid, cheapest first)
 
@@ -73,7 +73,7 @@ Calibrate the judge against 50-100 human-labeled examples before shipping; targe
 >= 85% agreement. High-variance disagreements indicate a rubric that needs tightening.
 
 For the calibration procedure, the injection-safe Python pattern, and the third-party
-judge wrapping convention, see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+judge wrapping convention, see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Step 5: N-run variance -- reliability, not single-shot
 
@@ -81,7 +81,7 @@ Never report a single-run pass as done. Run each eval case N >= 5 times.
 Gate on `pass_rate >= 0.8` AND `variance <= 0.05` for the case to count as stable.
 High variance (> 0.1) means the prompt is under-specified; fix before shipping.
 
-For the computation snippet, see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+For the computation snippet, see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Step 6: Cost and latency in the eval
 
@@ -90,7 +90,7 @@ Every eval run must log `case_id`, `pass`, `score`, `latency_ms`, `input_tokens`
 `p99_latency_ms` per suite. Flag `WARN` if cost exceeds budget or p99 exceeds SLA.
 A 10x cost spike signals an unintended prompt change.
 
-For the log schema and aggregation example, see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+For the log schema and aggregation example, see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Step 7: Regression-gate prompt and model changes
 
@@ -99,7 +99,7 @@ model swap, or system-message change triggers a full eval run against the golden
 A case that previously passed and now fails is a regression; the PR is blocked until
 fixed or the case is explicitly retired.
 
-For the CI runner command, see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+For the CI runner command, see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Step 8: Verify (pass/fail, not "looks right")
 
@@ -107,7 +107,7 @@ The eval runner MUST emit a machine-readable result with case counts, pass rate,
 variance, budget usage, and a `RESULT: PASS` or `RESULT: FAIL` line. No claimed
 "pass" without this output. Fix failures before merging.
 
-For the required output format, see [references/llm-evals-detail.md](references/llm-evals-detail.md).
+For the required output format, see [references/llm-evals-detail.md](../../references/llm-evals-detail.md).
 
 ## Outbound checkpoint
 
@@ -115,10 +115,10 @@ Local work needs no approval. Outbound here (posting eval results to an external
 
 ## References
 
-- [references/llm-evals-detail.md](references/llm-evals-detail.md) -- golden-set shapes, coverage
+- [references/llm-evals-detail.md](../../references/llm-evals-detail.md) -- golden-set shapes, coverage
   targets, injection guard patterns, N-run computation, log schema, CI command, and the
   required eval output format.
-- [references/llm-evals.md](references/llm-evals.md) -- eval file shapes, LLM-judge
+- [references/llm-evals.md](../../references/llm-evals.md) -- eval file shapes, LLM-judge
   calibration detail, injection guard patterns, and a runnable Python eval harness.
 - DeepEval LLM-as-judge guide (2026): https://deepeval.com/guides/guides-llm-as-a-judge
 - FutureAGI deterministic eval metrics (2026): https://futureagi.com/blog/deterministic-llm-evaluation-metrics-2026/

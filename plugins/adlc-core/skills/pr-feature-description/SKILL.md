@@ -11,7 +11,7 @@ Generate a Conventional Commits title and a templated PR body from a local diff.
 
 ## Workflow
 
-1. **Collect the diff** (per repo). The change is on the run branch `adlc/<run-id>`; the base is the repo's default branch at latest (`origin/<default>`), per [references/run-isolation.md](references/run-isolation.md). Ask only if the default is ambiguous. In a poly-repo product a run produces **one PR per touched repo**, so generate one description per repo from that repo's diff. Run, in each touched repo's root:
+1. **Collect the diff** (per repo). The change is on the run branch `adlc/<run-id>`; the base is the repo's default branch at latest (`origin/<default>`), per [references/run-isolation.md](../../references/run-isolation.md). Ask only if the default is ambiguous. In a poly-repo product a run produces **one PR per touched repo**, so generate one description per repo from that repo's diff. Run, in each touched repo's root:
    - `git fetch origin <base> --quiet` (only if network already approved for fetch; otherwise skip)
    - `git diff --stat <base>...HEAD`: file-level overview
    - `git diff <base>...HEAD`: full diff (read; for huge diffs read `--stat` plus per-file diffs of the largest files)
@@ -79,7 +79,7 @@ Rules: lead with **Why** intent over restating the diff, the reviewer can read t
 
 ## Dedup before opening a PR
 
-One PR per touched repo (per [references/run-isolation.md](references/run-isolation.md)): a single-repo run is one PR; a poly-repo product run is one PR per repo, each linked to the **same-domain sub-issue**. Before the operator opens a PR from this body, check that repo for an existing open PR for `adlc/<run-id>` (`gh pr list --head adlc/<run-id> --state open`) and offer update-vs-new. Tag each PR with the run-id so duplicates stay detectable.
+One PR per touched repo (per [references/run-isolation.md](../../references/run-isolation.md)): a single-repo run is one PR; a poly-repo product run is one PR per repo, each linked to the **same-domain sub-issue**. Before the operator opens a PR from this body, check that repo for an existing open PR for `adlc/<run-id>` (`gh pr list --head adlc/<run-id> --state open`) and offer update-vs-new. Tag each PR with the run-id so duplicates stay detectable.
 
 ## Outbound consent
 
@@ -95,6 +95,6 @@ Before presenting, self-check and fix any failure:
 
 ## References
 
-- Run isolation (run branch, default base, one-PR-per-run dedup): [references/run-isolation.md](references/run-isolation.md)
+- Run isolation (run branch, default base, one-PR-per-run dedup): [references/run-isolation.md](../../references/run-isolation.md)
 - Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/
 - GitHub: creating a pull request template: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository

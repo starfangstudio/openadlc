@@ -25,7 +25,7 @@ skill. Do not hardcode model IDs or prices here; they rot.
 
 Never assume what is already present. Grep before writing anything.
 For the full grep battery (SDK deps, API client, retry utilities, secret loading), see
-[references/llm-integration-detail.md](references/llm-integration-detail.md).
+[references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 Record: SDK in use (or `unknown`), existing retry utility, secret-loading pattern,
 and whether a streaming client is already wired. Match what exists; mark gaps `unknown`
@@ -82,7 +82,7 @@ attempt and check whether the result was already persisted before re-calling.
 ## Step 4: Model routing
 
 Route by task complexity. For the routing table and function contract, see
-[references/llm-integration-detail.md](references/llm-integration-detail.md).
+[references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Step 5: Cost and latency budget
 
@@ -90,7 +90,7 @@ Set a budget per feature before shipping, not after. Enforce `max_tokens` in the
 request; log actuals per call; alert when a single call exceeds 2x the budget.
 Use prompt caching for any context that repeats across requests (system prompt,
 retrieved documents, tool schemas). For full budget formulas, cache TTL details,
-and the keep-warm pattern, see [references/llm-integration-detail.md](references/llm-integration-detail.md).
+and the keep-warm pattern, see [references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Step 6: Graceful degradation and fallback
 
@@ -103,14 +103,14 @@ Every AI feature must have a defined fallback. Choose one:
 Implement a circuit breaker: after N consecutive failures, open the circuit and route
 directly to fallback without attempting the API. Reset after a probe interval.
 For the circuit-breaker flow diagram and recommended N / reset values, see
-[references/llm-integration-detail.md](references/llm-integration-detail.md).
+[references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Step 7: Verify
 
 Run four checks (smoke call, token/cost count, streaming first-token timing, error-path
 classification) before calling the integration done. Do not ship without a passing smoke
 call and a logged usage block. For the exact test recipes and log shapes, see
-[references/llm-integration-detail.md](references/llm-integration-detail.md).
+[references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Outbound checkpoint
 
@@ -121,7 +121,7 @@ Local work needs no approval (including local dev calls against synthetic data).
 - Built-in `claude-api` skill: exact SDK calls, model IDs, pricing, streaming event
   shapes, tool-use protocol, structured output, prompt caching syntax, and token
   counting. Load it for any of those specifics rather than duplicating them here.
-- [references/llm-integration-detail.md](references/llm-integration-detail.md): grep battery, routing
+- [references/llm-integration-detail.md](../../references/llm-integration-detail.md): grep battery, routing
   table, budget formulas, circuit-breaker flow, and verify recipes.
 - Anthropic streaming docs: https://docs.anthropic.com/en/docs/build-with-claude/streaming
 - Anthropic prompt caching docs: https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching

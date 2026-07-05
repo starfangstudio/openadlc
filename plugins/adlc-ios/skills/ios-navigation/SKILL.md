@@ -52,7 +52,7 @@ public enum <Feature>Route: Hashable, Sendable {
 
 `Hashable` is required by `NavigationPath`; `Sendable` is required for Swift 6.
 Full patterns and the cross-module navigation rule:
-[references/ios-navigation.md](references/ios-navigation.md).
+[references/ios-navigation.md](../../references/ios-navigation.md).
 
 ## Step 3: Create or extend AppRouter
 
@@ -103,7 +103,7 @@ var body: some Scene {
 ```
 
 Full `AppDeepLink` URL-parse implementation:
-[references/ios-navigation.md](references/ios-navigation.md).
+[references/ios-navigation.md](../../references/ios-navigation.md).
 
 ## Step 5: Verify (pass/fail)
 
@@ -138,10 +138,10 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-navigation.md](references/ios-navigation.md) -- AppRouter, deep-link
+- [references/ios-navigation.md](../../references/ios-navigation.md) -- AppRouter, deep-link
   URL decoder, cross-module nav rule, NavigationView migration table.
 - Apple, NavigationStack (iOS 16+): https://developer.apple.com/documentation/swiftui/navigationstack
 - Apple, NavigationPath: https://developer.apple.com/documentation/swiftui/navigationpath
 - Apple, navigationDestination(for:destination:): https://developer.apple.com/documentation/swiftui/view/navigationdestination(for:destination:)
 - Apple, onOpenURL(perform:): https://developer.apple.com/documentation/swiftui/view/onopenurl(perform:)
-- [references/ios-architecture.md](references/ios-architecture.md) -- SPM interface/impl, @Observable, DI.
+- [references/ios-architecture.md](../../references/ios-architecture.md) -- SPM interface/impl, @Observable, DI.

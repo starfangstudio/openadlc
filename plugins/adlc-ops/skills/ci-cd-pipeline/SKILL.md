@@ -68,7 +68,7 @@ Stage rules:
 - [ ] Artifacts uploaded so deploy job can retrieve them without a rebuild
 - [ ] Actions pinned to commit SHA or verified version tag (not `@latest`)
 
-See [references/github-actions.md](references/github-actions.md) for copy-paste workflow YAML,
+See [references/github-actions.md](../../references/github-actions.md) for copy-paste workflow YAML,
 secrets hygiene rules, caching key patterns, mobile/Unity lanes, and PaaS deploy snippets.
 
 ## Mobile lane
@@ -86,7 +86,7 @@ Read the project's `Fastfile` first: `grep "lane :" fastlane/Fastfile`. Pass sec
 (`MATCH_PASSWORD`, `APP_STORE_CONNECT_API_KEY_JSON`, `GOOGLE_PLAY_JSON_KEY`) as
 environment-scoped CI secrets, never hardcoded.
 
-For Unity: see the Unity CI lane snippet in [references/ci-cd-pipeline-detail.md](references/ci-cd-pipeline-detail.md).
+For Unity: see the Unity CI lane snippet in [references/ci-cd-pipeline-detail.md](../../references/ci-cd-pipeline-detail.md).
 
 ## Backend lane (managed PaaS)
 
@@ -94,12 +94,12 @@ Choose the simplest option that fits the project. Preferred order (Railway defau
 Render if already in use, Fly.io for multi-region, Cloud Run for GCP pay-per-request). Do not
 introduce Docker Compose, Helm, or Terraform unless the operator explicitly asks.
 
-For the full PaaS comparison table and deploy commands, see [references/ci-cd-pipeline-detail.md](references/ci-cd-pipeline-detail.md).
+For the full PaaS comparison table and deploy commands, see [references/ci-cd-pipeline-detail.md](../../references/ci-cd-pipeline-detail.md).
 
 ## Caching
 
 Always add a cache step; it cuts CI time by 50-80% on warm runs. For caching key patterns
-per ecosystem (npm, Bundler, CocoaPods, Gradle, pip), see [references/ci-cd-pipeline-detail.md](references/ci-cd-pipeline-detail.md).
+per ecosystem (npm, Bundler, CocoaPods, Gradle, pip), see [references/ci-cd-pipeline-detail.md](../../references/ci-cd-pipeline-detail.md).
 
 ## Secrets hygiene
 
@@ -123,8 +123,8 @@ Local work needs no approval. Outbound here (enabling auto-deploy to production,
 
 ## References
 
-- [references/ci-cd-pipeline-detail.md](references/ci-cd-pipeline-detail.md) -- caching key patterns, PaaS table, Unity CI lane snippet, secrets hygiene detail
-- [references/github-actions.md](references/github-actions.md) -- starter YAML, secrets/environments
+- [references/ci-cd-pipeline-detail.md](../../references/ci-cd-pipeline-detail.md) -- caching key patterns, PaaS table, Unity CI lane snippet, secrets hygiene detail
+- [references/github-actions.md](../../references/github-actions.md) -- starter YAML, secrets/environments
   setup, mobile/Unity lanes, PaaS deploy snippets (created alongside this skill)
 - GitHub Docs, Environments for deployment: https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment
 - GitHub Docs, Encrypted secrets: https://docs.github.com/en/actions/concepts/security/secrets

@@ -44,7 +44,7 @@ of any existing test assembly. EditMode assemblies must set `"includePlatforms":
 PlayMode assemblies use `"includePlatforms": []`. Both need `"optionalUnityReferences": ["TestAssemblies"]`.
 Use `[Test]` in EditMode; use `[UnityTest]` with `yield return` in PlayMode only when frame timing is required.
 
-For the folder layout and minimum `.asmdef` JSON for both modes, see [references/unity-testing-detail.md](references/unity-testing-detail.md).
+For the folder layout and minimum `.asmdef` JSON for both modes, see [references/unity-testing-detail.md](../../references/unity-testing-detail.md).
 
 ## Step 3: The pyramid -- what goes where
 
@@ -65,7 +65,7 @@ versions and platform targets. Load the golden input (commands + seed), run the 
 equals the committed hash. An unexpected hash change is a blocking regression; an
 intentional sim change requires regenerating and committing the golden file.
 
-For the full C# test sample and golden-file conventions, see [references/unity-testing-detail.md](references/unity-testing-detail.md).
+For the full C# test sample and golden-file conventions, see [references/unity-testing-detail.md](../../references/unity-testing-detail.md).
 
 ## Step 5: Run tests
 
@@ -76,7 +76,7 @@ For the full C# test sample and golden-file conventions, see [references/unity-t
 output by default. Exit code 0 = all pass, non-zero = failures; parse `test-results-*.xml`
 (NUnit format) in CI.
 
-For the full CLI invocation with all flags and filter options, see [references/unity-testing-detail.md](references/unity-testing-detail.md).
+For the full CLI invocation with all flags and filter options, see [references/unity-testing-detail.md](../../references/unity-testing-detail.md).
 
 ## Step 6: Validator loop
 
@@ -107,7 +107,7 @@ Local work needs no approval. Anything outbound (publish, push, post) needs the 
 ## References
 
 - unity-testing detail (assembly layout, golden-replay code sample, full CLI flags):
-  [references/unity-testing-detail.md](references/unity-testing-detail.md)
+  [references/unity-testing-detail.md](../../references/unity-testing-detail.md)
 - Unity 6 Manual -- Edit mode and Play mode tests:
   https://docs.unity3d.com/6000.4/Documentation/Manual/test-framework/edit-mode-vs-play-mode-tests.html
 - Unity Test Framework -- Running tests from the command line (flags: `-runTests`,

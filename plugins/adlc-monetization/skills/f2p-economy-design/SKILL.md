@@ -38,7 +38,7 @@ Define two currencies and keep their roles separate:
 | Soft (gold/coins) | Gameplay, dailies, quests, rewarded ads | Upgrades, crafting, energy refills | Enough for 1 meaningful upgrade/week |
 | Hard (gems/crystals) | Rare event login, battle pass trickle | Premium gacha, skip timers, cosmetics | 20-60 gems/month (IAP = 5-30x faster) |
 
-Run the sink/source balance check in [references/f2p-economy.md](references/f2p-economy.md) before coding any values.
+Run the sink/source balance check in [references/f2p-economy.md](../../references/f2p-economy.md) before coding any values.
 
 ## Step 2: IAP pricing + anchoring
 
@@ -95,11 +95,11 @@ the server config. Legality detail defers to the games-compliance pack.
 
 Structure VIP levels on cumulative lifetime spend. Perks must be status/cosmetics/
 service, not match-outcome advantages. See the full tier table in
-[references/f2p-economy.md](references/f2p-economy.md).
+[references/f2p-economy.md](../../references/f2p-economy.md).
 
 ## Step 6: Economy sim (pass/fail before launch)
 
-Run the spreadsheet simulation in [references/f2p-economy.md](references/f2p-economy.md)
+Run the spreadsheet simulation in [references/f2p-economy.md](../../references/f2p-economy.md)
 against three archetypes (F2P casual, F2P active, Dolphin $10/mo) before any live
 tuning. Gate: each archetype hits a meaningful upgrade at least once per week and the
 Dolphin does not max their account in week 1.
@@ -123,7 +123,7 @@ Local work is free. Outbound here (publishing Remote Config changes live to play
 
 ## References
 
-- [references/f2p-economy.md](references/f2p-economy.md) - currency/sinks/pricing/gacha
+- [references/f2p-economy.md](../../references/f2p-economy.md) - currency/sinks/pricing/gacha
   patterns, funnel-health metrics, economy sim, whale-ladder tiers
 - Apple App Store Guideline 3.1.1 (loot box odds disclosure):
   https://developer.apple.com/app-store/review/guidelines/#in-app-purchase
@@ -135,4 +135,4 @@ Local work is free. Outbound here (publishing Remote Config changes live to play
   https://blog.promise.legal/loot-box-laws-game-developers/
 - GDC "Where the Whales Live" (F2P pyramid model):
   https://www.gdcvault.com/play/1019671/Where-the-Whales-Live-The
-- StoreKit 2 + Play Billing pricing detail: see [references/f2p-economy.md](references/f2p-economy.md)
+- StoreKit 2 + Play Billing pricing detail: see [references/f2p-economy.md](../../references/f2p-economy.md)

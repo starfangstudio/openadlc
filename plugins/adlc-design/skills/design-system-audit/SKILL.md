@@ -61,7 +61,7 @@ grep -rEn '"[A-Z][a-zA-Z]+(Bold|Regular|Medium|Light|Italic)"' \
 ```
 
 For SwiftUI CGFloat and React/CSS pixel literals, see
-[references/design-system-audit-detail.md](references/design-system-audit-detail.md).
+[references/design-system-audit-detail.md](../../references/design-system-audit-detail.md).
 
 Flag every match. Exempt: constants files that ARE the token definitions, test files, and
 generated build outputs.
@@ -79,7 +79,7 @@ grep -rEn '<(p|button|span|h[1-6]|input)\b' \
 ```
 
 For SwiftUI Text/Button greps, see
-[references/design-system-audit-detail.md](references/design-system-audit-detail.md).
+[references/design-system-audit-detail.md](../../references/design-system-audit-detail.md).
 
 Triage each hit: is a DS equivalent available? If `unknown`, mark it `unknown`, do not
 assume a wrapper exists.
@@ -93,7 +93,7 @@ grep -rEhon '#[0-9a-fA-F]{6}' --include="*.kt" --include="*.swift" \
 ```
 
 For near-identical modifier-chain detection, see
-[references/design-system-audit-detail.md](references/design-system-audit-detail.md).
+[references/design-system-audit-detail.md](../../references/design-system-audit-detail.md).
 
 Promotion threshold: flag when the same value, modifier chain, or component shell appears
 in 3+ locations. Note 2-occurrence pairs under Suggestions; they are watch items, not yet
@@ -116,7 +116,7 @@ grep -rEn '<img\b' --include="*.tsx" --include="*.jsx" . | grep -v 'alt='
 ```
 
 For SwiftUI `.accessibilityLabel` checks and missing error/empty/loading state greps, see
-[references/design-system-audit-detail.md](references/design-system-audit-detail.md).
+[references/design-system-audit-detail.md](../../references/design-system-audit-detail.md).
 
 ## Step 6: Emit the findings report
 
@@ -154,4 +154,4 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 - Style Dictionary v5 migration guide: https://styledictionary.com/versions/v5/migration/
 - WCAG 2.2 (W3C Recommendation, 2023-10-05): https://www.w3.org/TR/WCAG22/
 - WCAG 2.2 mobile guidance (WCAG2Mobile): https://w3c.github.io/matf/
-- Audit detail (full grep recipes, SwiftUI/React extensions, modifier-chain scan, full example): [references/design-system-audit-detail.md](references/design-system-audit-detail.md)
+- Audit detail (full grep recipes, SwiftUI/React extensions, modifier-chain scan, full example): [references/design-system-audit-detail.md](../../references/design-system-audit-detail.md)

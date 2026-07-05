@@ -42,7 +42,7 @@ find . -name "build.gradle.kts" | xargs grep -l "skie\|nativecoroutines" 2>/dev/
 
 Record: KMP module name, iOS targets, integration method, async bridge, minimum iOS
 deployment. Mark anything not found `unknown`. Pick integration method from the decision
-table in [references/ios-kmp-interop.md](references/ios-kmp-interop.md) before proceeding.
+table in [references/ios-kmp-interop.md](../../references/ios-kmp-interop.md) before proceeding.
 
 ## Step 2: Configure the Gradle XCFramework
 
@@ -116,7 +116,7 @@ For utilitarian screens where CMP shared UI is justified, wrap
 `ComposeUIViewController` in `UIViewControllerRepresentable` and add
 `CADisableMinimumFrameDurationOnPhone = true` to `Info.plist`. Full code snippet and
 the CMP-vs-SwiftUI decision table (Maps, Camera, flagship surfaces) are in
-[references/ios-kmp-interop.md](references/ios-kmp-interop.md).
+[references/ios-kmp-interop.md](../../references/ios-kmp-interop.md).
 
 ## Step 7: Verify (pass/fail)
 
@@ -137,7 +137,7 @@ Local work needs no approval. Outbound here (pushing a KMP binary to a remote ho
 
 ## References
 
-- [references/ios-kmp-interop.md](references/ios-kmp-interop.md) -- decision table, full Gradle
+- [references/ios-kmp-interop.md](../../references/ios-kmp-interop.md) -- decision table, full Gradle
   + Package.swift snippets, expect/actual, SKIE setup, CMP code, Sendable guidance.
 - JetBrains, iOS integration methods: https://kotlinlang.org/docs/multiplatform/multiplatform-ios-integration-overview.html
 - JetBrains, SPM export: https://kotlinlang.org/docs/multiplatform/multiplatform-spm-export.html

@@ -69,7 +69,7 @@ struct SectionCard<Content: View>: View {
 - Multiple slots: use descriptive names (`leading`, `trailing`, `header`,
   `actions`) with `= { EmptyView() }` defaults for optional slots. Full
   multi-slot naming conventions in
-  [references/ios-shared-views-detail.md](references/ios-shared-views-detail.md).
+  [references/ios-shared-views-detail.md](../../references/ios-shared-views-detail.md).
 
 ## Step 4: Use design-system tokens, not literals
 
@@ -166,5 +166,5 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 - Apple, #Preview macro: https://developer.apple.com/documentation/swiftui/preview(_:traits:body:cameras:)
 - Apple, Accessibility modifiers: https://developer.apple.com/documentation/swiftui/view-accessibility
 - `adlc-design` pack -- design-tokens skill (token doctrine) and design-a11y skill (a11y doctrine): defer there
-- [references/ios-architecture.md](references/ios-architecture.md) -- SPM interface/impl split, access levels, DesignSystem target placement
-- [references/ios-shared-views-detail.md](references/ios-shared-views-detail.md) -- multi-slot naming conventions, exhaustive edge cases
+- [references/ios-architecture.md](../../references/ios-architecture.md) -- SPM interface/impl split, access levels, DesignSystem target placement
+- [references/ios-shared-views-detail.md](../../references/ios-shared-views-detail.md) -- multi-slot naming conventions, exhaustive edge cases

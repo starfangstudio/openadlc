@@ -115,12 +115,12 @@ build.
 
 ## Anvil/Dagger note
 
-See [references/android-architecture.md](references/android-architecture.md) for the canonical DI scope table and binding annotations.
+See [references/android-architecture.md](../../references/android-architecture.md) for the canonical DI scope table and binding annotations.
 
 ## References
 
-- See [references/android-architecture.md](references/android-architecture.md), [references/android-naming.md](references/android-naming.md),
-  and [references/android-build-gradle.md](references/android-build-gradle.md) (loaded on demand) for the full conventions: the canonical
+- See [references/android-architecture.md](../../references/android-architecture.md), [references/android-naming.md](../../references/android-naming.md),
+  and [references/android-build-gradle.md](../../references/android-build-gradle.md) (loaded on demand) for the full conventions: the canonical
   Anvil/Dagger scope table, module/file naming, and version-catalog + convention-plugin rules.
 - Android Developers: Common modularization patterns (api/impl dependency-inversion
   rules, feature-module dependency direction):

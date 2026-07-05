@@ -86,7 +86,7 @@ func testAccessibilityAudit() throws {
 Then enable TalkBack on device and verify reading order matches the design spec.
 
 For full command options and `XCUIAccessibilityAuditType` flags, see
-[references/design-a11y-detail.md](references/design-a11y-detail.md).
+[references/design-a11y-detail.md](../../references/design-a11y-detail.md).
 
 ---
 
@@ -133,7 +133,7 @@ Structure
 
 For per-platform binding notes on the three most-failed criteria (Focus
 Appearance 2.4.13, Target Size 2.5.8, Focus Not Obscured 2.4.11), see
-[references/design-a11y-detail.md](references/design-a11y-detail.md).
+[references/design-a11y-detail.md](../../references/design-a11y-detail.md).
 
 ---
 
@@ -169,5 +169,5 @@ Local work needs no approval. Outbound here (posting audit results to a ticket, 
 - Material 3 Accessibility: https://m3.material.io/foundations/accessible-design/overview
 - Kotlin Multiplatform Compose iOS accessibility: https://kotlinlang.org/docs/multiplatform/compose-ios-accessibility.html
 - axe-core rule descriptions: https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md
-- [references/wcag-2.2.md](references/wcag-2.2.md) -- criteria table + design-time checklist
-- [references/design-a11y-detail.md](references/design-a11y-detail.md) -- full command options, XCUIAccessibilityAuditType flags, per-platform binding notes
+- [references/wcag-2.2.md](../../references/wcag-2.2.md) -- criteria table + design-time checklist
+- [references/design-a11y-detail.md](../../references/design-a11y-detail.md) -- full command options, XCUIAccessibilityAuditType flags, per-platform binding notes

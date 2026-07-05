@@ -46,7 +46,7 @@ Games: use the guest-first (device account) pattern -- players start without fri
 then optionally link a social identity. Utility apps: skip the guest phase, create a
 `user` account on first login.
 
-See [references/auth-identity.md](references/auth-identity.md) (Account model section) for the
+See [references/auth-identity.md](../../references/auth-identity.md) (Account model section) for the
 `Account` + `Identity` table schema and the link/merge flow.
 
 ## Step 3: Social sign-in
@@ -69,7 +69,7 @@ POST /auth/google  { idToken }
   -> verify via Google certs (cache by max-age) -> check aud -> upsert Identity -> return token pair
 ```
 
-Full flows and JVM library choices: [references/auth-identity.md](references/auth-identity.md)
+Full flows and JVM library choices: [references/auth-identity.md](../../references/auth-identity.md)
 (Social login verification section).
 ## Step 4: Session tokens
 
@@ -87,7 +87,7 @@ family immediately.
 the account. Optionally check `jti` against a Redis revoked set for immediate
 access-token invalidation on security events.
 
-Full schema and rotation algorithm: [references/auth-identity.md](references/auth-identity.md)
+Full schema and rotation algorithm: [references/auth-identity.md](../../references/auth-identity.md)
 (Token schema section).
 
 ## Step 5: Password handling (email auth only)
@@ -98,7 +98,7 @@ Use `de.mkammerer:argon2-jvm`, variant Argon2id, params m=65536 t=3 p=4.
 Never use MD5, SHA-1, or unsalted hashes. Never roll a custom scheme.
 Zeroize the password char array after hashing/verification.
 
-Kotlin snippet: [references/auth-identity.md](references/auth-identity.md) (Password handling).
+Kotlin snippet: [references/auth-identity.md](../../references/auth-identity.md) (Password handling).
 
 ## Step 6: Authorization -- role/scope checks at the service boundary
 
@@ -107,7 +107,7 @@ reaches domain logic. Do not scatter `if (user.isAdmin)` checks inside domain co
 Keep roles coarse (`player`, `admin`); fine-grained resource checks query the DB after
 token verification and do not go into the JWT.
 
-Ktor example: [references/auth-identity.md](references/auth-identity.md) (Authorization).
+Ktor example: [references/auth-identity.md](../../references/auth-identity.md) (Authorization).
 
 ## Step 7: Defer
 
@@ -137,7 +137,7 @@ Local work needs no approval. Outbound here (migration against a remote/producti
 
 ## References
 
-- [references/auth-identity.md](references/auth-identity.md)
+- [references/auth-identity.md](../../references/auth-identity.md)
 - App Store Guideline 4.8 -- https://developer.apple.com/app-store/review/guidelines/#login-services
 - Sign in with Apple -- https://developer.apple.com/sign-in-with-apple/
 - Google Sign-In server verify -- https://developers.google.com/identity/sign-in/android/backend-auth

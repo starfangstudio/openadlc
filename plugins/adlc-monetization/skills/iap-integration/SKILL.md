@@ -100,7 +100,7 @@ on `BillingFlowParams` as a fraud signal.
 
 ## Server-side validation
 
-Full flows in [references/receipt-validation.md](references/receipt-validation.md). Summary:
+Full flows in [references/receipt-validation.md](../../references/receipt-validation.md). Summary:
 
 - **iOS:** client sends `tx.jwsRepresentation`. Server verifies via Apple's
   App Store Server Libraries (in-process JWS) or `GET
@@ -136,7 +136,7 @@ Local work is free. Outbound here (publishing products or prices to App Store Co
 
 ## References
 
-- [references/receipt-validation.md](references/receipt-validation.md) (full server flows:
+- [references/receipt-validation.md](../../references/receipt-validation.md) (full server flows:
   StoreKit 2 JWS + App Store Server API; Play Developer API + RTDN; anti-patterns)
 - StoreKit 2: https://developer.apple.com/documentation/storekit/in-app-purchase
 - App Store Server API: https://developer.apple.com/documentation/appstoreserverapi

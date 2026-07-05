@@ -51,7 +51,7 @@ limiting?"), that is itself an abuse case to test, not an assumption.
 
 Each STRIDE letter violates one security property; the control class is where the defensive requirement comes from. If a finding spans two letters, split it: one label per distinct violation, each maps to a different control.
 
-For the full STRIDE property table and abuse-case generators checklist, see [references/security-negative-testing-detail.md](references/security-negative-testing-detail.md).
+For the full STRIDE property table and abuse-case generators checklist, see [references/security-negative-testing-detail.md](../../references/security-negative-testing-detail.md).
 
 STRIDE labels for inline use: **S**poofing (Authentication), **T**ampering (Integrity), **R**epudiation (Non-repudiation), **I**nformation disclosure (Confidentiality), **D**enial of service (Availability), **E**levation of privilege (Authorization).
 
@@ -61,7 +61,7 @@ Emit one table: columns `# | STRIDE | Abuse case ("As an attacker, I...") | Secu
 
 Priority: **P1** = auth/authZ bypass, injection, data exposure; **P2** = DoS, misuse-defense, integrity-of-flow; **P3** = lower-likelihood or defense-in-depth. One row per distinct defense, not per payload variant.
 
-For the exact format with example rows, see [references/security-negative-testing-detail.md](references/security-negative-testing-detail.md).
+For the exact format with example rows, see [references/security-negative-testing-detail.md](../../references/security-negative-testing-detail.md).
 
 ## Validator → fix loop
 
@@ -85,7 +85,7 @@ Before presenting, self-check and fix any gap:
 - **Nothing here needs operator approval** because nothing leaves the machine. Running
   an actual abuse payload against a *live/remote* system would be an outbound
   action, out of scope for this skill and would need the operator's explicit yes under the consent law if ever done.
-- The STRIDE labels and generators are in [references/security-negative-testing-detail.md](references/security-negative-testing-detail.md); that file is loaded on demand and does not block this skill from running. Pairs with the built-in `security-review` for finding real instances in code. `security-property-taxonomy-reference` remains an optional deeper reference card.
+- The STRIDE labels and generators are in [references/security-negative-testing-detail.md](../../references/security-negative-testing-detail.md); that file is loaded on demand and does not block this skill from running. Pairs with the built-in `security-review` for finding real instances in code. `security-property-taxonomy-reference` remains an optional deeper reference card.
 
 ## Android note
 
@@ -98,7 +98,7 @@ intent extras, and WebView features rendering untrusted content (see
 
 ## References
 
-- [references/security-negative-testing-detail.md](references/security-negative-testing-detail.md): STRIDE property table, abuse-case generators checklist, and matrix output format with example rows.
+- [references/security-negative-testing-detail.md](../../references/security-negative-testing-detail.md): STRIDE property table, abuse-case generators checklist, and matrix output format with example rows.
 - OWASP: *Abuse Case Cheat Sheet* (workshop method; the "no/not" generation trick; abuse case -> security requirement -> security test): https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html
 - OWASP Web Security Testing Guide (WSTG), §10.7 *Test Defenses Against Application Misuse*: https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/10-Business_Logic_Testing/07-Test_Defenses_Against_Application_Misuse.html
 - OWASP SAMM: *Requirements-Driven Testing: Misuse/Abuse Testing*: https://owaspsamm.org/model/verification/requirements-driven-testing/stream-b/

@@ -88,7 +88,7 @@ This codebase scopes tests and uses Spotless for formatting:
 
 ## References
 
-- See [references/android-testing.md](references/android-testing.md) (loaded on demand) for the full
+- See [references/android-testing.md](../../references/android-testing.md) (loaded on demand) for the full
   test strategy: the pyramid, what to test at each level, and the screenshot/e2e conventions.
 - Build your app from the command line: Android Developers:
   https://developer.android.com/build/building-cmdline

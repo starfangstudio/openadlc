@@ -211,7 +211,7 @@ Adjust if the operator specifies a different device tier; mark unconfirmed budge
   https://zacksinisi.com/deterministic-lockstep-networking-demystified/
 - Mastering Unity Addressables (2025) --
   https://quickunitytips.blogspot.com/2025/11/unity-addressables-guide-2025.html
-- [references/unity-architecture.md](references/unity-architecture.md) -- asmdef boundaries,
+- [references/unity-architecture.md](../references/unity-architecture.md) -- asmdef boundaries,
   ScriptableObject patterns, sim/render architecture diagram.
-- [references/deterministic-sim.md](references/deterministic-sim.md) -- fixed-point math,
+- [references/deterministic-sim.md](../references/deterministic-sim.md) -- fixed-point math,
   lockstep vs rollback deep-dive, golden-replay test pattern.

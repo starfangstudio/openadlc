@@ -26,7 +26,7 @@ detect-first rule: inspect the project's actual settings before changing anythin
 Never assume target hardware or current headroom. Inspect first: check minimum API level,
 Graphics APIs, current `Application.targetFrameRate`, and URP Asset SRP Batcher flag.
 For the exact shell commands, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 Record: minimum device tier, frame rate cap, SRP Batcher state, GPU Resident Drawer state.
 Mark anything undetermined `unknown` and ask; never invent device targets.
@@ -34,7 +34,7 @@ Mark anything undetermined `unknown` and ask; never invent device targets.
 Set baselines before changing anything: take a Profiler capture on the worst-case gameplay
 moment on the lowest supported device. Record frame time ms, draw call count, GC.Alloc per
 frame, and texture memory. For frame budget and draw call budget tables, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 ## Step 2: Draw-call batching
 
@@ -45,7 +45,7 @@ Atlas for UI/sprites. Disable Static Batching if GPU Resident Drawer is active (
 conflict in Unity 6).
 
 For the full batching decision tree, per-method verification steps, and GPU Resident Drawer
-interaction notes, see [references/unity-performance-detail.md](references/unity-performance-detail.md).
+interaction notes, see [references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 ## Step 3: Object pooling
 
@@ -55,7 +55,7 @@ spawnable object (units, projectiles, hit effects, UI popups) must be pooled.
 Use Unity 6's built-in `UnityEngine.Pool.ObjectPool<T>` for simple cases. Pre-warm during
 scene load, size to peak concurrency + 20% headroom, log a warning when a pool expands at
 runtime (never throw). For the typed pool pattern with code sample and lifecycle rules, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 Verify: after one full gameplay session, Profiler -> Memory module shows a flat "GC
 Allocated" graph with no per-frame spikes from spawns.
@@ -70,7 +70,7 @@ with `TextMeshPro.SetText` overloads, remove LINQ from hot paths, use `Span<T>`/
 for frame-local scratch space, and annotate lockstep sim jobs with `[BurstCompile]`.
 
 For the full allocation pattern table with problem/fix pairs, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 ## Step 5: Addressables memory discipline
 
@@ -92,7 +92,7 @@ module + Frame Debugger), texture memory (Memory Profiler snapshot comparison).
 
 For the adb forward command, iOS connection steps, the 4-step triage sequence, and the
 snapshot comparison procedure, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 ## Step 7: Texture compression and build size
 
@@ -103,7 +103,7 @@ Build stripping: Managed Stripping Level High (IL2CPP) + Strip Engine Code + Sha
 Stripping via a Variant Collection + Vorbis for music / ADPCM for short SFX.
 
 For the full compression table and stripping step sequence, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 Verify: compare build size before and after. Report delta to the user.
 
@@ -114,7 +114,7 @@ within budget, zero per-frame GC allocs in the hot path, draw calls within tier 
 no leaked objects between scene transitions, and build size within the operator's target.
 
 For the exact numbered checklist, see
-[references/unity-performance-detail.md](references/unity-performance-detail.md).
+[references/unity-performance-detail.md](../../references/unity-performance-detail.md).
 
 Do not report a fix as done based on code review alone; always run the profiler check.
 
@@ -124,11 +124,11 @@ Local work needs no approval. Outbound here (uploading a build to the Play Store
 
 ## References
 
-- [references/unity-performance-detail.md](references/unity-performance-detail.md) -- full detail: device
+- [references/unity-performance-detail.md](../../references/unity-performance-detail.md) -- full detail: device
   detection commands, frame/draw-call budget tables, batching decision tree, pool code
   sample, allocation pattern table, profiler workflow, texture compression table, build
   stripping steps, and pass/fail checklist.
-- [references/unity-performance.md](references/unity-performance.md) -- mobile perf checklist (legacy
+- [references/unity-performance.md](../../references/unity-performance.md) -- mobile perf checklist (legacy
   reference; superseded by unity-performance-detail.md for items above).
 - Unity Manual: Draw Call Batching -- https://docs.unity3d.com/Manual/DrawCallBatching.html
 - Unity Manual: SRP Batcher -- https://docs.unity3d.com/Manual/SRPBatcher.html

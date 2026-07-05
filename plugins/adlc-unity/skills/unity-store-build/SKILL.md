@@ -59,7 +59,7 @@ inventing values.
 **Via scripting (batchmode/CI -- preferred for reproducible builds):**
 
 For the full `BuildScript.cs` implementation and CI invocation commands, see
-[references/unity-store-build-detail.md](references/unity-store-build-detail.md) (section: "Android: batchmode build script" and "Android: CI invocation").
+[references/unity-store-build-detail.md](../../references/unity-store-build-detail.md) (section: "Android: batchmode build script" and "Android: CI invocation").
 
 Output: `Builds/Android/game.aab`. Verify the file exists and is non-zero before proceeding.
 
@@ -74,7 +74,7 @@ Unity produces an Xcode project, not an IPA directly. The build is two stages.
 
 Set bundle ID to match the App Store Connect record, scripting backend to IL2CPP,
 and output path to a directory (not a file). For the full `BuildiOS()` script and
-batchmode invocation, see [references/unity-store-build-detail.md](references/unity-store-build-detail.md)
+batchmode invocation, see [references/unity-store-build-detail.md](../../references/unity-store-build-detail.md)
 (sections: "iOS: Unity Xcode project generation script" and "iOS: Unity batchmode invocation").
 
 Output: `Builds/iOS/` containing `Unity-iPhone.xcworkspace` (or `.xcodeproj`).
@@ -83,7 +83,7 @@ Output: `Builds/iOS/` containing `Unity-iPhone.xcworkspace` (or `.xcodeproj`).
 
 Requires macOS with Xcode installed. Signing identity and provisioning profile must
 be available in the macOS keychain before running. For the full `xcodebuild` commands
-and minimum `ExportOptions.plist`, see [references/unity-store-build-detail.md](references/unity-store-build-detail.md)
+and minimum `ExportOptions.plist`, see [references/unity-store-build-detail.md](../../references/unity-store-build-detail.md)
 (sections: "iOS: xcodebuild archive and export IPA" and "ExportOptions.plist (App Store minimum)").
 
 Output: `Builds/iOS/export/<GameName>.ipa`.
@@ -95,7 +95,7 @@ before uploading.
 ## Step 4: Verify the artifacts
 
 For the verification commands and how to diagnose an unsigned IPA, see
-[references/unity-store-build-detail.md](references/unity-store-build-detail.md) (section: "Artifact verification").
+[references/unity-store-build-detail.md](../../references/unity-store-build-detail.md) (section: "Artifact verification").
 
 ## Outbound checkpoint
 
@@ -109,4 +109,4 @@ Local work needs no approval. Outbound here (uploading an AAB to the Google Play
 - Unity Manual: Build a player from the command line -- https://docs.unity3d.com/6000.4/Documentation/Manual/build-command-line.html
 - Unity Manual: Build an iOS application -- https://docs.unity3d.com/Manual/iphone-BuildProcess.html
 - Unity Scripting: `BuildPipeline.BuildPlayer` -- https://docs.unity3d.com/ScriptReference/BuildPipeline.BuildPlayer.html
-- Full code samples and verification commands: [references/unity-store-build-detail.md](references/unity-store-build-detail.md)
+- Full code samples and verification commands: [references/unity-store-build-detail.md](../../references/unity-store-build-detail.md)

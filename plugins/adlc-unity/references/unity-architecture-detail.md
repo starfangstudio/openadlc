@@ -74,7 +74,7 @@ Three patterns to know:
 - **Event channels:** a SO that components register listeners on; call `Raise()` to broadcast.
   Decouples sender from receiver without a hard reference.
 
-See [references/unity-architecture.md](references/unity-architecture.md) (ScriptableObject Patterns) for
+See [references/unity-architecture.md](unity-architecture.md) (ScriptableObject Patterns) for
 copy-ready code for all three.
 
 ## Step 5: Composition over deep MonoBehaviour inheritance

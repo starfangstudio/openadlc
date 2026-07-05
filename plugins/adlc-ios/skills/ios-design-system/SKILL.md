@@ -55,7 +55,7 @@ Create `Packages/DesignSystem/` with two targets:
 - `DesignSystemImpl` -- concrete DS components (`DSPrimaryButton`, `GlassCard`, etc.),
   Assets.xcassets. The app target imports this for DI wiring.
 
-Full `Package.swift` skeleton: [references/ios-design-system-templates.md](references/ios-design-system-templates.md).
+Full `Package.swift` skeleton: [references/ios-design-system-templates.md](../../references/ios-design-system-templates.md).
 
 ## Step 3: Wire token output into DSTokens
 
@@ -63,8 +63,8 @@ Map the Style Dictionary `DesignTokens.swift` output into a typed `DSTokens` nam
 Never hard-code values; every property aliases the generated output. For each semantic color,
 add an Asset Catalog entry (Any, Dark); never branch on `colorScheme` for semantic colors.
 For the color extension snippet and Asset Catalog steps, see
-[references/ios-design-system-detail.md](references/ios-design-system-detail.md).
-Full scaffolds: [references/ios-design-system-templates.md](references/ios-design-system-templates.md).
+[references/ios-design-system-detail.md](../../references/ios-design-system-detail.md).
+Full scaffolds: [references/ios-design-system-templates.md](../../references/ios-design-system-templates.md).
 
 ## Step 4: Dynamic Type text styles + @ScaledMetric spacing
 
@@ -72,15 +72,15 @@ Use `Font.system(_ style:)` (or `Font.custom(_:size:relativeTo:)` for brand font
 text scales automatically. Use `@ScaledMetric(relativeTo:)` for spacing; always supply
 `relativeTo:`. Raw numeric literals in DS `.padding()` calls are violations; fail them
 in verify. Spacing extension snippet:
-[references/ios-design-system-detail.md](references/ios-design-system-detail.md).
+[references/ios-design-system-detail.md](../../references/ios-design-system-detail.md).
 
 ## Step 5: DS components (no raw controls where a DS component exists)
 
 Each DS component lives in `DesignSystemImpl` and reads exclusively from `DSTokens.*`.
 Rule: no raw `Color(...)`, no numeric `.padding(N)`, no `Font.system(size:)` inside
 a DS component. Usage pattern and full component templates:
-[references/ios-design-system-detail.md](references/ios-design-system-detail.md) and
-[references/ios-design-system-templates.md](references/ios-design-system-templates.md).
+[references/ios-design-system-detail.md](../../references/ios-design-system-detail.md) and
+[references/ios-design-system-templates.md](../../references/ios-design-system-templates.md).
 
 ## Step 6: Liquid Glass (iOS 26 gate required)
 
@@ -88,8 +88,8 @@ Never call `.glassEffect()` directly at feature call sites. Wrap it in a `DSGlas
 that gates on `#available(iOS 26, *)` and falls back to `.ultraThinMaterial`. Use
 `GlassEffectContainer` only when sibling glass elements must morph together. Do not apply
 glass to content-heavy surfaces. Full modifier implementation, `.glassEffectID`, and
-fallback matrix: [references/ios-design-system-detail.md](references/ios-design-system-detail.md) and
-[references/ios-liquid-glass.md](references/ios-liquid-glass.md).
+fallback matrix: [references/ios-design-system-detail.md](../../references/ios-design-system-detail.md) and
+[references/ios-liquid-glass.md](../../references/ios-liquid-glass.md).
 
 ## Step 7: Verify (pass/fail)
 
@@ -110,12 +110,12 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-design-system-detail.md](references/ios-design-system-detail.md) -- code snippets for
+- [references/ios-design-system-detail.md](../../references/ios-design-system-detail.md) -- code snippets for
   DSTokens color/spacing extensions, DS component usage pattern, and DSGlassModifier
   implementation (load on demand).
-- [references/ios-liquid-glass.md](references/ios-liquid-glass.md) -- `.glassEffect()` signature,
+- [references/ios-liquid-glass.md](../../references/ios-liquid-glass.md) -- `.glassEffect()` signature,
   `GlassEffectContainer`, `.glassEffectID`, fallback matrix.
-- [references/ios-design-system-templates.md](references/ios-design-system-templates.md) -- full DSTokens
+- [references/ios-design-system-templates.md](../../references/ios-design-system-templates.md) -- full DSTokens
   scaffold, Asset Catalog steps, typography/spacing extensions, component templates,
   Package.swift skeleton.
 - adlc-design `design-tokens` skill -- token pipeline, `build/ios/<brand>/DesignTokens.swift`.

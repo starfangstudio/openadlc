@@ -45,7 +45,7 @@ If flagged: confirm with counsel; the required remediation is either a COPPA-com
 
 ## Loot-box / F2P jurisdiction flags
 
-Surface the data footprint here; jurisdiction-specific law is in [references/data-protection-audit.md](references/data-protection-audit.md).
+Surface the data footprint here; jurisdiction-specific law is in [references/data-protection-audit.md](data-protection-audit.md).
 
 Flag these data types when the app has IAP with randomised rewards:
 

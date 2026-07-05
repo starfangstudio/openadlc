@@ -63,7 +63,7 @@ Mark what is found vs `unknown`. Never invent app keys, placement IDs, or networ
 - Set the cap on the mediation dashboard (LevelPlay / AdMob), not in client code,
   so it tunes without a release.
 
-See [references/ads-mediation-detail.md](references/ads-mediation-detail.md) for format comparison
+See [references/ads-mediation-detail.md](../../references/ads-mediation-detail.md) for format comparison
 table and session frequency data.
 
 ## Mediation: in-app bidding over waterfall
@@ -126,7 +126,7 @@ Local work is free. Outbound here (publishing ad unit IDs, app keys, or mediatio
 
 ## References
 
-- [references/ads-mediation-detail.md](references/ads-mediation-detail.md) -- format comparison,
+- [references/ads-mediation-detail.md](../../references/ads-mediation-detail.md) -- format comparison,
   frequency data, mediation table, economy calibration, verify checklist.
 - Google AdMob mediation overview: https://developers.google.com/admob/android/mediation
 - AppLovin MAX mediation: https://developers.applovin.com/en/max/android/overview/

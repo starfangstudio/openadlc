@@ -24,7 +24,7 @@ Produce commit messages that link to their tracking ticket using Conventional Co
 - **Relationship**: does this commit *close* the ticket or merely *reference* it? Picks the trailer.
 - **Tracker**: GitHub/GitLab vs Jira/other; decides keyword vs plain ref.
 
-**Commit on the run branch only.** All of a run's commits go on `adlc/<run-id>`, never `main` or a shared branch (per [references/run-isolation.md](references/run-isolation.md)). The run-id is workspace-level: in a poly-repo product each touched repo carries its own `adlc/<run-id>` branch, and commits go on the branch of whichever repo the change lives in.
+**Commit on the run branch only.** All of a run's commits go on `adlc/<run-id>`, never `main` or a shared branch (per [references/run-isolation.md](../../references/run-isolation.md)). The run-id is workspace-level: in a poly-repo product each touched repo carries its own `adlc/<run-id>` branch, and commits go on the branch of whichever repo the change lives in.
 
 **Ticket-claim dedup (one ticket -> one run).** Before claiming a ticket for this run, check whether another open `adlc/*` branch or PR already references it; if so, STOP and ask (update the existing run vs start a new one) rather than double-claiming.
 

@@ -67,7 +67,7 @@ A loop is not a slow sequential grind. Wherever there is no data dependency, fan
 - Flows nest: a round may itself fan out sub-agents, each in its own clean context, and those may fan out again. Dynamic fan-out (scale the width to the work) is encouraged.
 - Always **adversarially verify** a fanned-out result before trusting it; parallel speed never buys a skipped check.
 
-Wall-clock should approach the slowest single path, not the sum of all paths. See [references/orchestration.md](references/orchestration.md) for the fan-out, parallel-barrier, pipeline, and judge-panel patterns.
+Wall-clock should approach the slowest single path, not the sum of all paths. See [references/orchestration.md](orchestration.md) for the fan-out, parallel-barrier, pipeline, and judge-panel patterns.
 
 ## Policy
 

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Tracker adapters (ADLC)
 
-ADLC commands talk to a tracker through ONE small abstraction, not GitHub-specific commands sprinkled through the prose. The lifecycle says "create the issue, link it under the parent, set it in-progress, assign the operator"; the adapter turns each of those into the right call for whatever tracker the workspace uses. Swap the tracker, keep the lifecycle. Loaded by intake, plan, and implement, and cited from [references/run-isolation.md](references/run-isolation.md) wherever a tracker write happens.
+ADLC commands talk to a tracker through ONE small abstraction, not GitHub-specific commands sprinkled through the prose. The lifecycle says "create the issue, link it under the parent, set it in-progress, assign the operator"; the adapter turns each of those into the right call for whatever tracker the workspace uses. Swap the tracker, keep the lifecycle. Loaded by intake, plan, and implement, and cited from [references/run-isolation.md](run-isolation.md) wherever a tracker write happens.
 
 ## The four verbs
 Every tracker action the commands drive is one of these four. Commands call the verb; they never name a tracker.

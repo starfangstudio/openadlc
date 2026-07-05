@@ -130,4 +130,4 @@ arguments (IDs), and have the destination's ViewModel load from the data layer.
   https://github.com/android/nowinandroid
 
 ## Anvil/Dagger note
-DI scope table (AppScope/ActivityScope/FragmentScope/ViewScope/ReceiverScope/ServiceScope) and binding rules: see [references/android-architecture.md](references/android-architecture.md) (DI scope table).
+DI scope table (AppScope/ActivityScope/FragmentScope/ViewScope/ReceiverScope/ServiceScope) and binding rules: see [references/android-architecture.md](../references/android-architecture.md) (DI scope table).

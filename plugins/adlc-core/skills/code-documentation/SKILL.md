@@ -35,7 +35,7 @@ Pick the right artifact for the need (the built-in handles prose/structure; this
 ### Keep it minimal and co-located
 - Prefer deleting or updating stale docs over adding new ones. Match the surrounding docs' tone and depth.
 - Document the *why* (decisions, trade-offs, gotchas), the *what* is already in the code. Skip narration the reader can read off the source.
-- Put the doc where it will be maintained (README beside the module, docstring on the symbol, runbook in the ops dir) rather than a detached wiki that rots. Docs are repo content: inside an ADLC run, doc commits go on that repo's `adlc/<run-id>` branch (per repo, in a poly-repo product), never on `main`, never in the out-of-repo run workspace (see [references/run-isolation.md](references/run-isolation.md)).
+- Put the doc where it will be maintained (README beside the module, docstring on the symbol, runbook in the ops dir) rather than a detached wiki that rots. Docs are repo content: inside an ADLC run, doc commits go on that repo's `adlc/<run-id>` branch (per repo, in a poly-repo product), never on `main`, never in the out-of-repo run workspace (see [references/run-isolation.md](../../references/run-isolation.md)).
 
 ### 🚦 Outbound consent, publishing is outbound
 Writing and editing doc files locally needs no approval. The moment a doc is pushed to a remote, published to a docs site/wiki, posted to a PR, or sent to anyone, it leaves the machine and needs the operator's explicit yes.
@@ -44,5 +44,5 @@ Publishing/posting a doc anywhere is outbound: get the operator's explicit yes f
 
 ## References
 - Built-in wrapped: `engineering:documentation`
-- Run isolation (run branch `adlc/<run-id>`, code/docs in git vs out-of-repo artifacts, poly-repo): [references/run-isolation.md](references/run-isolation.md)
+- Run isolation (run branch `adlc/<run-id>`, code/docs in git vs out-of-repo artifacts, poly-repo): [references/run-isolation.md](../../references/run-isolation.md)
 - ADLC outbound consent: see project `CLAUDE.md` (outbound needs the operator's explicit yes, THE law) and `rules/` deltas.

@@ -50,7 +50,7 @@ and whether any target already carries `swiftLanguageMode(.v6)` or `defaultIsola
 
 Use leaf-first order: Interface targets -> service/data Impl -> UI Impl -> App target ->
 Test targets. For exact Package.swift flag syntax, suppression fix patterns, and Xcode
-Build Settings, see: [references/swift-concurrency-flags.md](references/swift-concurrency-flags.md).
+Build Settings, see: [references/swift-concurrency-flags.md](../../references/swift-concurrency-flags.md).
 
 ## Step 3: Enable per target
 
@@ -119,7 +119,7 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/swift-concurrency-flags.md](references/swift-concurrency-flags.md) -- full Package.swift
+- [references/swift-concurrency-flags.md](../../references/swift-concurrency-flags.md) -- full Package.swift
   flag reference, suppression patterns, Xcode Build Settings, migration order, and
   concrete error/fix examples (created alongside this skill).
 - Swift 6.2 release notes: https://www.swift.org/blog/swift-6.2-released/

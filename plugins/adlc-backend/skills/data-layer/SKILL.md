@@ -72,7 +72,7 @@ Principles:
   for real columns.
 
 For game backend table shapes (accounts, scores, sim_replays, iap_receipts), see
-[references/data-migrations.md](references/data-migrations.md) (Schema sketch section).
+[references/data-migrations.md](../../references/data-migrations.md) (Schema sketch section).
 
 ## Step 3: Migrations -- versioned, forward-only
 
@@ -85,7 +85,7 @@ Use Flyway Community (free, latest stable: 12.7.0 as of May 2026).
   that migration file; it cannot run inside a transaction.
 
 Full migration discipline and indexing checklist:
-[references/data-migrations.md](references/data-migrations.md)
+[references/data-migrations.md](../../references/data-migrations.md)
 
 **Migrations against remote/prod DB need the operator's explicit yes first** -- see the Outbound checkpoint section.
 
@@ -135,7 +135,7 @@ Local work needs no approval. Anything outbound (publish, push, post) needs the 
 
 ## References
 
-- [references/data-migrations.md](references/data-migrations.md) -- migration discipline, Flyway
+- [references/data-migrations.md](../../references/data-migrations.md) -- migration discipline, Flyway
   Ktor wiring, forward-only patterns, indexing checklist, Redis and replica decision rules.
 - PostgreSQL 17 docs: https://www.postgresql.org/docs/17/
 - Flyway Community 12.7.0: https://flywaydb.org/documentation/

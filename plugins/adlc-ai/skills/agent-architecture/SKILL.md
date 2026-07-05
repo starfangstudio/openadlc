@@ -52,7 +52,7 @@ Stop and document the justification before proceeding to Step 1.
 Inspect the repo before designing anything. Match existing patterns: framework in use,
 existing tool schema format, loop implementation, any HITL checkpoints.
 
-For the exact grep commands, see [references/agent-architecture-detail.md](references/agent-architecture-detail.md).
+For the exact grep commands, see [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md).
 
 ## Step 2: Design the tool set
 
@@ -65,7 +65,7 @@ Key rules for each tool in the agent's allowlist (full rationale in the detail r
 - **Response shaping**: return only high-signal fields; summarize or trim large payloads.
 - **Consolidation**: one tool with an `action` enum beats N separate tools for related operations.
 
-For expanded guidance, see [references/agent-architecture-detail.md](references/agent-architecture-detail.md).
+For expanded guidance, see [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md).
 
 ## Step 3: Wire the loop
 
@@ -75,7 +75,7 @@ rate-limit back-off, or mid-loop HITL checkpoints. The ADLC in-house pattern use
 loop and stops to ask the operator for an explicit yes before any outbound/destructive call;
 mirror this for any agent that touches external systems.
 
-For loop pseudocode and SDK call shapes, see [references/agent-architecture-detail.md](references/agent-architecture-detail.md).
+For loop pseudocode and SDK call shapes, see [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md).
 
 Pass `budget_tokens` (or equivalent) when the SDK supports it so the agent self-manages
 its token usage and finishes gracefully rather than truncating.
@@ -83,7 +83,7 @@ its token usage and finishes gracefully rather than truncating.
 ## Step 4: Guardrails and human-in-the-loop
 
 Classify every tool by risk tier (read-only / idempotent write / destructive+outbound).
-For the full tier table, see [references/agent-architecture-detail.md](references/agent-architecture-detail.md).
+For the full tier table, see [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md).
 
 For destructive/outbound tools: before executing, stop the loop, present exactly what
 the tool will do (target, payload, scope), and wait for the operator's explicit "yes".
@@ -128,7 +128,7 @@ log the sequence of tool calls and check:
 - Tool inputs conform to schema (correctness).
 - Loop terminates within budget (liveness).
 
-For the eval harness code template, see [references/agent-architecture-detail.md](references/agent-architecture-detail.md).
+For the eval harness code template, see [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md).
 
 ## Outbound checkpoint
 
@@ -141,4 +141,4 @@ Local work needs no approval. Anything outbound (publish, push, post) needs the 
 - Anthropic, "Effective harnesses for long-running agents": https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - Anthropic, "Define tools -- tool use API": https://platform.claude.com/docs/en/docs/agents-and-tools/tool-use/implement-tool-use
 - Anthropic, "Demystifying evals for AI agents": https://www.anthropic.com/engineering/evaluating-ai-agents
-- Detail reference (grep commands, loop pseudocode, tier table, eval harness): [references/agent-architecture-detail.md](references/agent-architecture-detail.md)
+- Detail reference (grep commands, loop pseudocode, tier table, eval harness): [references/agent-architecture-detail.md](../../references/agent-architecture-detail.md)

@@ -74,7 +74,7 @@ Seasonal rotation: a cron job closes the season, snapshots to `season_archives`,
 and re-assigns brackets by prior-season rank percentile (P50+=bronze, P25-P50=silver, P10-P25=gold,
 P2-P10=platinum, top 2%=elite). Never expose bracket ceiling to clients.
 
-Full bracket tier table and matchmaking queue logic: [references/game-backend.md](references/game-backend.md).
+Full bracket tier table and matchmaking queue logic: [references/game-backend.md](../../references/game-backend.md).
 
 Verify: server-written score appears ranked correctly; direct client write returns 403/RLS deny.
 
@@ -95,7 +95,7 @@ Notifications V2 webhook. Do not poll.
 
 The IAP client flow (StoreKit 2, Play Billing Library) belongs in `adlc-monetization`.
 
-Full store-specific API calls and JWT verification: [references/game-backend.md](references/game-backend.md).
+Full store-specific API calls and JWT verification: [references/game-backend.md](../../references/game-backend.md).
 
 Verify: sandbox purchase token -> entitlement row written; re-submit -> same row (no duplicate).
 
@@ -124,7 +124,7 @@ Reject if: outcome mismatch; `seed` already seen this session; `inputs.length` o
 
 Sim contract: `SimWorld.Tick(uint seed, FixedInput[] inputs) -> SimState`, pure C#, fixed-point
 arithmetic, .NET Standard 2.1. Full assembly contract and version-pinning rules:
-[references/game-backend-detail.md](references/game-backend-detail.md).
+[references/game-backend-detail.md](../../references/game-backend-detail.md).
 
 Verify: honest match -> 202 -> score credited. Tampered result -> 409 -> no score. Duplicate
 seed -> rejected.
@@ -162,9 +162,9 @@ Local work needs no approval. Outbound here (migration against a remote/producti
 
 ## References
 
-- [references/game-backend.md](references/game-backend.md) -- leaderboard schema, bracket tiers, sim
+- [references/game-backend.md](../../references/game-backend.md) -- leaderboard schema, bracket tiers, sim
   replay flow, IAP entitlement flow, anti-cheat surface map, solo-scale infra notes.
-- [references/game-backend-detail.md](references/game-backend-detail.md) -- sim assembly contract, full reject
+- [references/game-backend-detail.md](../../references/game-backend-detail.md) -- sim assembly contract, full reject
   conditions, async rationale, version-pinning rules, verify checklist.
 - Google Play Developer API (purchases.products:get, subscriptions:get, RTDN):
   https://developer.android.com/google/play/billing/backend

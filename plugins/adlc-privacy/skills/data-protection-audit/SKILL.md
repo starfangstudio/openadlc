@@ -69,13 +69,13 @@ For each personal-data type found, fill one row:
 
 For the full column schema with example rows, GDPR legal-basis options, CCPA
 categories, COPPA scope test, and loot-box jurisdiction flags, see
-[references/data-protection-audit-detail.md](references/data-protection-audit-detail.md).
+[references/data-protection-audit-detail.md](../../references/data-protection-audit-detail.md).
 
 **Filling rules:**
 - Build from grep evidence, not memory or SDK marketing copy.
 - For each SDK, read the vendor's published data-collection disclosure; mark
   `unknown` if absent or ambiguous.
-- GDPR legal basis: see the lawful-basis quick-reference in [references/gdpr-engineering-detail.md](references/gdpr-engineering-detail.md) (section B).
+- GDPR legal basis: see the lawful-basis quick-reference in [references/gdpr-engineering-detail.md](../../references/gdpr-engineering-detail.md) (section B).
 - COPPA: flag any data type where the app has no age gate and content could
   plausibly attract users under 13. The 2025 amendments (effective April 22,
   2026) expand personal information to include biometric identifiers and mobile
@@ -85,7 +85,7 @@ categories, COPPA scope test, and loot-box jurisdiction flags, see
 
 After the DATA MAP, emit a findings table with columns: Finding, Severity,
 Evidence (file:line or SDK name), Action. For severity definitions and example
-rows, see [references/data-protection-audit-detail.md](references/data-protection-audit-detail.md).
+rows, see [references/data-protection-audit-detail.md](../../references/data-protection-audit-detail.md).
 
 HIGH = must fix before launch. MEDIUM = fix before public release or document
 accepted risk with an owner.
@@ -97,12 +97,12 @@ activity), the privacy policy (each data type, purpose, retention, sharing
 partner), the Android Data safety form (cross-check with `android-compliance`),
 and iOS nutrition labels (cross-check with `ios-store-compliance`). For the
 exact field mappings and required disclosure language per artifact, see
-[references/data-protection-audit-detail.md](references/data-protection-audit-detail.md).
+[references/data-protection-audit-detail.md](../../references/data-protection-audit-detail.md).
 
 ## Verify the map
 
 Run the verification checklist in
-[references/data-protection-audit-detail.md](references/data-protection-audit-detail.md) before
+[references/data-protection-audit-detail.md](../../references/data-protection-audit-detail.md) before
 calling the audit complete. Mark each item PASS / FAIL / UNKNOWN. Do not call
 the audit complete with any FAIL or UNKNOWN item that has no owner assigned.
 
@@ -118,11 +118,11 @@ Local work is fine to do without asking. Outbound here (submitting a GDPR ROPA t
 
 ## References
 
-- [references/data-protection-audit-detail.md](references/data-protection-audit-detail.md) -- DATA MAP
+- [references/data-protection-audit-detail.md](../../references/data-protection-audit-detail.md) -- DATA MAP
   schema, example rows, GDPR legal-basis options, CCPA categories, COPPA scope
   test, loot-box flags, findings severity table, downstream artifact field
   mappings, and the full verify checklist.
-- [references/data-protection-audit.md](references/data-protection-audit.md) -- data-type
+- [references/data-protection-audit.md](../../references/data-protection-audit.md) -- data-type
   taxonomy and per-jurisdiction flags.
 - GDPR Art 30 (Records of processing activities): https://gdpr-info.eu/art-30-gdpr/
 - EDPB Art 30 guidance: https://www.edpb.europa.eu/gdpr-articles/article-30-records-processing-activities_en

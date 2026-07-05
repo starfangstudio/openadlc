@@ -53,7 +53,7 @@ invent scheme names or simulator names.
 ## xcodebuild command reference
 
 For the full command table and verify-a-change shortcuts, see
-[references/ios-build-commands-detail.md](references/ios-build-commands-detail.md).
+[references/ios-build-commands-detail.md](../../references/ios-build-commands-detail.md).
 
 Key conventions: substitute `<W>` (workspace), `<S>` (scheme), `<T>` (test target) from
 the Detect step; always use `set -o pipefail` and pipe through `xcbeautify`. Replace
@@ -78,13 +78,13 @@ root (`.swiftlint.yml` / `.swiftformat`). If neither tool is installed, mark the
 `unknown` and ask the operator which tool the project uses.
 
 For exact CLI flags and CI usage, see
-[references/ios-build-commands-detail.md](references/ios-build-commands-detail.md).
+[references/ios-build-commands-detail.md](../../references/ios-build-commands-detail.md).
 
 ## Fastlane lanes
 
 Read the `Fastfile` first to discover actual lane names before invoking anything:
 `cat fastlane/Fastfile | grep "lane :"`. For common lane patterns, see
-[references/ios-build-commands-detail.md](references/ios-build-commands-detail.md).
+[references/ios-build-commands-detail.md](../../references/ios-build-commands-detail.md).
 
 ## Rules
 
@@ -111,4 +111,4 @@ Local work needs no approval. Outbound here (`upload_to_testflight`, `deliver`, 
 - fastlane gym (build action): https://docs.fastlane.tools/actions/gym/
 - fastlane upload_to_testflight: https://docs.fastlane.tools/actions/upload_to_testflight/
 - fastlane deliver (App Store submission): https://docs.fastlane.tools/actions/deliver/
-- Detail (command tables, shortcuts, formatting flags, fastlane patterns): [references/ios-build-commands-detail.md](references/ios-build-commands-detail.md)
+- Detail (command tables, shortcuts, formatting flags, fastlane patterns): [references/ios-build-commands-detail.md](../../references/ios-build-commands-detail.md)

@@ -31,7 +31,7 @@ Dependencies flow strictly downward. Transport never calls data directly.
 ## Stack selection guide (greenfield)
 
 Canonical stack selection guide (decision tree plus Ktor module structure) lives in
-[references/modular-monolith.md](references/modular-monolith.md). Kept in one place to avoid drift.
+[references/modular-monolith.md](modular-monolith.md). Kept in one place to avoid drift.
 
 ## Cross-cutting deferrals
 

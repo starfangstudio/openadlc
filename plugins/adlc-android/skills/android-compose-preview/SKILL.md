@@ -78,6 +78,6 @@ Reference PNGs land in `src/screenshotTestDebug/reference/`; the diff report is 
 - All gradle commands above run locally. Pushing references/reports or opening a PR is outbound: get the operator's explicit yes first.
 
 ## References
-- See [references/android-compose-mvi.md](references/android-compose-mvi.md) (loaded on demand) for the full Compose + MVI conventions: unidirectional state, one-off events, stability, and how previews back screenshot tests.
+- See [references/android-compose-mvi.md](../../references/android-compose-mvi.md) (loaded on demand) for the full Compose + MVI conventions: unidirectional state, one-off events, stability, and how previews back screenshot tests.
 - [Preview your UI with composable previews](https://developer.android.com/develop/ui/compose/tooling/previews), `@Preview`, `PreviewParameterProvider`, `getDisplayName`, `limit`, multipreview templates.
 - [Compose Preview Screenshot Testing](https://developer.android.com/studio/preview/compose-screenshot-testing), `@PreviewTest`, plugin/source-set setup, `update`/`validate` tasks, report location.

@@ -79,7 +79,7 @@ where feasible (confirm CCPA scope with counsel).
 ## Gate 4: neutral consent UX
 
 EDPB Guidelines 3/2022 voids consent obtained via dark patterns. Illegal nudges
-are listed in [references/consent-management.md](references/consent-management.md). Hard rule:
+are listed in [references/consent-management.md](../../references/consent-management.md). Hard rule:
 Accept and Reject must be identical in visual weight (size, color, tap distance).
 A privacy-positioned app gains trust from a genuinely neutral dialog.
 
@@ -88,7 +88,7 @@ A privacy-positioned app gains trust from a genuinely neutral dialog.
 Append-only records. Required fields: `consent_version` (policy date), 
 `consent_granted_at` (ISO-8601), `tcf_string`, `att_status`,
 `analytics_consent` (bool), `ads_personalized` (bool).
-Full schema in [references/consent-management.md](references/consent-management.md).
+Full schema in [references/consent-management.md](../../references/consent-management.md).
 
 Bump `consent_version` on any policy or scope change; re-prompt on next launch.
 Keep records available for DSAR; confirm retention period with counsel.
@@ -101,7 +101,7 @@ requires direct notice + parental consent. Age-gate before account creation;
 do not rely on year-of-birth alone. Confirm with US counsel; COPPA carries civil
 penalties. Also check GDPR Art. 8 if the app is marketed to children in the EU
 (age of digital consent varies 13-16 by member state -- confirm with counsel).
-Detail in [references/consent-management.md](references/consent-management.md).
+Detail in [references/consent-management.md](../../references/consent-management.md).
 
 ## Verify: SDK gating
 
@@ -124,7 +124,7 @@ Local work is fine to do without asking. Outbound here (submitting a privacy dec
 
 ## References
 
-- [references/consent-management.md](references/consent-management.md) -- storage schema,
+- [references/consent-management.md](../../references/consent-management.md) -- storage schema,
   dark-pattern list, COPPA/CCPA detail, SDK gating code examples, TCF 2.3 note.
 - Apple ATT: https://developer.apple.com/documentation/apptrackingtransparency
 - Apple user privacy and data use: https://developer.apple.com/app-store/user-privacy-and-data-use/

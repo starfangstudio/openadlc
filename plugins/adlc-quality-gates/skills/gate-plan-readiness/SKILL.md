@@ -116,7 +116,7 @@ Blocking items (only if NOT READY):
 Next step: <"Proceed to implementation." | "Return to create-plan: <fix>." | "Awaiting operator approval.">
 ```
 
-For a filled-in example report, see [references/gate-plan-readiness-detail.md](references/gate-plan-readiness-detail.md).
+For a filled-in example report, see [references/gate-plan-readiness-detail.md](../../references/gate-plan-readiness-detail.md).
 
 ## References
 
@@ -127,4 +127,4 @@ For a filled-in example report, see [references/gate-plan-readiness-detail.md](r
   guidelines, not a rigid 100%-compliance gate:
   https://www.mountaingoatsoftware.com/blog/the-dangers-of-a-definition-of-ready
 - gate-plan-readiness-detail.md (this plugin): filled-in verdict example:
-  [references/gate-plan-readiness-detail.md](references/gate-plan-readiness-detail.md)
+  [references/gate-plan-readiness-detail.md](../../references/gate-plan-readiness-detail.md)

@@ -52,7 +52,7 @@ enumerate the parameter combos that produce distinct visuals.
 
 List the cases back and confirm before generating.
 For the full table and copy-paste templates see
-[references/ios-swiftui-preview-patterns.md](references/ios-swiftui-preview-patterns.md).
+[references/ios-swiftui-preview-patterns.md](../../references/ios-swiftui-preview-patterns.md).
 
 ## Step 3: Ensure a preview stub exists
 
@@ -65,7 +65,7 @@ If the project uses `@Observable` + Environment DI (the stack default), the
 (see `ios-module-scaffolder`). If it is missing, add one. Never use `fatalError`
 as a default; it crashes every `#Preview` that reads the environment.
 
-See the stub pattern in [references/ios-swiftui-preview-patterns.md](references/ios-swiftui-preview-patterns.md).
+See the stub pattern in [references/ios-swiftui-preview-patterns.md](../../references/ios-swiftui-preview-patterns.md).
 
 ## Step 4: Write the #Preview macros
 
@@ -136,7 +136,7 @@ Local work needs no approval. Anything outbound (publish, push, post) needs an e
 
 ## References
 
-- [references/ios-swiftui-preview-patterns.md](references/ios-swiftui-preview-patterns.md) -- full state
+- [references/ios-swiftui-preview-patterns.md](../../references/ios-swiftui-preview-patterns.md) -- full state
   matrix table, copy-paste templates, traits pattern, Dynamic Type sizes reference
   (created alongside this skill).
 - Apple, `#Preview(_:body:)` macro:

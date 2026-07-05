@@ -43,7 +43,7 @@ gRPC for a Kotlin/JVM or Supabase backend with standard mobile clients.
 
 ## Step 3: Resource and verb modeling
 
-See [references/api-conventions.md](references/api-conventions.md) (Resource + verb modeling).
+See [references/api-conventions.md](../../references/api-conventions.md) (Resource + verb modeling).
 
 - Plural nouns, max 3 URI levels: `GET /v1/leaderboards/{id}/scores`.
 - Custom non-CRUD actions: colon-suffix on the resource noun: `POST /v1/sessions/{id}:validate-replay`.
@@ -54,7 +54,7 @@ See [references/api-conventions.md](references/api-conventions.md) (Resource + v
 ## Step 4: Error envelope (RFC 9457)
 
 Adopt RFC 9457 Problem Details for all error responses (`application/problem+json`). See
-[references/api-conventions.md](references/api-conventions.md) (Error envelope section) for the exact
+[references/api-conventions.md](../../references/api-conventions.md) (Error envelope section) for the exact
 JSON shape, field rules, validation-failure format, and the hard rule: never return 200 for
 errors; include `traceId` in `extensions`; keep `type` URIs permanently stable.
 
@@ -63,7 +63,7 @@ errors; include `traceId` in `extensions`; keep `type` URIs permanently stable.
 Required on every POST with money or irreversible side-effects: IAP receipt validation, score
 submission, match outcome recording, currency grants. Header: `Idempotency-Key: <UUIDv4>`.
 
-See [references/api-conventions.md](references/api-conventions.md) (Idempotency keys) for the full
+See [references/api-conventions.md](../../references/api-conventions.md) (Idempotency keys) for the full
 server behaviour spec. Critical rule: validation failures (400/422) are not stored; the
 client may retry with the same key after fixing the body.
 
@@ -72,7 +72,7 @@ Storage: Redis / Upstash / short-TTL Postgres table keyed on `sha256(userId + ke
 ## Step 6: Pagination and optimistic concurrency
 
 **Pagination:** cursor (keyset) default for leaderboards and feeds; offset only for small
-bounded admin lists (<10k rows). See [references/api-conventions.md](references/api-conventions.md)
+bounded admin lists (<10k rows). See [references/api-conventions.md](../../references/api-conventions.md)
 (Pagination) for the response envelope.
 
 **Optimistic concurrency:** `ETag` + `If-Match` for resources two clients might mutate
@@ -126,7 +126,7 @@ Local work needs no approval. Outbound here (third-party write API such as store
 
 ## References
 
-- [references/api-conventions.md](references/api-conventions.md) -- error envelope, versioning,
+- [references/api-conventions.md](../../references/api-conventions.md) -- error envelope, versioning,
   idempotency, pagination, optimistic concurrency, resource modeling.
 - RFC 9457 Problem Details for HTTP APIs -- https://www.rfc-editor.org/rfc/rfc9457
 - REST API Design 2026 Engineering Reference --

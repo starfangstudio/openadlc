@@ -27,7 +27,7 @@ gh pr view <pr> --json number,headRefName,headRefOid,baseRefName,url,title
 ```
 Use `headRefOid` as the `commit_id` so comments anchor to the reviewed commit. If the review was done against an older commit, use that SHA instead, never let it default silently.
 
-**Dedup before posting (per [references/run-isolation.md](references/run-isolation.md)).** Check for an existing review from this run, search prior reviews for the run-id marker `<!-- adlc-run: <run-id> -->`:
+**Dedup before posting (per [references/run-isolation.md](../../references/run-isolation.md)).** Check for an existing review from this run, search prior reviews for the run-id marker `<!-- adlc-run: <run-id> -->`:
 ```
 gh pr view <pr> --json reviews --jq '.reviews[] | select(.body | contains("adlc-run: <run-id>"))'
 ```
@@ -45,7 +45,7 @@ Map the review outcome to exactly one event:
 `body` is REQUIRED for `REQUEST_CHANGES` and `COMMENT`. Default to `COMMENT` unless the operator stated the intent.
 
 ### 3. Persist the verdict locally (always), then assemble the payload
-**PERSIST first, on every run, gated or not.** Write the human-readable verdict to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<lens>-<UTC-timestamp>.md` (the out-of-repo workspace per [references/run-isolation.md](references/run-isolation.md); never committed, never a bare `review.json`/`review-<date>.md`, never inside the repo). This happens BLOCK or APPROVE, before the consent prompt, whether or not the operator ever says yes; **never leave the review as only a commit message**. Posting is gated; persisting is not.
+**PERSIST first, on every run, gated or not.** Write the human-readable verdict to this run's `~/.openadlc/runs/<workspace>/<run-id>/review-<lens>-<UTC-timestamp>.md` (the out-of-repo workspace per [references/run-isolation.md](../../references/run-isolation.md); never committed, never a bare `review.json`/`review-<date>.md`, never inside the repo). This happens BLOCK or APPROVE, before the consent prompt, whether or not the operator ever says yes; **never leave the review as only a commit message**. Posting is gated; persisting is not.
 
 Then write the payload to `~/.openadlc/runs/<workspace>/<run-id>/review-payload.json`; do NOT post it. When the run spans several repos, qualify both filenames per repo (`review-<repo>-<UTC-timestamp>.md`, `review-payload-<repo>.json`) so the per-repo reviews do not overwrite each other. Each inline comment needs `path`, `body`, and `line` (the line number in the file's new version; use `side: "LEFT"` for deleted lines, `RIGHT` is default). For multi-line comments add `start_line` + `start_side`. Embed the run-id marker `<!-- adlc-run: <run-id> -->` in the `body` so the review is tagged and dedup can find it.
 
@@ -107,7 +107,7 @@ For a summary-only review with no inline comments, the high-level command is sim
 gh pr review <pr> --comment --body-file summary.md   # or --request-changes / --approve
 ```
 
-**Route the verdict through the tracker adapter.** The PR-review post is one part of the verdict's outbound. When the verdict ALSO creates or updates a tracker item (a review-gate item, a re-opened finding, or a status change on the change's tracker item), do NOT hardcode GitHub-only calls in prose: route those writes through the tracker-adapter actions `create_issue` / `link_child` / `set_status` / `assign`, with per-tracker mappings (GitHub issues, Jira issues+sub-tasks), per [references/tracker-adapters.md](references/tracker-adapters.md). **Assign the operator on create**: GitHub adds `--assignee @me` to `gh issue create` (ask whom once if `@me` does not resolve); Jira maps to its assignee field via the adapter. Each adapter write is outbound and stays behind the same explicit "yes" as the PR-review post.
+**Route the verdict through the tracker adapter.** The PR-review post is one part of the verdict's outbound. When the verdict ALSO creates or updates a tracker item (a review-gate item, a re-opened finding, or a status change on the change's tracker item), do NOT hardcode GitHub-only calls in prose: route those writes through the tracker-adapter actions `create_issue` / `link_child` / `set_status` / `assign`, with per-tracker mappings (GitHub issues, Jira issues+sub-tasks), per [references/tracker-adapters.md](../../references/tracker-adapters.md). **Assign the operator on create**: GitHub adds `--assignee @me` to `gh issue create` (ask whom once if `@me` does not resolve); Jira maps to its assignee field via the adapter. Each adapter write is outbound and stays behind the same explicit "yes" as the PR-review post.
 
 ### 6. Verify
 Confirm it landed and report the URL:
@@ -128,7 +128,7 @@ Before rendering the report, sanity-check the artifacts locally:
 Any failure → fix the file, re-validate, then proceed. Never publish an unvalidated payload.
 
 ## References
-- Run isolation (per-run payload path, run-id tagging, PR-review dedup): [references/run-isolation.md](references/run-isolation.md)
-- Tracker adapters (create_issue / link_child / set_status / assign; GitHub, Jira mappings): [references/tracker-adapters.md](references/tracker-adapters.md)
+- Run isolation (per-run payload path, run-id tagging, PR-review dedup): [references/run-isolation.md](../../references/run-isolation.md)
+- Tracker adapters (create_issue / link_child / set_status / assign; GitHub, Jira mappings): [references/tracker-adapters.md](../../references/tracker-adapters.md)
 - GitHub REST API: Create a pull request review: https://docs.github.com/en/rest/pulls/reviews#create-a-review-for-a-pull-request
 - `gh pr review` manual: https://cli.github.com/manual/gh_pr_review
