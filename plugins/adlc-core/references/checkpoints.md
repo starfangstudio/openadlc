@@ -4,7 +4,7 @@
 Every consent checkpoint (per [loop-control.md](loop-control.md)) writes a record of the ask to disk before it asks the operator. This is the one durable, machine-readable trace of "what would leave this machine, and what was decided", so a terminal, a teammate, or an external surface can all see the same state. Loaded by intake, plan, implement, and review wherever they hit a consent checkpoint.
 
 ## Why a file
-The terminal prompt is ephemeral: close the window and the ask is gone. A checkpoint file makes the ask durable and gives any consumer (a dashboard, a notifier, a second terminal) something to read and, optionally, resolve. **The free product needs none of this**: if nothing ever reads these files, the terminal ask still works exactly as it does today. The file is a byproduct of the ask, never a dependency of it.
+The terminal prompt is ephemeral: close the window and the ask is gone. A checkpoint file makes the ask durable and gives any consumer (a dashboard, a notifier, a second terminal) something to read. **The free product needs none of this**: if nothing ever reads these files, the terminal ask still works exactly as it does today. The file is a byproduct of the ask, never a dependency of it.
 
 ## Where it lives
 At every consent checkpoint, write:
@@ -21,7 +21,7 @@ seq: 3                        # integer, monotonic per run
 type: post-issue | post-subissue | push | post-review
 created: 2026-07-02T14:03:11Z # UTC ISO 8601
 status: pending | approved | denied
-resolved_by: terminal | cockpit   # set only on resolution
+resolved_by: terminal            # set only on resolution
 resolved_at: <UTC ISO 8601>       # set only on resolution
 reason: "<one line>"              # optional, deny only
 summary: "<one line: what would go out>"
@@ -33,7 +33,7 @@ The **body** is exactly what would leave the machine: for `push`, the branch, co
 Every write (create, resolve) goes through write-temp-then-rename in the same directory: write the full file to a temp path, then rename it over the target. A reader never observes a half-written file.
 
 ## Status transitions
-`pending -> approved` or `pending -> denied`, exactly once. A resolved file is never edited again. The agent that owns the checkpoint is the one that transitions it; a resolution written by any other actor is advisory input, not a direct state change (see Dual-channel resolution below).
+`pending -> approved` or `pending -> denied`, exactly once. A resolved file is never edited again. The agent that owns the checkpoint is the one that transitions it, from the operator's answer at its terminal. No other actor writes the status.
 
 ## Heartbeat while pending
 While the agent awaits the operator's answer, it touches a separate file, mtime-only, every ~30 seconds:
@@ -42,18 +42,12 @@ checkpoints/<seq>-<type>.heartbeat
 ```
 A separate file keeps liveness touches from ever colliding with a resolution write on the same path. Consumers treat **3 missed touches (no mtime change for >90s)** as stale: the session may no longer be polling, so a resolution recorded now has no guaranteed effect until the session reads it again.
 
-## Dual-channel resolution, agent-authoritative
-The operator may answer in two places:
-1. **The terminal**, the ask as it works today.
-2. **An external surface** (e.g. a cockpit), which writes `status: approved | denied` (plus `resolved_by`, `resolved_at`, optional `reason`) into the checkpoint file via the same atomic write.
+## Resolution is terminal-only; external surfaces observe
+The operator answers in ONE place: the agent's terminal prompt, the ask as it works today. The agent writes the resolution (`status: approved | denied`, plus `resolved_at` and an optional `reason`) into the checkpoint file via the atomic write above, and is the sole writer of the acted-on state.
 
-Both channels are live at once; the agent is the sole authority on which one wins:
-- The agent polls the checkpoint file at a bounded interval while it also waits on terminal input.
-- **First resolution observed wins.** Whichever answer the agent reads first, it acts on that one and records `resolved_by` accordingly.
-- **A terminal answer at the agent's own prompt overrides a simultaneous file write.** If the operator answers in the terminal while an external write is in flight, the terminal answer is authoritative; the agent rewrites the file to match the answer it acted on.
-- A resolution written to the file by an external surface is advisory input TO the agent, not a fact until the agent reads and acts on it. The agent is the only writer of the final, acted-on state.
+A cockpit or any other observer is strictly read-only. It reads the pending checkpoint file to surface the ask elsewhere (a notification, a dashboard row). There is no path for an observer to close a checkpoint, no server endpoint, and no second write channel; resolution is machine-local, at the terminal.
 
-This is a same-user convenience channel, not a security boundary: anything running as the user can write these files. State this honestly to any consumer; never claim enforcement.
+These files are local and same-user: anything running as the user can read or write them. Safety does not rest on the file being unwritable; the agent is the sole writer of the acted-on state, resolves only from its terminal, and ignores any status it did not write. State this honestly to any consumer: an observer has no authority, and the checkpoint files are never an enforcement boundary.
 
 ## Run terminal-state marker
 A run's `index.md` frontmatter (per [okf.md](okf.md)) carries:

@@ -112,7 +112,7 @@ The ADLC standard itself (the `standard/` tree) is open under CC-BY-4.0, so anyo
 
 ## For organizations
 
-OpenADLC is free for individuals, including a solo freelancer on paid client work. Teams and organizations need a commercial seat. An **OpenADLC Enterprise** edition is in the works: centrally enforced checkpoints, organization policy, a tamper-evident audit trail, fleet management, private and certified enterprise domain packs, and a desktop cockpit. Full docs are coming to [openadlc.com](https://openadlc.com).
+OpenADLC is free for individuals, including a solo freelancer on paid client work. Teams and organizations need a commercial seat. An **OpenADLC Enterprise** edition is in the works: centrally enforced checkpoints, organization policy, a tamper-evident audit trail, private and certified enterprise domain packs, and a desktop cockpit. Full docs are coming to [openadlc.com](https://openadlc.com).
 
 ## Community
 
