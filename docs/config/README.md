@@ -60,10 +60,10 @@ Toggles for the two tunable checkpoints. The release (consent) checkpoint is not
 
 ```yaml
 review:
-  strictness: standard     # lenient | standard | strict
+  strictness: normal       # lax | normal | strict
 ```
 
-How hard the review lenses push. Default `standard`.
+How hard the review lenses push. Default `normal`.
 
 ### `style`
 

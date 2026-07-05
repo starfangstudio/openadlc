@@ -25,7 +25,7 @@ checkpoints:
   review: true           # operator approves the reviewed change before release
 
 review:
-  strictness: standard     # lenient | standard | strict
+  strictness: normal       # lax | normal | strict
 
 style:
   verbosity: normal        # terse | normal | verbose
