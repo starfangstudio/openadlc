@@ -17,6 +17,6 @@
     "commands": 0,
     "references": 9
   },
-  "evals": "conformance",
+  "evals": "conformance+gate",
   "capabilities": {}
 }
