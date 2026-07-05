@@ -15,7 +15,7 @@ git. Design: tools/adlc-check-DESIGN.md.
     --json    emit the JSON report instead of the human form
     --level   claim a level (team default = the manifest's; pack/harness = core)
     --quiet   human mode: print only the VERDICT line
-    --selftest  run the bundled self-test (both example manifests + all packs)
+    --selftest  run the bundled self-test (example manifests + all packs)
 
 Exit codes: 0 conformant, 1 not conformant, 2 usage/input error (fail-closed).
 
