@@ -6,7 +6,7 @@ Every lifecycle artifact is one **OKF bundle**: a directory of markdown files wi
 ## Why OKF
 One canonical artifact, plain files, readable by a human and an agent without tooling, diffable, portable. We stopped asking "do you want .md or .html"; the bundle carries both jobs at once: a human-facing briefing and the full AI context, as typed concepts. The tracker is the store between commands; the OKF bundle is the source of truth.
 
-OKF is consumed the way OKF intends: **an agent reads the markdown.** We do NOT require a byte-exact wire protocol or a custom parser, because nothing in the lifecycle reassembles a bundle programmatically. On GitHub the next command reads the issue; on Jira/ADO it untars the attached bundle. Keep the layout clean and typed so the agent reconstructs the context reliably.
+OKF is consumed the way OKF intends: **an agent reads the markdown.** We do NOT require a byte-exact wire protocol or a custom parser, because nothing in the lifecycle reassembles a bundle programmatically. On GitHub the next command reads the issue; on Jira it untars the attached bundle. Keep the layout clean and typed so the agent reconstructs the context reliably.
 
 ## The bundle (what a run writes)
 The bundle is the run workspace `~/.openadlc/runs/<workspace>/<run-id>/` (per [run-isolation.md](run-isolation.md)). Keep it **flat** (concepts at the bundle root, one level deep). Every concept is one `.md` file with frontmatter; the only hard rule is a non-empty `type`.
@@ -62,14 +62,12 @@ The tracker has no concept of an OKF bundle, so each adapter serializes it on th
 - Body = `briefing.md` converted markdown -> ADF (Jira Cloud stores ADF, not markdown).
 - Attach `<slug>.okf.tgz` (tar+gzip of the bundle directory) via the Jira attachment API. The body is never empty; the full context is the attachment.
 
-### Azure DevOps , briefing as HTML + attach the tarball
-- Body = `briefing.md` converted markdown -> HTML (work-item large-text fields are HTML by default).
-- Attach `<slug>.okf.tgz` via the ADO attachment API.
+A demand-driven work-item tracker (added only on partner demand) follows the same shape as Jira: the briefing as the body (converted to that tracker's rich-text format) plus the tarball as an attachment.
 
 ## Reading the bundle back (what plan/implement do on a ticket)
 The tracker is the store, so each command rebuilds the bundle from the ticket, then works the local copy under `~/.openadlc/runs/<workspace>/<run-id>/`.
 - **GitHub:** read the issue body + comments; reconstruct `briefing.md` from the body and each concept from its `<!-- okf:concept path=... -->` section. This is LLM-native reading, no parser.
-- **Jira / ADO:** download the `<slug>.okf.tgz` attachment and untar it into the run workspace (byte-exact).
+- **Jira:** download the `<slug>.okf.tgz` attachment and untar it into the run workspace (byte-exact).
 
 ## Source of truth and human edits
 The **OKF bundle is canonical**; the visible briefing is a live view of `briefing.md`. On re-entry a command rebuilds from the ticket. If a human edited the visible GitHub briefing, fold their edit back into `briefing.md` and note it; never silently discard a human's words.
@@ -79,4 +77,4 @@ A bundle is OKF-conformant when every non-reserved `.md` has parseable frontmatt
 
 ---
 
-Author: OpenADLC core. Freshness: written for OKF v0.1 (Google knowledge-catalog) and the GitHub/Jira/ADO trackers. Consumption is LLM-native by design (no custom parser); GitHub still has no issue-attachment API, so the bundle is inline there. Re-verify the Jira ADF conversion and the ADO HTML conversion against the live trackers before relying on them.
+Author: OpenADLC core. Freshness: written for OKF v0.1 (Google knowledge-catalog) and the committed GitHub/Jira trackers. Consumption is LLM-native by design (no custom parser); GitHub still has no issue-attachment API, so the bundle is inline there. Re-verify the Jira ADF conversion against the live tracker before relying on it.

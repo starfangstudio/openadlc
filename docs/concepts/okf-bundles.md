@@ -49,9 +49,10 @@ A tracker has no concept of a bundle, so each adapter serializes it. The visible
 
 - **GitHub** (no attach API): the body is `briefing.md`, the concepts go inside one `<details>` block as typed sections (each opened by a `<!-- okf:concept path=... type=... -->` hint), overflowing past ~60KB into follow-up comments.
 - **Jira:** the body is `briefing.md` converted to ADF, and the bundle is attached as `<slug>.okf.tgz`.
-- **Azure DevOps:** the body is `briefing.md` converted to HTML, and the bundle is attached as `<slug>.okf.tgz`.
 
-Reading is LLM-native: the next command reads the issue (GitHub) or untars the attachment (Jira/ADO) and rebuilds the local bundle. There is no byte-exact wire protocol; comprehension is the contract.
+GitHub and Jira are the committed trackers; a demand-driven work-item tracker (added only on partner demand) follows the same body-plus-attachment shape as Jira.
+
+Reading is LLM-native: the next command reads the issue (GitHub) or untars the attachment (Jira) and rebuilds the local bundle. There is no byte-exact wire protocol; comprehension is the contract.
 
 ## Source of truth
 
