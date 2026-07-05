@@ -28,7 +28,7 @@ Adoption is a ladder, not a switch. Each level adds to the one below.
 | **Governed** | An organization | The org sets which checkpoints are mandatory and *enforces* them centrally across every seat, with a central audit trail that proves it happened. |
 | **Certified** _(planned)_ | An organization buying trust | Everything in Governed, plus the packs you run are ADLC-certified and you carry the certification mark. Not yet operational. |
 
-Why three and not one: a solo developer can be Core today with a habit and a local log; the checkpoints are theirs to tune, the consent checkpoint stays on the release decision, and for an individual it is free. An organization cannot trust 200 people to each keep the right checkpoints on, so the value it adds is to *enforce* the chosen checkpoints centrally across the fleet and *prove* it to a security lead. **That is what Governed adds: enforcing, fleet-wide, the checkpoints an individual could otherwise switch off, and producing the audit that proves it.** That central-enforcement layer is operational work any sufficiently-equipped team could build, not a power unique to one vendor; it is for the orgs that would rather buy it than build and run it. Certification is a further trust signal on top, where the packs themselves are vouched for.
+Why three and not one: a solo developer can be Core today with a habit and a local log; the checkpoints are theirs to tune, the consent checkpoint stays on the release decision, and for an individual it is free. An organization cannot trust 200 people to each keep the right checkpoints on, so the value it adds is to *enforce* the chosen checkpoints centrally across every seat and *prove* it to a security lead. **That is what Governed adds: enforcing, org-wide, the checkpoints an individual could otherwise switch off, and producing the audit that proves it.** That central-enforcement layer is operational work any sufficiently-equipped team could build, not a power unique to one vendor; it is for the orgs that would rather buy it than build and run it. Certification is a further trust signal on top, where the packs themselves are vouched for.
 
 Note the level and the price are separate axes. Levels (Core / Governed / Certified) say *how much of the discipline you enforce and prove*; the seat says *who is running the OpenADLC implementation*. The standard and the Core practice are open and free to anyone. The OpenADLC implementation is free for individuals and the public, but use by or on behalf of an organization needs a commercial seat at any level, including Core. See the [license notice](README.md#license).
 
@@ -61,7 +61,7 @@ Level: Governed
 
 What each badge asserts:
 - **ADLC Core** asserts a practice: this team runs the loop with a human in it and logs the decisions.
-- **ADLC Governed** asserts a control: the checkpoints are mechanically enforced fleet-wide and the trail is provable.
+- **ADLC Governed** asserts a control: the checkpoints are mechanically enforced org-wide and the trail is provable.
 
 A badge you cannot back is a false claim. Only state the level you actually meet. Until the certification program ships, the highest level you can truthfully claim is Governed.
 
@@ -75,7 +75,7 @@ ADLC is a discipline, not lock-in. It does not ask you to:
 - **Use a specific language, framework, or cloud.** It is written against capabilities, not a stack.
 - **Adopt a project-management method.** It is not Scrum, Kanban, or any of them. It sits *underneath* whatever you already use.
 - **Adopt any particular tooling for the checkpoints.** The consent checkpoint is a step the agent performs, not a product you install: before any outward action it stops, shows what would leave, and waits for your yes. How you keep that human in the loop is yours to choose; what is required is that the human stays in control and the decisions are logged.
-- **Buy anything to follow the standard.** The ADLC standard is open (CC-BY-4.0) and free for anyone to read and implement; the checkpoints are part of it. Adopting Core as a practice costs nothing. What is paid is the OpenADLC *implementation* when an organization uses it: the source stays publicly viewable and free for individuals and the public, always, but use by or on behalf of an organization needs a commercial seat. Governed and Certified build on that for fleet-wide enforcement and proof. You can be Core-conformant with any tooling, including your own, and owe nothing.
+- **Buy anything to follow the standard.** The ADLC standard is open (CC-BY-4.0) and free for anyone to read and implement; the checkpoints are part of it. Adopting Core as a practice costs nothing. What is paid is the OpenADLC *implementation* when an organization uses it: the source stays publicly viewable and free for individuals and the public, always, but use by or on behalf of an organization needs a commercial seat. Governed and Certified build on that for org-wide enforcement and proof. You can be Core-conformant with any tooling, including your own, and owe nothing.
 - **Boil the ocean.** Core is two things: a loop and a human in it. You can adopt it this afternoon.
 
 If a rule felt like lock-in, it would violate Principle 7 (vendor neutrality) and would not be in the standard.

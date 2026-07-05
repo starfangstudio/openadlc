@@ -38,7 +38,7 @@ Trivial work collapses steps. What it never skips is keeping a human in control.
 ## The three adoption levels
 
 - **Core** - you run the lifecycle and keep a human at the checkpoints, with a local log. The consent checkpoint always applies to the release decision; the plan and review checkpoints are yours to tune. Free; a solo dev can do this today.
-- **Governed** - the org enforces the chosen checkpoints across every seat and keeps a central audit trail that proves it. The paid org tier: enforcing fleet-wide the checkpoints an individual could otherwise skip.
+- **Governed** - the org enforces the chosen checkpoints across every seat and keeps a central audit trail that proves it. The paid org tier: enforcing org-wide the checkpoints an individual could otherwise skip.
 - **Certified** (planned) - the packs you run are ADLC-certified and carry the mark.
 
 ## Start today

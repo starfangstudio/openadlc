@@ -116,7 +116,7 @@ Rules for the manifest:
 
 ## Honest limits
 
-- **Honoring is not provable; enforcing is.** Core asks the checkpoints to be *honored* (T-C1, **attest**). Governed makes the chosen checkpoints *enforced* centrally (T-G1, **auto**), which is where conformance becomes a hard, mechanically-checkable control across a fleet. This is why an organization moves past Core: only enforced checkpoints are mechanically trustworthy at scale.
+- **Honoring is not provable; enforcing is.** Core asks the checkpoints to be *honored* (T-C1, **attest**). Governed makes the chosen checkpoints *enforced* centrally (T-G1, **auto**), which is where conformance becomes a hard, mechanically-checkable control org-wide. This is why an organization moves past Core: only enforced checkpoints are mechanically trustworthy at scale.
 - **Eval efficacy and capability-match need running code.** P3b runs the evals; P4's behavior-match needs the scan in the certification program's enforcement spec. This file records those results; it does not re-specify the scanner.
 - **Certified is defined, not operational.** T-X1 and the Certified level are written so the ladder is complete; the program that issues the mark does not exist yet.
 - **The owned checker is the next build.** A reference checker that reads `.adlc/conformance.yaml` and runs the **auto** checks is in scope for the standard *project*, not the standard *text*. The precedent (OpenAPI, SemVer, Conventional Commits) is clear that a standard which does not ship its own checker loses control of what "conformant" means.

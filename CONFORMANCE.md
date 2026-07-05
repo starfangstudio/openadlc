@@ -22,7 +22,7 @@ Core, plus central policy:
 
 - managed configuration a project cannot loosen (the checkpoints);
 - a tamper-evident audit trail of human decisions and approved outbound actions (planned);
-- the checkpoints enforceable across a fleet via managed settings (planned).
+- the checkpoints enforceable org-wide via managed settings (planned).
 
 ### Certified
 

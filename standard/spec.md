@@ -129,7 +129,7 @@ The consent checkpoint is a step the agent performs, and it behaves precisely, s
 A checkpoint is *honored* when the agent is instructed to stop for the human, and *enforced* when a mechanism makes the stop unskippable regardless of the agent's choice.
 
 - A **solo dev** honors their own checkpoints, locally and for free. They tune the plan and review checkpoints to their risk; the consent checkpoint is always present, since the release decision is always theirs.
-- An **organization** sets a checkpoint policy and **enforces it centrally across the fleet**, with a central audit trail that proves it happened. Enforcing the checkpoints an individual could otherwise skip, across many seats, and proving it to a third party, is the work an org takes on (see [adoption](adoption.md) levels). This is an operational layer on top of the free standard, not a special power: any sufficiently-equipped team could build it.
+- An **organization** sets a checkpoint policy and **enforces it centrally across every seat**, with a central audit trail that proves it happened. Enforcing the checkpoints an individual could otherwise skip, across many seats, and proving it to a third party, is the work an org takes on (see [adoption](adoption.md) levels). This is an operational layer on top of the free standard, not a special power: any sufficiently-equipped team could build it.
 - For an **unattended or autonomous run**, a checkpoint MUST be enforced, not merely honored, because no human is present in the moment to decide.
 
 See [conformance.md](conformance.md) for the checkable test that tells honored from enforced.
