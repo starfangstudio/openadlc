@@ -32,7 +32,7 @@ Run bare to start a planning conversation from a blank page, or pass an idea, fi
 It presents the fuel and stops for your explicit yes. Two moves:
 
 - **Post** the story to your tracker as a new issue. Posting is outbound, so it waits for your yes. It dedups first (no duplicate issue), serializes the bundle into the issue so the content travels with it, and assigns you.
-- **Refine** with another bounded discovery loop. Because a loop spends tokens, it states the cap, ceiling, exit criterion, and per-round cost before you say yes.
+- **Refine** with another bounded discovery loop. It states the cap, ceiling, and exit criterion before you say yes.
 
 It never posts without an explicit yes.
 

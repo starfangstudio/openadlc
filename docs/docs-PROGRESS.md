@@ -19,7 +19,7 @@ Tracks the build of the docs tree that `docs/README.md` promises. One directory 
 - `README.md`, `docs/lifecycle.md`, `docs/pack-format.md`
 - `plugins/adlc-core/commands/ai-{discovery,plan,implement,review}.md`
 - `plugins/adlc-core/skills/*/SKILL.md`
-- `plugins/adlc-core/references/{okf,run-isolation,loop-control,orchestration,token-compression,cost-ledger,tracker-adapters}.md`
+- `plugins/adlc-core/references/{okf,run-isolation,loop-control,orchestration,token-compression,tracker-adapters}.md`
 - `openadlc.example.yaml`, `apm.yml`, `.claude-plugin/marketplace.json`
 - `standard/{spec,adoption,onepage,principles,pack-format,conformance}.md`
 - `CONTRIBUTING.md`, `tools/docs-current.sh`, `tools/check-packs.py`

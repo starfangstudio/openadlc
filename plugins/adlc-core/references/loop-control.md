@@ -28,36 +28,25 @@ Consent decides *whether* to proceed; rigor decides *how hard to push first*. Th
 
 Each checkpoint has a sensible default flavor (discovery and review iterate; planning can fan out for a hard design); the operator can override.
 
-## The bound is not optional (it guards the operator's tokens)
+## The bound is not optional (it guards against a runaway loop)
 
-A loop costs tokens and time; a runaway loop can light a bonfire with the operator's budget. So before a loop runs it MUST declare four things, and the operator sees them up front:
+A loop takes time and passes; a runaway loop grinds on well past the point where it stops finding anything new. So before a loop runs it MUST declare three things, and the operator sees them up front:
 
 1. **Exit criteria**, concrete. Either a **fixed cap** (N passes) or **"until converged"** with a hard definition (stop after two consecutive rounds add nothing new). "Converged" is never vague.
 2. **A hard ceiling** the loop cannot exceed even if not converged. Keep defaults small (a few passes, not dozens). Managed config sets the system maximum; a project can lower it, never silently raise it.
-3. **A per-round cost estimate, a real number** (see "Show the four declarations when you offer the loop" below). Not "a cost view" in the abstract: an actual tokens-and-dollars figure for one round, plus the projected total at the default cap, sourced from this run's cost ledger ([references/cost-ledger.md](references/cost-ledger.md)). Then every round ends in a one-screen summary with what that round actually cost and the running total, so the operator can stop early; the loop also halts itself if a declared budget is hit.
-4. **Staged escalation.** Start with the smallest pass that could surface the answer, look at the yield, and add capacity in increments only while each increment still finds real, verified results. Do not open with a large fixed fan-out; a hundred agents confirming what the first ten found is waste, not rigor.
+3. **Staged escalation.** Start with the smallest pass that could surface the answer, look at the yield, and add capacity in increments only while each increment still finds real, verified results. Do not open with a large fixed fan-out; a hundred agents confirming what the first ten found is waste, not rigor.
 
-A checkpoint loop is never unbounded, never automatic, and never hides its cost. Default is one pass; depth is a deliberate, visible trade. An unbounded or cost-blind loop is the bonfire this design exists to prevent.
+A checkpoint loop is never unbounded and never automatic. Default is one pass; depth is a deliberate, visible trade.
 
-## Show the four declarations when you offer the loop
+## Show the three declarations when you offer the loop
 
-The four declarations are not a precondition the loop checks after the operator opts in; they are the OFFER. The instant a command surfaces a refine/loop option at a checkpoint (intake refine, the plan gate, the implement review-depth ask), the same message that offers the loop MUST state, in plain sight, before the operator can say yes:
+The three declarations are not a precondition the loop checks after the operator opts in; they are the OFFER. The instant a command surfaces a refine/loop option at a checkpoint (intake refine, the plan gate, the implement review-depth ask), the same message that offers the loop MUST state, in plain sight, before the operator can say yes:
 
 1. **Default cap** , how many rounds run by default (e.g. "2 rounds").
 2. **Hard ceiling** , the max it cannot exceed even un-converged (e.g. "ceiling 4"), and where it came from (default, project, or managed config).
 3. **Exit criterion** , concrete (the fixed cap, or the "two consecutive rounds add nothing new" convergence rule). Never vague.
-4. **Per-round cost estimate** , a REAL number, not a promise of a cost view. Quote tokens and dollars for one round and the projected total at the default cap, e.g. "~38k tokens / ~$0.74 per round, ~$1.48 for 2 rounds."
 
-The operator decides how many iterations and the spend BEFORE saying yes, not after the first round burns. An offer that hides any of the four, or quotes "a cost view" instead of an actual figure, is non-conformant.
-
-### Where the per-round number comes from
-
-The estimate is grounded in this run's measured spend, never guessed. Read the run's cost ledger ([references/cost-ledger.md](references/cost-ledger.md)) and base the per-round figure on the phase this checkpoint loops over:
-- **Intake refine** , the cost of the `intake` phase so far (one refine round repeats discovery work of similar shape).
-- **Plan gate** , the cost of the `plan` phase (one iterate or one fan-out arm).
-- **Implement review depth** , the cost of one `review` pass.
-
-Take the relevant phase's last-round (or per-pass) tokens-and-dollars from the ledger as the per-round estimate; multiply by the default cap for the projected total. For a **fan-out** flavor, multiply by the arm count (N independent attempts cost ~N times one arm, run concurrently). If the ledger has no entry yet for that phase (the very first round), fall back to a documented baseline estimate for the model+effort routing of that phase and label it "estimated, no measured round yet"; replace it with the real number once the first round writes to the ledger. Each round then appends its actuals to the ledger, so the next offer's estimate is tighter than the last.
+The operator decides how many iterations BEFORE saying yes, not after the first round runs. An offer that hides any of the three is non-conformant.
 
 A worked example of the full offer:
 
@@ -66,9 +55,7 @@ Refine the plan? (optional)
   default cap : 2 rounds
   hard ceiling: 4 (project config)
   exit        : stop when 2 consecutive rounds add nothing new
-  cost/round  : ~38k tokens / ~$0.74  (from this run's ledger, plan phase)
-  projected   : ~$1.48 at the default cap of 2
-  flavor      : iterate (or fan-out N=3 approaches -> ~$2.22, judged)
+  flavor      : iterate (or fan-out N=3 approaches, judged)
 Reply: 1 = proceed as offered  ·  edit the cap/flavor  ·  skip (one pass, done)
 ```
 
@@ -82,8 +69,6 @@ A loop is not a slow sequential grind. Wherever there is no data dependency, fan
 
 Wall-clock should approach the slowest single path, not the sum of all paths. See [references/orchestration.md](references/orchestration.md) for the fan-out, parallel-barrier, pipeline, and judge-panel patterns.
 
-## Cost and policy
+## Policy
 
-Loops cost tokens and time; depth is a deliberate trade the operator makes, more rigor for more cost. An organization MAY set loop defaults per checkpoint and per domain in managed config (for example, a minimum review depth for regulated changes); a project can tighten, never loosen.
-
-The cost figures the offer quotes and the per-round summaries report are not estimates pulled from the air: they read this run's persisted **cost ledger** ([references/cost-ledger.md](references/cost-ledger.md)), which records tokens and dollars per phase (intake / plan / implement / review). That ledger is what makes the cost view real, and what makes model-and-effort routing measurable rather than asserted (the A/B that justifies any downshift, see the model-and-effort-routing section of [references/orchestration.md](references/orchestration.md), compares ledger numbers, not vibes).
+Loops take time; depth is a deliberate trade the operator makes, more rigor for more rounds. An organization MAY set loop defaults per checkpoint and per domain in managed config (for example, a minimum review depth for regulated changes); a project can tighten, never loosen.

@@ -31,7 +31,7 @@ A plan must exist and be approved. If none does, it stops and tells you to run [
 **Review checkpoint (mandatory, never skipped).** It stops and asks two things:
 
 - **Which reviews to run:** code (recommended default), security, compliance, adversarial lenses, design / UI fidelity, or none (only for trivial changes).
-- **Depth:** one pass, or a bounded loop. For a loop it states the cap, ceiling, exit criterion, and per-round cost first.
+- **Depth:** one pass, or a bounded loop. For a loop it states the cap, ceiling, and exit criterion first.
 
 It runs the picked reviews in parallel via [`/ai-review`](ai-review.md), persists each verdict to the run workspace, and you take a final look.
 

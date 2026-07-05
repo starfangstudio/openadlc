@@ -55,13 +55,10 @@ This step always runs; the ask is not skippable, though the answers may be "none
 - **Design / UI fidelity** (recommended when the change builds UI from a design; via the `adlc-design` pack, on-demand).
 - **None** (not recommended; only for genuinely tiny or trivial changes).
 
-**(b) Depth: one pass, or a loop.** Run the picked reviews once, or as a bounded loop (review, fix, re-review until clean, or N passes). Default: one pass. **Before the operator says yes to a loop, state the four loop-control declarations up front** so they know how many iterations and the spend before they commit, per [references/loop-control.md](references/loop-control.md):
+**(b) Depth: one pass, or a loop.** Run the picked reviews once, or as a bounded loop (review, fix, re-review until clean, or N passes). Default: one pass. **Before the operator says yes to a loop, state the three loop-control declarations up front** so they know how many iterations before they commit, per [references/loop-control.md](references/loop-control.md):
 - **Default cap** (the exit criterion's N, e.g. one pass).
 - **Hard ceiling** (the loop cannot exceed it even if not converged; from managed config, a project may lower it, never raise it).
 - **Exit criterion** (concrete: a fixed cap, or "until converged" with a hard definition, two consecutive rounds add nothing new).
-- **Per-round cost estimate** (tokens / $ per round and the projected total at the cap, drawn from the cost ledger so it is real, not a guess; see [references/cost-ledger.md](references/cost-ledger.md)).
-
-Each round still ends in a one-screen summary with its actual cost and the running total, so the operator can stop early.
 
 Run exactly what the operator picked, at the chosen depth, via `/ai-review`.
 
@@ -75,5 +72,4 @@ The push to remote is outbound. Before asking, write the checkpoint file (`type:
 
 ## Guardrails
 All work is local until the push checkpoint. Work on the run branch `adlc/<run-id>` (or its worktree on concurrency), never main or a shared checkout, per [references/run-isolation.md](references/run-isolation.md). Never push, PR, comment, or publish without an explicit per-action yes.
-**Cost ledger (persist per-phase token/$).** As each phase runs (load, build per slice, acceptance-criteria check, each review pass), append its token and $ usage to the run's cost ledger in the run workspace, per [references/cost-ledger.md](references/cost-ledger.md). This is what makes the loop-control cost view in step 5(b) real instead of a guess, and what makes model-routing measurable (Sonnet-vs-Opus spend per slice). The ledger is local to the run workspace and never committed.
 **Token compression**: when `compression.enabled` (openadlc.yaml, on by default), communicate tersely for AI-internal and inter-agent output per [references/token-compression.md](references/token-compression.md); never compress the human-facing artifacts (the diff summary, the review verdict, the consent prompt).

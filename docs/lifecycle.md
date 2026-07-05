@@ -111,14 +111,14 @@ Every operator-facing checkpoint offers two dials: **consent** (whether to proce
 - **Iterate (refine):** run again on the last output. Stop when a round adds nothing, or at the cap.
 - **Fan out and judge (diversify):** run N independent attempts, then pick or synthesize the best.
 
-The bound is not optional: before it runs, a loop declares its exit criteria (a fixed cap, or "until converged" defined as two empty rounds), a hard ceiling it cannot exceed, and a per-round cost view so the operator can stop before it burns the token budget. Loops fan out wherever there is no data dependency (N attempts, N lenses, the slices in a wave run concurrently, then a judge). Default is one pass. An unbounded, automatic, or cost-blind loop is the bonfire this design exists to prevent. Full text: [loop-control.md](../plugins/adlc-core/references/loop-control.md).
+The bound is not optional: before it runs, a loop declares its exit criteria (a fixed cap, or "until converged" defined as two empty rounds), a hard ceiling it cannot exceed, and a staged escalation so depth is added only while it keeps finding something new. Loops fan out wherever there is no data dependency (N attempts, N lenses, the slices in a wave run concurrently, then a judge). Default is one pass. An unbounded or automatic loop is the runaway this design exists to prevent. Full text: [loop-control.md](../plugins/adlc-core/references/loop-control.md).
 
-## How it runs: parallel and token-mindful
+## How it runs: parallel and lean
 
-The lifecycle is built to be fast and cheap, not just correct. Two execution rules run through every command:
+The lifecycle is built to be fast and lean, not just correct. Two execution rules run through every command:
 
 - **Parallel by default.** Wherever there is no data dependency, fan out: intake's discovery and plan's exploration spread across read-only agents, implement runs the slices in a wave concurrently (worktrees isolate them), review runs its lenses in parallel, and loops fan out their attempts. Flows nest and scale to the work. Wall-clock approaches the slowest path, not the sum.
-- **Mindful of token burn.** Loops declare a cost ceiling and stop on budget; UI builds reach the screen via a planned fast route instead of flailing; heavy reads go to subagents to keep the main context lean. Fast, high-quality, and cheap is the bar, a loop or a build that bonfires tokens is a bug.
+- **Lean by default.** Loops declare a round cap and a hard ceiling; UI builds reach the screen via a planned fast route instead of flailing; heavy reads go to subagents to keep the main context lean. Fast, high-quality, and lean is the bar; a loop or build that runs away is a bug.
 - **Compressed where it is free.** AI-internal and inter-agent output is compressed (technique adapted from Caveman, MIT, reimplemented natively, on by default at `lite`); the human-facing artifacts (story, plan, review, consent) are never compressed. See [token-compression.md](../plugins/adlc-core/references/token-compression.md).
 
 See [orchestration patterns](../plugins/adlc-core/references/orchestration.md).

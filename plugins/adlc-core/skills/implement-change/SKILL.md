@@ -77,17 +77,15 @@ Implement progress (slice <id>):
 - Run the `review-change` skill (fresh-context adversarial review).
 - **Persist the verdict every run.** Write the review verdict to `review-<lens>-<UTC-timestamp>.md` in the run workspace (`~/.openadlc/runs/<workspace>/<run-id>/`, one file per review lens), BLOCK or APPROVE. Posting back stays gated, but the persisted verdict is not optional; never leave the review as only a commit message. A teammate, CI, or a fresh agent must be able to read it from the run workspace.
 - Fix blocking findings, re-verify.
-- **If you offer a fix-and-re-review loop, state the four loop-control declarations up front first** so the operator knows the iterations and spend before saying yes, per [references/loop-control.md](references/loop-control.md): **default cap** (the exit criterion's N), **hard ceiling** (cannot be exceeded; project may lower, never raise), **exit criterion** (a fixed cap, or "until converged" with a hard definition), and **per-round cost estimate** (tokens / $ per round and the projected total at the cap, drawn from the cost ledger so it is real; see [references/cost-ledger.md](references/cost-ledger.md)). Default is one pass; each round ends in a one-screen summary with its actual cost and the running total.
+- **If you offer a fix-and-re-review loop, state the three loop-control declarations up front first** so the operator knows the iterations before saying yes, per [references/loop-control.md](references/loop-control.md): **default cap** (the exit criterion's N), **hard ceiling** (cannot be exceeded; project may lower, never raise), **exit criterion** (a fixed cap, or "until converged" with a hard definition). Default is one pass; each round ends in a one-screen summary of what it found.
 - Then, and only then, stop and present the pre-flight report (exactly what would go out) and ask the operator for an explicit yes before any remote action.
 
 ## Guardrails
 - One slice at a time (direct use); parallel waves only via the `implementation-lead` coordinator.
 - If stuck, stop and report the specific blocker; never open a partial/unverified PR.
-- **Cost ledger (persist per-phase token/$).** As each phase runs (the per-slice build, the acceptance-criteria check, each review pass), append its token and $ usage to the run's cost ledger in the run workspace, per [references/cost-ledger.md](references/cost-ledger.md). This makes the loop-control cost view real instead of a guess, and makes model-routing measurable (Sonnet-vs-Opus spend per slice). The ledger is local to the run workspace and never committed.
 
 ## References
 - Run isolation (run-id selection, run branch `adlc/<run-id>`, slice worktrees, concurrency): [references/run-isolation.md](references/run-isolation.md)
 - Parallelism doctrine (parallel-barrier, adversarial-verify panel, fan-out, git worktree isolation, consent invariant): [references/orchestration.md](references/orchestration.md)
 - Tracker adapters (`create_issue`, `link_child`, `set_status`, `assign`; per-tracker GitHub / Jira / ADO mappings): [references/tracker-adapters.md](references/tracker-adapters.md)
-- Loop control (cap, ceiling, exit criterion, per-round cost declared up front): [references/loop-control.md](references/loop-control.md)
-- Cost ledger (per-phase token/$ persisted to the run workspace): [references/cost-ledger.md](references/cost-ledger.md)
+- Loop control (cap, ceiling, exit criterion declared up front): [references/loop-control.md](references/loop-control.md)

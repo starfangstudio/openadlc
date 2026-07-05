@@ -33,7 +33,7 @@ It presents the plan and stops for you. Three moves:
 
 - **Approve** it as written.
 - **Edit** the scope, approach, or rollback before anything is posted.
-- **Refine** with a bounded loop (iterate to tighten it, or generate a few approaches and judge). It states the cap, ceiling, exit criterion, and per-round cost before you say yes.
+- **Refine** with a bounded loop (iterate to tighten it, or generate a few approaches and judge). It states the cap, ceiling, and exit criterion before you say yes.
 
 On approval it posts **one native sub-issue per domain**, linked under the parent story and assigned to you, with the plan bundle serialized into the body. Posting is the only outbound step and it needs your explicit yes.
 

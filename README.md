@@ -58,7 +58,7 @@ The four commands are one machine, not four tools. A few things hold across ever
 - **The work travels as OKF bundles.** The story and the plan are [Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) bundles, plain typed markdown: a human briefing plus the full AI context, readable by a person and an agent alike. Each stage leaves an artifact the next can trust (implement its verify evidence, review its verdict), so the work moves between stages and trackers with no lock-in.
 - **Acceptance criteria, end to end.** Intake defines them, the plan restates them and maps each slice to them, and implement checks the build against them before a human is asked to review.
 - **It runs lean.** Discovery, slices, and review lenses fan out in parallel, so wall-clock time is the slowest path, not the sum.
-- **Loops and agent flows, bounded.** Stages orchestrate nested sub-agents and optional loops (iterate to refine, or fan out and judge, with adversarial passes baked in). Every loop is cost-capped with declared exit criteria, so running an agent past one task is continuity, not a token bonfire.
+- **Loops and agent flows, bounded.** Stages orchestrate nested sub-agents and optional loops (iterate to refine, or fan out and judge, with adversarial passes baked in). Every loop is round-capped with declared exit criteria, so running an agent past one task is continuity, not a runaway.
 
 ## Get started
 
