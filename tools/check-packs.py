@@ -11,7 +11,10 @@ variable (${CLAUDE_PLUGIN_ROOT}) in any prose unit (commands/skills/agents/
 references; it resolves on only one deploy target, so references are cited by
 name), missing/invalid frontmatter, skill name != its directory, missing
 name/description, invalid manifest JSON or a manifest violating the normative
-shape (standard/schema/pack-manifest.schema.json), implemented here stdlib-only.
+shape (standard/schema/pack-manifest.schema.json), a manifest `adlc` that does not
+equal the one spec-version SSOT (tools/adlc-check.py's SPEC_VERSION), or an
+experimental marker inconsistent with the eval level (eval-less packs must be
+"experimental": true; fully-evaled packs must not be), implemented here stdlib-only.
 Soft warnings (exit 0): no version, no References section, no failable check
 mentioned, over-length skill.
 Fail-closed (exit 2): zero files checked.
@@ -24,6 +27,19 @@ import sys, os, json, re, glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLUGINS = os.path.join(ROOT, "plugins")
+
+def _read_spec_version():
+    """The single source of truth for the spec version: tools/adlc-check.py's SPEC_VERSION.
+    Every shipped pack's manifest `adlc` field must equal it, so a version can never drift
+    across the 18 wire manifests again (one SSOT + this assert)."""
+    p = os.path.join(ROOT, "tools", "adlc-check.py")
+    try:
+        m = re.search(r'^SPEC_VERSION\s*=\s*"([^"]+)"', open(p, encoding="utf-8").read(), re.M)
+        return m.group(1) if m else None
+    except Exception:
+        return None
+
+SPEC_VERSION = _read_spec_version()
 
 def has_emdash(t):
     return ("\u2014" in t) or ("\\u2014" in t)
@@ -108,7 +124,7 @@ SEMVER = re.compile(r"^\d+\.\d+(\.\d+)?(-[0-9A-Za-z.\-]+)?(\+[0-9A-Za-z.\-]+)?$"
 UNIT_KEYS = ("skills", "agents", "commands", "references")
 EVAL_LEVELS = ("conformance", "conformance+gate")
 MANIFEST_KEYS = ("name", "version", "description", "license", "author", "owner",
-                 "adlc", "units", "evals", "capabilities")
+                 "adlc", "units", "evals", "experimental", "capabilities")
 
 def manifest_violations(d):
     """Validate a parsed manifest against the normative shape; return hard-fail strings."""
@@ -144,6 +160,8 @@ def manifest_violations(d):
                     v.append(f"units.{k} must be a non-negative int")
     if "evals" in d and d["evals"] not in EVAL_LEVELS:
         v.append(f"evals must be one of {EVAL_LEVELS}")
+    if "experimental" in d and not isinstance(d["experimental"], bool):
+        v.append("experimental must be a boolean")
     if "capabilities" in d and not isinstance(d["capabilities"], dict):
         v.append("capabilities must be an object")
     for k in d:
@@ -160,6 +178,19 @@ def check_manifest(path):
     except Exception:
         hard.append(f"{r}: invalid JSON"); return
     hard.extend(f"{r}: manifest {m}" for m in manifest_violations(d))
+    # Version SSOT (drift gate): every shipped pack targets the one spec version.
+    if SPEC_VERSION is None:
+        hard.append(f"{r}: cannot read the SPEC_VERSION SSOT from tools/adlc-check.py")
+    elif d.get("adlc") != SPEC_VERSION:
+        hard.append(f"{r}: adlc '{d.get('adlc')}' != spec SSOT '{SPEC_VERSION}' (tools/adlc-check.py)")
+    # Experimental marker binds to the eval level: an eval-less (structural-only) pack must be
+    # marked experimental, and a fully-evaled pack must not be. Keeps the marking honest + automatic.
+    evals = d.get("evals")
+    experimental = bool(d.get("experimental"))
+    if evals == "conformance" and not experimental:
+        hard.append(f"{r}: evals 'conformance' (structural only, no behavioral evals) must be marked \"experimental\": true")
+    if evals == "conformance+gate" and experimental:
+        hard.append(f"{r}: a 'conformance+gate' pack must NOT be marked experimental")
     lic = d.get("license")
     if lic and lic not in ("LicenseRef-OpenADLC-Source-Available-1.0", "CC-BY-4.0"):
         soft.append(f"{r}: license '{lic}' not in the known vocabulary (LicenseRef-OpenADLC-Source-Available-1.0, CC-BY-4.0)")

@@ -69,6 +69,10 @@
       "description": "The eval bar the pack clears (spec.md section 5.3, Law L5): 'conformance' is the structural eval; 'conformance+gate' also ships a behavioral eval. Required for a conformant pack.",
       "enum": ["conformance", "conformance+gate"]
     },
+    "experimental": {
+      "type": "boolean",
+      "description": "Optional. True marks a pack that ships structural conformance only (evals = 'conformance') with no behavioral evals yet: usable but not held to the full evaled bar. A pack with evals = 'conformance+gate' MUST NOT set this."
+    },
     "capabilities": {
       "type": "object",
       "description": "Default-deny capability declaration (spec.md section 5.4). Omitted keys mean the pack does not take that capability. Declared capabilities MUST match actual behavior.",
