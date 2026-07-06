@@ -34,6 +34,24 @@ Plan bundle (a new technical OKF, per domain, under the same run):
 
 `briefing.md` is always the human face. The rest is the AI context. There is no `.html` anymore.
 
+## The run index (`index.md`): the machine-readable run summary
+`index.md` is a **reserved file**. Besides the progressive-disclosure listing, its frontmatter carries the machine-readable summary of the run, so a run-list reader (for example a cockpit's run history) shows a run's outcome without opening the bundle:
+
+```yaml
+okf_version: "0.1"
+run_id: <slug>-<UTC-timestamp>
+status: active | done | abandoned        # the run's lifecycle state (per checkpoints.md)
+# run outcome, each field written only when a phase produces it (see rules):
+outcome: approved | denied               # the /ai-review verdict, if a review ran
+verify_iterations: <int>                 # how many Verify passes ran across the run
+tests: { passed: <int>, total: <int> }   # machine-readable test result of the last Verify
+```
+
+Rules:
+- **Written by the phase that produces it, never fabricated.** `verify_iterations` and `tests` come from real Verify runs (written by `/ai-implement` / `/ai-review`); `outcome` is the review verdict. A field a run never produced is **omitted**, never set to `0` or `false`. A reader renders an absent field as unknown (a middle-dot `·`), never a fake zero.
+- **Read-only for a list view.** A run-list reader reads these summary fields to render its columns (outcome, verify iterations, tests `passed/total`, and a pass rate derived as `passed/total`); it never writes them and never reopens the full bundle to recompute them.
+- These fields extend the reserved `index.md` shape; the concepts, `briefing.md`, and `log.md` are unchanged.
+
 ## Concept types (frontmatter `type`, not `concept`)
 Each concept's frontmatter MUST use `type`, with one of: `Briefing` (the human face), `Story` / `Bug` / `Epic` / `TechDebt` / `Intent` (the classified unit at intake), `Plan` (spec, slices), `Reference` (discovery, dependencies, contracts, design notes). Consumers tolerate unknown types; pick descriptive ones. Do not invent a `concept:` field; OKF's queryable field is `type`.
 
