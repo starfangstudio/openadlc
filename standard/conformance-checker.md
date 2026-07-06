@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The ADLC Conformance Checker
 
-> Status: draft proposal, pre-ratification. For spec version 0.1. Reference build: [tools/adlc-check.py](../tools/adlc-check.py) (checker 0.1).
+> Status: version 1.0. For spec version 1.0. Reference build: [tools/adlc-check.py](../tools/adlc-check.py) (checker 1.0).
 > One line: the buildable spec for the owned reference checker, the tool that runs the automatic checks in [conformance.md](conformance.md) and reports a verdict.
 
 [conformance.md](conformance.md) says a standard that does not ship its own checker loses control of what "conformant" means (the OpenAPI / SemVer / Conventional Commits lesson). This is the spec an implementer follows to build that checker. It is deliberately small: it runs the **auto** checks, records the **audit/attest** ones, and never pretends to decide what it cannot.
@@ -131,5 +131,5 @@ The checker is the gate, the way CommonMark's runner and the JSON Schema suite g
 
 - **It runs the auto checks; it records the rest.** Audit and attest checks are surfaced with their evidence pointers and provenance, not decided. A `pass` that is attest/audit carries the `attested` flag.
 - **It checks declarations, not behavior.** P4's behavior-match and P5's opaque-binary half need the certification program's enforcement spec scan; the checker emits a pointer unless a content scan is wired in.
-- **It is versioned with the spec.** Checker 0.1 checks against spec 0.1; the bundled tables and schema move together, so a stale checker cannot silently pass a newer pack.
+- **It is versioned with the spec.** Checker 1.0 checks against spec 1.0; the bundled tables and schema move together, so a stale checker cannot silently pass a newer pack.
 - **The contract now has a reference build.** [tools/adlc-check.py](../tools/adlc-check.py) implements this spec: it runs the P1-P6 pack checks, records the team and harness declarations with their provenance, and emits the report shape above. Stdlib-only, fail-closed, versioned with the spec, and owned by this project so a stale checker cannot silently pass a newer pack. Design notes: [tools/adlc-check-DESIGN.md](../tools/adlc-check-DESIGN.md). Keeping it owned and current is the commitment that keeps "conformant" meaningful.

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # ADLC on one page
 
-> Status: draft proposal, pre-ratification. The full standard: [manifesto](manifesto.md) · [principles](principles.md) · [spec](spec.md) · [adoption](adoption.md). Home: openadlc.com.
+> Status: version 1.0. The full standard: [manifesto](manifesto.md) · [principles](principles.md) · [spec](spec.md) · [adoption](adoption.md). Home: openadlc.com.
 
 **The Agentic Development Lifecycle (ADLC) is the operating discipline for building software with AI agents: a lifecycle, seven principles, and a human kept in control of it, so you get the speed of agents without giving up control, quality, or accountability.** It is vendor-neutral: your agent (Claude Code, Codex, Copilot, anything) is one implementation of it.
 

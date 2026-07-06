@@ -30,7 +30,7 @@ for mf in sorted(glob.glob(os.path.join(PLUGINS, "*", ".claude-plugin", "plugin.
     owner.setdefault("contact", CONTACT)
     d["owner"] = owner
 
-    d.setdefault("adlc", "0.1")
+    d.setdefault("adlc", "1.0")
     d["units"] = {
         "skills": n(pdir, "skills", "*"),
         "agents": n(pdir, "agents", "*.md"),

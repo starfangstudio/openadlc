@@ -3,7 +3,7 @@
 
 ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase lifecycle, seven principles, and a human-in-the-loop core, written so any agent or harness can implement it.
 
-> Status: draft proposal, pre-ratification. Spec version 0.1. It goes live on openadlc.com with the OpenADLC core at launch; until then it is a draft and packs build against it.
+> Status: version 1.0. Spec version 1.0. It goes live on openadlc.com with the OpenADLC core at launch; packs build against it.
 
 ## Read in order
 

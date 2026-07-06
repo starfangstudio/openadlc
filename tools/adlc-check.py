@@ -29,8 +29,8 @@ import re
 import json
 import glob
 
-SPEC_VERSION = "0.1"
-CHECKER_VERSION = "0.1"
+SPEC_VERSION = "1.0"
+CHECKER_VERSION = "1.0"
 LICENSE_VOCAB = ("LicenseRef-OpenADLC-Source-Available-1.0", "CC-BY-4.0")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

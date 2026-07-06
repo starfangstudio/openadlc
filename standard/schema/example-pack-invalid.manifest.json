@@ -4,7 +4,7 @@
   "description": "A deliberately non-conformant pack used to prove the schema rejects malformed declarations. This description is padded far past the 600-character cap so the schema's maxLength constraint has something to reject: it rambles on about setup, teardown, page objects, fixtures, retries, flake budgets, trace viewers, parallel shards, artifact uploads, browser matrices, viewport grids, network stubs, clock control, storage state, auth bootstrapping, reporter formats, CI sharding, quarantine lists, screenshot diffs, video capture, tag filters, and every other thing a one-line description has no business containing, because a description is a summary, not a manual, and the format says so at six hundred characters.",
   "author": { "name": "Mallory" },
   "owner": { "name": "Mallory", "contact": "mallory@example.com" },
-  "adlc": "0.1",
+  "adlc": "1.0",
   "units": [
     { "kind": "skill", "id": "sneaky-skill" }
   ],

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openadlc.com/schema/pack-manifest/0.1",
+  "$id": "https://openadlc.com/schema/pack-manifest/1.0",
   "title": "ADLC Pack Manifest",
-  "description": "The vendor-neutral format contract for an ADLC pack manifest, version 0.1. Validates a CONFORMANT pack (spec.md section 5). An experimental pack MAY omit 'evals' but is then not conformant. Certification programs extend this with their own fields; this schema is the base they extend.",
+  "description": "The vendor-neutral format contract for an ADLC pack manifest, version 1.0. Validates a CONFORMANT pack (spec.md section 5). An experimental pack MAY omit 'evals' but is then not conformant. Certification programs extend this with their own fields; this schema is the base they extend.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "version", "description", "license", "adlc", "units", "evals", "capabilities"],

@@ -5,7 +5,7 @@
   "license": "LicenseRef-OpenADLC-Source-Available-1.0",
   "author": { "name": "Jane Dev" },
   "owner": { "name": "Jane Dev", "contact": "jane@example.com" },
-  "adlc": "0.1",
+  "adlc": "1.0",
   "units": { "skills": 1, "agents": 0, "commands": 0, "references": 2 },
   "evals": "conformance",
   "capabilities": {

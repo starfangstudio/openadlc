@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # OpenADLC Provenance (git-trailer)
 
-> Status: draft proposal, pre-ratification. For spec version 0.1.
+> Status: version 1.0. For spec version 1.0.
 > One line: how OpenADLC records which lifecycle phases ran, on what, in what order, as hash-linked git trailers on commits and pull requests, and how a reader verifies them at view time without any server or gate.
 
 Provenance answers one question about a change: **did it actually move through the lifecycle, in order, on the artifacts it claims?** OpenADLC records the answer as a small hash-linked trailer on each commit and on the pull request, written by the four `/ai-*` commands ([`/ai-discovery`](../plugins/adlc-core/commands/ai-discovery.md), [`/ai-plan`](../plugins/adlc-core/commands/ai-plan.md), [`/ai-implement`](../plugins/adlc-core/commands/ai-implement.md), [`/ai-review`](../plugins/adlc-core/commands/ai-review.md)) as they run. A reader (the OpenADLC CLI, or the dashboard) verifies it **at view time**: it recomputes the chain from the git history and the pull request body and shows a verdict. There is no server, no stored verdict, and, deliberately, **no check-run** (see [Decision D6](#decisions)).
@@ -362,4 +362,4 @@ Every silent choice, with the reasoning, so an implementer needs no interpretati
 
 ---
 
-Author: OpenADLC standard. Freshness: written for git-trailer provenance v1 against spec 0.1 (2026-07-05). Re-verify the `phase` enum and the `art` per-phase table against the four `/ai-*` commands before extending them; a new provenance-writing phase needs a new `phase` value and an artifact rule here first. The `readTrailers` contract for provenance is fixed in Section 4; a host adapter that implements it MUST return the fence markers and the trailer grammar byte-for-byte as specified there.
+Author: OpenADLC standard. Freshness: written for git-trailer provenance v1 against spec 1.0 (2026-07-05). Re-verify the `phase` enum and the `art` per-phase table against the four `/ai-*` commands before extending them; a new provenance-writing phase needs a new `phase` value and an artifact rule here first. The `readTrailers` contract for provenance is fixed in Section 4; a host adapter that implements it MUST return the fence markers and the trailer grammar byte-for-byte as specified there.

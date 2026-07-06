@@ -10,7 +10,7 @@
     "name": "OpenADLC",
     "contact": "https://openadlc.com"
   },
-  "adlc": "0.1",
+  "adlc": "1.0",
   "units": {
     "skills": 10,
     "agents": 1,

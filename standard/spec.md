@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The ADLC Specification
 
-> Status: draft proposal, pre-ratification. Version: 0.1 (draft).
+> Status: version 1.0.
 > One line: the normative, vendor-neutral definition of the Agentic Development Lifecycle. The [manifesto](manifesto.md) is the why; this is the what.
 
 This document defines what it means to follow ADLC. It is written against capabilities, not products: any agent or tool that implements the rules below is an ADLC implementation. The [principles](principles.md) are the values; every rule here traces to one of them.
@@ -222,7 +222,7 @@ Conformance is a floor, not a grade. [adoption.md](adoption.md) defines the leve
 
 ## Companion specifications
 
-This is version 0.1. The rules above are the core and stand on their own. A set of companion specs makes them buildable without changing a single rule here:
+This is version 1.0. The rules above are the core and stand on their own. A set of companion specs makes them buildable without changing a single rule here:
 
 - **[conformance.md](conformance.md)** turns section 8 into a machine-checkable test (per-subject, per-level checks) plus a `.adlc/conformance.yaml` manifest a project drops in to declare and prove its level.
 - **[pack-format.md](pack-format.md)** fixes the pack wire format (section 5) and the capability vocabulary, backed by a real JSON Schema in [schema/](schema/pack-manifest.schema.json) with passing and failing examples.

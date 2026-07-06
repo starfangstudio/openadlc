@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # ADLC Principles
 
-> Status: draft proposal, pre-ratification.
+> Status: version 1.0.
 > One line: the seven non-negotiables every ADLC rule traces back to. If a rule does not serve one of these, it does not belong in the standard.
 
 The [manifesto](manifesto.md) says why ADLC exists. These are the values underneath it. The [spec](spec.md) turns each one into a checkable rule. Read these seven and you know what ADLC stands for, before any procedure.

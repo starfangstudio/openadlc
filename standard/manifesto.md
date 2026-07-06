@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The Agentic Development Lifecycle
 
-> Status: draft proposal, pre-ratification. Home: openadlc.com.
+> Status: version 1.0. Home: openadlc.com.
 
 **The Agentic Development Lifecycle (ADLC) is the operating discipline for building software with AI agents: a repeatable lifecycle with a human kept in control at its checkpoints, a small set of non-negotiable laws, and an audit trail of every decision, so a team gets the speed of agents without giving up control, quality, or accountability.**
 

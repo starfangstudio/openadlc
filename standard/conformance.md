@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # ADLC Conformance Test
 
-> Status: draft proposal, pre-ratification. Tests against spec version 0.1.
+> Status: version 1.0. Tests against spec version 1.0.
 > One line: the checkable test behind "ADLC-conformant." [spec.md](spec.md) section 8 says conformance is a checkable claim; this is the actual checklist.
 
 A standard that cannot be checked is a slogan. This document turns the spec's MUST clauses into a numbered test a person or a script can run against a team, a pack, or a harness, plus a manifest a project drops in its repo to declare and prove its level.

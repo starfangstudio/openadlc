@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # Adopting ADLC
 
-> Status: draft proposal, pre-ratification.
+> Status: version 1.0.
 > One line: what declaring "we follow ADLC" commits you to, by level, and the smallest first step to get there.
 
 The [spec](spec.md) defines the standard. This is how you adopt it: what you are promising, the three levels you can promise it at, and the literal text you put in your repo to say so.

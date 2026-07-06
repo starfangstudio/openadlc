@@ -3,9 +3,9 @@
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning follows [SemVer](https://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - 2026-07-06
 
-Initial public release. Pre-release: nothing is stable yet, expect breaking changes.
+Initial public release, version 1.0. This 1.0 is the stable baseline; the version does not bump again until the production release.
 
 ### Renamed
 - Commands renamed: `agentic-intake` -> `ai-discovery`, `agentic-plan` -> `ai-plan`, `agentic-implement` -> `ai-implement`, `agentic-review` -> `ai-review`.

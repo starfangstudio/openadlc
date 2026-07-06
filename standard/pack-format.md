@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The ADLC Pack Format
 
-> Status: draft proposal, pre-ratification. For spec version 0.1.
+> Status: version 1.0. For spec version 1.0.
 > One line: the vendor-neutral wire format and capability vocabulary for an ADLC pack, so a pack written once validates and travels everywhere.
 
 [spec.md](spec.md) section 5 fixes the pack *shape* (manifest + units + evals + capability declaration) and leaves the wire format for later. This is later. It defines the concrete manifest fields, the capability vocabulary, and the bans, backed by a real machine-checkable schema.
