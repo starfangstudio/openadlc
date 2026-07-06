@@ -18,9 +18,9 @@ Exit codes: 0 clean, 1 one or more leaks, 2 fail-closed (zero files read).
 The marker terms are base64-encoded below so this PUBLIC file never holds the
 literal enterprise vocabulary it guards against (the same reason canon-gate.py
 stores the em-dash by codepoint: a leak gate must not itself be the leak).
-Decode to read or extend the list; the decoded content is the verbatim marker
-list from planning/v1/ip-boundary.md, which this gate is required to copy
-verbatim. Matching is case-insensitive, one marker per line.
+Decode to read or extend the list; the decoded content is the full marker list
+from planning/v1/ip-boundary.md (the enterprise markers plus the additional
+private terms it names). Matching is case-insensitive, one marker per line.
 """
 import sys
 import os
@@ -29,12 +29,14 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# The verbatim enterprise-marker list, base64-encoded (see the module docstring
-# for why). Decodes to one marker per line.
+# The marker list, base64-encoded (see the module docstring for why): every
+# marker named in ip-boundary.md.
+# Decodes to one marker per line.
 _MARKERS_B64 = (
     "ZW50ZXJwcmlzZSBzb2NrZXQKb3JnX25vdGVzCnJldmlldyByb29tCndlZWtseSBwYXNz"
     "CmVudGl0bGVtZW50LWFzLW91ci1saWNlbnNpbmcKUEFTRVRPCndhdGVybWFyawpzZWF0"
-    "IGF0dGVzdGF0aW9uCm9yZ19hZG1pbgpnaWZ0IGNyZWRpdAp0cnVlLXVwCmR1bm5pbmc="
+    "IGF0dGVzdGF0aW9uCm9yZ19hZG1pbgpnaWZ0IGNyZWRpdAp0cnVlLXVwCmR1bm5pbmcK"
+    "b3BlbmFkbGMgbm90ZXMKbG9jYWxfbm90ZXMKbWVtb3J5LWZvcm1hdApNRU0t"
 )
 MARKERS = [m for m in base64.b64decode(_MARKERS_B64).decode("utf-8").split("\n")
            if m]
