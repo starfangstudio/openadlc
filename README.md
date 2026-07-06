@@ -8,7 +8,7 @@
 <p align="center"><b>Open standard for the <a href="https://www.ibm.com/think/topics/agent-development-lifecycle-adlc">Agentic Development Lifecycle</a>.</b></p>
 
 <p align="center">
-  Runs in the harness you already use: <b>Claude Code</b>, <b>Cursor</b>, <b>Copilot</b>, <b>Codex</b>, <b>Windsurf</b>, <b>Antigravity</b>, and other APM targets.
+  Runs today in <b>Claude Code</b>. Authored in a portable pack format (APM), with <b>Cursor</b>, <b>Copilot</b>, <b>Codex</b>, <b>Windsurf</b>, and <b>Antigravity</b> on the roadmap.
 </p>
 <p align="center">
   Built on open standards: <a href="https://agents.md">AGENTS.md</a> · <a href="https://agentskills.io">Agent Skills</a> · <a href="https://modelcontextprotocol.io">MCP</a> · <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf">OKF</a>.
@@ -62,7 +62,7 @@ The four commands are one machine, not four tools. A few things hold across ever
 
 ## Get started
 
-**Prerequisites:** a supported harness (Claude Code, Cursor, Copilot, Codex, Windsurf, Antigravity, and other APM targets) and [APM](https://github.com/microsoft/apm), the agent package manager.
+**Prerequisites:** [Claude Code](https://claude.com/claude-code), the supported harness today, and [APM](https://github.com/microsoft/apm), the agent package manager. Other harnesses are on the roadmap through the portable pack format.
 
 Install with one command; it deploys to your harness automatically:
 ```bash
@@ -96,7 +96,7 @@ Worked example, "add a discount-code field to the checkout page": intake takes t
 OpenADLC is opinionated where it matters (the lifecycle discipline) and open everywhere else.
 
 - **Add your own skill.** Drop a `SKILL.md` at `plugins/<pack>/skills/<name>/SKILL.md` with a name, a trigger-rich description, and the steps. It loads when its description matches the work. See [docs/pack-format.md](docs/pack-format.md).
-- **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to every harness, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to your harness, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
 - **Edit a checkpoint.** Each stage's steps live in its command and skill files (for example `plugins/adlc-core/commands/ai-implement.md` and the matching `skills/ai-implement/SKILL.md`). Edit the steps to change what a stage does, or where it stops, including the push gate.
 - **Pick your models** and effort in your harness, per stage, with no config to maintain.
 
@@ -112,7 +112,7 @@ The ADLC standard itself (the `standard/` tree) is open under CC-BY-4.0, so anyo
 
 ## For organizations
 
-OpenADLC is free for individuals, including a solo freelancer on paid client work. Teams and organizations need a commercial seat. An **OpenADLC Enterprise** edition is in the works: centrally enforced checkpoints, organization policy, a tamper-evident audit trail, private and certified enterprise domain packs, and a desktop cockpit. Full docs are coming to [openadlc.com](https://openadlc.com).
+OpenADLC is free for individuals, including a solo freelancer on paid client work. Teams and organizations need a commercial seat. An **OpenADLC Enterprise** edition is in the works: centrally enforced checkpoints, organization policy, a tamper-evident audit trail, private enterprise domain packs, and a desktop cockpit. These are roadmap, not shipped today. Full docs are coming to [openadlc.com](https://openadlc.com).
 
 ## Community
 
@@ -124,7 +124,7 @@ OpenADLC is free for individuals, including a solo freelancer on paid client wor
 
 ## Status
 
-Early development. The lifecycle runs across APM-supported harnesses through the portable pack format. The core is built with publicly viewable source and is not yet ready for general use. Expect breaking changes.
+Early development. The lifecycle runs on Claude Code today; the pack format is built to reach other APM-supported harnesses, but those adapters are not shipped yet. The core is publicly viewable source and is not yet ready for general use. Expect breaking changes.
 
 ## License
 
@@ -133,7 +133,7 @@ OpenADLC is dual-licensed. "Open" here means an open standard, publicly viewable
 - **The ADLC standard** (the `standard/` tree): [CC-BY-4.0](LICENSE-STANDARD). A genuine open standard, free for anyone to read, implement, and build on.
 - **The implementation** (`plugins/`, adapters, the harness, the four `/ai-*` commands): the [OpenADLC Source-Available License](LICENSE). Publicly viewable and free for individuals and the public to read, use, and modify. Use by a team or organization requires a commercial seat license; a solo individual, including a freelancer on client work, stays free.
 
-Contributions are covered by a [CLA](CLA.md), checked on every pull request. "OpenADLC" and "OpenADLC Verified" are trademarks of StarFang; see [BRAND.md](BRAND.md).
+Contributions are covered by a [CLA](CLA.md), checked on every pull request. "OpenADLC" is a trademark of StarFang; see [BRAND.md](BRAND.md).
 
 ---
 
