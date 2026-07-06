@@ -8,7 +8,7 @@ Provenance answers one question about a change: **did it actually move through t
 
 This is the git-trailer provenance for the lifecycle. It is **not** the per-seat cryptographic audit hash chain (a separate backend concern that gives non-repudiation across an org). These trailers give legibility and tamper-evidence on a single change; they do not claim identity or non-repudiation. That honest limit is stated where it matters below.
 
-Cross-links: verification consumes the host adapter's `readTrailers` (the host adapter spec, authored in parallel); the run, branch, and artifact locations are defined in the adlc-core [run-isolation.md](../plugins/adlc-core/references/run-isolation.md) reference; the lifecycle phases and the consent checkpoint are [spec.md](spec.md) sections 2 and 4.
+Cross-links: verification consumes a host adapter's trailer-reading capability, `readTrailers`, whose contract for provenance is fixed in Section 4 below; the run, branch, and artifact locations are defined in the adlc-core [run-isolation.md](../plugins/adlc-core/references/run-isolation.md) reference; the lifecycle phases and the consent checkpoint are [spec.md](spec.md) sections 2 and 4.
 
 ---
 
@@ -165,11 +165,11 @@ Rules the block MUST follow:
 
 ### The seam with `readTrailers` (who does what)
 
-The host adapter's `readTrailers` and this spec's **verifier** split the work cleanly, and the split is the contract both specs are held to.
+The host adapter's `readTrailers` and this spec's **verifier** split the work cleanly, and this section fixes the split as the contract `readTrailers` is held to.
 
-**`readTrailers` is a dumb, complete extractor.** Its full signature and return shape are fixed in the host adapter spec; what it MUST guarantee for provenance is:
+**`readTrailers` is a dumb, complete extractor.** It is the host adapter's trailer-reading capability; this section fixes what it MUST guarantee for provenance:
 
-1. It returns **every** syntactic git trailer it finds, from two sources, each record tagged with its `source` (`commit` or `description`). Although `readTrailers` accepts an optional `keys` restriction (the host adapter spec), the verifier calls it **without** `keys`, so it receives every record; filtering to the `OpenADLC-Provenance` key, deduping, and phase-ordering are the verifier's job, never this method's (it never parses the provenance value).
+1. It returns **every** syntactic git trailer it finds, from two sources, each record tagged with its `source` (`commit` or `description`). Although `readTrailers` accepts an optional `keys` restriction, the verifier calls it **without** `keys`, so it receives every record; filtering to the `OpenADLC-Provenance` key, deduping, and phase-ordering are the verifier's job, never this method's (it never parses the provenance value).
 2. **Commit source:** the pull request's own commits, the `base..head` range (the commits the pull request adds, where `base` is the merge-base of `head` and the target branch), never the source branch's full ancestry. Commit footers are parsed with git-trailer grammar, and the trailer **value is returned byte-for-byte** with no trimming, folding, or continuation-line joining, so the verifier can recompute `id` over the exact bytes.
 3. **Description source:** the trailers inside the provenance fence above, the markers matched byte-for-byte, one `OpenADLC-Provenance:` line per record.
 4. It returns records in **source order** (commit order within `base..head`, then description-fence line order). The verifier does not depend on this for correctness; it links by `prev`.
@@ -181,7 +181,7 @@ The host adapter's `readTrailers` and this spec's **verifier** split the work cl
 
 **The `<tip>` for PROV-6** is the head commit of the change under view (the pull request's `headSha`); the implement record's `tree:<oid>` is compared against `git rev-parse <headSha>^{tree}`.
 
-After a squash, the commit source is empty and the body is the sole carrier; before a squash, both agree and dedupe to the same set. **The body-side records are what remain when the commits are gone.** The two specs MUST agree on the fence markers and the trailer grammar; if either changes, both change in lockstep.
+After a squash, the commit source is empty and the body is the sole carrier; before a squash, both agree and dedupe to the same set. **The body-side records are what remain when the commits are gone.** A `readTrailers` implementation MUST return the fence markers and the trailer grammar byte-for-byte as fixed in this section.
 
 ---
 
@@ -348,7 +348,7 @@ Every silent choice, with the reasoning, so an implementer needs no interpretati
 
 - **D6. View-time verification only; no check-run; `openadlc/attested` reserved and unused.** A required check-run would be a host-native gate by another name: it moves the release decision off the local consent checkpoint onto the host provider, which the standard forbids (Law L4; [spec.md](spec.md) section 4). So nothing OpenADLC ships publishes, requires, or blocks on a check-run for provenance. Reserving `openadlc/attested` documents the intent, but the guarantee is scoped honestly: OpenADLC's own tooling publishes none. It cannot promise a third party never published a lookalike under some name, so a reader trusts the view-time recomputation, not a host check-run's presence or absence. Verification stays a read a human or the dashboard runs when they look, never a gate that stops a merge.
 
-- **D7. Data source: CLI reads local git plus the pull request body; the dashboard reads via `readTrailers`; no backend endpoint and no stored verdict.** Provenance is a pure function of the git history and the pull request body, so verification recomputes on every view and there is nothing server-side to trust or to let fall stale. The CLI needs no network. The dashboard needs only the host adapter. **Needs the host adapter spec to agree:** the `readTrailers` signature, its return shape, and the fence markers are fixed there; this spec fixes what `readTrailers` must return (Section 4, the seam) and how the verifier consumes it. Reconcile the two before either ships.
+- **D7. Data source: CLI reads local git plus the pull request body; the dashboard reads via `readTrailers`; no backend endpoint and no stored verdict.** Provenance is a pure function of the git history and the pull request body, so verification recomputes on every view and there is nothing server-side to trust or to let fall stale. The CLI needs no network. The dashboard needs only the host adapter. **The trailer reader must agree:** this spec fixes what `readTrailers` must return (Section 4, the seam) and how the verifier consumes it; a host adapter that implements `readTrailers` guarantees exactly that return shape and the byte-for-byte fence markers.
 
 - **D8. `by` (and the git author) is a self-asserted claim.** Git author and committer, and any `by=` string, are set by whoever runs the command; nothing here cryptographically binds a record to a person. Labeling it honestly in the verdict avoids implying an identity guarantee that only the per-seat audit chain provides. Provenance says which phases ran on which artifacts in which order; it does not say who, provably.
 
@@ -362,4 +362,4 @@ Every silent choice, with the reasoning, so an implementer needs no interpretati
 
 ---
 
-Author: OpenADLC standard. Freshness: written for git-trailer provenance v1 against spec 0.1 (2026-07-05). Re-verify the `phase` enum and the `art` per-phase table against the four `/ai-*` commands before extending them; a new provenance-writing phase needs a new `phase` value and an artifact rule here first. The `readTrailers` cross-link tracks the host adapter spec; if that spec changes the fence markers or the trailer grammar, change them here in lockstep.
+Author: OpenADLC standard. Freshness: written for git-trailer provenance v1 against spec 0.1 (2026-07-05). Re-verify the `phase` enum and the `art` per-phase table against the four `/ai-*` commands before extending them; a new provenance-writing phase needs a new `phase` value and an artifact rule here first. The `readTrailers` contract for provenance is fixed in Section 4; a host adapter that implements it MUST return the fence markers and the trailer grammar byte-for-byte as specified there.

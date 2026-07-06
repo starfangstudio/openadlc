@@ -87,11 +87,6 @@ PATTERNS = [
     ("fleet", re.compile(r"\bfleet", re.I),
      "the word was removed from product vocabulary"),
 
-    # 6. The feature is removed vocabulary. Requires the 'org' prefix, so the permanent
-    # /brain/ API path segment never matches.
-    ("org-brain", re.compile(r"\borg[-\s]?brain\b", re.I),
-     "the feature is removed vocabulary"),
-
     # 7. Deleted bots.
     ("dead-bots", re.compile(
         r"\b(?:gate-bot|retro-bot|legibility-bot|audit-bot)\b", re.I),
@@ -141,8 +136,7 @@ PATTERNS = [
 
     # 14. Deleted screens / routes.
     ("dead-routes", re.compile(
-        r"\b(?:org-brain-enable|brain-local|cost-ledger"
-        r"|command-palette|pack-index|api-reference)\b", re.I),
+        r"\b(?:cost-ledger|command-palette|pack-index|api-reference)\b", re.I),
      "deleted screens/routes"),
 ]
 
@@ -194,17 +188,10 @@ ALLOWLIST = [
           "GitLab API field name inside a code identifier",
           line_re=r"`[^`]*(?:merge_request|mr_iid|merge_requests)[^`]*`"),
 
-    # The /brain/ API path segment is permanent (not the org-brain feature name).
-    # The org-brain pattern needs the 'org' prefix, so /brain/ alone never hits;
-    # this covers a line that carries both.
-    Allow({"org-brain"},
-          "the /brain/ API path segment is permanent, not the feature name",
-          line_re=r"/brain/"),
-
-    # Copy-law disclaimer: a line that explicitly REFUSES the measurement (the
-    # memory format states it computes no effectiveness/ROI/savings metric).
-    # Analogous to the merge-request meta-mention: the term appears in order to
-    # be prohibited. Only fires on a line already carrying a measurement word.
+    # Copy-law disclaimer: a line that explicitly REFUSES a measurement (e.g. a
+    # doc stating it computes no effectiveness/ROI/savings metric). Analogous to
+    # the merge-request meta-mention: the term appears in order to be prohibited.
+    # Only fires on a line already carrying a measurement word.
     Allow({"roi", "tokens-saved", "money-metric", "dollar-amount"},
           "copy-law disclaimer: the doc explicitly refuses this measurement",
           line_re=(r"(?i)(?:no effectiveness|claims no|derives no|no measurement"

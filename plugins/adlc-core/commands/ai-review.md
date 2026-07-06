@@ -45,6 +45,9 @@ Verdict: BLOCK | APPROVE (with nits)
 Outbound if approved: <N> comments + verdict on <target>
 ```
 
+## Run end
+When `/ai-review` runs **standalone** and carries the run to its terminal state (`index.md` status `done` or `abandoned`), the run is complete. When `/ai-review` runs **embedded in `/ai-implement`**, the run ends at the implement terminal state, not here.
+
 ## Guardrails
 Read and analyze locally; the only outbound step is posting, and it waits for the operator's explicit yes. Never run `gh pr comment`, `gh pr review`, or API writes before the operator says yes. Cite every finding `path:line`; mark anything unverified `unknown`, never invent.
 **Verify-real-run applies to review evidence too.** A visual or behavioral acceptance criterion is "met" only after a REAL run with PERSISTED evidence: web = dev-server smoke + a saved screenshot; native = build + install + LAUNCH on sim/emulator + a saved screenshot. A green build or a SwiftUI/preview/snapshot render is NOT sufficient. A "looks right" claim with no saved artifact is a finding, not an approval: if the implement step's acceptance evidence is missing or is only a build/preview, the verdict is BLOCK. (Cautionary example: the iOS home build passed verify with screenshots but the shipped, unsigned binary did not actually launch.)

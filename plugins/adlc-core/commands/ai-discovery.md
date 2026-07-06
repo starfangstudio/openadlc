@@ -81,5 +81,8 @@ Before asking, write the checkpoint file (`type: post-issue`) per [references/ch
 
 Never post without an explicit yes.
 
+## Run end
+When discovery **ends the run here** (`index.md` status `done` or `abandoned`, not continuing into `/ai-plan`), the run has reached its terminal state and the lifecycle is complete. If the run continues straight into `/ai-plan` (status `active`), it is not terminal here; the run ends at whichever command carries it to `done` or `abandoned`.
+
 ## Exit
 Done when the OKF bundle exists under `~/.openadlc/runs/<workspace>/<run-id>/` (briefing + classified unit + AI concepts + `index.md`), carries clear acceptance criteria, the living doc captured the planning (including the workspace shape, member repos, and primary tracker), and you have posted the parent story to the primary tracker (the bundle serialized into the body per [references/okf.md](../references/okf.md), the operator assigned, deduped before create). The living doc records **POSTED** plus the issue URL so a re-run is idempotent. If the run continues straight into `/ai-plan`, leave `index.md`'s `status: active`; if this run ends here, set it `done` (or `abandoned`), per [references/checkpoints.md](../references/checkpoints.md). Hand the posted issue (and the run-id) to `/ai-plan`, which selects the run by run-id, never by feature-name glob.
