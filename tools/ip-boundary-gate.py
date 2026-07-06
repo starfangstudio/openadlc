@@ -51,8 +51,8 @@ BINARY_EXT = {
     ".mp4", ".mp3", ".wav", ".mov", ".webm", ".zip", ".gz", ".tar",
 }
 
-# This gate's own source is skipped: it carries the (encoded) marker list and
-# must never flag the file that holds it.
+# This gate's own source IS scanned (so a literal term in its docstring or
+# comments is caught); only the base64 marker-block lines are allowlisted.
 SELF = os.path.abspath(__file__)
 
 
@@ -106,15 +106,18 @@ def scan(targets):
     violations = []
     files_read = 0
     lowered = [(m, m.lower()) for m in MARKERS]
+    b64_line = re.compile(r'^\s*"[A-Za-z0-9+/=]+"\s*$')
     for path in iter_files(targets):
-        if os.path.abspath(path) == SELF:
-            continue
         text = read_text(path)
         if text is None:
             continue
         files_read += 1
         relpath = os.path.relpath(path, ROOT)
+        is_self = os.path.abspath(path) == SELF
         for lineno, line in enumerate(text.splitlines(), 1):
+            # Scan this gate's own file too; allowlist only the base64 block.
+            if is_self and b64_line.match(line):
+                continue
             low = line.lower()
             for marker, mlow in lowered:
                 if mlow in low and not allowlisted(marker, relpath, line):
