@@ -24,6 +24,10 @@ Make an AI feature safe to ship to real users. Layered defense: input guardrails
 block attacks before the model, output guardrails sanitize what the model
 produces, privacy constraints bound what data reaches any model at all.
 
+**Boundary:** this skill builds the guardrails in; the `ai-reviewer` agent audits
+a diff afterward to check whether those guardrails are actually present and correct.
+Use this skill to add defenses, use `ai-reviewer` to verify a change before it ships.
+
 ## Step 1: Detect first
 
 Never assume. Inspect the feature before adding anything.

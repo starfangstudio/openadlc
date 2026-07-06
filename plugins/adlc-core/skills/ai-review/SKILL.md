@@ -9,6 +9,8 @@ version: 0.1.0
 
 An independent, fresh-eyes review of a change. Runs embedded inside ai-implement and also stands alone on any diff, branch, PR, or code the user did not write. Posting a review is gated on the user's yes.
 
+**Architecture:** this skill is a thin orchestrator, not a second reviewer. It resolves the target and invokes the `pr-reviewer` agent (which itself wraps `code-review` / `security-review`) in an isolated context, then relays that agent's verdict.
+
 When a `references/<name>.md` link does not resolve relative to this file, locate it under the deployed adlc-core pack (search for the file name, e.g. under `apm_modules/*/adlc-core/references/`) and READ the referenced file before acting on its rule.
 
 ## Steps

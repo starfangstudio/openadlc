@@ -89,8 +89,14 @@ Route by task complexity. For the routing table and function contract, see
 Set a budget per feature before shipping, not after. Enforce `max_tokens` in the
 request; log actuals per call; alert when a single call exceeds 2x the budget.
 Use prompt caching for any context that repeats across requests (system prompt,
-retrieved documents, tool schemas). For full budget formulas, cache TTL details,
-and the keep-warm pattern, see [references/llm-integration-detail.md](../../references/llm-integration-detail.md).
+retrieved documents, tool schemas).
+
+Fallback minimum (usable without opening the reference): per-request token budget
+= expected input tokens + `max_tokens` (the output cap you pass in the request).
+Log actual `input_tokens` + `output_tokens` from the response against that number.
+
+For full cost-budget formulas, cache TTL details, and the keep-warm pattern, see
+[references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Step 6: Graceful degradation and fallback
 
@@ -102,7 +108,12 @@ Every AI feature must have a defined fallback. Choose one:
 
 Implement a circuit breaker: after N consecutive failures, open the circuit and route
 directly to fallback without attempting the API. Reset after a probe interval.
-For the circuit-breaker flow diagram and recommended N / reset values, see
+
+Fallback minimum (usable without opening the reference): N = 5 consecutive failures
+opens the circuit; reset by probing again after 30 s. Tune both from real failure
+data once you have it.
+
+For the circuit-breaker flow diagram, see
 [references/llm-integration-detail.md](../../references/llm-integration-detail.md).
 
 ## Step 7: Verify

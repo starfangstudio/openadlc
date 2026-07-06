@@ -65,6 +65,18 @@ and no PII embedded in any request. The bar: you cannot ever tell what individua
 people are doing, since everyone is anonymous. Match that bar; do not add raw
 values "just for debugging".
 
+## Verify
+
+Confirm the pixel actually fires before calling it wired, do not trust the code read alone:
+
+```bash
+adb logcat -c && <trigger the flow on-device or via instrumentation> \
+  && adb logcat -d | grep -E "vpn_connect_result"   # swap in the pixel's event name
+```
+
+A matching log line = pass. No match = the call site is unreached or the pixel name/params
+drifted from the registry; fix before marking the event done.
+
 ## Outbound checkpoint
 
 Local work needs no approval. Outbound here (enabling a new collection endpoint, flipping telemetry on, shipping a new pixel/event to a live production endpoint): stop, present exactly what fields would leave the device, and wait for an explicit "yes" (global consent law).

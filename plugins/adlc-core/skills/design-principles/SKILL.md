@@ -9,6 +9,8 @@ version: 0.1.0
 
 Principles are heuristics that lower the cost of change and reading, not laws. Apply where they pay off; **YAGNI and KISS outrank the rest** and guard against over-engineering.
 
+Boundary: this skill holds the always-on rules (SOLID, DRY/KISS/YAGNI, composition). The sibling skill `design-patterns` holds named moves (Strategy, Factory, Observer, ...) reached for only once a specific change pressure is present; check principles first, reach for a pattern only if the pressure survives that gate.
+
 ## SOLID (with the smell each one fixes)
 - **S, Single Responsibility.** A unit has one reason to change. Smell: a class that parses, validates, persists, and formats. Fix: split by axis of change.
 - **O, Open/Closed.** Extend behavior without editing stable code. Smell: a growing `when/switch` on a type. Fix: polymorphism or a strategy, *only once variants actually multiply*.

@@ -206,6 +206,6 @@ CLAUDE.md.
 ## References
 - Anthropic, "Building effective agents": https://www.anthropic.com/engineering/building-effective-agents
 - Anthropic, "claude-api" skill (model IDs, pricing, tool-use, prompt caching): defer to the built-in skill, do not hardcode
-- RAG vs long context vs fine-tuning decision (2026): https://medium.com/@officialpreksha2166/rag-vs-fine-tuning-vs-long-context-when-to-use-what-and-why-most-teams-get-it-wrong-388cc446ff3c
+- RAG, retrieval, and long context (Anthropic, "Introducing Contextual Retrieval"): https://www.anthropic.com/news/contextual-retrieval
 - LLM agent evaluation (2026): https://www.confident-ai.com/blog/llm-agent-evaluation-complete-guide
 - Agentic design patterns (2026): https://www.anthropic.com/research/building-effective-agents

@@ -18,6 +18,11 @@ version: 0.1.0
 Test a Unity project with a pyramid shape: many fast EditMode tests, fewer PlayMode
 tests, and targeted golden-replay determinism tests for the lockstep sim.
 
+**Boundary:** this skill covers the test pyramid and CI mechanics (EditMode/PlayMode,
+running suites, asserting pass/fail). Building the deterministic sim itself (fixed-point
+math, seeded RNG, lockstep, the golden-replay harness) is `unity-deterministic-sim`;
+this skill tests that sim once it exists.
+
 ## Step 1: Detect first
 
 Never invent assembly names or test paths. Inspect what exists:
