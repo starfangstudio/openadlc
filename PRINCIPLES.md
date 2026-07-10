@@ -7,13 +7,13 @@ The rules we hold OpenADLC to. A change that breaks one needs a very good reason
 
 2. **Outbound is a human decision, not a default.** Reading and local work (edits, local commits, builds, tests) flow freely. Anything that leaves the machine, a push, a PR, a posted comment, a deploy, a publish, is a deliberate choice the operator makes, never an implied or standing approval. The lifecycle carries this: the command at the boundary stops, shows exactly what would leave, and waits for an explicit yes before it goes. Approval happens where the action happens, so the person owning the release sees what they are releasing.
 
-3. **The checkpoint is a decision, not a sandbox.** The human approval at each outbound boundary is a deliberate gate on intent, not a security perimeter. The OS sandbox and the harness's own permissions are the real boundary. We never claim "unbypassable." A false sense of safety is worse than none.
+3. **The checkpoint is a decision, not a sandbox.** The human approval at each outbound boundary is a deliberate gate on intent, not a security perimeter. The OS sandbox and the agentic coding tool's own permissions are the real boundary. We never claim "unbypassable." A false sense of safety is worse than none.
 
 4. **Mechanism over prose.** Anything that must happen every time (logging, checkpoints, doc currency) is wired to a command step, a check, or a test, not an instruction.
 
 5. **Fail closed.** A control that cannot tell whether it is working reports failure, not success. The eval runner is red on a missing check or a skipped case.
 
-6. **Open standards, no lock-in.** Content is Agent Skills, tools are MCP, per-repo context is AGENTS.md. Your discipline runs on the harness you already use.
+6. **Open standards, no lock-in.** Content is Agent Skills, tools are MCP, per-repo context is AGENTS.md. Your discipline runs on the agentic coding tool you already use.
 
 7. **Tighten across a boundary, never loosen.** A project may relax discipline locally. An org may pin it. A project can never loosen what a managed policy set.
 

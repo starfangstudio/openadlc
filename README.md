@@ -20,7 +20,7 @@ AI coding agents can and will build the wrong thing before you notice. Software 
 
 OpenADLC gives AI-assisted development a repeatable path from raw input to reviewed change: intake, plan, implement, review. Each stage produces an artifact the next stage can trust, and each risky boundary requires explicit human approval.
 
-Use your existing coding harness, repo, tools, and standards. OpenADLC adds the lifecycle around them, with a human in the loop where it matters.
+Use your existing agentic coding tool, repo, tools, and standards. OpenADLC adds the lifecycle around them, with a human in the loop where it matters.
 
 ## The flow
 
@@ -62,15 +62,15 @@ The four commands are one machine, not four tools. A few things hold across ever
 
 ## Get started
 
-**Prerequisites:** [Claude Code](https://claude.com/claude-code), the supported harness today, and [APM](https://github.com/microsoft/apm), the agent package manager. Other harnesses are on the roadmap through the portable pack format.
+**Prerequisites:** [Claude Code](https://claude.com/claude-code), the supported agentic coding tool today, and [APM](https://github.com/microsoft/apm), the agent package manager. Other agentic coding tools are on the roadmap through the portable pack format.
 
-Install with one command; it deploys to your harness automatically:
+Install with one command; it deploys to your agentic coding tool automatically:
 ```bash
 apm install starfangstudio/openadlc
 ```
 Update later with `apm update`.
 
-Then, in your harness from a project root, run your first command:
+Then, in your agentic coding tool from a project root, run your first command:
 ```text
 /ai-discovery
 ```
@@ -96,9 +96,9 @@ Worked example, "add a discount-code field to the checkout page": intake takes t
 OpenADLC is opinionated where it matters (the lifecycle discipline) and open everywhere else.
 
 - **Add your own skill.** Drop a `SKILL.md` at `plugins/<pack>/skills/<name>/SKILL.md` with a name, a trigger-rich description, and the steps. It loads when its description matches the work. See [docs/pack-format.md](docs/pack-format.md).
-- **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to your harness, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to your agentic coding tool, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
 - **Edit a checkpoint.** Each stage's steps live in its command and skill files (for example `plugins/adlc-core/commands/ai-implement.md` and the matching `skills/ai-implement/SKILL.md`). Edit the steps to change what a stage does, or where it stops, including the push gate.
-- **Pick your models** and effort in your harness, per stage, with no config to maintain.
+- **Pick your models** and effort in your agentic coding tool, per stage, with no config to maintain.
 
 ## Built on open standards
 
@@ -124,7 +124,7 @@ OpenADLC is free for individuals, including a solo freelancer on paid client wor
 
 ## Status
 
-Early development. The lifecycle runs on Claude Code today; the pack format is built to reach other APM-supported harnesses, but those adapters are not shipped yet. The core is publicly viewable source and is not yet ready for general use. Expect breaking changes.
+Early development. The lifecycle runs on Claude Code today; the pack format is built to reach other APM-supported agentic coding tools, but those adapters are not shipped yet. The core is publicly viewable source and is not yet ready for general use. Expect breaking changes.
 
 ## License
 
