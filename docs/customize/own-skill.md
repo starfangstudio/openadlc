@@ -51,7 +51,7 @@ What the format asks for:
 Run [`tools/check-packs.py`](../../tools/check-packs.py) against your pack. Hard fails (these block):
 
 - An em-dash anywhere (literal or escaped). Use commas, colons, or parentheses.
-- A harness-specific path variable (`${CLAUDE_PLUGIN_ROOT}`) in any prose. It resolves on only one deploy target, so cite references **by name** instead: same-pack as `[references/<name>.md](references/<name>.md)`, another pack's named in prose.
+- An agentic-coding-tool-specific path variable (`${CLAUDE_PLUGIN_ROOT}`) in any prose. It resolves on only one deploy target, so cite references **by name** instead: same-pack as `[references/<name>.md](references/<name>.md)`, another pack's named in prose.
 - Missing or invalid frontmatter, a missing `name` or `description`, or a `name` that does not match the directory.
 
 Soft warnings (allowed, but worth fixing): no `version`, no References section, no failable check mentioned, or a skill over 260 lines.

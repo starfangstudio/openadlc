@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Add your own pack
 
-A pack is a directory under `plugins/` with a manifest and its units (skills, agents, references, and, for the core, commands). One manifest that APM deploys to every harness. **Market wide, own narrow.**
+A pack is a directory under `plugins/` with a manifest and its units (skills, agents, references, and, for the core, commands). One manifest that APM deploys to every agentic coding tool. **Market wide, own narrow.**
 
 ## The manifest
 

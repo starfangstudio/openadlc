@@ -21,7 +21,7 @@ A pack is a directory under `plugins/` with a manifest and units (skills, agents
 ```
 
 - **name / version / description:** required. `version` is the PACK version; units are not separately versioned.
-- **author:** kept for Claude Code compatibility (the harness reads it).
+- **author:** kept for Claude Code compatibility (the agentic coding tool reads it).
 - **owner `{name, contact}`:** optional in the schema, shape-checked when present. A certified pack must declare a reachable one; the contact is what keeps a pack current.
 - **adlc:** the ADLC standard version the pack targets.
 - **units:** generated from the folder tree (counts of skills/agents/commands/references). `references` counts the pack-root `references/` only; files under a skill's own `references/` belong to that skill. Run `tools/migrate-manifests.py` to refresh.
@@ -33,8 +33,8 @@ A pack is a directory under `plugins/` with a manifest and units (skills, agents
 
 - **skill** (`skills/<name>/SKILL.md`): the portable, primary unit. A trigger-rich third-person description, numbered steps, a References section, and a failable check. The name must match its directory.
 - **agent** (`agents/<name>.md`): a read-only subagent (architect or reviewer).
-- **reference** (`references/<name>.md`): on-demand detail a skill cites. Cite it by pack-relative name, never with a harness-specific variable: same-pack as `[references/<name>.md](references/<name>.md)`, another pack's named in prose (the `references/<name>.md` reference in the **<owner>** pack). `${CLAUDE_PLUGIN_ROOT}` resolves on only one of the deploy targets, so `check-packs.py` rejects it in any prose unit; the agent locates the named file at runtime.
-- **command** (`commands/<name>.md`): harness-native (the `/ai-*` entry points); adapter-mapped per harness, not a portable unit.
+- **reference** (`references/<name>.md`): on-demand detail a skill cites. Cite it by pack-relative name, never with an agentic-coding-tool-specific variable: same-pack as `[references/<name>.md](references/<name>.md)`, another pack's named in prose (the `references/<name>.md` reference in the **<owner>** pack). `${CLAUDE_PLUGIN_ROOT}` resolves on only one of the deploy targets, so `check-packs.py` rejects it in any prose unit; the agent locates the named file at runtime.
+- **command** (`commands/<name>.md`): native to each agentic coding tool (the `/ai-*` entry points); adapter-mapped per agentic coding tool, not a portable unit.
 - **rule:** future work. Conventions ship as references today; no pack carries a `rules/` directory yet.
 
 ## Tiers

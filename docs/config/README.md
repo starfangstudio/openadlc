@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Configuration
 
-OpenADLC runs with no config. You pick your model and effort in your harness, per stage, with nothing to maintain. The optional `openadlc.yaml` exists for two things: declaring a poly-repo product, and (on the roadmap) tuning checkpoints, review, style, compression, and packs.
+OpenADLC runs with no config. You pick your model and effort in your agentic coding tool, per stage, with nothing to maintain. The optional `openadlc.yaml` exists for two things: declaring a poly-repo product, and (on the roadmap) tuning checkpoints, review, style, compression, and packs.
 
 The starting point is [openadlc.example.yaml](../../openadlc.example.yaml). Copy it to `openadlc.yaml` in your project root and keep only the keys you need.
 

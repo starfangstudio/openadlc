@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Getting started: Claude Code
 
-[Claude Code](https://www.anthropic.com/claude-code) is Anthropic's coding CLI, and the most exercised OpenADLC target. The pack format is authored against Claude Code's plugin schema (`.claude-plugin/plugin.json`), so this is the reference harness.
+[Claude Code](https://www.anthropic.com/claude-code) is Anthropic's coding CLI, and the most exercised OpenADLC target. The pack format is authored against Claude Code's plugin schema (`.claude-plugin/plugin.json`), so this is the reference agentic coding tool.
 
 ## Prerequisites
 

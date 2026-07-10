@@ -3,7 +3,7 @@
 
 Install OpenADLC once, run your first command, understand the checkpoints. Five minutes.
 
-OpenADLC runs inside the coding harness you already use. Pick your harness for the exact steps:
+OpenADLC runs inside the agentic coding tool you already use. Pick your tool for the exact steps:
 
 - [Claude Code](claude-code.md)
 - [Cursor](cursor.md)
@@ -12,16 +12,16 @@ OpenADLC runs inside the coding harness you already use. Pick your harness for t
 - [Windsurf](windsurf.md)
 - [Antigravity](antigravity.md)
 
-Any other [APM](https://github.com/microsoft/apm) target works too. The install and the flow below are the same everywhere; only how a command surfaces in the harness differs.
+Any other [APM](https://github.com/microsoft/apm) target works too. The install and the flow below are the same everywhere; only how a command surfaces in the agentic coding tool differs.
 
 ## 1. Prerequisites
 
-- A supported harness (one of the six above, or another APM target).
+- A supported agentic coding tool (one of the six above, or another APM target).
 - [APM](https://github.com/microsoft/apm), the agent package manager. OpenADLC ships as APM packs.
 
 ## 2. Install
 
-One command. It deploys to your harness automatically.
+One command. It deploys to your agentic coding tool automatically.
 
 ```bash
 apm install starfangstudio/openadlc
@@ -37,7 +37,7 @@ apm update
 
 ## 3. Run your first command
 
-From a project root, in your harness, run:
+From a project root, in your agentic coding tool, run:
 
 ```text
 /ai-discovery
@@ -63,7 +63,7 @@ There is no separate `ship` command on purpose. The push checkpoint lives inside
 
 ## 5. Pick your models
 
-Choose your model and effort in your harness, per stage. There is no OpenADLC config to maintain for this.
+Choose your model and effort in your agentic coding tool, per stage. There is no OpenADLC config to maintain for this.
 
 ## Where to go next
 
@@ -74,4 +74,4 @@ Choose your model and effort in your harness, per stage. There is no OpenADLC co
 
 ## A note on status
 
-OpenADLC is in early development. The lifecycle runs across APM-supported harnesses through the portable pack format. Claude Code is the most exercised target today. Expect breaking changes.
+OpenADLC is in early development. The lifecycle runs across APM-supported agentic coding tools through the portable pack format. Claude Code is the most exercised target today. Expect breaking changes.

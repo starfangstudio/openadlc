@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Run isolation
 
-Every run is isolated, so several sessions can run in parallel in one repo without colliding, on any harness. Three mechanisms: a unique **run-id**, an out-of-repo **run workspace**, and a per-run **branch** (with a worktree when sessions are concurrent).
+Every run is isolated, so several sessions can run in parallel in one repo without colliding, on any agentic coding tool. Three mechanisms: a unique **run-id**, an out-of-repo **run workspace**, and a per-run **branch** (with a worktree when sessions are concurrent).
 
 ## The split: artifacts out of git, code in git
 
@@ -65,9 +65,9 @@ Parent story            -> primary tracker (the primary repo, or the single repo
 - **One PR per touched repo**, linked to the sub-issue of its domain.
 - **Cross-repo merge order:** base and shared repos merge before their consumers (for example `shared-components` before `web-app`).
 
-## Harness portability
+## Portability across agentic coding tools
 
-`~/.openadlc/` is OpenADLC's own namespace, identical across every harness. The run workspace path, the run-id, the branch convention, and the git and PR flow are all harness-independent. Only the command, skill, and hook deployment differs per harness, and APM compiles that to each harness's native format.
+`~/.openadlc/` is OpenADLC's own namespace, identical across every agentic coding tool. The run workspace path, the run-id, the branch convention, and the git and PR flow are all independent of the agentic coding tool. Only the command, skill, and hook deployment differs per tool, and APM compiles that to each tool's native format.
 
 ## Dedup before any outbound create
 

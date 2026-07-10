@@ -13,8 +13,8 @@ Docs are written and updated as the work happens, never after. A change to a com
 
 ## Structure
 
-- [`getting-started/`](getting-started/) : install, first run, the checkpoints in five minutes, one page per harness.
-- [`commands/`](commands/) : the four-command harness, one page each.
+- [`getting-started/`](getting-started/) : install, first run, the checkpoints in five minutes, one page per agentic coding tool.
+- [`commands/`](commands/) : the four /ai-* commands, one page each.
 - [`config/`](config/) : the `openadlc.yaml` reference.
 - [`customize/`](customize/) : bring your own skill or pack, and edit a checkpoint.
 - [`concepts/`](concepts/) : OKF bundles, run isolation, checkpoints, and packs.

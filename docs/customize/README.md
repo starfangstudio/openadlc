@@ -4,10 +4,10 @@
 OpenADLC is opinionated where it matters (the lifecycle discipline) and open everywhere else. Three ways to make it yours:
 
 - [**Add your own skill**](own-skill.md): drop a `SKILL.md` into a pack. It loads when its description matches the work.
-- [**Add your own pack**](own-pack.md): author skills, agents, and references to the portable pack format, one manifest that APM deploys to every harness.
+- [**Add your own pack**](own-pack.md): author skills, agents, and references to the portable pack format, one manifest that APM deploys to every agentic coding tool.
 - [**Edit a checkpoint**](edit-a-checkpoint.md): change what a stage does, or where it stops, by editing its command and skill files.
 
-You can also load or disable packs from [config](../config/) (`packs.enabled` / `packs.disabled`), and pick your model and effort per stage in your harness.
+You can also load or disable packs from [config](../config/) (`packs.enabled` / `packs.disabled`), and pick your model and effort per stage in your agentic coding tool.
 
 ## Two rules that apply to any change here
 

@@ -14,13 +14,13 @@ One lifecycle, any domain: the spine is identical whether the work is web, backe
 
 - **Skill** (`skills/<name>/SKILL.md`): the primary unit, how to do a task. A trigger-rich description, numbered steps, a References section, and a failable check. It loads when its description matches the work.
 - **Agent** (`agents/<name>.md`): a read-only subagent, an architect or a reviewer.
-- **Reference** (`references/<name>.md`): the deep detail a skill points to, kept out of the skill body (progressive disclosure). Cited by name, never with a harness-specific path variable.
-- **Command** (`commands/<name>.md`): the harness-native entry points (the `/ai-*` commands), mapped per harness by APM. Not a portable unit.
+- **Reference** (`references/<name>.md`): the deep detail a skill points to, kept out of the skill body (progressive disclosure). Cited by name, never with an agentic-coding-tool-specific path variable.
+- **Command** (`commands/<name>.md`): the entry points native to each agentic coding tool (the `/ai-*` commands), mapped per tool by APM. Not a portable unit.
 - **Rule:** future work. Conventions ship as references today.
 
 ## Loading and installing
 
-APM deploys packs to your harness. The spine comes with the install:
+APM deploys packs to your agentic coding tool. The spine comes with the install:
 
 ```bash
 apm install starfangstudio/openadlc
@@ -41,7 +41,7 @@ You can also load or disable packs from [config](../config/) (`packs.enabled` / 
 
 ## Conformance
 
-A conformant pack has a manifest (name, version, description, owner, targeted ADLC version, and a capability declaration), at least one guidance unit, evals, and a truthful capability declaration, and it does not weaken the human-in-the-loop checkpoints or take undeclared capabilities. The standard defines the shape; the adapter maps it onto a specific harness. See [the spec, section 5](../../standard/spec.md).
+A conformant pack has a manifest (name, version, description, owner, targeted ADLC version, and a capability declaration), at least one guidance unit, evals, and a truthful capability declaration, and it does not weaken the human-in-the-loop checkpoints or take undeclared capabilities. The standard defines the shape; the adapter maps it onto a specific agentic coding tool. See [the spec, section 5](../../standard/spec.md).
 
 ## Source
 

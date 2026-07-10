@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-OpenADLC-Source-Available-1.0 -->
 # Run isolation (ADLC)
 
-Every ADLC run is isolated so multiple sessions can run in parallel in one repo without colliding, on any harness. Three mechanisms: a unique run-id, an out-of-repo run workspace, and a per-run branch (with a worktree when sessions are concurrent). Loaded by intake, plan, implement, review, and the planning skills; they cite this file rather than restating it.
+Every ADLC run is isolated so multiple sessions can run in parallel in one repo without colliding, on any agentic coding tool. Three mechanisms: a unique run-id, an out-of-repo run workspace, and a per-run branch (with a worktree when sessions are concurrent). Loaded by intake, plan, implement, review, and the planning skills; they cite this file rather than restating it.
 
 ## The split: artifacts out of git, code in git
 - **ADLC working artifacts** (the intake/living doc, the plan, context, scratch, baselines, logs, review reports) are NOT the repo's content. They live OUTSIDE the repo and are NEVER committed or tracked by the repo's git. They never trigger a "commit to main?" question and never pollute `git status`.
@@ -34,7 +34,7 @@ A git worktree gives TRUE isolation within one repo: its own working directory +
 
 - **Single run, no other run active:** create `adlc/<run-id>` in place and work on it. Branch isolation is enough; artifacts are out of the repo regardless.
 - **A run starts while another is active in this checkout** (detected via `git worktree list`, a live `adlc/*` branch, or an active `~/.openadlc/runs/<workspace>/*` with no terminal state): do NOT share the checkout. Auto-create an isolated worktree, then have the operator reopen there (a running session cannot relocate itself):
-  `git worktree add <wt> -b adlc/<run-id> origin/<default>`, then `cd <wt> && claude` (or the harness's launch command).
+  `git worktree add <wt> -b adlc/<run-id> origin/<default>`, then `cd <wt> && claude` (or the agentic coding tool's launch command).
   The fuel-machine COORDINATOR does this end to end: a worktree per task, a session launched in each.
 - **Worktree location:** outside the indexed workspace, to avoid clutter and editor-scan freezes: `~/.openadlc/worktrees/<repo>/<run-id>/`.
 
@@ -79,8 +79,8 @@ Every tracker write routes through the four-verb adapter in [references/tracker-
 
 These are tracker writes, so they are outbound: each stops at the consent checkpoint for an explicit yes before it fires, per [references/loop-control.md](loop-control.md).
 
-## Harness portability
-`~/.openadlc/` is OpenADLC's own namespace, identical across every harness (Claude Code, OpenAI Codex, GitHub Copilot, Cursor, Antigravity CLI). The run workspace path, the run-id, the branch convention, and the git/PR flow are all harness-independent. Only the command/skill/hook DEPLOYMENT differs per harness, and APM compiles that to each harness's native format (`.claude/` for Claude, `.github/` for Copilot, AGENTS/prompts for Codex, the Antigravity plugin format, etc.). Never hardcode a single harness's config dir for run artifacts; always use `~/.openadlc/runs/<workspace>/<run-id>/`. (Gemini CLI was retired June 2026; its successor is Antigravity CLI.)
+## Portability across agentic coding tools
+`~/.openadlc/` is OpenADLC's own namespace, identical across every agentic coding tool (Claude Code, OpenAI Codex, GitHub Copilot, Cursor, Antigravity CLI). The run workspace path, the run-id, the branch convention, and the git/PR flow are all independent of the agentic coding tool. Only the command/skill/hook DEPLOYMENT differs per tool, and APM compiles that to each tool's native format (`.claude/` for Claude, `.github/` for Copilot, AGENTS/prompts for Codex, the Antigravity plugin format, etc.). Never hardcode a single tool's config dir for run artifacts; always use `~/.openadlc/runs/<workspace>/<run-id>/`. (Gemini CLI was retired June 2026; its successor is Antigravity CLI.)
 
 ## Dedup before any outbound create
 Before creating a tracker issue (intake), a plan sub-issue, a PR, or a PR review, check for an existing open one and offer update-vs-new:

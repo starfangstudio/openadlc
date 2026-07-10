@@ -65,7 +65,7 @@ ask *why* we did this?" If yes, write it.
 ## Two homes: by audience
 
 - **Product/code decisions** (datastore, DI, API style, module boundary in the project being built): the ADR lives **in the repo** at `docs/adr/NNNN-title.md` so it travels with the code and reviewers see it. In a poly-repo product, write it in the member repo the decision is about (its `docs/adr/`), on that repo's `adlc/<run-id>` branch.
-- **Operator/setup decisions** (how the harness, the config, or the workflow itself works): the ADR lives **at the user level** in `~/.openadlc/decisions/YYYY-MM-DD-title.md` so it spans projects.
+- **Operator/setup decisions** (how the agentic coding tool, the config, or the workflow itself works): the ADR lives **at the user level** in `~/.openadlc/decisions/YYYY-MM-DD-title.md` so it spans projects.
 
 Pick the home by what the decision is about. Whichever you write, drop a **one-line cross-pointer** in the other place's index and link back to the spawning plan (the run's `~/.openadlc/runs/<workspace>/<run-id>/plan/spec.md`, per [references/run-isolation.md](../../references/run-isolation.md)) if there is one. When an ADR is spawned mid-run, stage the draft under that run's out-of-repo `~/.openadlc/runs/<workspace>/<run-id>/decision/` before it lands in its permanent home, so the run's artifacts stay together. The staged draft is never committed; only the ADR in its permanent home (repo `docs/adr/` on `adlc/<run-id>`, or user-level `~/.openadlc/decisions/`) is. Never write the same decision in both with diverging text.
 
