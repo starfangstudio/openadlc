@@ -66,11 +66,12 @@ DIRECTION_TRIGGERS = [
     ("floor-boundary: 'drop a floor member' must always be negated", "drop a floor member", "never"),
 ]
 
-# Rail 2 (gates): "fail open" alone is ambiguous ("activation fails OPEN" is
-# the CORRECT, un-negated rail-2 behavior). Only flag a "fail open" occurrence
+# Rail 2 (gates): "fail(s) open" alone is ambiguous ("activation fails OPEN" is
+# the CORRECT, un-negated rail-2 behavior). Only flag a "fail(s) open" occurrence
 # that is talking about GATES specifically (the mandatory-never-fail-open
 # rail), by requiring "gate(s)" in the same clause before requiring the
-# negation too.
+# negation too. Both "fail open" and the singular "fails open" match, else the
+# natural inversion "the gate fails open on error" slips through.
 
 # A banned literal rewrite of the floor/stage-2 relationship: the rail states
 # the floor is INDEPENDENT of stage-2 ask-scoping. A rewrite to the opposite
@@ -86,11 +87,13 @@ BANNED_PHRASES = {
 ZERO_START = re.compile(r"^## Pipeline\n0\.", re.M)
 
 
-# Any '.' or ':' followed by whitespace ends a clause. Used to bound the
-# "same clause" window so a negation from a PRIOR sentence (e.g. the correct
-# "which never fail open" clause) never leaks into the window checked for a
-# later, separately-added inverted sentence.
-CLAUSE_BOUNDARY = re.compile(r"[.:]\s")
+# Any '.', ',', ':' or ';' followed by whitespace ends a clause. Used to bound
+# the "same clause" window so a negation from a PRIOR clause never leaks into
+# the window checked for a later, separately-added inverted sentence. Comma and
+# semicolon are boundaries too (not just '.'/':'), else a comma-joined inversion
+# like "the floor is never dropped, yet model-optional stages are allowed"
+# would let the first clause's "never" shield the second clause's flip.
+CLAUSE_BOUNDARY = re.compile(r"[.,:;]\s")
 
 
 def _clause_starts(lower):
@@ -125,7 +128,7 @@ def _check_direction(name, text):
                     f"inverted meaning?) near: ...{snippet}..."
                 )
 
-    for m in re.finditer(r"fail open", lower):
+    for m in re.finditer(r"fails? open", lower):
         window_start = _clause_start_for(starts, m.start())
         context = lower[window_start:m.start()]
         if re.search(r"\bgates?\b", context) and "never" not in context:
@@ -144,6 +147,48 @@ def _check_direction(name, text):
             )
 
     return failures
+
+
+# B-177 teeth, made permanent + in-file (was proven only out-of-band): each RED
+# sample is a natural inversion that MUST yield at least one direction failure;
+# each GREEN sample is correct polarity that MUST yield none. The two cases the
+# residual-hardening pass added (comma-shielded flip, singular "fails open") are
+# pinned here so a future regex loosening RED-fails this selftest.
+_RED_SAMPLES = [
+    "The floor loads always. The floor is never dropped, yet model-optional stages are allowed.",
+    "The gate fails open on error.",
+    "Gates MAY fail open here.",
+    "The audit may overwrite the stage-1 repo facts.",
+    "A policy can drop a floor member.",
+    "The floor is subject to ask-scoping.",
+]
+_GREEN_SAMPLES = [
+    "The floor loads always, never model-optional.",
+    "Append; never overwrite the stage-1 section.",
+    "A policy can never drop a floor member.",
+    "Gates never fail open, they only stop and ask.",
+    "Activation fails open when unsure.",
+]
+
+
+def _selftest():
+    """Prove the direction-check has teeth: every RED sample flags, every GREEN
+    sample is clean. Exit 0 pass, 1 if any sample behaves wrong."""
+    problems = []
+    for s in _RED_SAMPLES:
+        if not _check_direction("selftest-red", s):
+            problems.append(f"RED sample NOT flagged (teeth missing): {s!r}")
+    for s in _GREEN_SAMPLES:
+        fails = _check_direction("selftest-green", s)
+        if fails:
+            problems.append(f"GREEN sample wrongly flagged (false positive): {s!r} -> {fails}")
+    for p in problems:
+        print(f"  - {p}")
+    if problems:
+        print(f"\nSELFTEST: FAIL ({len(problems)} issue(s))")
+        return 1
+    print(f"SELFTEST: PASS ({len(_RED_SAMPLES)} inversions caught RED, {len(_GREEN_SAMPLES)} correct-polarity clean)")
+    return 0
 
 
 def check_file(name):
@@ -178,6 +223,8 @@ def check_file(name):
 
 
 def main():
+    if "--selftest" in sys.argv[1:]:
+        return _selftest()
     if not os.path.isdir(COMMANDS_DIR):
         print(f"FAIL-CLOSED: commands dir not found: {COMMANDS_DIR}")
         return 2
@@ -191,11 +238,16 @@ def main():
             print(f"  - {f}")
         all_failures.extend(fails)
 
+    # Also prove the direction-check itself still has teeth on every normal run,
+    # so a regex loosening fails CI without needing the explicit --selftest flag.
+    if _selftest() != 0:
+        all_failures.append("direction-check selftest FAILED (teeth regressed)")
+
     if all_failures:
         print(f"\nRESULT: FAIL ({len(all_failures)} issue(s))")
         return 1
 
-    print("\nRESULT: PASS (all four commands carry the '## 0. Domain activation' section, all three rails, and 0-start numbering)")
+    print("\nRESULT: PASS (all four commands carry the '## 0. Domain activation' section, all three rails, and 0-start numbering; direction-check teeth verified)")
     return 0
 
 
