@@ -38,7 +38,11 @@ compression:
   provider: native         # native (our zero-install baseline) | caveman (full upstream, if installed). See THIRD-PARTY.md
   protect_human_facing: true   # never compress the story / plan / review / consent the human reads
 
-# Extra packs to load, and core pieces to disable by name.
+# Extra packs to load, and discretionary pieces to disable by name.
+# `disabled` tightens the stage-2 discretionary set only; it can NEVER drop a
+# mandatory-floor member (the adlc-core spine, the security lens, the org pins),
+# which load before and independent of this candidate set (the activation
+# preamble's rail 1, plugins/adlc-core/commands/ai-*.md § 0).
 packs:
   enabled: []
   disabled: []

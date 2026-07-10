@@ -20,6 +20,7 @@ Run bare to start a planning conversation from a blank page, or pass an idea, fi
 
 ## What it does
 
+0. **Activates domains.** Before anything else it runs the three-stage activation funnel (policy candidate set, repo facts, ask-scoped selection) from [standard/domains.md](../../standard/domains.md), records the result in the run's `activation.md`, and enforces the three rails: the `adlc-core` + `security` + org-policy floor always loads, ambiguity activates rather than skips, and every activation is logged with a reason. Discovery has no committed technical scope yet, so this pass mostly seats the floor; step 2 refreshes it once the workspace shape is known.
 1. **Opens a deep-planning conversation.** You talk the task through; it investigates alongside you and keeps a **living doc** open so you watch the work take shape. Each round it updates the doc, gives a short summary, flags open questions, and suggests what to refine next. You set the pace.
 2. **Anchors the repo and tracker first.** It resolves where you are across four workspace shapes (single repo, monorepo, declared poly-repo product, or an undeclared parent of repos). If it is an undeclared parent, it stops and asks which repo, or offers to declare a workspace. See [concepts: run isolation](../concepts/run-isolation.md).
 3. **Runs deep discovery** (read-only): what exists, what it touches, the constraints, the risks, and the **development dependencies** (what must land first, what this blocks). It cites what it finds and never invents.

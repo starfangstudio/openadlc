@@ -13,8 +13,28 @@ When a `references/<name>.md` link does not resolve relative to this file, locat
 
 Input: $ARGUMENTS (the dev-plan sub-issue, or a slice)
 
+## 0. Domain activation
+Before anything else, resolve which domain packs load for this run, by running the three-stage funnel from [standard/domains.md](../../../standard/domains.md) (this command CALLS that procedure; it does not reimplement the detector). Every step writes to the run's `~/.openadlc/runs/<workspace>/<run-id>/activation.md`, per [references/run-isolation.md](../references/run-isolation.md).
+
+**Stage 0 - policy candidate set (the hard boundary).** Read the org policy's approved-pack set, resolved managed > project > user (per `openadlc.example.yaml`; org policy can only tighten, never loosen). No policy present, or an untweaked default, means ALL packs are approved (the dumb-proof default); a free user's own configured picks are their candidate set. The model NEVER activates a discretionary pack outside this candidate set. The rail-1 mandatory floor is EXEMPT from this tightening: it loads before and independent of stage 0, so a policy that narrows the candidate set can never drop a floor member.
+
+**Stage 1 - repo facts.** Run the deterministic file-marker sniff (`standard/domains.md` section 4) to get the matched technical-domain set. Reuse the run's existing `## Repo facts` section in `activation.md` when no marker file changed since `detected`; otherwise (re)sniff and (re)write that section per the schema `standard/domains.md` section 5 defines. This is a read-only static sniff, no network call, no model judgment. If the sniff matches zero technical domains (an empty or unrecognized repo), seat only the floor and ASK the operator which domain applies (per `standard/domains.md` section 4); never infer a technical domain from the ask alone.
+
+**Stage 2 - ask-scoped activation.** From `candidate_set ∩ (matched_domains ∪ the cross-cutting lenses the ask implies)`, the model multi-selects the domains THIS ask actually needs, and MAY late-bind more mid-run as the work reveals a need. Every pack's marketplace `description` (its INDEX line) stays in context for the whole run; a pack's body (its skills) loads only once activated, progressive disclosure, the native skill pattern.
+
+**The three rails (non-negotiable):**
+1. **MANDATORY FLOOR:** the `adlc-core` spine (the four `/ai-*` commands + the lifecycle checkpoints), the `security` lens, and the org-policy pins load ALWAYS, before stage 2 runs, never model-optional. The floor loads before and independent of BOTH the stage-0 candidate set and stage-2 ask-scoping: a policy that tightens the candidate set (for example `packs.disabled`) narrows only the discretionary stage-2 set and can NEVER drop a floor member (`adlc-core`, the `security` lens, the org pins).
+2. **AMBIGUITY -> INCLUDE:** when unsure whether a domain or lens applies, activate it; activation fails OPEN. This is distinct from the lifecycle's GATES and consent checkpoints, which never fail open, they only ever stop and ask.
+3. **AUDIT:** log the activation set with a per-domain reason to `activation.md`'s `## Activation` section (append; never overwrite the stage-1 `## Repo facts` section):
+```markdown
+## Activation
+- <domain>: <reason: policy | repo-facts | ask-match | floor>
+```
+
+State the activated domains and packs; let the operator correct.
+
 ## Pipeline
-1. Load the plan from the sub-issue (this command) -> 2. **choose the method (ask: SDD or TDD)**, then **`implement-change`** drives the build in slices, using the domain pack's action skills -> 3. **verify** each slice with a check that can fail (tests; the operator looks at the diff) -> 4. **acceptance-criteria check**: the AI judges the built slices against the plan's acceptance criteria, is the job done? -> 5. **review checkpoint: stop and ask which reviews to run** -> 6. run the picked reviews -> 7. **operator takes a final look** -> 8. **push checkpoint: ask the operator for an explicit yes to push to remote** -> pipeline ends.
+0. **activate domains** (the three-stage funnel, step 0) -> 1. Load the plan from the sub-issue (this command) -> 2. **choose the method (ask: SDD or TDD)**, then **`implement-change`** drives the build in slices, using the domain pack's action skills -> 3. **verify** each slice with a check that can fail (tests; the operator looks at the diff) -> 4. **acceptance-criteria check**: the AI judges the built slices against the plan's acceptance criteria, is the job done? -> 5. **review checkpoint: stop and ask which reviews to run** -> 6. run the picked reviews -> 7. **operator takes a final look** -> 8. **push checkpoint: ask the operator for an explicit yes to push to remote** -> pipeline ends.
 - **Models:** Sonnet by default; Opus for a large or complex slice. Never Haiku.
 - **Outbound:** none until the push checkpoint.
 

@@ -30,6 +30,7 @@ Inside `/ai-implement`, an empty target means the change that was just built.
 
 ## What it does
 
+0. **Activates domains.** Before anything else it runs the three-stage activation funnel (policy candidate set, repo facts, ask-scoped selection) from [standard/domains.md](../../standard/domains.md), records the result in the run's `activation.md`, and enforces the three rails: the `adlc-core` + `security` + org-policy floor always loads, ambiguity activates rather than skips, and every activation is logged with a reason. Embedded in `/ai-implement` it reuses that run's `activation.md`; standalone it runs the funnel fresh.
 1. **Resolves the target** read-only; when embedded in a run, selects the plan by run-id.
 2. **Loads each touched repo's review contract** (`CLAUDE.md` plus the touched rules).
 3. **Dispatches the picked reviews concurrently** to fresh-context agents (`pr-reviewer` for the merge verdict, the domain reviewer, `security-reviewer`, `test-critic`, `design-critic` for UI), then drops low-signal findings.

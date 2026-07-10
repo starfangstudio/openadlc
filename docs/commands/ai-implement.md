@@ -20,7 +20,8 @@ A plan must exist and be approved. If none does, it stops and tells you to run [
 
 ## What it does
 
-1. **Loads the plan** from the sub-issue, selected by run-id, and reassembles the plan bundle. It marks the sub-issue in-progress (a local tracker write, no push). See [concepts: run isolation](../concepts/run-isolation.md).
+0. **Activates domains.** Before anything else it runs the three-stage activation funnel (policy candidate set, repo facts, ask-scoped selection) from [standard/domains.md](../../standard/domains.md), records the result in the run's `activation.md`, and enforces the three rails: the `adlc-core` + `security` + org-policy floor always loads, ambiguity activates rather than skips, and every activation is logged with a reason. See [concepts: run isolation](../concepts/run-isolation.md).
+1. **Loads the plan** from the sub-issue, selected by run-id, and reassembles the plan bundle. It marks the sub-issue in-progress (a local tracker write, no push).
 2. **Asks you: SDD or TDD.** Spec-driven (build to the spec and criteria, then pin with tests) or test-driven (the failable check first, build to green). This is a mandatory ask, not a default.
 3. **Builds in small slices** on the run branch `adlc/<run-id>`, using the domain pack's action skills. It honors the development dependencies the plan carried. Each slice ends in a **failable check**: a unit or integration test for logic, a fidelity and design-system check for UI (against the plan's Figma baseline), a smoke or plan check for config.
 4. **Verifies each slice** and shows the diff and the passing evidence. A change with no failable check is not verified.
