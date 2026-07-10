@@ -20,7 +20,7 @@ AI coding agents can and will build the wrong thing before you notice. Software 
 
 OpenADLC gives AI-assisted development a repeatable path from raw input to reviewed change: intake, plan, implement, review. Each stage produces an artifact the next stage can trust, and each risky boundary requires explicit human approval.
 
-Use your existing agentic coding tool, repo, tools, and standards. OpenADLC adds the lifecycle around them, with a human in the loop where it matters.
+Use your existing agentic coding tool, repo, tooling, and standards. OpenADLC adds the lifecycle around them, with a human in the loop where it matters.
 
 ## The flow
 
