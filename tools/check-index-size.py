@@ -8,13 +8,14 @@ always-loaded budget that makes progressive disclosure worthwhile. It MUST
 stay tiny and single-line; a description that grows into a multi-line
 paragraph defeats the point. This check asserts, red-before-green:
   - every pack index line is a SINGLE line (no embedded newline), and
-  - every pack index line is <= MAX_INDEX_CHARS.
+  - every pack index line is <= MAX_INDEX_CHARS (HARD FAIL).
 
-MAX_INDEX_CHARS is a bloat ceiling, not the "tiny" target: it is set above
-today's longest description so the gate is green now while it hard-stops any
-future growth past a paragraph. Tightening the ceiling toward a genuinely
-tiny one-trigger-sentence target (~200 chars) is a flagged follow-up that
-needs a description-trim pass across the verbose packs; see the report.
+Two tiers (D64 option B):
+  - MAX_INDEX_CHARS (600): a hard bloat ceiling. Exceeding it, or embedding a
+    newline, FAILS the check (exit 1).
+  - WARN_INDEX_CHARS (250): the genuinely-tiny one-trigger-sentence target.
+    Exceeding it prints a WARN line (name + length) but does NOT fail; a
+    handful of packs landing at 251-260 chars for meaning's sake is fine.
 """
 import json
 import os
@@ -23,10 +24,12 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, ".claude-plugin", "marketplace.json")
 
-# Bloat ceiling. Today's longest index line is 559 chars (adlc-design); this
-# ceiling hard-stops growth into a multi-paragraph blurb without forcing a
-# same-slice rewrite of the current verbose-but-single-line descriptions.
+# Hard bloat ceiling: exceeding it (or embedding a newline) fails the check.
 MAX_INDEX_CHARS = 600
+
+# Warn tier: the genuinely-tiny one-trigger-sentence target. Exceeding it
+# prints a warning but does not fail the check.
+WARN_INDEX_CHARS = 250
 
 
 def index_lines(manifest_path):
@@ -45,6 +48,10 @@ def violations(lines, max_chars=MAX_INDEX_CHARS):
     return out
 
 
+def warnings(lines, warn_chars=WARN_INDEX_CHARS):
+    return [(name, len(desc)) for name, desc in lines if len(desc) > warn_chars]
+
+
 def main():
     if not os.path.isfile(MANIFEST):
         print(f"FAIL-CLOSED: manifest not found: {MANIFEST}")
@@ -59,8 +66,13 @@ def main():
         return 1
 
     real = violations(lines)
+    warn = warnings(lines)
     longest = max((len(d) for _, d in lines), default=0)
-    print(f"packs checked: {len(lines)} | longest index line: {longest} chars | ceiling: {MAX_INDEX_CHARS}")
+    print(f"packs checked: {len(lines)} | longest index line: {longest} chars | ceiling: {MAX_INDEX_CHARS} | warn tier: {WARN_INDEX_CHARS}")
+    if warn:
+        print(f"WARN: {len(warn)} pack(s) over the {WARN_INDEX_CHARS}-char tiny-target tier (not a failure):")
+        for name, n in warn:
+            print(f"  - {name}: {n} chars")
     if real:
         print("FAIL: index-line bound violated:")
         for name, why in real:
