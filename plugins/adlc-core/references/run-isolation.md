@@ -16,6 +16,7 @@ The timestamp guarantees two same-slug runs never collide. Carry it forward (int
 ALL artifacts a run writes live here, keyed by repo name + run-id, never inside the repo and never under `.claude/` of the repo:
 - `index.md` + `briefing.md` (living doc + human face) + `story.md` + AI-context concepts (`discovery.md`, `dependencies.md`) , the run workspace IS the OKF bundle (see [okf.md](okf.md)); `index.md` frontmatter carries `status: active|done|abandoned`, the run's terminal-state marker (see [checkpoints.md](checkpoints.md))
 - `context.md` (load-context brief)
+- `activation.md` (repo-facts detection: the deterministic domain sniff per [domains.md](../../../standard/domains.md), plus the policy candidate-set and activated set from later slices)
 - `plan/spec.md`, `plan/Plans.md`, `plan/*.json` (contracts)
 - `design-baseline/<node>.png`, `verify/` (rendered screens, fidelity diffs)
 - `review-<lens>-<UTC-timestamp>.md` (one file per review lens) and `review-payload.json`

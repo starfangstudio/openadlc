@@ -24,7 +24,7 @@ The timestamp guarantees two same-slug runs never collide. It is carried forward
 ~/.openadlc/runs/<workspace>/<run-id>/
 ```
 
-Everything a run writes lives here: the OKF bundle (see [OKF bundles](okf-bundles.md)), the context brief, the plan, design baselines, verify evidence, review reports, and ADR staging. `<workspace>` is the product name for a poly-repo workspace, else the single repo's name. The run-id is **workspace-level**: one id for a change that may span several repos. The implementer reads the plan from this stable absolute path; it does not need to be committed to travel. Nothing is ever written to the repo's `.claude/` directory.
+Everything a run writes lives here: the OKF bundle (see [OKF bundles](okf-bundles.md)), the context brief, `activation.md` (the [domain detection](../../standard/domains.md) record), the plan, design baselines, verify evidence, review reports, and ADR staging. `<workspace>` is the product name for a poly-repo workspace, else the single repo's name. The run-id is **workspace-level**: one id for a change that may span several repos. The implementer reads the plan from this stable absolute path; it does not need to be committed to travel. Nothing is ever written to the repo's `.claude/` directory.
 
 ## Run branch (code only)
 

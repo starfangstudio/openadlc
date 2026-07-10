@@ -1,0 +1,1 @@
+ProjectSettings/ + Assets/ (no *.unity scene) — DOES match unity via the Assets branch

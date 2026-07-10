@@ -24,7 +24,7 @@ Detect what `$ARGUMENTS` is: free text, a file/path (PRD, story, spec), or a tra
 
 ## 2. Detect or ask for the domain
 A story from a product owner usually does not name a technical domain. Resolve it before planning:
-1. **Detect from the repo** the plan runs in: the manifest and layout (a web framework in `package.json` -> web; `build.gradle` + Kotlin -> android; `Package.swift` / Xcode -> ios; a Tauri or Electron config -> desktop; a server framework -> backend; and so on). One clear signal -> use it and state it.
+1. **Detect from the repo** the plan runs in, per the deterministic repo-facts sniff in `standard/domains.md` (the closed domain vocabulary and its marker table). One clear signal -> use it and state it.
 2. **Ask when it is unclear.** If the repo gives no clear signal, is empty or new, or the story spans platforms or layers (front end AND back end, android AND ios, windows AND macos), STOP and ask the operator which domain(s) to plan and implement for. One parent story fans out into **one plan + one sub-issue per DOMAIN** (web, backend, android, ...), per [references/run-isolation.md](../references/run-isolation.md); scope this run to the operator's answer. On a declared poly-repo product a domain may span several member repos, so **each domain's plan names the repos it touches and their cross-repo dependency order** (base/shared repos before their consumers, e.g. shared-components before web-app).
 
 Load the chosen domain pack (and any cross-cutting pack: security, privacy, AI). **Load `adlc-design` only when the story involves Figma or a design/UI surface**, never for non-UI work. State the domain and packs; let the operator correct.

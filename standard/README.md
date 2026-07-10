@@ -18,6 +18,7 @@ ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase li
 - [conformance.md](conformance.md): the machine-checkable test plus a `.adlc/conformance.yaml` manifest.
 - [conformance-checker.md](conformance-checker.md): the reference checker spec.
 - [pack-format.md](pack-format.md) + [schema/](schema/pack-manifest.schema.json): the vendor-neutral pack manifest and capability vocabulary, with passing and failing validation.
+- [domains.md](domains.md): the closed domain vocabulary and the deterministic repo-facts detector that resolves which domains a repo belongs to.
 
 ## ADLC vs OpenADLC
 

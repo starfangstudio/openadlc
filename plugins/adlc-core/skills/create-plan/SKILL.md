@@ -33,7 +33,7 @@ Plan progress:
 
 - **Precondition:** if a fresh `~/.openadlc/runs/<workspace>/<run-id>/context.md` from `load-context` exists for this work, read it before exploring; skip re-deriving anything it already covers and explore only what it leaves open. Reuse that run's run-id; do not mint a new one.
 
-1. **Detect or ask the domain.** Read the intake fuel and detect the domain from the repo (build files, language, framework, layout). **Ask** when it is ambiguous, the repo is empty, or the story spans platforms or layers (FE+BE, android+ios, windows+macos). The domain is decided here, not upstream; when a story spans more than one, fan it out into one plan per domain.
+1. **Detect or ask the domain.** Read the intake fuel and detect the domain from the repo per the deterministic repo-facts sniff in `standard/domains.md` (the closed domain vocabulary and its marker table). **Ask** when it is ambiguous, the repo is empty, or the story spans platforms or layers (FE+BE, android+ios, windows+macos). The domain is decided here, not upstream; when a story spans more than one, fan it out into one plan per domain.
 2. **Explore read-only.** Investigate the relevant code before proposing anything. Cite findings as `path:line`. Mark anything unverified as `unknown`; never invent facts.
 3. **Interview if needed.** For larger features, ask the operator about edge cases, UX, and trade-offs they may not have considered. Don't ask what the code already answers.
 4. **Carry the dependencies.** Pull the development dependencies surfaced in intake's deep discovery (and any captured layout intent) into the plan, so the implementer inherits everything the front door learned.

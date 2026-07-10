@@ -1,0 +1,1 @@
+bare Assets/ dir, no ProjectSettings/ — must NOT match unity (negative boundary fixture)
