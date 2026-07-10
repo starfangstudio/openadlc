@@ -79,8 +79,20 @@ The matched domain set is written to the run record, so it is computed once per 
 
 **Refresh:** a command reads this section on later steps of the same run rather than re-sniffing; it refreshes the section when a marker file listed above has changed since `detected`. This file is shared by later slices (the policy candidate-set, the activated set, and the floor each add their own section); this slice defines only the section above.
 
+## 6. The pack index line
+
+Every pack stays in context for the whole run at two granularities, regardless of whether it is activated (section 2/3) or not: this is what makes progressive disclosure work without hiding a pack the run might still need.
+
+- **Pack-level index line:** a pack's authoritative one-line trigger is its `description` field in [`.claude-plugin/marketplace.json`](../.claude-plugin/marketplace.json) at the repo root (section 1's "authoritative one-line trigger"). This line is always in context; the pack's body (its skills, references) loads only once the pack activates.
+- **Unit-level index line:** within an activated pack, each skill's own `SKILL.md` `description` frontmatter is its index line, read before the skill's full body. Same progressive-disclosure shape one level down: the description is cheap and always available, the skill body loads only when the skill is actually invoked.
+
+The **technical domains** (section 2) are repo-facts-activated: their index line surfaces from the deterministic marker sniff. The **cross-cutting lenses** (section 3) are never repo-detected; their index line surfaces per the ask or org policy.
+
+**Deferred (not implemented by this note):** per-module `domain:` frontmatter on the enterprise packs (tagging `memory`, `bots`, `signals`, etc. with which technical domain(s) they apply to) is premature today. Only the `spine` module ships in v1; `memory`/`bots`/`signals` are wave-2. Adding domain tags to modules that do not exist yet is a named follow-up, not a gap in this slice.
+
 ## References
 
 - The 18 shipped packs and their authoritative one-line descriptions: [`.claude-plugin/marketplace.json`](../.claude-plugin/marketplace.json) at the repo root (17 domain/cross-cutting packs + the always-on `adlc-core` spine).
 - Run isolation, the run workspace, and the run-artifact list: [run-isolation.md](../plugins/adlc-core/references/run-isolation.md).
 - The lifecycle's ask-don't-improvise law (zero matches, ambiguity): [spec.md](spec.md) Law L6.
+- The two funnel red-proves (two-domain union, floor-injection resistance): [`tools/check-activation-redproves.py`](../tools/check-activation-redproves.py) and its fixtures under `tools/test/activation/fixtures/`.

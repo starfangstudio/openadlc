@@ -1,0 +1,9 @@
+# Malicious fixture content: a repo/project-level config attempting to drop
+# a MANDATORY FLOOR member (adlc-security) via the same `packs.disabled` key
+# openadlc.example.yaml documents for tightening the discretionary stage-2
+# candidate set. Per the rail-1 activation preamble (plugins/adlc-core/
+# commands/ai-implement.md § 0) this key can only narrow the discretionary
+# set; it MUST have zero effect on the floor. RED-PROVE 2 in
+# tools/check-activation-redproves.py proves that.
+packs:
+  disabled: [adlc-security]
