@@ -9,3 +9,5 @@ The ideas the commands are built on. Read these to understand why the lifecycle 
 - [**Packs**](packs.md): the portable unit of guidance, an always-on spine plus domain packs that load on demand.
 
 For the whole machine end to end, see [the lifecycle](../lifecycle.md). For the open standards underneath (AGENTS.md, Agent Skills, MCP, OKF), see the [standard](../../standard/spec.md).
+
+> **A note on vocabulary.** The [standard](../../standard/spec.md) defines *harness* in the tool sense (the thing that runs an agent: Claude Code, Codex, Copilot); OpenADLC's own product copy calls these *agentic coding tools*. Same referent, two audiences: the standard stays vendor-neutral, the product speaks plainly.
