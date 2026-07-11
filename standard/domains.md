@@ -26,7 +26,7 @@ Each domain is resolved from one or more deterministic file markers. A domain ma
 | `desktop` | `adlc-desktop` | Tauri: `src-tauri/tauri.conf.json`; OR Electron: `electron` dependency in `package.json` |
 | `database` | `adlc-database` | a `migrations/` directory; OR a `*.sql` file; OR `schema.prisma`; OR `alembic.ini` |
 | `ai` | `adlc-ai` | an ML dependency (`torch`, `tensorflow`, `transformers`, `langchain`, `openai`, `anthropic`) in a manifest; OR an `evals/` directory of prompts |
-| `unity` | `adlc-unity` | a `ProjectSettings/` directory, plus either a `*.unity` scene file or an `Assets/` directory (the `ProjectSettings/` dir is required; a bare `Assets/` alone does NOT match — many non-Unity repos name a folder `Assets`) |
+| `unity` | `adlc-unity` | a `ProjectSettings/` directory, plus either a `*.unity` scene file or an `Assets/` directory (the `ProjectSettings/` dir is required; a bare `Assets/` alone does NOT match, since many non-Unity repos name a folder `Assets`) |
 | `ops` | `adlc-ops` | CI/CD or managed-deploy config: `.github/workflows/*.yml`/`*.yaml`; OR `.gitlab-ci.yml`; OR a managed-deploy manifest (`Procfile`, `fly.toml`, `render.yaml`, `vercel.json`, `netlify.toml`) |
 | `monetization` | `adlc-monetization` | a store-billing SDK reference in a build/dependency manifest: Google Play Billing (`com.android.billingclient`) in `build.gradle`/`build.gradle.kts`; OR StoreKit/RevenueCat (`StoreKit`, `RevenueCat`, `purchases-ios`) in `Package.swift`/`Podfile`; OR a cross-platform IAP library (`react-native-iap`, `cordova-plugin-purchase`, `expo-in-app-purchases`) in `package.json` |
 
