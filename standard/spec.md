@@ -187,11 +187,11 @@ This is the proof of vendor neutrality.
 
 - The **standard** is the contract: the lifecycle (2), the laws (3), human-in-the-loop (4), the pack shape (5), the artifacts (6).
 - A **harness** is any tool that runs an agent.
-- An **adapter** is the thin layer that maps this standard onto one harness's primitives: its permission and hook system, its plugin loader, its config files.
+- An **adapter** is the thin layer that maps this standard onto one harness's primitives: its entry points, permission and hook system, plugin loader, and config files. The same lifecycle pipeline may surface as a slash command in one harness and a skill in another.
 
 A harness is ADLC-conformant when its adapter implements the MUST clauses of this spec. The load-bearing requirement is supporting the human-in-the-loop checkpoints: the adapter MUST be able to honor them (the consent checkpoint among them), and MUST be able to enforce a checkpoint for unattended or central use.
 
-Harnesses differ in how well they can enforce. The standard does not paper over that. Where a harness cannot enforce a checkpoint in-tool, conformance MAY be achieved by an external control below the harness (for example an egress check or a server-side approval step). Either way, conformance is judged against this standard, never against a vendor's feature list.
+Harnesses differ in how well they can enforce and orchestrate. The standard does not paper over that. An adapter states material differences, such as running independent review lenses sequentially when the harness has no subagents. Where a harness cannot enforce a checkpoint in-tool, conformance MAY be achieved by an external control below the harness (for example an egress check or a server-side approval step). Either way, conformance is judged against this standard, never against a vendor's feature list.
 
 This is what lets ADLC sit *above* Claude Code, Codex, and Copilot: each is one adapter away from the same standard, and none of them is the standard.
 

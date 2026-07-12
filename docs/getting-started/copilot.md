@@ -16,15 +16,11 @@ apm install starfangstudio/openadlc
 
 APM deploys the `adlc-core` spine into Copilot automatically. Update later with `apm update`.
 
-## Run a command
+## Run a pipeline
 
-APM maps the four `/ai-*` commands onto Copilot's own command mechanism. From a project root, invoke:
+APM installs the OpenADLC skills and agents into Copilot. It does not install `/ai-*` slash commands. From a project root, use Copilot's skill or tool primitive to invoke the installed `ai-discovery` skill.
 
-```text
-/ai-discovery
-```
-
-Then `/ai-plan`, `/ai-implement`, and `/ai-review`. If your Copilot surface exposes commands differently, follow how it lists installed commands; the OpenADLC behavior behind each is the same. See [commands](../commands/) for what each one does.
+Continue with the installed `ai-plan`, `ai-implement`, and `ai-review` skills. These are the same four lifecycle pipelines described in [commands](../commands/); only the entry point differs.
 
 ## Models and effort
 

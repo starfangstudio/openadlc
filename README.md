@@ -5,10 +5,10 @@
 
 <h1 align="center">OpenADLC</h1>
 
-<p align="center"><b>Open standard for the <a href="https://www.ibm.com/think/topics/agent-development-lifecycle-adlc">Agentic Development Lifecycle</a>.</b></p>
+<p align="center"><b>The lifecycle standard your existing agentic coding tools run.</b></p>
 
 <p align="center">
-  Runs today in <b>Claude Code</b>. Authored in a portable pack format (APM), with <b>Cursor</b>, <b>Copilot</b>, <b>Codex</b>, <b>Windsurf</b>, and <b>Antigravity</b> on the roadmap.
+  One lifecycle for <b>Claude Code</b>, <b>Cursor</b>, <b>Copilot</b>, <b>Codex</b>, <b>Windsurf</b>, <b>Antigravity</b>, and other APM-supported tools. The entry point adapts to each tool's primitives.
 </p>
 <p align="center">
   Built on open standards: <a href="https://agents.md">AGENTS.md</a> · <a href="https://agentskills.io">Agent Skills</a> · <a href="https://modelcontextprotocol.io">MCP</a> · <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf">OKF</a>.
@@ -24,7 +24,7 @@ Use your existing agentic coding tool, repo, tooling, and standards. OpenADLC ad
 
 ## The flow
 
-Four commands, one per human decision point. This is the lifecycle, top to bottom.
+Four named pipelines, one per human decision point. This is the lifecycle, top to bottom. Claude Code exposes them as `/ai-*` commands; other tools may expose the same pipelines as skills.
 
 ```
   /ai-discovery  ->  /ai-plan  ->  /ai-implement  ->  /ai-review
@@ -62,7 +62,7 @@ The four commands are one machine, not four tools. A few things hold across ever
 
 ## Get started
 
-**Prerequisites:** [Claude Code](https://claude.com/claude-code), the supported agentic coding tool today, and [APM](https://github.com/microsoft/apm), the agent package manager. Other agentic coding tools are on the roadmap through the portable pack format.
+**Prerequisites:** an [APM-supported agentic coding tool](docs/getting-started/README.md) and [APM](https://github.com/microsoft/apm), the agent package manager.
 
 Install with one command; it deploys to your agentic coding tool automatically:
 ```bash
@@ -70,11 +70,11 @@ apm install starfangstudio/openadlc
 ```
 Update later with `apm update`.
 
-Then, in your agentic coding tool from a project root, run your first command:
+Then, from a project root, enter the discovery pipeline through your tool's installed primitive. In Claude Code, run:
 ```text
 /ai-discovery
 ```
-Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. Then `/ai-plan`, `/ai-implement`, and `/ai-review` carry it to a reviewed deliverable, stopping at each checkpoint.
+In Codex and Copilot, invoke the installed `ai-discovery` skill instead; those tools do not receive `/ai-*` slash commands. Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. The plan, implement, and review pipelines carry it to a reviewed deliverable, stopping at each checkpoint.
 
 ## The four commands
 
@@ -93,7 +93,7 @@ Worked example, "add a discount-code field to the checkout page": intake takes t
 
 ## Make it yours
 
-OpenADLC is opinionated where it matters (the lifecycle discipline) and open everywhere else.
+OpenADLC is opinionated where it matters (the lifecycle discipline) and open everywhere else. The four entry points are defined pipelines of agents, skills, and gates, not one-shot prompts.
 
 - **Add your own skill.** Drop a `SKILL.md` at `plugins/<pack>/skills/<name>/SKILL.md` with a name, a trigger-rich description, and the steps. It loads when its description matches the work. See [docs/pack-format.md](docs/pack-format.md).
 - **Add your own pack.** Author skills, agents, and commands to the portable [pack format](docs/pack-format.md), one manifest that APM deploys to your agentic coding tool, then list it in the marketplace. See [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -124,7 +124,7 @@ OpenADLC is free for individuals, including a solo freelancer on paid client wor
 
 ## Status
 
-Early development. The lifecycle runs on Claude Code today; the pack format is built to reach other APM-supported agentic coding tools, but those adapters are not shipped yet. The core is publicly viewable source and is not yet ready for general use. Expect breaking changes.
+Early development. The lifecycle installs across APM-supported agentic coding tools through thin per-tool adapters. Claude Code is the most exercised target today. Tool capabilities differ, and OpenADLC uses each tool's available primitives rather than claiming identical behavior. The core is publicly viewable source and is not yet ready for general use. Expect breaking changes.
 
 ## License
 

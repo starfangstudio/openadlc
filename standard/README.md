@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The ADLC standard
 
-ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase lifecycle, seven principles, and a human-in-the-loop core, written so any agent or harness can implement it.
+ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase pipeline, seven principles, and a human-in-the-loop core, written so any agentic coding tool can implement it. It is not an IDE, a model, or a CI system.
 
 > Status: version 1.0. Spec version 1.0. It goes live on openadlc.com with the OpenADLC core at launch; packs build against it.
 
@@ -22,7 +22,7 @@ ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase li
 
 ## ADLC vs OpenADLC
 
-ADLC is the open standard (the *what*). **OpenADLC** is this project's implementation of it (the *how*): the four-command harness, the consent checkpoint, and the pack library. The standard's seven principles are the neutral category's laws; OpenADLC's [PRINCIPLES.md](../PRINCIPLES.md) (ten) are this product's design tenets, a superset. The conformance levels (Core / Governed / Certified) are shared.
+ADLC is the open standard (the *what*). **OpenADLC** is this project's implementation of it (the *how*): four named lifecycle pipelines, thin per-tool adapters, the consent checkpoint, and the pack library. A pipeline is a defined sequence of agents, skills, and gates, not a one-shot prompt. The standard's seven principles are the neutral category's laws; OpenADLC's [PRINCIPLES.md](../PRINCIPLES.md) (ten) are this product's design tenets, a superset. The conformance levels (Core / Governed / Certified) are shared.
 
 ADLC is a generic, multi-vendor term with no single owner. OpenADLC does not claim to own it; it aims to be the most rigorous open standard for the shared category.
 
