@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # The ADLC standard
 
-ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase pipeline, seven principles, and a human-in-the-loop core, written so any agentic coding tool can implement it. It is not an IDE, a model, or a CI system.
+ADLC is the open, vendor-neutral Agentic Development Lifecycle: a seven-phase lifecycle, seven principles, and a human-in-the-loop core, written so any agentic coding tool can implement it. It is not an IDE, a model, or a CI system.
 
 > Status: version 1.0. Spec version 1.0. It goes live on openadlc.com with the OpenADLC core at launch; packs build against it.
 

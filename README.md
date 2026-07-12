@@ -74,7 +74,7 @@ Then, from a project root, enter the discovery pipeline through your tool's inst
 ```text
 /ai-discovery
 ```
-In Codex and Copilot, invoke the installed `ai-discovery` skill instead; those tools do not receive `/ai-*` slash commands. Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. The plan, implement, and review pipelines carry it to a reviewed deliverable, stopping at each checkpoint.
+In Codex, invoke the installed `ai-discovery` skill; Codex does not receive `/ai-*` slash commands. In VS Code Copilot Chat, APM installs the four pipelines as prompt files, so `/ai-discovery` is available there. Copilot CLI behavior is not yet verified. Describe what you want to build. OpenADLC turns it into a well-formed story and waits for your yes. The plan, implement, and review pipelines carry it to a reviewed deliverable, stopping at each checkpoint.
 
 ## The four commands
 

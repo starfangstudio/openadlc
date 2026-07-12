@@ -18,9 +18,13 @@ APM deploys the `adlc-core` spine into Copilot automatically. Update later with 
 
 ## Run a pipeline
 
-APM installs the OpenADLC skills and agents into Copilot. It does not install `/ai-*` slash commands. From a project root, use Copilot's skill or tool primitive to invoke the installed `ai-discovery` skill.
+APM installs four prompt files under `.github/prompts/`, agents under `.github/agents/`, and skills under `.agents/skills/`. In VS Code Copilot Chat, invoke:
 
-Continue with the installed `ai-plan`, `ai-implement`, and `ai-review` skills. These are the same four lifecycle pipelines described in [commands](../commands/); only the entry point differs.
+```text
+/ai-discovery
+```
+
+Continue with `/ai-plan`, `/ai-implement`, and `/ai-review`. Copilot CLI behavior is not yet verified. See [commands](../commands/) for what each pipeline does.
 
 ## Models and effort
 
